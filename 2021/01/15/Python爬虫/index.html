@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python爬虫1.环境 | Hexo</title><meta name="keywords" content="Python爬虫"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="看的书《Python3 网络爬虫开发实战教程》学习笔记 我光安装都快安装一下午了 python的安装我就不说了请求库的安装安装requests之前介绍的 Requests 库是一个阻塞式 HTTP 请求库，当我们发出一个请求后，程序会一直等待服务器响应，直到得到响应后，程序才会进行下一步处理 Requests 项目的地址是：https:&#x2F;&#x2F;github.com&#x2F;kennethreitz&#x2F;reque">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫1.环境">
+<meta property="og:url" content="http://example.com/2021/01/15/Python%E7%88%AC%E8%99%AB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="看的书《Python3 网络爬虫开发实战教程》学习笔记 我光安装都快安装一下午了 python的安装我就不说了请求库的安装安装requests之前介绍的 Requests 库是一个阻塞式 HTTP 请求库，当我们发出一个请求后，程序会一直等待服务器响应，直到得到响应后，程序才会进行下一步处理 Requests 项目的地址是：https:&#x2F;&#x2F;github.com&#x2F;kennethreitz&#x2F;reque">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png">
+<meta property="article:published_time" content="2021-01-15T13:10:30.000Z">
+<meta property="article:modified_time" content="2021-08-20T00:04:32.006Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/01/15/Python%E7%88%AC%E8%99%AB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python爬虫1.环境',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-20 08:04:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python爬虫1.环境</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-15T13:10:30.000Z" title="发表于 2021-01-15 21:10:30">2021-01-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-20T00:04:32.006Z" title="更新于 2021-08-20 08:04:32">2021-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python%E7%88%AC%E8%99%AB/">Python爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python爬虫1.环境"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>看的书《Python3 网络爬虫开发实战教程》学习笔记</p>
+<p><strong>我光安装都快安装一下午了</strong></p>
+<h1 id="python的安装我就不说了"><a href="#python的安装我就不说了" class="headerlink" title="python的安装我就不说了"></a>python的安装我就不说了</h1><h1 id="请求库的安装"><a href="#请求库的安装" class="headerlink" title="请求库的安装"></a>请求库的安装</h1><h2 id="安装requests"><a href="#安装requests" class="headerlink" title="安装requests"></a>安装requests</h2><p>之前介绍的 Requests 库是一个阻塞式 HTTP 请求库，当我们发出一个请求后，程序会一直等待服务器响应，直到得到响应后，程序才会进行下一步处理</p>
+<p>Requests 项目的地址是：<a target="_blank" rel="noopener" href="https://github.com/kennethreitz/requests">https://github.com/kennethreitz/requests</a></p>
+<p><strong>kali默认安装了</strong></p>
+<p>pip安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install requests</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115180101413.png" alt="image-20210115180101413"></p>
+<h2 id="安装selenium"><a href="#安装selenium" class="headerlink" title="安装selenium"></a>安装selenium</h2><p>Selenium 是一个自动化测试工具，利用它我们可以驱动浏览器执行特定的动作，如点击、下拉等操作。对于一些 JavaScript 渲染的页面来说，这种抓取方式非常有效</p>
+<p><strong>kali默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install selenium</span><br></pre></td></tr></table></figure>
+
+<p>​    验证安装</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115191928580.png" alt="image-20210115191928580"></p>
+<h2 id="安装ChromeDriver"><a href="#安装ChromeDriver" class="headerlink" title="安装ChromeDriver"></a>安装ChromeDriver</h2><p>因为只有安装 ChromeDriver，才能驱动 Chrome 浏览器完成相应的操作</p>
+<p>先查看谷歌浏览器的版本</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115180958747.png" alt="image-20210115180958747"></p>
+<p>到这个网站去下载对应的版本</p>
+<p><a target="_blank" rel="noopener" href="https://chromedriver.chromium.org/downloads">https://chromedriver.chromium.org/downloads</a></p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115181103587.png" alt="image-20210115181103587"></p>
+<p>我的系统是linux我就下载linux的</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115181132566.png" alt="image-20210115181132566"></p>
+<p>下载好解压出来会有一个这个文件</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115181247783.png" alt="image-20210115181247783"></p>
+<p>要移动文件到 /usr/bin 目录。首先，需要在命令行模式下进入其所在路径，然后将其移动到 /usr/bin</p>
+<p>命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv chromedriver /usr/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115181413859.png" alt="image-20210115181413859"></p>
+<p>在终端运行<code>chromedriver</code>看看有没有安装成功</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115181703269.png" alt="image-20210115181703269"></p>
+<p>应为我是root用户可能无法运行</p>
+<h2 id="安装GeckoDriver"><a href="#安装GeckoDriver" class="headerlink" title="安装GeckoDriver"></a>安装GeckoDriver</h2><p>那么对于 Firefox 来说，也可以使用同样的方式完成 Selenium 的对接，这时需要安装另一个驱动 GeckoDriver</p>
+<p>在github上搜索GeckoDriver<img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115183547346.png" alt="image-20210115183547346"></p>
+<p>​    解压出来放到<code>/usr/bin</code>里面</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv geckodriver /usr/bin</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115183647787.png" alt="image-20210115183647787"></p>
+<p>在终端运行<code>geckodriver</code>看看有没有安装成功</p>
+<p>​    <img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115183819742.png" alt="image-20210115183819742"></p>
+<p>控制台输出</p>
+<p>随后执行如下 Python 代码，在程序中测试一下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span>  webdriver</span><br><span class="line">browser =  webdriver.Firefox()</span><br></pre></td></tr></table></figure>
+
+<p>可以看见成功了</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115184041421.png" alt="image-20210115184041421"></p>
+<h2 id="安装PhantomJS"><a href="#安装PhantomJS" class="headerlink" title="安装PhantomJS"></a>安装PhantomJS</h2><p>Selenium 支持 PhantomJS，这样在运行的时候就不会再弹出一个浏览器了。而且 PhantomJS 的运行效率也很高，还支持各种参数配置，使用非常方便</p>
+<p>下载地址</p>
+<p><a target="_blank" rel="noopener" href="https://phantomjs.org/download.html">https://phantomjs.org/download.html</a></p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115184531274.png" alt="image-20210115184531274"></p>
+<p>解压出来</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf 文件名</span><br></pre></td></tr></table></figure>
+
+<p>将程序移到一个合适的位置</p>
+<p>我叫他移动到<code>/opt/</code>文件里面叫名字改成了<code>phantomjs</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv phantomjs-2.1.1-linux-x86_64 /opt/phantomjs</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115185755409.png" alt="image-20210115185755409"></p>
+<p>创建软链接到环境变量中。这样可以直接在shell中使用phantomjs命令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -sf /opt/phantomjs/bin/phantomjs /usr/<span class="built_in">local</span>/bin/phantomjs</span><br></pre></td></tr></table></figure>
+
+<p>查看有没有安装好我发现报错了</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115190217821.png" alt="image-20210115190217821"></p>
+<p>解决方法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> OPENSSL_CONF=/etc/ssl/</span><br></pre></td></tr></table></figure>
+
+<p>在运行就没有报错了</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115190251034.png" alt="image-20210115190251034"></p>
+<p>验证安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.PhantomJS()</span><br><span class="line">browser.get(<span class="string">&#x27;https://www.baidu.com&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(browser.current_url)</span><br></pre></td></tr></table></figure>
+
+<p>运行之后，我们就不会发现有浏览器弹出了，但实际上 PhantomJS 已经运行起来了。这里我们访问了百度，然后将当前的 URL 打印出来</p>
+<p><strong>我这个kali有个问题就是必须在这个终端上先输入<code>export OPENSSL_CONF=/etc/ssl/</code>才能正常运行</strong></p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115191247966.png" alt="image-20210115191247966"></p>
+<h2 id="安装aiohttp"><a href="#安装aiohttp" class="headerlink" title="安装aiohttp"></a>安装aiohttp</h2><p>之前介绍的 Requests 库是一个阻塞式 HTTP 请求库，当我们发出一个请求后，程序会一直等待服务器响应，直到得到响应后，程序才会进行下一步处理。其实，这个过程比较耗费资源。如果程序可以在这个等待过程中做一些其他的事情，如进行请求的调度、响应的处理等，那么爬取效率一定会大大提高。</p>
+<p>aiohttp 就是这样一个提供异步 Web 服务的库，从 Python 3.5 版本开始，Python 中加入了 <code>async</code>/<code>await</code> 关键字，使得回调的写法更加直观和人性化。aiohttp 的异步操作借助于 <code>async</code>/<code>await</code> 关键字的写法变得更加简洁，架构更加清晰。使用异步请求库进行数据抓取时，会大大提高效率</p>
+<p><strong>kali默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install aiohttp</span><br></pre></td></tr></table></figure>
+
+<p>测试安装</p>
+<p>没有报错就成功了</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115191527214.png" alt="image-20210115191527214"></p>
+<h1 id="解析库的安装"><a href="#解析库的安装" class="headerlink" title="解析库的安装"></a>解析库的安装</h1><h2 id="安装lxml"><a href="#安装lxml" class="headerlink" title="安装lxml"></a>安装lxml</h2><p>lxml 是 Python 的一个解析库，支持 HTML 和 XML 的解析，支持 XPath 解析方式，而且解析效率非常高</p>
+<p><strong>kali默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install lxml</span><br></pre></td></tr></table></figure>
+
+<p>验证安装</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115192425347.png" alt="image-20210115192425347"></p>
+<h2 id="安装Beautiful-Soup"><a href="#安装Beautiful-Soup" class="headerlink" title="安装Beautiful Soup"></a>安装Beautiful Soup</h2><p>Beautiful Soup 是 Python 的一个 HTML 或 XML 的解析库，我们可以用它来方便地从网页中提取数据。它拥有强大的 API 和多样的解析方式</p>
+<p><strong>Beautiful Soup 的 HTML 和 XML 解析器是依赖于 lxml 库的，所以在此之前请确保已经成功安装好了 lxml 库</strong></p>
+<p><strong>kali默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install beautifulsoup4</span><br></pre></td></tr></table></figure>
+
+<p>验证安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">soup = BeautifulSoup(<span class="string">&#x27;&lt;p&gt;Hello&lt;/p&gt;&#x27;</span>, <span class="string">&#x27;lxml&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(soup.p.string)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115192821626.png" alt="image-20210115192821626"></p>
+<h2 id="安装pyquery"><a href="#安装pyquery" class="headerlink" title="安装pyquery"></a>安装pyquery</h2><p>pyquery 同样是一个强大的网页解析工具，它提供了和 jQuery 类似的语法来解析 HTML 文档，支持 CSS 选择器，使用非常方便</p>
+<p><strong>kali默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pyquery</span><br></pre></td></tr></table></figure>
+
+<p>验证安装</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115193051745.png" alt="image-20210115193051745"></p>
+<h2 id="安装tesserocr"><a href="#安装tesserocr" class="headerlink" title="安装tesserocr"></a>安装tesserocr</h2><p>在爬虫过程中，难免会遇到各种各样的验证码，而大多数验证码还是图形验证码，这时候我们可以直接用 OCR 来识别</p>
+<p>什么是OCR，即 Optical Character Recognition，光学字符识别，是指通过扫描字符，然后通过其形状将其翻译成电子文本的过程。对于图形验证码来说，它们都是一些不规则的字符，这些字符确实是由字符稍加扭曲变换得到的内容。</p>
+<p><strong>安装Python的tesserocr的库</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install tesserocr </span><br></pre></td></tr></table></figure>
+
+<p> 验证安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tesserocr</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&#x27;image.png&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(tesserocr.image_to_text(image))</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115194401778.png" alt="image-20210115194401778"></p>
+<p><strong>kali安装tesserocr命令</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev</span><br></pre></td></tr></table></figure>
+
+<p>验证安装</p>
+<p>在这个文件下载一个照片</p>
+<p><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/Python3WebSpider/TestTess/master/image.png">https://raw.githubusercontent.com/Python3WebSpider/TestTess/master/image.png</a></p>
+<p>然后运行这个命令</p>
+<p><code>image.png</code>是下载的照片文件名</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tesseract image.png result -l eng &amp;&amp; cat result.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115193938266.png" alt="image-20210115193938266"></p>
+<h1 id="数据库的安装"><a href="#数据库的安装" class="headerlink" title="数据库的安装"></a>数据库的安装</h1><p>可以存储我们爬下来的东西</p>
+<p><strong>mysql  kali已经默认安装了</strong></p>
+<p>关闭和重启 MySQL 服务的命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysql start</span><br><span class="line">sudo service mysql stop</span><br><span class="line">sudo service mysql restart</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库的安装-1"><a href="#数据库的安装-1" class="headerlink" title="数据库的安装"></a>数据库的安装</h1><p>这个就是叫python调用数据库</p>
+<p>我只用mysql就可以了</p>
+<p>下载</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pymysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115195006127.png" alt="image-20210115195006127"></p>
+<h1 id="Web-库的安装"><a href="#Web-库的安装" class="headerlink" title="Web 库的安装"></a>Web 库的安装</h1><p>Flask 是一个轻量级的 Web 服务程序，它简单、易用、灵活，这里主要用来做一些 API 服务</p>
+<h2 id="安装flask"><a href="#安装flask" class="headerlink" title="安装flask"></a>安装flask</h2><p><strong>kail默认安装了</strong></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install flask</span><br></pre></td></tr></table></figure>
+
+<p> 验证安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，系统会在 5000 端口开启 Web 服务，控制台输出如下</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115195542197.png" alt="image-20210115195542197"></p>
+<h2 id="安装Tornado"><a href="#安装Tornado" class="headerlink" title="安装Tornado"></a>安装Tornado</h2><p>Tornado 是一个支持异步的 Web 框架，通过使用非阻塞 I/O 流，它可以支撑成千上万的开放连接，效率非常高，本节就来介绍一下它的安装方式</p>
+<p>kali默认安装了</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install tornado</span><br></pre></td></tr></table></figure>
+
+<p> 验证安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tornado.ioloop</span><br><span class="line"><span class="keyword">import</span> tornado.web</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainHandler</span>(<span class="params">tornado.web.RequestHandler</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.write(<span class="string">&quot;Hello, world&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">make_app</span>():</span></span><br><span class="line">    <span class="keyword">return</span> tornado.web.Application([</span><br><span class="line">        (<span class="string">r&quot;/&quot;</span>, MainHandler),</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app = make_app()</span><br><span class="line">    app.listen(<span class="number">8888</span>)</span><br><span class="line">    tornado.ioloop.IOLoop.current().start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>直接运行程序，可以发现系统在 8888 端口运行了 Web 服务，控制台没有输出内容，此时访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8888/%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%A7%82%E5%AF%9F%E5%88%B0%E7%BD%91%E9%A1%B5%E4%B8%AD%E5%91%88%E7%8E%B0%E4%BA%86">http://127.0.0.1:8888/，可以观察到网页中呈现了</a> Hello,world，如图 1-42 所示，这就说明 Tornado 成功安装了</p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115195919280.png" alt="image-20210115195919280"></p>
+<h1 id="App-爬取相关库的安装"><a href="#App-爬取相关库的安装" class="headerlink" title="App 爬取相关库的安装"></a>App 爬取相关库的安装</h1><p><strong>简单来说就是抓包工具</strong></p>
+<p>除了 Web 网页，爬虫也可以抓取 App 的数据。App 中的页面要加载出来，首先需要获取数据，而这些数据一般是通过请求服务器的接口来获取的。由于 App 没有浏览器这种可以比较直观地看到后台请求的工具，所以主要用一些抓包技术来抓取数据。</p>
+<p>本书介绍的抓包工具有 Charles、mitmproxy 和 mitmdump。一些简单的接口可以通过 Charles 或 mitmproxy 分析，找出规律，然后直接用程序模拟来抓取了。但是如果遇到更复杂的接口，就需要利用 mitmdump 对接 Python 来对抓取到的请求和响应进行实时处理和保存。另外，既然要做规模采集，就需要自动化 App 的操作而不是人工去采集，所以这里还需要一个工具叫作 Appium，它可以像 Selenium 一样对 App 进行自动化控制，如自动化模拟 App 的点击、下拉等操作。</p>
+<p>本节中，我们就来介绍一下 Charles、mitmproxy、mitmdump、Appium 的安装方法</p>
+<h2 id="安装的Charles"><a href="#安装的Charles" class="headerlink" title="安装的Charles"></a>安装的Charles</h2><ul>
+<li>官方网站：<a target="_blank" rel="noopener" href="https://www.charlesproxy.com/">https://www.charlesproxy.com</a></li>
+<li>下载链接：<a target="_blank" rel="noopener" href="https://www.charlesproxy.com/download">https://www.charlesproxy.com/download</a></li>
+</ul>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115200232611.png" alt="image-20210115200232611"></p>
+<p>这个我就不安装了</p>
+<h2 id="安装mitmproxy"><a href="#安装mitmproxy" class="headerlink" title="安装mitmproxy"></a>安装mitmproxy</h2><p><strong>kali默认安装了</strong></p>
+<ul>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy">https://github.com/mitmproxy/mitmproxy</a></li>
+<li>官方网站：<a target="_blank" rel="noopener" href="https://mitmproxy.org/">https://mitmproxy.org</a></li>
+<li>PyPI：<a target="_blank" rel="noopener" href="https://pypi.python.org/pypi/mitmproxy">https://pypi.python.org/pypi/mitmproxy</a></li>
+<li>官方文档：<a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/">http://docs.mitmproxy.org</a></li>
+<li>mitmdump 脚本：<a target="_blank" rel="noopener" href="http://docs.mitmproxy.org/en/stable/scripting/overview.html">http://docs.mitmproxy.org/en/stable/scripting/overview.html</a></li>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://github.com/mitmproxy/mitmproxy/releases">https://github.com/mitmproxy/mitmproxy/releases</a></li>
+<li>DockerHub：<a target="_blank" rel="noopener" href="https://hub.docker.com/r/mitmproxy/mitmproxy">https://hub.docker.com/r/mitmproxy/mitmproxy</a></li>
+</ul>
+<h2 id="安装-Appium"><a href="#安装-Appium" class="headerlink" title="安装 Appium"></a>安装 Appium</h2><p>Appium 是移动端的自动化测试工具，类似于前面所说的 Selenium，利用它可以驱动 Android、iOS 等设备完成自动化测试，比如模拟点击、滑动、输入等操作，其官方网站为：<a target="_blank" rel="noopener" href="http://appium.io/%E3%80%82%E6%9C%AC%E8%8A%82%E4%B8%AD%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%B1%E6%9D%A5%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B">http://appium.io/。本节中，我们就来了解一下</a> Appium 的安装方式</p>
+<ul>
+<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/appium/appium">https://github.com/appium/appium</a></li>
+<li>官方网站：<a target="_blank" rel="noopener" href="http://appium.io/">http://appium.io</a></li>
+<li>官方文档：<a target="_blank" rel="noopener" href="http://appium.io/introduction.html">http://appium.io/introduction.html</a></li>
+<li>下载链接：<a target="_blank" rel="noopener" href="https://github.com/appium/appium-desktop/releases">https://github.com/appium/appium-desktop/releases</a></li>
+<li>Python Client：<a target="_blank" rel="noopener" href="https://github.com/appium/python-client">https://github.com/appium/python-client</a></li>
+</ul>
+<h1 id="爬虫框架的安装"><a href="#爬虫框架的安装" class="headerlink" title="爬虫框架的安装"></a>爬虫框架的安装</h1><p><strong>简单来说就是可以提升效率</strong></p>
+<p>我们直接用 Requests、Selenium 等库写爬虫，如果爬取量不是太大，速度要求不高，是完全可以满足需求的。但是写多了会发现其内部许多代码和组件是可以复用的，如果我们把这些组件抽离出来，将各个功能模块化，就慢慢会形成一个框架雏形，久而久之，爬虫框架就诞生了。</p>
+<p>利用框架，我们可以不用再去关心某些功能的具体实现，只需要关心爬取逻辑即可。有了它们，可以大大简化代码量，而且架构也会变得清晰，爬取效率也会高许多。所以，如果有一定的基础，上手框架是一种好的选择。</p>
+<p>本书主要介绍的爬虫框架有 pyspider 和 Scrapy。本节中，我们来介绍一下 pyspider、Scrapy 及其扩展库的安装方式</p>
+<h2 id="安装pyspider"><a href="#安装pyspider" class="headerlink" title="安装pyspider"></a>安装pyspider</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pyspider</span><br></pre></td></tr></table></figure>
+
+<p>这个问题太多了</p>
+<h2 id="安装Scrapy"><a href="#安装Scrapy" class="headerlink" title="安装Scrapy"></a>安装Scrapy</h2><p>Scrapy 是一个十分强大的爬虫框架，依赖的库比较多，至少需要依赖的库有 Twisted 14.0、lxml 3.4 和 pyOpenSSL 0.14。在不同的平台环境下，它所依赖的库也各不相同，所以在安装之前，最好确保把一些基本库安装好。本节就来介绍 Scrapy 在不同平台的安装方法</p>
+<p>安装依赖的库</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install build-essential python3-dev libssl-dev libffi-dev libxml2 libxml2-dev libxslt1-dev zlib1g-dev</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install Scrapy </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115204850986.png" alt="image-20210115204850986"></p>
+<p> 验证安装</p>
+<p>在命令行下输入 <code>scrapy</code></p>
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115205014221.png" alt="image-20210115205014221"></p>
+<h2 id="安装Scrapy-Redis"><a href="#安装Scrapy-Redis" class="headerlink" title="安装Scrapy-Redis"></a>安装Scrapy-Redis</h2><p>Scrapy-Redis 是 Scrapy 的分布式扩展模块，有了它，我们就可以方便地实现 Scrapy 分布式爬虫的搭建</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapy-redis</span><br></pre></td></tr></table></figure>
+
+<p> 测试安装</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy_redis</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115205654455.png" alt="image-20210115205654455"></p>
+<h1 id="部署相关库的安装"><a href="#部署相关库的安装" class="headerlink" title="部署相关库的安装"></a>部署相关库的安装</h1><p><strong>简单来说就是分布式扫描</strong></p>
+<p>如果想要大规模抓取数据，那么一定会用到分布式爬虫。对于分布式爬虫来说，我们需要多台主机，每台主机多个爬虫任务，但是源代码其实只有一份。此时我们需要做的就是将一份代码同时部署到多台主机上来协同运行，那么怎么去部署就是另一个值得思考的问题。</p>
+<p>对于 Scrapy 来说，它有一个扩展组件，叫作 Scrapyd，我们只需要安装该扩展组件，即可远程管理 Scrapy 任务，包括部署源码、启动任务、监听任务等。另外，还有 Scrapyd-Client 和 Scrapyd API 来帮助我们更方便地完成部署和监听操作。</p>
+<p>另外，还有一种部署方式，那就是 Docker 集群部署。我们只需要将爬虫制作为 Docker 镜像，只要主机安装了 Docker，就可以直接运行爬虫，而无需再去担心环境配置、版本问题。</p>
+<h2 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker </span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Scrapyd"><a href="#安装Scrapyd" class="headerlink" title="安装Scrapyd"></a>安装Scrapyd</h2><p>Scrapyd 是一个用于部署和运行 Scrapy 项目的工具，有了它，你可以将写好的 Scrapy 项目上传到云主机并通过 API 来控制它的运行。</p>
+<p>既然是 Scrapy 项目部署，基本上都使用 Linux 主机，所以本节的安装是针对于 Linux 主机的</p>
+<p>安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install scrapyd</span><br></pre></td></tr></table></figure>
+
+<h1 id="后面的我就不安装了可能用不到"><a href="#后面的我就不安装了可能用不到" class="headerlink" title="后面的我就不安装了可能用不到"></a>后面的我就不安装了可能用不到</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/01/15/Python%E7%88%AC%E8%99%AB/">http://example.com/2021/01/15/Python%E7%88%AC%E8%99%AB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E7%88%AC%E8%99%AB/">Python爬虫</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/01/18/Python%E7%88%AC%E8%99%AB2/"><img class="prev-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python爬虫2.基础</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/24/linux%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7apt%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%BE%93%E5%87%BAdpkg%20%E6%97%A0%E6%B3%95%E6%81%A2%E5%A4%8D%E7%9A%84%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF/"><img class="next-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20201225170357977.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">linux系统用户apt下载安装输出dpkg 无法恢复的致命错误</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/18/Python爬虫2/" title="Python爬虫2.基础"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-18</div><div class="title">Python爬虫2.基础</div></div></a></div><div><a href="/2021/08/20/XPath/" title="解析库XPath的语法"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-20</div><div class="title">解析库XPath的语法</div></div></a></div><div><a href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-01</div><div class="title">解析库BeautifulSoup4</div></div></a></div><div><a href="/2021/08/24/lxml/" title="lxml解析库用XPath语言提取数据"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="title">lxml解析库用XPath语言提取数据</div></div></a></div><div><a href="/2021/03/04/python爬虫4/" title="Python爬虫4requests库使用"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-04</div><div class="title">Python爬虫4requests库使用</div></div></a></div><div><a href="/2021/08/26/wyy/" title="全站视频解析技术"><img class="cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/github-universe.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-26</div><div class="title">全站视频解析技术</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#python%E7%9A%84%E5%AE%89%E8%A3%85%E6%88%91%E5%B0%B1%E4%B8%8D%E8%AF%B4%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text">python的安装我就不说了</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">请求库的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85requests"><span class="toc-number">2.1.</span> <span class="toc-text">安装requests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85selenium"><span class="toc-number">2.2.</span> <span class="toc-text">安装selenium</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85ChromeDriver"><span class="toc-number">2.3.</span> <span class="toc-text">安装ChromeDriver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85GeckoDriver"><span class="toc-number">2.4.</span> <span class="toc-text">安装GeckoDriver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85PhantomJS"><span class="toc-number">2.5.</span> <span class="toc-text">安装PhantomJS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85aiohttp"><span class="toc-number">2.6.</span> <span class="toc-text">安装aiohttp</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">解析库的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85lxml"><span class="toc-number">3.1.</span> <span class="toc-text">安装lxml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Beautiful-Soup"><span class="toc-number">3.2.</span> <span class="toc-text">安装Beautiful Soup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85pyquery"><span class="toc-number">3.3.</span> <span class="toc-text">安装pyquery</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85tesserocr"><span class="toc-number">3.4.</span> <span class="toc-text">安装tesserocr</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">数据库的安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85-1"><span class="toc-number">5.</span> <span class="toc-text">数据库的安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">6.</span> <span class="toc-text">Web 库的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85flask"><span class="toc-number">6.1.</span> <span class="toc-text">安装flask</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Tornado"><span class="toc-number">6.2.</span> <span class="toc-text">安装Tornado</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#App-%E7%88%AC%E5%8F%96%E7%9B%B8%E5%85%B3%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">7.</span> <span class="toc-text">App 爬取相关库的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%9A%84Charles"><span class="toc-number">7.1.</span> <span class="toc-text">安装的Charles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85mitmproxy"><span class="toc-number">7.2.</span> <span class="toc-text">安装mitmproxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Appium"><span class="toc-number">7.3.</span> <span class="toc-text">安装 Appium</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">8.</span> <span class="toc-text">爬虫框架的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85pyspider"><span class="toc-number">8.1.</span> <span class="toc-text">安装pyspider</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Scrapy"><span class="toc-number">8.2.</span> <span class="toc-text">安装Scrapy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Scrapy-Redis"><span class="toc-number">8.3.</span> <span class="toc-text">安装Scrapy-Redis</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E7%9B%B8%E5%85%B3%E5%BA%93%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">9.</span> <span class="toc-text">部署相关库的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="toc-number">9.1.</span> <span class="toc-text">安装Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Scrapyd"><span class="toc-number">9.2.</span> <span class="toc-text">安装Scrapyd</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E9%9D%A2%E7%9A%84%E6%88%91%E5%B0%B1%E4%B8%8D%E5%AE%89%E8%A3%85%E4%BA%86%E5%8F%AF%E8%83%BD%E7%94%A8%E4%B8%8D%E5%88%B0"><span class="toc-number">10.</span> <span class="toc-text">后面的我就不安装了可能用不到</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

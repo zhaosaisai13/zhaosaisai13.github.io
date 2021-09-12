@@ -1,0 +1,889 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>python正则表达式 | Hexo</title><meta name="keywords" content="编程"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="爬虫学习记录 下面会用到到网站https:&#x2F;&#x2F;regex101.com&#x2F;   正则表达式的函数python提供了一个re模块这个模块提供了很多的方法和函数 match()函数使用方法他的格式，他有三参数，这个函数会从起始位置进行匹配如果匹配失败就返回none   1re.match(匹配的正则表达式, 要匹配的字符串, 可选参数标志位控制匹配的比如是否区分大小写等)   正则表达式修饰符 - 可选">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python正则表达式">
+<meta property="og:url" content="http://example.com/2021/04/21/pythonzhengze/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="爬虫学习记录 下面会用到到网站https:&#x2F;&#x2F;regex101.com&#x2F;   正则表达式的函数python提供了一个re模块这个模块提供了很多的方法和函数 match()函数使用方法他的格式，他有三参数，这个函数会从起始位置进行匹配如果匹配失败就返回none   1re.match(匹配的正则表达式, 要匹配的字符串, 可选参数标志位控制匹配的比如是否区分大小写等)   正则表达式修饰符 - 可选">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/1510037927295952.jpg">
+<meta property="article:published_time" content="2021-04-21T10:20:55.000Z">
+<meta property="article:modified_time" content="2021-08-20T00:04:43.141Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/1510037927295952.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/04/21/pythonzhengze/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'python正则表达式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-20 08:04:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/wzass/zp/1510037927295952.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">python正则表达式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-21T10:20:55.000Z" title="发表于 2021-04-21 18:20:55">2021-04-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-20T00:04:43.141Z" title="更新于 2021-08-20 08:04:43">2021-08-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python%E7%88%AC%E8%99%AB/">Python爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="python正则表达式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>爬虫学习记录</strong></p>
+<div class="note info simple"><p>下面会用到到网站<a target="_blank" rel="noopener" href="https://regex101.com/">https://regex101.com/</a></p>
+</div>
+
+<h1 id="正则表达式的函数"><a href="#正则表达式的函数" class="headerlink" title="正则表达式的函数"></a>正则表达式的函数</h1><p>python提供了一个<code>re</code>模块这个模块提供了很多的方法和函数</p>
+<h1 id="match-函数"><a href="#match-函数" class="headerlink" title="match()函数"></a>match()函数</h1><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><div class="note info simple"><p>他的格式，他有三参数，这个函数会从起始位置进行匹配如果匹配失败就返回<code>none</code></p>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.match(匹配的正则表达式, 要匹配的字符串, 可选参数标志位控制匹配的比如是否区分大小写等)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>正则表达式修饰符 - 可选标志</p>
+<table>
+<thead>
+<tr>
+<th align="left">修饰符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">re.I</td>
+<td align="left">使匹配对大小写不敏感</td>
+</tr>
+<tr>
+<td align="left">re.L</td>
+<td align="left">做本地化识别（locale-aware）匹配</td>
+</tr>
+<tr>
+<td align="left">re.M</td>
+<td align="left">多行匹配，影响 ^ 和 $</td>
+</tr>
+<tr>
+<td align="left">re.S</td>
+<td align="left">使 . 匹配包括换行在内的所有字符</td>
+</tr>
+<tr>
+<td align="left">re.U</td>
+<td align="left">根据Unicode字符集解析字符。这个标志影响 \w, \W, \b, \B.</td>
+</tr>
+<tr>
+<td align="left">re.X</td>
+<td align="left">该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解。</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="实测"><a href="#实测" class="headerlink" title="实测"></a>实测</h2><h3 id="匹配错误返回"><a href="#匹配错误返回" class="headerlink" title="匹配错误返回"></a>匹配错误返回</h3><p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;babc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a和b进行匹配，前面多一个b不匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+
+<p>结果：返回一个None</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418085308715.png" alt="image-20210418085308715"></p>
+<h3 id="匹配正确返回"><a href="#匹配正确返回" class="headerlink" title="匹配正确返回"></a>匹配正确返回</h3><p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;abc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a和b进行匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+
+<p>结果：匹配正确，返回一个对象</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418084957128.png" alt="image-20210418084957128"></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他进行是返回一个对象那么我们就可以用里面的方法了</p>
+</div> 
+
+<p>查看里面的方法可以用<code>dir</code>函数</p>
+<p>可以看见有很多的方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418090626506.png" alt="image-20210418090626506"></p>
+<div class="note info simple"><p>下面我列出几个常用的方法</p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th align="left">常用的方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">group()</td>
+<td align="left">返回匹配的字符串</td>
+</tr>
+<tr>
+<td align="left">span()</td>
+<td align="left">返回匹配的范围</td>
+</tr>
+<tr>
+<td align="left">start()</td>
+<td align="left">返回从那开始匹配的</td>
+</tr>
+<tr>
+<td align="left">groups()</td>
+<td align="left">返回全部分组</td>
+</tr>
+</tbody></table>
+<ol>
+<li><p>group()选择返回的字符串</p>
+<p>实测</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;abc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># a和b进行匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出匹配的字符串</span></span><br><span class="line"><span class="built_in">print</span>(c.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abc</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418090829379.png" alt="image-20210418090829379"></p>
+</li>
+<li><p>span()返回匹配的范围</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;abc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"><span class="comment"># a和b进行匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出匹配的范围</span></span><br><span class="line"><span class="built_in">print</span>(c.span())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(0, 3)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418091042017.png" alt="image-20210418091042017"></p>
+</li>
+<li><p>start()返回从那开始匹配的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;abc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"><span class="comment"># a和b进行匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出从那开始匹配的</span></span><br><span class="line"><span class="built_in">print</span>(c.start())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418091516259.png" alt="image-20210418091516259"></p>
+</li>
+</ol>
+<h2 id="第三个可选参数标志位"><a href="#第三个可选参数标志位" class="headerlink" title="第三个可选参数标志位"></a>第三个可选参数标志位</h2><p>比如代码是下面这样的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;ABc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"><span class="comment"># a和b进行匹配</span></span><br><span class="line">c=re.match(a,b)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+
+<p>结果，应为他是AB和ab是不匹配的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>我们就可以用到参数标志位，不区分大小写</p>
+</div> 
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&quot;ABc&quot;</span></span><br><span class="line">b=<span class="string">&quot;abc def ghi&quot;</span></span><br><span class="line"><span class="comment"># a和b进行匹配，添加上re.I不区分大小写</span></span><br><span class="line">c=re.match(a,b,re.I)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 3), match=&#x27;abc&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210418091949404.png" alt="image-20210418091949404"></p>
+<h1 id="字符的使用"><a href="#字符的使用" class="headerlink" title="字符的使用"></a>字符的使用</h1><table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">.</td>
+<td align="left">匹配任意一个字符（除了\n）</td>
+</tr>
+<tr>
+<td align="left">[]</td>
+<td align="left">匹配列表中的内容（点就是点而不是如何字符）</td>
+</tr>
+<tr>
+<td align="left">\w</td>
+<td align="left">匹配字母、数字及下划线比如a-z，A-Z，_</td>
+</tr>
+<tr>
+<td align="left">\W</td>
+<td align="left">匹配不是字母、数字及下划线的字符</td>
+</tr>
+<tr>
+<td align="left">\s</td>
+<td align="left">匹配任意空白字符，等价于 <code>[\\t\\n\\r\\f]</code></td>
+</tr>
+<tr>
+<td align="left">\S</td>
+<td align="left">匹配任意非空字符</td>
+</tr>
+<tr>
+<td align="left">\d</td>
+<td align="left">匹配任意数字，等价于 <code>[0-9]</code></td>
+</tr>
+<tr>
+<td align="left">\D</td>
+<td align="left">匹配任意非数字的字符</td>
+</tr>
+<tr>
+<td align="left">\Z</td>
+<td align="left">匹配字符串结尾，如果有换行会往下匹配</td>
+</tr>
+<tr>
+<td align="left">\A</td>
+<td align="left">匹配字符串开头</td>
+</tr>
+<tr>
+<td align="left">^</td>
+<td align="left">匹配一行字符串的开头</td>
+</tr>
+<tr>
+<td align="left">$</td>
+<td align="left">匹配一行字符串的结尾</td>
+</tr>
+<tr>
+<td align="left">\n</td>
+<td align="left">匹配一个换行符</td>
+</tr>
+<tr>
+<td align="left">\t</td>
+<td align="left">匹配一个制表符</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">匹配 0 个或多个表达式</td>
+</tr>
+<tr>
+<td align="left">+</td>
+<td align="left">匹配 1 个或多个表达式</td>
+</tr>
+<tr>
+<td align="left">?</td>
+<td align="left">匹配 0 个或 1 个前面的正则表达式定义的片段(非贪婪方式)</td>
+</tr>
+<tr>
+<td align="left">{n}</td>
+<td align="left">精确匹配 <code>n</code> 个前面的表达式</td>
+</tr>
+<tr>
+<td align="left">a|b</td>
+<td align="left">匹配 <code>a</code> 或 <code>b</code></td>
+</tr>
+<tr>
+<td align="left">( )</td>
+<td align="left">匹配括号内的表达式，也表示一个组</td>
+</tr>
+<tr>
+<td align="left">\</td>
+<td align="left">转义符</td>
+</tr>
+</tbody></table>
+<h2 id="全部的实测"><a href="#全部的实测" class="headerlink" title="全部的实测"></a>全部的实测</h2><h3 id="匹配任意一个字符"><a href="#匹配任意一个字符" class="headerlink" title=".匹配任意一个字符"></a><code>.</code>匹配任意一个字符</h3><p>这个点<code>.</code>就相当于如何字符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&#x27;abc&#x27;</span></span><br><span class="line">c=re.match(<span class="string">&#x27;.&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出对象</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出被匹配的内容</span></span><br><span class="line"><span class="built_in">print</span>(c.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;a&#x27;&gt;</span><br><span class="line">a</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="匹配列表中的内容"><a href="#匹配列表中的内容" class="headerlink" title="[]匹配列表中的内容"></a><code>[]</code>匹配列表中的内容</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个<code>[]</code>匹配列表中的内容，比如<code>[15]</code>就是只匹配<code>1</code>和<code>5</code>，要是<code>[1-5]</code>就是只匹配<code>1</code>到<code>5</code>，如果是<code>[a-z]</code>就是匹配到a到z</p>
+</div> 
+
+<p>可以看到他只匹配<code>1</code>到<code>5</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420074431747.png" alt="image-20210420074431747"></p>
+<p>代码测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&#x27;4&#x27;</span></span><br><span class="line"></span><br><span class="line">c=re.match(<span class="string">&#x27;[1-5]&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出对象</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出被匹配的内容</span></span><br><span class="line"><span class="built_in">print</span>(c.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果：匹配1到5到的数字4也是这个范围的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;4&#x27;&gt;</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="w匹配匹配字母数字下划线"><a href="#w匹配匹配字母数字下划线" class="headerlink" title="\w匹配匹配字母数字下划线"></a><code>\w</code>匹配匹配字母数字下划线</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>演示可以看见数字和字母都可以匹配到</p>
+</div> 
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420081022642.png" alt="image-20210420081022642"></p>
+<p>代码测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">a=<span class="string">&#x27;a1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 应为这个函数只能一个一个的匹配我这个就用到了两个\w</span></span><br><span class="line">c=re.match(<span class="string">&#x27;\w\w&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出对象</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出被匹配的内容</span></span><br><span class="line"><span class="built_in">print</span>(c.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 2), match=&#x27;a1&#x27;&gt;</span><br><span class="line">a1</span><br></pre></td></tr></table></figure>
+
+<h3 id="W匹配不是字母数字下划线"><a href="#W匹配不是字母数字下划线" class="headerlink" title="\W匹配不是字母数字下划线"></a><code>\W</code>匹配不是字母数字下划线</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>可以看见下面字符都是可以匹配的，他是和小写的<code>\w</code>是对立的</p>
+</div> 
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421081511484.png" alt="image-20210421081511484"></p>
+<h3 id="s匹配任意空白字符"><a href="#s匹配任意空白字符" class="headerlink" title="\s匹配任意空白字符"></a><code>\s</code>匹配任意空白字符</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p><code>\s</code>匹配任意空白字符匹配任意空白字符，等价于 <code>[\\t\\n\\r\\f]</code></p>
+</div> 
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421081811687.png" alt="image-20210421081811687"></p>
+<h3 id="S匹配任意非空字符"><a href="#S匹配任意非空字符" class="headerlink" title="\S匹配任意非空字符"></a><code>\S</code>匹配任意非空字符</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个只要不是空就匹配上和小写的<code>\s</code>是对立的</p>
+</div> 
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421081915172.png" alt="image-20210421081915172"></p>
+<h3 id="d匹配任意数字"><a href="#d匹配任意数字" class="headerlink" title="\d匹配任意数字"></a><code>\d</code>匹配任意数字</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p><code>\d</code>匹配任意数字，等价于 <code>[0-9]</code></p>
+</div> 
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421082203149.png" alt="image-20210421082203149"></p>
+<h3 id="D匹配任意非数字的字符"><a href="#D匹配任意非数字的字符" class="headerlink" title="\D匹配任意非数字的字符"></a><code>\D</code>匹配任意非数字的字符</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他是和小写的<code>\d</code>是对立的</p>
+</div> 
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421082319941.png" alt="image-20210421082319941"></p>
+<h3 id="Z匹配字符串结尾"><a href="#Z匹配字符串结尾" class="headerlink" title="\Z匹配字符串结尾"></a><code>\Z</code>匹配字符串结尾</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个<code>\Z</code>是和<code>$</code>有差别的</p>
+</div> 
+
+<ul>
+<li><code>\Z</code>匹配字符串结尾，如果他匹配到换行符也会跟着换行符往下匹配</li>
+<li><code>$</code>只会匹配到换行符前的</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421085745512.png" alt="image-20210421085745512"></p>
+<h3 id="A匹配字符串开头"><a href="#A匹配字符串开头" class="headerlink" title="\A匹配字符串开头"></a><code>\A</code>匹配字符串开头</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个<code>\A</code>和<code>^</code>差不多</p>
+</div> 
+
+<ul>
+<li><code>^</code>是匹配一行字符串的开头</li>
+<li><code>\A</code>匹配字符串开头</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421082918321.png" alt="image-20210421082918321"></p>
+<p>代码测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a=<span class="string">&#x27;aaabbbccc&#x27;</span></span><br><span class="line"></span><br><span class="line">c=re.match(<span class="string">&#x27;\Aaaa&#x27;</span>,a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出对象</span></span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出被匹配的内容</span></span><br><span class="line"><span class="built_in">print</span>(c.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 3), match=&#x27;aaa&#x27;&gt;</span><br><span class="line">aaa</span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配一行字符串的开头"><a href="#匹配一行字符串的开头" class="headerlink" title="^匹配一行字符串的开头"></a><code>^</code>匹配一行字符串的开头</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个<code>\A</code>和<code>^</code>差不多</p>
+</div> 
+
+<ul>
+<li><code>^</code>是匹配一行字符串的开头</li>
+<li><code>\A</code>匹配多行字符串开头</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421091657333.png" alt="image-20210421091657333"></p>
+<h3 id="匹配一行字符串的结尾"><a href="#匹配一行字符串的结尾" class="headerlink" title="$匹配一行字符串的结尾"></a><code>$</code>匹配一行字符串的结尾</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他和^是对立的</p>
+</div> 
+
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>这个<code>\Z</code>是和<code>$</code>有差别的</p>
+</div> 
+
+<ul>
+<li><code>\Z</code>匹配字符串结尾，如果他匹配到换行符也会跟着换行符往下匹配</li>
+<li><code>$</code>只会匹配到换行符前的</li>
+</ul>
+<p><img src="/home/zss/.config/Typora/typora-user-images/image-20210421091914804.png" alt="image-20210421091914804"></p>
+<h3 id="n匹配换行符"><a href="#n匹配换行符" class="headerlink" title="\n匹配换行符"></a><code>\n</code>匹配换行符</h3><p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210421172308336.png" alt="image-20210421172308336"></p>
+<p>代码演示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;蔡徐坤 135000000\n01 18岁&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出pattern变量的结果</span></span><br><span class="line"><span class="built_in">print</span>(pattern)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配换行符</span></span><br><span class="line">x =re.findall(<span class="string">&#x27;\n&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">蔡徐坤 135000000  </span><br><span class="line">01 18岁   # 可以看见换行了</span><br><span class="line">[&#x27;\n&#x27;]	  # 匹配到了换行符</span><br></pre></td></tr></table></figure>
+
+<h3 id="t匹配制表符"><a href="#t匹配制表符" class="headerlink" title="\t匹配制表符"></a><code>\t</code>匹配制表符</h3><p>这个演示不了 </p>
+<h3 id="匹配0个或多个"><a href="#匹配0个或多个" class="headerlink" title="*匹配0个或多个"></a><code>*</code>匹配0个或多个</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他<code>*</code>和<code>+</code>差不多</p>
+</div> 
+<ul>
+<li><code>*</code>匹配0个或n个 ，如果一个没有匹配到也不会返回None</li>
+<li><code>+</code>匹配1个或n个，如果一个都没有匹配到他就会返还None</li>
+</ul>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"><span class="comment"># 匹配一个a</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a&#x27;</span>,pattern)</span><br><span class="line"><span class="comment"># 输出匹配的结果</span></span><br><span class="line"><span class="built_in">print</span>(x.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见他就匹配一个a</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+
+<p>如果我添加一个*那就可以叫后面的a都匹配上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"><span class="comment"># 匹配后面全部的a</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a*&#x27;</span>,pattern)</span><br><span class="line"><span class="comment"># 输出匹配的结果</span></span><br><span class="line"><span class="built_in">print</span>(x.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见后面的a都匹配上了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aaaaaaa</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>如果我有个不匹配也不会返回None</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个没有的b</span></span><br><span class="line">x =re.match(<span class="string">&#x27;b*&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：他结果并没有返回None</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 0), match=&#x27;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="匹配1个或多个"><a href="#匹配1个或多个" class="headerlink" title="+匹配1个或多个"></a><code>+</code>匹配1个或多个</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他<code>*</code>和<code>+</code>差不多</p>
+</div> 
+<ul>
+<li><code>*</code>匹配0个或n个 ，如果一个没有匹配到也不会返回None</li>
+<li><code>+</code>匹配1个或n个，如果一个都没有匹配到他就会返还None</li>
+</ul>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"><span class="comment"># 匹配一个a</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a&#x27;</span>,pattern)</span><br><span class="line"><span class="comment"># 输出匹配的结果</span></span><br><span class="line"><span class="built_in">print</span>(x.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见他就匹配一个a</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+
+<p>如果我添加一个*那就可以叫后面的a都匹配上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"><span class="comment"># 匹配后面全部的a</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a+&#x27;</span>,pattern)</span><br><span class="line"><span class="comment"># 输出匹配的结果</span></span><br><span class="line"><span class="built_in">print</span>(x.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见后面的a都匹配上了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aaaaaaa</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>如果我有个不匹配就会返还None</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;aaaaaaa&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个没有的b</span></span><br><span class="line">x =re.match(<span class="string">&#x27;b+&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配-0-个或-1-个"><a href="#匹配-0-个或-1-个" class="headerlink" title="?匹配 0 个或 1 个"></a><code>?</code>匹配 0 个或 1 个</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>在一个<code>?</code>他不是贪婪模式，他是前面的正则表达式定义的片段</p>
+</div> 
+
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>?他是匹配 0 个或 1 个，如果匹配不到也不会返回None</p>
+</div> 
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;abcdef12121212&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个存在的</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a?&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：返回他匹配到的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;a&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>我让他匹配一个没有的他也不会返回None</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;bcdef12121212&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个不存在的</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a?&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果我不添加<code>?</code>程序就返回None</p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;bcdef12121212&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个不存在的</span></span><br><span class="line">x =re.match(<span class="string">&#x27;a&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="n-匹配自己指定次数"><a href="#n-匹配自己指定次数" class="headerlink" title="{n}匹配自己指定次数"></a><code>&#123;n&#125;</code>匹配自己指定次数</h3><ol>
+<li><p>测试指定指定次数</p>
+<p>指定匹配多少</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;12121212bcdef&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配3个数字</span></span><br><span class="line">x =re.match(<span class="string">&#x27;\d&#123;3&#125;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见他匹配了三个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 3), match=&#x27;121&#x27;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>指定匹配范围</p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;12121212bcdef&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配2-5个数字</span></span><br><span class="line">x =re.match(<span class="string">&#x27;\d&#123;2,5&#125;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：应为他都是按照最多进行匹配所以会匹配到2个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 5), match=&#x27;12121&#x27;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>匹配最少多几个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;12121212bcdef&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配最少2个数字，最多不限制</span></span><br><span class="line">x =re.match(<span class="string">&#x27;\d&#123;2,&#125;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：应该<code>,</code>后面不添加就是无限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 8), match=&#x27;12121212&#x27;&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="a-b匹配-a-或-b"><a href="#a-b匹配-a-或-b" class="headerlink" title="a|b匹配 a 或 b"></a><code>a|b</code>匹配 <code>a</code> 或 <code>b</code></h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我们想执行匹配w和m那就可以用到<code>|</code>符号了</p>
+</div> 
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;wdsadasdsa&#x27;</span></span><br><span class="line"><span class="comment"># 匹配第一个字符w或者m</span></span><br><span class="line">x =re.match(<span class="string">&#x27;w|m&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;w&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分组"><a href="#分组" class="headerlink" title="( )分组"></a><code>( )</code>分组</h3><p>学习网址<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1N64y1u7Ty?p=10">https://www.bilibili.com/video/BV1N64y1u7Ty?p=10</a></p>
+<h4 id="基本分组"><a href="#基本分组" class="headerlink" title="基本分组"></a>基本分组</h4><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>什么是分组，比如我们匹配一个字符串他只能匹配输出一组，我们可以用<code>()</code>进行分组</p>
+</div> 
+
+<p><strong>演示</strong></p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;zhao:2737977997&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;\w*:\d*&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(x.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 15), match=&#x27;zhao:2737977997&#x27;&gt;</span><br><span class="line">zhao:2737977997</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>比如我们想叫<code>zhao</code>和<code>2737977997</code>进行分开我们就可以用<code>()</code>进行分组</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;zhao:2737977997&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;(\w*):(\d*)&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment"># 输出全部分组</span></span><br><span class="line"><span class="built_in">print</span>(x.groups())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 15), match=&#x27;zhao:2737977997&#x27;&gt;</span><br><span class="line">(&#x27;zhao&#x27;, &#x27;2737977997&#x27;)</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>我们还可以选择要选择输出的分组用<code>group()</code>咧<code>group(1)</code>或者<code>groups()[1]</code></p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;zhao:2737977997&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;(\w*):(\d*)&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="comment"># 用group(1)指定输出分组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用group(1)指定输出分组&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(x.group(<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(x.group(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用groups()[0]指定输出分组</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;用groups()[0]指定输出分组&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(x.groups()[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(x.groups()[<span class="number">1</span>])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 15), match=&#x27;zhao:2737977997&#x27;&gt;</span><br><span class="line">用group(1)指定输出分组</span><br><span class="line">zhao</span><br><span class="line">2737977997</span><br><span class="line">用groups()[0]指定输出分组</span><br><span class="line">zhao</span><br><span class="line">2737977997</span><br></pre></td></tr></table></figure>
+
+<h4 id="分组引用"><a href="#分组引用" class="headerlink" title="分组引用"></a>分组引用</h4><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我们想匹配一个<code>HTML</code>代码</p>
+</div> 
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/h1&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;&lt;.+&gt;.+&lt;/.+&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 28), match=&#x27;&lt;bead&gt;匹配&lt;/bead&gt;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码如果我匹配不同的比如<code>&lt;bead&gt;匹配&lt;/h1&gt;</code>上面的代码他也会被匹配到</p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/h1&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;&lt;.+&gt;.+&lt;/.+&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 13), match=&#x27;&lt;bead&gt;匹配&lt;/h1&gt;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<div class="note info simple"><p>如果我们只匹配对应的HTML比如<code>&lt;bead&gt;&lt;/bead&gt;</code>这样对应如果不对应就不匹配我们就可以用分组引用</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/h1&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \1就是分组1，我又添加一个防止转义r不让\转义</span></span><br><span class="line">x =re.match(<span class="string">r&#x27;&lt;(.+)&gt;.+&lt;/\1&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 15), match=&#x27;&lt;bead&gt;匹配&lt;/bead&gt;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果我改成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/bead&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># \1就是分组1，我又添加一个防止转义r不让\转义</span></span><br><span class="line">x =re.match(<span class="string">r&#x27;&lt;(.+)&gt;.+&lt;/\1&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<h4 id="引用起别名"><a href="#引用起别名" class="headerlink" title="引用起别名"></a>引用起别名</h4><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>起别名格式<code>(?p&lt;起的名字&gt;表达式)</code></p>
+<p>引用<code>(?p=引用的分组名字)</code></p>
+</div> 
+
+
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/bead&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我又添加一个防止转义r不让\转义</span></span><br><span class="line">x =re.match(<span class="string">r&#x27;&lt;(?P&lt;dead&gt;.+)&gt;.+&lt;/*(?P=dead)&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 15), match=&#x27;&lt;bead&gt;匹配&lt;/bead&gt;&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<div class="note info simple"><p>如果我匹配到不一样比如<code>&lt;bead&gt;匹配&lt;/h1&gt;</code></p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;&lt;bead&gt;匹配&lt;/h1&gt;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 我又添加一个防止转义r不让\转义</span></span><br><span class="line">x =re.match(<span class="string">r&#x27;&lt;(?P&lt;dead&gt;.+)&gt;.+&lt;/*(?P=dead)&gt;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<h3 id="转义符"><a href="#转义符" class="headerlink" title="\转义符"></a><code>\</code>转义符</h3><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我们想输入<code>\n</code>这个，在代码里面不能直接输入<code>\n</code>要通过<code>\</code>来转义了</p>
+<p>在python里面可以在前面添加上一个<code>r</code>防止字符转义的，可以省略<code>\</code>转义符下面有演示</p>
+</div> 
+
+<div class="note info simple"><p>看一下我直接用<code>\n</code></p>
+</div>
+
+<ol>
+<li><p><code>\n</code>转义符</p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\nabc&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见他是回车</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">abc</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>我们就可以用<code>\</code>来转义</p>
+</div>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;\\nabc&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见这样就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\nabc</span><br></pre></td></tr></table></figure></li>
+<li><p><code>r</code>预防转义</p>
+<div class="note info simple"><p>Python也可以用<code>r</code>预防转义</p>
+</div>
+
+<p> 代码</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">r&#x27;\nabc&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p> 结果：前面添加一个<code>r</code>就可以预防转义了</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\nabc</span><br></pre></td></tr></table></figure></li>
+</ol>
+<div class="note info simple"><p><strong>在正则表达式里面又如果匹配字符串里面的正则字符那</strong></p>
+</div>
+
+
+
+<ol>
+<li><p>正则符号匹配</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;*das&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在正则里面*是匹配0次或多次，</span></span><br><span class="line">x =re.match(<span class="string">&#x27;*&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p> 结果：就报错了，应为在正则里面*是匹配0次或多次的意思</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  File &quot;/usr/lib/python3.9/sre_parse.py&quot;, line 443, in _parse_sub</span><br><span class="line">    itemsappend(_parse(source, state, verbose, nested + 1,</span><br><span class="line">  File &quot;/usr/lib/python3.9/sre_parse.py&quot;, line 668, in _parse</span><br><span class="line">    raise source.error(&quot;nothing to repeat&quot;,</span><br><span class="line">re.error: nothing to repeat at position 0</span><br></pre></td></tr></table></figure>
+<p> 就可以用\进行转义</p>
+<p> 代码</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;*das&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在正则里面*是匹配0次或多次，我们用\进行转义</span></span><br><span class="line">x =re.match(<span class="string">&#x27;\*&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+<p> 结果：就可以匹配出来了</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 1), match=&#x27;*&#x27;&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>特殊字符串匹配</p>
+<p> 特殊字符就是<code>\n</code>了<code>\t</code>了等</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;\\t&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.match(<span class="string">&#x27;\\t&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p> 结果：下面的结果为什么是None这是应为在，正则里面\也是转义符</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+<p> 我们需要添加双倍的<code>\\</code>进行转义</p>
+<p> 代码</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;\\t&#x27;</span></span><br><span class="line"><span class="comment"># 就是\转义\</span></span><br><span class="line">x =re.match(<span class="string">&#x27;\\\\t&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+<p> 结果</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 2), match=&#x27;\\t&#x27;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>也可以在匹配到添加<code>r</code>预防转义</p>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;\\t&#x27;</span></span><br><span class="line"><span class="comment"># 防止字符转义</span></span><br><span class="line">x =re.match(<span class="string">r&#x27;\\t&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(0, 2), match=&#x27;\\t&#x27;&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="非贪婪模式"><a href="#非贪婪模式" class="headerlink" title="?非贪婪模式"></a>?非贪婪模式</h3><p><strong>在下面</strong></p>
+<h1 id="search-函数"><a href="#search-函数" class="headerlink" title="search()函数"></a>search()函数</h1><div class="note info simple"><p>search()函数，在匹配时会扫描整个字符串，然后返回第一个成功匹配的结果，如果搜索完了还没有找到，就返回 <code>None</code></p>
+</div>
+
+<p>格式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.search(pattern, string, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pattern</td>
+<td align="left">匹配的正则表达式</td>
+</tr>
+<tr>
+<td align="left">string</td>
+<td align="left">要匹配的字符串。</td>
+</tr>
+<tr>
+<td align="left">flags</td>
+<td align="left">标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。</td>
+</tr>
+</tbody></table>
+<div class="note info simple"><p>match()测试</p>
+</div>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;Extra stings Hello 1234567&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配content变量里面的Hello</span></span><br><span class="line">result = re.match(<span class="string">&#x27;Hello&#x27;</span>,content)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>结果：应为match()函数只能从开头匹配第一个不是H而是E，所以直接就返回了<code>None</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">None</span><br></pre></td></tr></table></figure>
+
+<div class="note info simple"><p>我们就可以用search()函数来匹配了</p>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;Extra stings Hello 1234567&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配content变量里面的Hello</span></span><br><span class="line">result = re.search(<span class="string">&#x27;Hello&#x27;</span>,content)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(result)</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见成功，应为在匹配时会扫描整个字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(13, 18), match=&#x27;Hello&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="findall-和finditer-函数"><a href="#findall-和finditer-函数" class="headerlink" title="findall()和finditer()函数"></a>findall()和finditer()函数</h1><h2 id="findall-函数"><a href="#findall-函数" class="headerlink" title="findall()函数"></a>findall()函数</h2><div class="note info simple"><p>findall()他会获得表达式里面的全部内容，返回形式为数组</p>
+</div>
+
+<p>他的语法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.findall(pattern, string, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">pattern</td>
+<td align="center">匹配的正则表达式</td>
+</tr>
+<tr>
+<td align="left">string</td>
+<td align="center">要匹配到字符串</td>
+</tr>
+<tr>
+<td align="left">flags</td>
+<td align="center">该标志通过给予你更灵活的格式以便你将正则表达式写得更易于理解如 re.IGNORECASE 等</td>
+</tr>
+</tbody></table>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;蔡徐坤 13500000001 18岁&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.findall(<span class="string">&#x27;\d&#123;11&#125;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果：他和这个<a target="_blank" rel="noopener" href="https://regex101.com/r/Ljaf9U/1">https://regex101.com/r/Ljaf9U/1</a>差不多的他会返回表达式所匹配的全部内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#x27;13500000001&#x27;]</span><br></pre></td></tr></table></figure>
+
+<h2 id="finditer-函数"><a href="#finditer-函数" class="headerlink" title="finditer()函数"></a>finditer()函数</h2><div class="note info simple"><p>findall()和finditer()函数是一样的，就是finditer()函数他返回的是迭代器，什么是迭代器可以看我这个笔记<a target="_blank" rel="noopener" href="https://www.zssnp.top/2021/06/09/pythonddq/">https://www.zssnp.top/2021/06/09/pythonddq/</a></p>
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;蔡徐坤 13500000001 18岁&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.finditer(<span class="string">&#x27;\d&#123;11&#125;&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;callable_iterator object at 0x7faec31272b0&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210816122520768.png" alt="image-20210816122520768"></p>
+<p>我们可以通过for进行迭代输出结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">pattern=<span class="string">&#x27;蔡徐坤 13500000001 18岁&#x27;</span></span><br><span class="line"></span><br><span class="line">x =re.finditer(<span class="string">&#x27;\d&#x27;</span>,pattern)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 他返回的是一个对象</span></span><br><span class="line">    <span class="comment"># | group() | 返回匹配的字符串 |</span></span><br><span class="line">    <span class="comment"># | span() | 返回匹配的范围 |</span></span><br><span class="line">    <span class="comment"># | start() | 返回从那开始匹配的 |</span></span><br><span class="line">    <span class="comment"># | groups() | 返回全部分组 |</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># group()返回匹配的字符串</span></span><br><span class="line">    <span class="built_in">print</span>(i.group())</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;re.Match object; span=(4, 5), match=&#x27;1&#x27;&gt;</span><br><span class="line">1</span><br><span class="line">&lt;re.Match object; span=(5, 6), match=&#x27;3&#x27;&gt;</span><br><span class="line">3</span><br><span class="line">&lt;re.Match object; span=(6, 7), match=&#x27;5&#x27;&gt;</span><br><span class="line">5</span><br><span class="line">&lt;re.Match object; span=(7, 8), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(8, 9), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(9, 10), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(10, 11), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(11, 12), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(12, 13), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(13, 14), match=&#x27;0&#x27;&gt;</span><br><span class="line">0</span><br><span class="line">&lt;re.Match object; span=(14, 15), match=&#x27;1&#x27;&gt;</span><br><span class="line">1</span><br><span class="line">&lt;re.Match object; span=(16, 17), match=&#x27;1&#x27;&gt;</span><br><span class="line">1</span><br><span class="line">&lt;re.Match object; span=(17, 18), match=&#x27;8&#x27;&gt;</span><br><span class="line">8</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210816144034906.png" alt="image-20210816144034906"></p>
+<h1 id="sub-和subn-函数"><a href="#sub-和subn-函数" class="headerlink" title="sub()和subn()函数"></a>sub()和subn()函数</h1><div class="note info simple"><p>sub()这个函数是替换用的，可以叫文本的指定的字符替换掉</p>
+</div>
+
+<div class="note info simple"><p>他俩的区别就是</p>
+<ul>
+<li>sub()：他返回替换后的结果</li>
+<li>subn()：他返回的是一个元组</li>
+</ul>
+</div>
+
+<h2 id="sub"><a href="#sub" class="headerlink" title="sub()"></a>sub()</h2><p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;54aK54yr5oiR54ix5L2g&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 叫数字的字符都替换成没有</span></span><br><span class="line">content = re.sub(<span class="string">&#x27;\d+&#x27;</span>, <span class="string">&#x27;&#x27;</span>, content)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aKyroiRixLg</span><br></pre></td></tr></table></figure>
+
+<h2 id="subn"><a href="#subn" class="headerlink" title="subn()"></a>subn()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">content = <span class="string">&#x27;54aK54yr5oiR54ix5L2g&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 叫数字的字符都替换成没有</span></span><br><span class="line">content = re.subn(<span class="string">&#x27;\d+&#x27;</span>, <span class="string">&#x27;&#x27;</span>, content)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&#x27;aKyroiRixLg&#x27;, 6)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="compile-函数"><a href="#compile-函数" class="headerlink" title="compile()函数"></a>compile()函数</h1><div class="note info simple"><p>compile()函数将指定的源作为代码对象返回，并准备执行，他里面也是包含<code>sub(),findall(),search(),match()</code>等方法</p>
+</div>
+
+<p>下面代码演示一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"></span><br><span class="line">s=<span class="string">&quot;ds21212adsa212dsa&quot;</span></span><br><span class="line"></span><br><span class="line">rea=re.<span class="built_in">compile</span>(<span class="string">&#x27;\d&#x27;</span>) <span class="comment"># 只匹配数字</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用compile()的findall方法来匹配s变量里面的内容</span></span><br><span class="line"><span class="built_in">print</span>(rea.findall(s))</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210524225156472.png" alt="image-20210524225156472"></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1q4411y7Zh?t=338&p=1">视频参考</a></p>
+<h1 id="贪婪模式和非贪婪模式"><a href="#贪婪模式和非贪婪模式" class="headerlink" title="贪婪模式和非贪婪模式"></a>贪婪模式和非贪婪模式</h1><div class="note info simple"><p>正则表达式默认就是贪婪模式</p>
+<ul>
+<li><p>贪婪模式就是尽可能的匹配多的</p>
+</li>
+<li><p>非贪婪模式尽可能匹配少的</p>
+</li>
+</ul>
+</div>
+
+<p><strong>看一下什么是贪婪模式</strong>，他匹配的是<code>|&lt;|h1&gt;&gt;&gt;&gt;&gt;&gt;|&gt;|</code>最外面的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210816170828451.png" alt="image-20210816170828451"></p>
+<p><strong>看一下什么是非贪婪模式</strong>，他匹配的是<code>|&lt;|h1|&gt;|&gt;&gt;&gt;&gt;&gt;&gt;</code>最少的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210816171216664.png" alt="image-20210816171216664"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/04/21/pythonzhengze/">http://example.com/2021/04/21/pythonzhengze/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wzass/zp/1510037927295952.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/06/03/ranger/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/qqqqq.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ranger配置和使用</div></div></a></div><div class="next-post pull-right"><a href="/2021/04/20/pikachu/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Docker安装pikachu靶场搭建</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/17/1.php面向对象/" title="1.php面向对象基础"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-17</div><div class="title">1.php面向对象基础</div></div></a></div><div><a href="/2020/12/04/3.JavaScriptDOM基本使用/" title="3.JavaScript的DOM使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-04</div><div class="title">3.JavaScript的DOM使用</div></div></a></div><div><a href="/2020/12/08/4.JavaScript的XMLHttpRequest使用/" title="4.JavaScript的XMLHttpRequest使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-08</div><div class="title">4.JavaScript的XMLHttpRequest使用</div></div></a></div><div><a href="/2020/11/26/HTML表单/" title="HTML表单"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201126082632.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-26</div><div class="title">HTML表单</div></div></a></div><div><a href="/2021/04/20/pikachu/" title="Docker安装pikachu靶场搭建"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-20</div><div class="title">Docker安装pikachu靶场搭建</div></div></a></div><div><a href="/2021/06/09/pythonddq/" title="python迭代器"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/image-20210122115323618.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-09</div><div class="title">python迭代器</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">正则表达式的函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#match-%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">match()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E6%B5%8B"><span class="toc-number">2.2.</span> <span class="toc-text">实测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E9%94%99%E8%AF%AF%E8%BF%94%E5%9B%9E"><span class="toc-number">2.2.1.</span> <span class="toc-text">匹配错误返回</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E6%AD%A3%E7%A1%AE%E8%BF%94%E5%9B%9E"><span class="toc-number">2.2.2.</span> <span class="toc-text">匹配正确返回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-number">2.4.</span> <span class="toc-text">第三个可选参数标志位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">字符的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E9%83%A8%E7%9A%84%E5%AE%9E%E6%B5%8B"><span class="toc-number">3.1.</span> <span class="toc-text">全部的实测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.1.</span> <span class="toc-text">.匹配任意一个字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9"><span class="toc-number">3.1.2.</span> <span class="toc-text">[]匹配列表中的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#w%E5%8C%B9%E9%85%8D%E5%8C%B9%E9%85%8D%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="toc-number">3.1.3.</span> <span class="toc-text">\w匹配匹配字母数字下划线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#W%E5%8C%B9%E9%85%8D%E4%B8%8D%E6%98%AF%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="toc-number">3.1.4.</span> <span class="toc-text">\W匹配不是字母数字下划线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E7%A9%BA%E7%99%BD%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.5.</span> <span class="toc-text">\s匹配任意空白字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#S%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E9%9D%9E%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.6.</span> <span class="toc-text">\S匹配任意非空字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E6%95%B0%E5%AD%97"><span class="toc-number">3.1.7.</span> <span class="toc-text">\d匹配任意数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#D%E5%8C%B9%E9%85%8D%E4%BB%BB%E6%84%8F%E9%9D%9E%E6%95%B0%E5%AD%97%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="toc-number">3.1.8.</span> <span class="toc-text">\D匹配任意非数字的字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Z%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%BB%93%E5%B0%BE"><span class="toc-number">3.1.9.</span> <span class="toc-text">\Z匹配字符串结尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A%E5%8C%B9%E9%85%8D%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BC%80%E5%A4%B4"><span class="toc-number">3.1.10.</span> <span class="toc-text">\A匹配字符串开头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E4%B8%80%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%BC%80%E5%A4%B4"><span class="toc-number">3.1.11.</span> <span class="toc-text">^匹配一行字符串的开头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E4%B8%80%E8%A1%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E7%BB%93%E5%B0%BE"><span class="toc-number">3.1.12.</span> <span class="toc-text">$匹配一行字符串的结尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n%E5%8C%B9%E9%85%8D%E6%8D%A2%E8%A1%8C%E7%AC%A6"><span class="toc-number">3.1.13.</span> <span class="toc-text">\n匹配换行符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t%E5%8C%B9%E9%85%8D%E5%88%B6%E8%A1%A8%E7%AC%A6"><span class="toc-number">3.1.14.</span> <span class="toc-text">\t匹配制表符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D0%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA"><span class="toc-number">3.1.15.</span> <span class="toc-text">*匹配0个或多个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D1%E4%B8%AA%E6%88%96%E5%A4%9A%E4%B8%AA"><span class="toc-number">3.1.16.</span> <span class="toc-text">+匹配1个或多个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D-0-%E4%B8%AA%E6%88%96-1-%E4%B8%AA"><span class="toc-number">3.1.17.</span> <span class="toc-text">?匹配 0 个或 1 个</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n-%E5%8C%B9%E9%85%8D%E8%87%AA%E5%B7%B1%E6%8C%87%E5%AE%9A%E6%AC%A1%E6%95%B0"><span class="toc-number">3.1.18.</span> <span class="toc-text">{n}匹配自己指定次数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-b%E5%8C%B9%E9%85%8D-a-%E6%88%96-b"><span class="toc-number">3.1.19.</span> <span class="toc-text">a|b匹配 a 或 b</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84"><span class="toc-number">3.1.20.</span> <span class="toc-text">( )分组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%86%E7%BB%84"><span class="toc-number">3.1.20.1.</span> <span class="toc-text">基本分组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%BC%95%E7%94%A8"><span class="toc-number">3.1.20.2.</span> <span class="toc-text">分组引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%B5%B7%E5%88%AB%E5%90%8D"><span class="toc-number">3.1.20.3.</span> <span class="toc-text">引用起别名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E4%B9%89%E7%AC%A6"><span class="toc-number">3.1.21.</span> <span class="toc-text">\转义符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.22.</span> <span class="toc-text">?非贪婪模式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#search-%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">search()函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#findall-%E5%92%8Cfinditer-%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">findall()和finditer()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#findall-%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text">findall()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#finditer-%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">finditer()函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sub-%E5%92%8Csubn-%E5%87%BD%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text">sub()和subn()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sub"><span class="toc-number">6.1.</span> <span class="toc-text">sub()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subn"><span class="toc-number">6.2.</span> <span class="toc-text">subn()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#compile-%E5%87%BD%E6%95%B0"><span class="toc-number">7.</span> <span class="toc-text">compile()函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9D%9E%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">贪婪模式和非贪婪模式</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,1270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IAPP裕语言手册 | Hexo</title><meta name="keywords" content="编程"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="《裕语言》是一基于java的扩展性脚本语言，丰富的类库定置简单快速开发你的应用程序，让开发过程变得娱乐化大众化。《裕语言》是由游改乐计算编程工程师 黄裕先生、宇恒先生 定制以及实现成型代码功能，其代码简单方便的编写体验是一大亮点，目前还会有更多强大的功能完善中。iApp是基于裕语言平台上运行的应用程序，全面向公众开放开放平台，任何有兴趣的人都可以参与开放设计自己的程序。 【3.0 iyu升级简介】">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IAPP裕语言手册">
+<meta property="og:url" content="http://example.com/2021/02/28/IAPP/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="《裕语言》是一基于java的扩展性脚本语言，丰富的类库定置简单快速开发你的应用程序，让开发过程变得娱乐化大众化。《裕语言》是由游改乐计算编程工程师 黄裕先生、宇恒先生 定制以及实现成型代码功能，其代码简单方便的编写体验是一大亮点，目前还会有更多强大的功能完善中。iApp是基于裕语言平台上运行的应用程序，全面向公众开放开放平台，任何有兴趣的人都可以参与开放设计自己的程序。 【3.0 iyu升级简介】">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wzass/giteezp/iapp.png">
+<meta property="article:published_time" content="2021-02-28T01:21:30.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wzass/giteezp/iapp.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/02/28/IAPP/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'IAPP裕语言手册',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/wzass/giteezp/iapp.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">IAPP裕语言手册</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-28T01:21:30.000Z" title="发表于 2021-02-28 09:21:30">2021-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/%E8%A3%95%E8%AF%AD%E8%A8%80/">裕语言</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="IAPP裕语言手册"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>《裕语言》是一基于java的扩展性脚本语言，丰富的类库定置简单快速开发你的应用程序，让开发过程变得娱乐化大众化。《裕语言》是由游改乐计算编程工程师 黄裕先生、宇恒先生 定制以及实现成型代码功能，其代码简单方便的编写体验是一大亮点，目前还会有更多强大的功能完善中。iApp是基于裕语言平台上运行的应用程序，全面向公众开放开放平台，任何有兴趣的人都可以参与开放设计自己的程序。</p>
+<p>【3.0 iyu升级简介】</p>
+<ol>
+<li>uigo代码必须加文件后缀，如 uigo(“a.iyu”) 或 uigo(“a.ilua”)。 否则将会闪退等。</li>
+<li>uls必须正确的 输入界面宽度，输入界面高度。 否则界面列表可能异常。</li>
+<li>代码中双引号需进行转义，如 fw(“%a.txt”, “ab”cd”) 修改成 fw(“%a.txt”, “ab&quot;cd”)</li>
+</ol>
+<p>【s 变量】<br>用法：</p>
+<p>//申明一个变量，如果不赋值，系统将默认赋值 null</p>
+<p>s a</p>
+<p>申明事件局部变量<br>//可以赋数值<br>s a = 123<br>tw(a)</p>
+<p>s 我是变量 = 123<br>tw(我是变量)</p>
+<p>申明界面变量<br>//可以赋字符串<br>ss a = “123”<br>tw(ss.a)</p>
+<p>申明全局变量<br>//可以赋其他变量<br>sss b = a<br>tw(sss.b)</p>
+<p>区域介绍：<br>局部变量：服务于一个事件，当用户与界面发生交互时，产生一个事件，仅供于该事件的变量产生以及操作。<br>界面变量：生产界面变量后，同一个界面中的所有事件，均可对其进行操作。<br>全局变量：生产全局变量后，同一个应用中的所有事件，均可对其进行操作。</p>
+<p>说明：<br>变量类似一个箱子，你可以把数据储存在里面，等需要的时候就取出来使用，可以改变它装你想要装的数据。裕语言中的变量是可以根据赋值，而且自动转换的，所以无需申明数据类型。</p>
+<p>提示：<br>变量的定义规范， 以 “s、ss、sss”开头。 然后加上自己自定义的变量名，比如“abc、 nihao、sfw123、www_zzw”变量不允许全部为数字，不允许掺杂符号，请不要使用太长的变量名，不推荐使用中文作为变量名。</p>
+<p>空值：<br>如果访问一个没有声明的变量，将返回“null”空值类型，这个不对等于字符的 ‘null’。<br>判断是否空值的例子:(这里我们不知道变量“abc”是否空值)<br>f(abc == null)<br>{<br>    syso(“是null”)<br>}</p>
+<p>【// 或 /. ./ 注释语句】<br>用法<br>//这个是变量“a”它的值等于“1”<br>s a = 1<br>//这个是变量“b”它的值等于“2”<br>s b = 2</p>
+<p>/.<br>大量代码注释方法<br>s c = 3<br>s d = 4</p>
+<p>./</p>
+<p>说明：<br>注释语句符号可以用“//”，以注释符号开头的正行，将会被代码执行器无视。通常用于给自己标示代码的含义</p>
+<p>提示：<br>此注释语句可用于属性。</p>
+<p>提示：<br>不支持代码尾部使用注释语句，注释行必须开头为注释符，举错误的例：</p>
+<p>s a = 1 //这个是变量“a”它的值等于“1”<br>//这个是变量“b”它的值等于“2” s b = 2</p>
+<p>【syso 打印】<br>用法：<br>syso(“1314”)<br>可以打印出数据，代码同等于 System.out.println(“1314”)，可以在测试时，选择 调试日志查看打印数据。</p>
+<p>说明：<br>打包后，安装运行可以通过 Log Tag：iapp 进行监听数据。</p>
+<p>【f 判断语句】<br>用法：<br>s a = 2<br>f(a == 1)<br>{<br>    syso(“等于1”)<br>}<br>else f(a == 2)<br>{<br>    syso(“等于2”)<br>}<br>else<br>{<br>    syso(“等于其他”)<br>}</p>
+<p>s a = 1<br>s b = 1<br>f(a == b)<br>{<br>    syso(“等于”)<br>}<br>else<br>{<br>    syso(“不等于”)<br>}</p>
+<p>s a = “nimei”<br>s b = “nimei”<br>f(a == b)<br>{<br>    syso(“等于”)<br>}<br>else<br>{<br>    syso(“不等于”)<br>}</p>
+<p>s a = 1<br>s b = 2<br>f(!a == b)<br>{<br>    syso(“等于”)<br>}<br>else<br>{<br>    syso(“不等于”)<br>}</p>
+<p>s a = 1<br>s b = 2<br>s c = 3<br>f(a &lt; b &amp;&amp; b &lt; c)<br>{<br>    syso(“等于”)<br>}<br>else<br>{<br>    syso(“不等于”)<br>}</p>
+<p>s a = 1<br>s b = 2<br>s c = 2<br>f(a == b || b == c)<br>{<br>    syso(“等于”)<br>}<br>else<br>{<br>    syso(“不等于”)<br>}</p>
+<p>说明：<br>条件判断语句，用于两个值的比较，常用于判断值是否对等与数值的大小，判断数据需要同类型数据对比。表达式返回的“是”，那么将执行 { 代码 } 里面的代码。“否”将执行else后面的代码（不支持运算表达式，例：a+b=2）</p>
+<p>支持运算符（返回 是 与 否）：<br>== 是否对等<br>!= 是否不等于</p>
+<blockquote>
+<p>= 是否大于或等于<br>&lt;= 是否小于或等于<br>是否大于<br>&lt; 是否小于<br>?* 字符串开通是否相同<br><em>? 字符串结尾是否相同<br>? 字符串是否被包含<br>上面三个举例：<br>s a = “abcdef”<br>f(a ?</em> “abc”) 返回“是”<br>f(a *? “def”) 返回“是”<br>f(a ? “cde”) 返回“是”</p>
+</blockquote>
+<p>支持逻辑运算符：<br>|| 或者<br>&amp;&amp; 并且<br>! 反意</p>
+<p>【w 循环】<br>用法：<br>//这将循环99次<br>s a = 99<br>w(a &gt; 0)<br>{<br>syso(a)<br>s(a - 1, a)<br>}</p>
+<p>说明：<br>条件循环语句，比较值的变化，然后进行循环执行 { 代码 } 里面的代码。当条件为“否”的时候会停止循环，条件“是”的话，将一直循环执行。<br>支持运算符（返回 是 与 否）：（跟 f 语句 一样，请参考）</p>
+<p>【for 循环】<br>用法：<br>for(1; 20)<br>{<br>    syso(“循环20次”)<br>}</p>
+<p>s a = 1<br>s b = 10<br>for(a; b)<br>{<br>    syso(“循环10次”)<br>}</p>
+<p>说明：<br>参数可以给予另个参数，一个为初始循环的值，一个是最大循环值。</p>
+<p>【t 新线程】<br>用法：<br>t()<br>{<br>    syso(“新线程里执行代码”)<br>}</p>
+<p>说明：<br>启用新线程，去执行一些需要执行很久的代码。比如把下载文件，获取网页源码，大量的文件操作，可以放入新线里执行。这里线程的概念，启用新的线程帮你处理代码，这样不会影响到主线程。</p>
+<p>【ssj 设置或修改控件事件代码】<br>用法：<br>s id = 3<br>ssj(id, “clicki”)<br>{<br>tw(“ok”)<br>}</p>
+<p>说明：<br>输入控件Id，输入事件类型，并将事件代码填写在 { 中 }，动态控件将触发该事件代码。</p>
+<p>事件类型：<br>clicki=单击事件<br>touchmonitor=触屏监听事件<br>press=触屏长按事件<br>keyboard=键盘触发事件<br>pressmenu=触屏长按菜单事件<br>editormonitor=框编辑监听事件<br>ontextchanged=文本内容已改变<br>beforetextchanged=文本内容改变之前<br>aftertextchanged=文本内容改变之后<br>focuschange=获得焦点事件<br>onscrollstatechanged=滚动状态已改变<br>onscroll=滚动<br>clickitem=单击项目事件<br>onprogresschanged=加载过程进度改变<br>shouldoverrideurlloading=加载网址之前<br>ondownloadstart=文件下载事件<br>onpageselected=滑动切换界面事件<br>onpagescrolled=滑动切换界面过程<br>onpagescrollstatechanged=滑动操作过程<br>ondrawerclosed=侧滑关闭事件<br>ondraweropened=侧滑展示事件<br>onoptionsitemselected=项目选择<br>onitemselected=选择项目事件</p>
+<p>【tw 提示】<br>用法：<br>tw(“你好”)</p>
+<p>//设置参数1：显示的时间长久；0：显示的时间短暂；\n为换行的意思，其他地方通用<br>tw(“你好\n吗？”, 1)</p>
+<p>说明：<br>用于提醒用户，界面显示时长大约为 2秒钟。弹出代码中的文字，来提醒用户。</p>
+<p>【fd 删除文件】<br>用法：(将删除SD卡根目录的abc.zip文件)<br>s a = “%abc.zip”<br>fd(a, b)<br>tw(b)</p>
+<p>说明：<br>用于删除指定的文件，是否成功返回数据：true或 false</p>
+<p>提示：同时将创建变量“b”，作为记录返回的值。（通用于下咧）</p>
+<p>【fe 文件是否存在】<br>用法：(将判断SD卡根目录的abc.zip文件是否存在)<br>s a = “%abc.zip”<br>fe(a, b)<br>tw(b)</p>
+<p>说明：<br>用于判断指定的文件存在，是否存在返回数据：true或 false</p>
+<p>【fs 文件大小】<br>用法：(将获取SD卡根目录的abc.zip文件占用的大小)<br>s a = “%abc.zip”<br>fs(a, b)<br>tw(b)</p>
+<p>说明：<br>用于判断指定的文件存在，是否存在返回数值单位(字节)，若获取失败将返回 “-1”。<br>转换为KB：<br>s a = “%abc.zip”<br>fs(a, b)<br>s(b/1024, b)<br>tw(b)</p>
+<p>转换为MB：<br>s2(b/1024/1024, b)<br>//保留所有小数<br>sn(b/1024/1024, b2)</p>
+<p>【fr 读取文本】<br>用法：(将读取SD卡根目录的abc.txt文件里面的内容)<br>s a = “%abc.txt”<br>fr(a, b)<br>tw(b)</p>
+<p>s a = “%abc.txt”<br>s b = “utf-8”<br>fr(a, b, c)<br>tw(c)</p>
+<p>说明：<br>用于读取文本文件的数据内容。</p>
+<p>【fc 复制文件】<br>用法：（在SD卡根目录abc.txt文件拷贝一个新的副本至abc2.txt）<br>s a = “%abc.txt”<br>s b = “%abc2.txt”<br>fc(a, b, c)</p>
+<p>//设置重复不覆盖<br>s c = false<br>fc(a, b, c, d)</p>
+<p>说明：<br>用于复制文件，创建一个新的副本文件。是否成功返回数据：true或 false</p>
+<p>【fw 写入文本】<br>用法：(将文本数据写入至SD卡根目录的abc.txt文件里面)<br>s a = “%abc.txt”<br>s b = “我是一个txt文件的内容”<br>fw(a, b)</p>
+<p>s a = “%abc.txt”<br>s b = “我是一个txt文件的内容”<br>s c = “utf-8”<br>fw(a, b, c)</p>
+<p>说明：<br>用于写入文件。</p>
+<p>【fl 文件列表】<br>用法：（获取一个目录的文件列表）<br>s a = “%dir”<br>fl(a, b)<br>for(c; b)<br>{<br>    syso(c)<br>}</p>
+<p>//仅获取文件夹<br>s a = “%dir”<br>fl(a, true, b)<br>for(c; b)<br>{<br>    syso(c)<br>}</p>
+<p>//仅获取文件<br>s a = “%dir”<br>fl(a, false, b)<br>for(c; b)<br>{<br>    syso(c)<br>}</p>
+<p>说明：上面例子是获取sd卡根目录文件夹“dir”里面的所有子目录以及文件，并获取结果传入变量“b”，并用for循环，来读取变量“b”里面的列表数据，并把列表数据复制给变量“c”，其中代码会自动创建并赋值好变量：b、c</p>
+<p>提示：<br>看似有些复杂，理解了就简单了， 这里的变量“b”类型是一个数组，里面包含了一个数据列表。通过for循环可以顺序读取这个列表。并每次循环把每列的数据赋值给变量“c”</p>
+<p>【ft 转移文件】<br>用法：（将SD卡根目录的abc.txt转移至abc3.txt）<br>s a = “%abc.txt”<br>s b = “%abc3.txt”<br>ft(a, b, c)<br>tw(c)</p>
+<p>说明：<br>用于转移文件。是否成功返回数据：true或 false</p>
+<p>【fdir 获取SD卡根目录路径】<br>用法：（获取根目录路径并赋值至变量“a”）<br>//获取根目录<br>fdir(a)<br>tw(a)</p>
+<p>//获取目录的绝对路径<br>s a = “%dir”<br>fdir(a, b)<br>tw(b)</p>
+<p>说明：<br>通过获取根目录路径，就可以计算文件的绝对路径。</p>
+<p>【fuz 解压zip部分文件】<br>用法：（将根目录文件abc.apk压缩包里的AndroidManifest.xml文件，解压到根目录AndroidManifest2.xml）<br>s a = “%abc.apk”<br>s b = “AndroidManifest.xml”<br>s c = “%AndroidManifest2.xml”<br>fuz(a, b, c, d)<br>tw(d)</p>
+<p>//解压文件遇到重复不覆盖<br>s a = “%abc.apk”<br>s b = “AndroidManifest.xml”<br>s c = “%AndroidManifest2.xml”<br>s d = false<br>fuz(a, b, c, d, e)<br>tw(e)</p>
+<p>说明：<br>通过上面代码可以实现压缩包解压部分的文件，并返回赋值至变量“d”解压文件的数量。</p>
+<p>【fuzs 解压整个zip】<br>用法：(将根目录文件abc.apk压缩包解压至根目录文件夹abcdir，会自动创建)<br>s a = “%abc.apk”<br>s b = “%abcdir”<br>fuzs(a, b, c)<br>tw(c)</p>
+<p>//解压文件遇到重复不覆盖<br>s a = “%abc.apk”<br>s b = “%abcdir”<br>s c = false<br>fuzs(a, b, c, d)<br>tw(d)</p>
+<p>说明：<br>通过上面代码将解压整个压缩包至指定文件，并赋值至变量“c”，是否成功返回数据：true或 false</p>
+<p>【fj 压缩文件或文件夹至zip】<br>用法：<br>s a = “%adc.txt”<br>s b = “%abc.zip”<br>fj(a, b, c)<br>tw(c)</p>
+<p>//不去除根目录<br>s a = “%adc.txt”<br>s b = “%abc.zip”<br>s c = false<br>fj(a, b, c, d)<br>tw(d)</p>
+<p>说明：<br>压缩文件。返回赋值数据：true 或 false</p>
+<p>【fo 打开文件】<br>用法：（将根目录打开安装abc.apk文件）<br>s a = “%abc.apk”<br>fo(a)</p>
+<p>说明：<br>可以调用系统工具打开不同的文件。</p>
+<p>【s+-*/% 运算方式】<br>用法：<br>s a = 2</p>
+<p>//加法例子赋值a=4<br>s+(2, a)<br>//减法例子赋值a=3<br>s-(5, a)<br>//乘法例子赋值a=6<br>s*(3, a)<br>//除法例子赋值a=4<br>s/(8, a)<br>//求余例子赋值a=2<br>s%(5, a)</p>
+<p>//其他用法</p>
+<p>//加法例子赋值a=7<br>s+(2, 5, a)</p>
+<p>//乘法例子赋值b=8，保留小数<br>s*(4, a, true, b)</p>
+<p>说明：<br>此方法的效率高于 s计算表达式、sb计算表达式。 在循环数据运行时，是受到推荐的用法。</p>
+<p>【s 计算表达式】<br>用法：（用于计算表达式）<br>s a = 12<br>s b = 13<br>s(a + b, c)<br>//将提示：25<br>tw(c)</p>
+<p>s a = 60<br>s b = 14<br>s(a / (b + 12), c)<br>//将提示：2 （自动去除了小数）<br>tw(c)</p>
+<p>说明：<br>用于计算数据表达式，不支持逻辑表达式计算。</p>
+<p>【s2 计算表达式】<br>说明：<br>功能跟上面的一样，但这个会保留2位小数。</p>
+<p>【sn 计算表达式】<br>说明：<br>功能跟上面的一样，但保留所有小数。</p>
+<p>【ss 变量相加】<br>用法：<br>s a = “123”<br>s b = “789”<br>ss(a + “456” + b, c)<br>//将提示：123456789<br>tw(c)</p>
+<p>说明：<br>将字符串数据相连，并赋值至变量“c”。</p>
+<p>【sr 替换字符】<br>用法：<br>s a = “123456789”<br>s b = “456”<br>s c = “.”<br>sr(a, b, c, d)</p>
+<p>//将提示：123.789<br>tw(d)</p>
+<p>//支持正则表达式<br>//sr(a, b, c, true, d)</p>
+<p>说明：<br>用于替换字符</p>
+<p>【sj 截取字符】<br>用法：<br>s a = “123456789”<br>s b = “34”<br>s c = “8”<br>sj(a, b, c, d)<br>//将提示：567<br>tw(d)</p>
+<p>//从头部开始截取<br>sj(a, null, c, d)<br>tw(d)</p>
+<p>//截取到尾部<br>sj(a, b, null, d)<br>tw(d)</p>
+<p>说明：<br>用于截取数据部分字符</p>
+<p>【sl 数据数组】<br>用法：<br>s a = “12;12;12;12;12”<br>s b = “;”<br>sl(a, b, c)</p>
+<p>//可以支持正则表达式；例子看（注意说明）<br>//sl(a, b, true, c)</p>
+<p>for(d; c)<br>{<br>//将打印5次：12<br>    syso(d)<br>}</p>
+<p>说明：<br>将把变量“a”的字符串，切割成一个数组，以字符“.”为分割字符。并用循环顺序打印出数据。</p>
+<p>注意：<br>如果支持正则表达式数据数组，上例子的 s b = “;” 其内的值。需要转义的特殊字符 “$()*+.[]?^{},|”</p>
+<p>支持正则的特殊字符转义方法：<br>如：<br>s a = “12|a$12|a$12|a$12|a$12”</p>
+<p>//关键分割字符串如果包含特殊字符，需要在每个特殊字符前面增加“\”<br>s b = “\|a\$”<br>sl(a, b, true, c)</p>
+<p>for(d; c)<br>{<br>//将打印5次：12<br>    syso(d)<br>}</p>
+<p>【siof 获取字符位置】<br>用法：<br>s a = “123456789”<br>s b = “3”<br>s c = 0<br>siof(a, b, c, d)<br>//将提示：2<br>tw(d)</p>
+<p>s a = “123456789”<br>s b = “3”<br>siof(a, b, c)<br>//将提示：2<br>tw(c)<br>说明：<br>从前面向后面进行匹配。字符位置以0计算，若无数据找到将返回 -1</p>
+<p>【slof 获取字符位置】<br>用法：<br>s a = “123456789”<br>s b = “4”<br>s c = 8<br>slof(a, b, c, d)<br>//将提示：3<br>tw(d)</p>
+<p>s a = “123456789”<br>s b = “4”<br>slof(a, b, c)<br>//将提示：3<br>tw(c)</p>
+<p>说明：<br>从后面向前面进行匹配。字符位置以0计算，若无数据找到将返回 -1</p>
+<p>【ssg 截取字符】<br>用法：<br>s a = “abcdefghijk”<br>ssg(a, 2, 6, b)<br>//将提示：cdef<br>tw(b)</p>
+<p>s a = “abcdefghijk”<br>ssg(a, 6, b)<br>//将提示：ghijk<br>tw(b)</p>
+<p>说明：<br>根据字符的位置进行截取字符，若失败将变量“b”赋值 null</p>
+<p>【slg 获取字符长度】<br>用法：<br>s a = “123456789”<br>slg(a, b)<br>//将提示：9<br>tw(b)</p>
+<p>说明：<br>顾名思义。</p>
+<p>【strim 去除头尾空格】<br>用法：<br>s a = “   123456789 “<br>strim(a, b)<br>//将提示:123456789<br>tw(b)</p>
+<p>说明：<br>常用于去除后进行判断头尾字符。</p>
+<p>【slower 转换为小写】<br>用法：<br>s a = “AiufSUscN”<br>slower(a, b)<br>//将提示:aiufsuscn<br>tw(b)</p>
+<p>说明：<br>常用于转换为小写后进行判断。</p>
+<p>【supper 转换为大写】<br>用法：<br>s a = “AiufSUscN”<br>supper(a, b)<br>//将提示:AIUFSUSCN<br>tw(b)</p>
+<p>说明：<br>常用于转换为大写后进行判断。</p>
+<p>【stop 暂停代码】<br>用法：<br>t()<br>{<br>syso(“1”)</p>
+<p>stop(1000)<br>syso(“2”)</p>
+<p>stop(1000)<br>syso(“3”)</p>
+<p>stop(1000)<br>syso(“4”)<br>}</p>
+<p>说明：<br>每次执行 stop(1000) 将暂停1秒后，再执行下面代码。单位为毫秒：1000毫秒 = 1秒</p>
+<p>【sran 生产范围随机数】<br>用法：（生产一个 100 至 1000的随机数）<br>sran(100, 1000, a)<br>tw(a)</p>
+<p>说明：<br>有时候需要利用到随机机制，可以利用这个来开发！</p>
+<p>【nsz 创建数组】<br>用法：<br>s a = 6<br>nsz(a, b)</p>
+<p>或</p>
+<p>//指定数组数据类型<br>s a = 6<br>nsz(a, “String”, b)</p>
+<p>说明：<br>申明一个数组。并且舍子数组总行数为6</p>
+<p>【sgsz 指定访问数组维数】<br>用法：（根据序号访问数组）<br>s a = “12;34;56;78;90”<br>s b = “;”<br>sl(a, b, c)<br>sgsz(c, 2, d)<br>tw(d)</p>
+<p>说明：<br>数组可以进行列表形式存储数据，常用于数据列表。注意的是序号是从0开始的。数组总行数如果是5，那序号最大为4</p>
+<p>【sssz 设置数组数据】<br>用法：<br>s a = 6<br>nsz(a, b)<br>s c = 1<br>s d = “数据”<br>sssz(b, c, d)</p>
+<p>说明：<br>指定数组序号设置数组的数据。</p>
+<p>【sgszl 访问数组总行数】<br>用法：<br>s a = “12;34;56;78;90”<br>s b = “;”<br>sl(a, b, c)<br>sgszl(c, d)<br>tw(d)</p>
+<p>说明：<br>可以获取到长度，更准确的访问数组</p>
+<p>【hs 获取网页源码】<br>用法：<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, b)<br>syso(b)<br>}</p>
+<p>2，提交post数据:<br>如果参数包含 &amp; 为普通字符，可以进行转义 &amp; 如提交数据:&amp;text=abc&amp;def<br>输入说明：地址，post数据提交，目标网页编码，赋值变量<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, “title=你好&amp;text=你好吗？”, “utf-8”, b)<br>syso(b)<br>}</p>
+<p>3，带自定义cookie方式获取网页:<br>//传递cookie项值，格式为nama=value 下例： uid=112;name=nihao;sb=123456789;</p>
+<p>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, “title=你好&amp;text=你好吗？”, “utf-8”, “uid=112;name=nihao;sb=123456789;”, b)<br>syso(b)<br>}</p>
+<p>4，带自动设置cookie方式获取网页，并记录当前网页的Cookie:<br>//传递cookie项值，当自定义为null 系统将自动设置已记录的cookie<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, “title=你好&amp;text=你好吗？”, “utf-8”, null, true, b)<br>syso(b)<br>}</p>
+<p>5，带自动设置cookie方式获取网页，并记录当前网页的Cookie，并设置Header头:（可设置多条，以“||”隔开）文件头包括了Cookie，User-Agent设备型号。<br>//传递cookie项值，当自定义为null 系统将自动设置已记录的cookie<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, “title=你好&amp;text=你好吗？”, “utf-8”, null, true, “User-Agent=Mozilla/5.0 (iPad; U; CPU OS 6_0 like Mac OS X; zh-CN; iPad2)||accept=<em>/</em>||accept-language=zh-CN”, b)<br>syso(b)<br>}</p>
+<p>6，带自动设置cookie方式获取网页，并记录当前网页的Cookie，并设置Header头:（可设置多条，以“||”隔开）文件头包括了Cookie，User-Agent设备型号，设置连接超时，设置接收超时，设置代理IP。<br>//传递cookie项值，当自定义为null 系统将自动设置已记录的cookie<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hs(a, “title=你好&amp;text=你好吗？”, “utf-8”, null, true, “User-Agent=Mozilla/5.0 (iPad; U; CPU OS 6_0 like Mac OS X; zh-CN; iPad2)||accept=<em>/</em>||accept-language=zh-CN”, 20000, 20000, “10.0.0.172:80”, b)<br>syso(b)<br>}</p>
+<p>7，应用系统存储Cookie的浏览查看，返回赋值变量为字符串<br>hs(“cookie”, b)</p>
+<p>8，应用系统存储Cookie的清空，无赋值变量<br>hs(“del cookie”)</p>
+<p>9，应用系统存储Cookie的浏览查看指定网址，返回赋值变量为字符串<br>hs(“cookie:<a target="_blank" rel="noopener" href="https://m.baidu.com&quot;/">https://m.baidu.com&quot;</a>, b)</p>
+<p>说明：<br>这里先开了一个线程，然后在线程里执行获取网页源码的工作，开线程是担心有些主线程界面。大部分网页都需要使用cookie登陆，可使用工具查询所需cookie然后进行操作。<br>设置cookie有说明作用？<br>1.登陆用户名<br>2.获取验证码图片并发送验证码<br>….</p>
+<p>【hd 下载文件】<br>用法：（下载文件至SD卡根目录 abc.apk）</p>
+<p>1，下载文件，默认不覆盖重复<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>s b = “abc.apk”<br>hd(a, b, c)<br>syso(c)<br>}</p>
+<p>2，设置重复是否覆盖<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>s b = “abc.apk”<br>hd(a, b, true, c)<br>syso(c)<br>}</p>
+<p>3，带自动设置cookie方式下载网页形式文件（如图片形式验证码，论坛的附件等），支持post数据，自定义Cookie或系统设置Cookie，并记录当前网页的Cookie，并设置重复是否覆盖。可参考hs获取网页，并设置Header头:（可设置多条，以“||”隔开，也可留空为null）<br>输入说明：下载地址，保存文件位置，是否重复覆盖，post数据提交，目标网页编码，自定义Cookie，是否系统自动设置Cookie，设置Header头，赋值变量<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>s b = “abc.apk”<br>hd(a, b, true, “title=你好&amp;text=你好吗？”, “utf-8”, null, true, null, b)<br>syso(b)<br>}</p>
+<p>说明：<br>开个线程，然后在里面下载一个文件。并存到SD卡。下载结果将赋值到变量“c”<br>返回的赋值：<br>1 文件已经存在<br>0 下载成功<br>-1 下载失败</p>
+<p>【hw 访问网页】<br>用法：<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hw(a)</p>
+<p>说明：<br>使用内置浏览器访问网页。<br>可用于下载文件：<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>hw(a)</p>
+<p>//跳转访问网页，并且自定义标题栏颜色<br>//主体颜色<br>s b = “#387bd6”<br>//底部横杠颜色<br>s c = “#255eab”<br>hw(“<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a>, b, c)</p>
+<p>【hws 系统浏览器访问网页】<br>用法：<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>hws(a)</p>
+<p>说明：<br>使用内置浏览器访问网页。<br>可用于下载文件：<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>hws(a)</p>
+<p>【ug 获取控件属性】<br>用法：(1为：控件ID，第二个参数为控件属性标识，然后赋值到变量)<br>//<br>ug(1, “text”, c)</p>
+<p>//获取侧滑控件 左边的侧滑是否展开状态<br>ug(1, “isdraweropen”, “start”, c)</p>
+<p>说明：<br>输入属性标示来返回不同的控件数据。注意：有些控件没有指定属性，将返回null。下面有属性介绍，可参考。</p>
+<p>可用属性标识：<br>text=内容、background=背景、width=宽度、height=高度、x=X轴、y=Y轴、paddingleft=左内边距、paddingtop=顶内边距、paddingright右内边距、paddingbottom=底内边距、layout_marginleft=左外边距、layout_margintop=顶外边距、layout_marginright=右外边距、layout_marginbottom=底外边距、<br>hint=提示字符、imeoptions=虚拟键盘按键状态、visibility=控件可视状态、checked=选项是否被选中、title=浏览器网页标题、url=浏览器网址、lastvisibleposition=列表滑动到项目位置的序号、count=列表项目总数、<br>selecteditem=获取下拉框选值、rating=评分当前数值、progress=控件当前进度数值、date=日期控件选值、time=时间控件选值、currentitem=获得滑动窗体界面序号、isdraweropen=侧滑是否界面展开状态、selectionstart=获取文本框光标开始位置、selectionend=获取文本框光标结束位置、<br>cangoback=是否存在可返回的网页、cangoforward=是否存在可前进的网页、collapsecolumns=表格布局获取指定列是否折叠、shrinkcolumns=表格布局获取指定的列是否可收缩、stretchcolumns=表格布局获取指定的列是否可拉伸、shrinkcolumnsall=表格布局获取指示是否所有的列都是可收缩的、<br>stretchcolumnsall=表格布局获取指示是否所有的列都是可拉伸的</p>
+<p>【us 设置控件属性】<br>用法：(1为：控件ID，第二个参数为控件属性标识，第三个是需要设置的数据或变量)</p>
+<p>//设置文本控件内容<br>s c = “文本内容”<br>us(1, “text”, c)</p>
+<p>//关闭下拉刷新加载图标<br>us(1, “refreshing”, false)</p>
+<p>//设置浏览器的连接url<br>s c = “<a target="_blank" rel="noopener" href="https://m.baidu.com/&quot;">https://m.baidu.com/&quot;</a><br>us(2, “url”, c)<br>//提示：如果浏览器正在播放视频或音乐，直接关闭浏览器可能还会有声音，建议关闭浏览器时先跳转成另一个网页。<br>//提示：如果需要加载本地的文件，可以 us(2, “url”, “file:///android_asset/res/web.html”) 加载安装包内assets/res/web.html文件</p>
+<p>//设置浏览器显示的html文件或文本<br>s c = “<html><p>html内容&lt;/&gt;</html>“<br>s d = “utf-8”<br>s e = “text/html”<br>us(2, “url”, c, d, e, f)<br>tw(f)</p>
+<p>//设置控件阴影（部分控件有效果如文本、文本框、按钮）<br>s radius = 5<br>s dx = 0<br>s dy = 0<br>s color = “#000000”<br>us(2, “shadow”, radius, dx, dy, color, f)<br>tw(f)</p>
+<p>//带有赋值变量，变量d将返回数据是否设置成功 true 或 false<br>s c = “文本内容”<br>us(1, “text”, c, d)</p>
+<p>//设置文本框控件光标<br>us(1, “selection”, 1, d)</p>
+<p>//选中文本框部分内容<br>us(1, “selection”, 1, 3, d)</p>
+<p>//浏览器前进1个网页<br>us(1, “gobackorforward”, 1)</p>
+<p>//浏览器后退1个网页<br>us(1, “gobackorforward”, -1)</p>
+<p>//设置控件点击波纹效果颜色；需系统5.0以及以上才有效果；部分控件还需要设置 clickable=true 才有效果。<br>us(1, “backgroundripple”, “#888888”)</p>
+<p>//设置编辑框光标颜色<br>us(1, “textcursordrawable”, “#000000”)</p>
+<p>//自定义文本控件字体<br>us(1, “typeface”, “@ttf.ttf”)</p>
+<p>说明：<br>输入控件标示设置控件数据。【可参照控件属性，所有属性标识通用】</p>
+<p>更多属性标识：<br>currentitem=设置滑动窗体界面序号、closedrawer=关闭指定侧滑、opendrawer=展开指定侧滑、drawerlockmode=设置手势滑动、selection=设置文本框光标位置、gobackorforward=浏览器的前进或推后、backgroundripple=波纹效果、dh=执行动画（非队列动画）</p>
+<p>【uigo 跳转界面】<br>用法：（输入界面文件名，跳转指定的界面）<br>uigo(“abc.iyu”)</p>
+<p>//带参数的跳转<br>uigo(“abc.iyu”, 536870912)</p>
+<p>说明：<br>可以界面之间的转换，扩展新的界面。</p>
+<p>参数：<br>67108864：如果在内存中发现存在该界面，则清空这个界面之上的所有其他界面，使其处于栈顶。<br>268435456：系统会寻找或创建一个新的内存来放置该界面<br>1073741824：跳转到的界面，不排在内存中<br>536870912：当内存中存在该界面并且位手机的显示状态时，不再创建一个新的，直接利用这个界面。</p>
+<p>【utw 弹出界面】<br>用法：（在原有的界面弹出界面）<br>s a = null<br>s b = “界面标题”<br>s c = “界面内容”<br>s d = “退出”<br>s e = “保存”<br>s f = “取消”</p>
+<p>//三个按钮<br>//输入图标，输入标题，输入内容，输入按钮名称，输入按钮名称，输入按钮名称，输入是否点击弹窗以外界面是否关闭弹窗，输入赋值变量<br>utw(a, b, c, d, e, f, false, v)<br>{<br>syso(“点击了确定”)<br>}<br>else<br>{<br>syso(“点击了保存”)<br>}<br>else<br>{<br>syso(“点击了取消”)<br>}</p>
+<p>//两个按钮<br>utw(a, b, c, d, e, false, v)<br>{<br>syso(“点击了确定”)<br>}<br>else<br>{<br>syso(“点击了取消”)<br>}</p>
+<p>//一个按钮<br>utw(a, b, c, d, false, v)<br>{<br>syso(“点击了确定”)<br>}</p>
+<p>//没有按钮<br>utw(a, b, c, false, v)</p>
+<p>//将界面添加到弹窗界面上，直接将界面内容设为一个界面文件<br>s a = “界面标题”<br>s b = “a.iyu”<br>s c = “取消”<br>utw(null, a, b, c, false, v)<br>{<br>syso(“点击了确定”)<br>}</p>
+<p>说明：<br>常用于询问用户当前的操作，弹窗展示内容。</p>
+<p>赋值变量说明：<br>弹出界面需要设置一个赋值变量，用于自定义界面弹窗的操作。</p>
+<p>【endutw 关闭弹出界面】<br>用法：<br>endutw()</p>
+<p>说明：<br>用于关闭当前打开的弹窗界面</p>
+<p>【end 结束界面】<br>用法：<br>end()</p>
+<p>说明：<br>调用后，将结束当前的界面。 并返回原来的界面。如果原来没有界面，将退出应用。</p>
+<p>【ends 显示桌面】<br>用法：<br>ends()</p>
+<p>说明：<br>跳转到手机的桌面，程序将后台运行。</p>
+<p>【bfm 播放音频】<br>用法：<br>s a = “%abc.mp3”<br>bfm(a)</p>
+<p>s a = “<a target="_blank" rel="noopener" href="http://www.abc.com/abc.mp3&quot;">http://www.abc.com/abc.mp3&quot;</a><br>bfm(a)</p>
+<p>s a = “%abc.mp3”<br>bfm(a, b)<br>//播放<br>//bfms(b, “st”)<br>//暂停<br>//bfms(b, “pe”)<br>//停止<br>//bfms(b, “sp”)<br>//结束播放组件<br>//bfms(b, “re”)<br>//是否在播放<br>//bfms(b, “ip”, c)<br>//tw(c)</p>
+<p>//获取音频时长（毫秒）<br>//bfms(b, “dn”, c)<br>//tw(c)<br>//获取当前播放时长（毫秒）<br>//bfms(b, “cn”, c)<br>//tw(c)</p>
+<p>//指定播放的位置（毫秒）<br>//bfms(b, “seekto”, 2000)</p>
+<p>//设置音量（0-100）<br>//bfms(b, “volume”, 100, 100)</p>
+<p>//一直循环播放<br>//bfms(b, “sl”, true)</p>
+<p>说明：<br>可以直接访问安装包里面的音频文件，也可以访问sd卡上的。</p>
+<p>【html标签支持】<br>用法：<br>s a = “(html)<a target="_blank" rel="noopener" href="https://m.baidu.com">百度</a>“<br>us(1, “text”, a)</p>
+<p>说明：<br>text属性：设置支持html代码！</p>
+<p>【ula 列表操作内容】<br>用法：<br>//输入数据列表对象，输入数据项…不限制数量。<br>ula(a, 1=”abc”, 2=”bac”, 3=”bbc”)</p>
+<p>//刷新列表显示内容，常用增加数据后的刷新。<br>ula(a)</p>
+<p>//清空列表对象<br>ula(a, null)<br>//ula(a, “clear”)</p>
+<p>//获得列表对象，赋值返回v变量为列表对象<br>ula(a, “list”, v)</p>
+<p>说明：<br>根据数据列表，进行增加数据。</p>
+<p>提示：<br>1=abc，其中1为控件id，abc为设置控件值<br>其中所谓的控件，为a.iyu界面中的控件。<br>增加标识数据，不作为设置控件数据，可在标识处设负数。如下：<br>-1=abc</p>
+<p>提示：<br>如果需要设置 单选控件、多选控件 的选择状态，可设值为 true 或 false</p>
+<p>注意：<br>将要执行事件的控件，必须在此设置值。如你有一个按钮控件无需设置值，但需要使用事件，可设置 1=null<br>不设置值的控件，将无法获取列表内容数据。</p>
+<p>【uls 列表显示内容】<br>用法：<br>ula(a, 1=”abc”, 2=”bac”, 3=”bbc”)<br>s c = “a.iyu”<br>s d = -1<br>s e = -2<br>//列表项目界面高度 建议输入 -2 ，如果高度输入 -1 v7列表单项会填充整个界面。项目界面的宽度建议输入 -1<br>//输入控件id或控件对象，输入数据列表，输入列表项界面文件名，输入项目界面宽度，输入项目界面高度<br>uls(1, a, c, d, e)</p>
+<p>//设置下拉选择列表<br>s a = “a;b;c”<br>s b = “;”<br>sl(a, b, c)<br>//输入控件id或控件对象，输入数据列表或数组数据<br>uls(1, c)</p>
+<p>//自定义标签布局 的子项<br>ula(a, 1=”abc”, 2=”bac”, 3=”bbc”)<br>//输入控件id或控件对象，输入数据列表，输入列表项界面文件名，输入界面宽度，输入界面高度<br>uls(1, a, “a.iyu”, -2, -2)</p>
+<p>说明：<br>设置列表控件、视图控件、下拉列表、标签布局 的数据。</p>
+<p>注意：<br>列表控件、视图控件 设置的界面 a.iyu 其中的载入事件是允许被调用。<br>可以通过列表控件、视图控件 设置的界面 a.iyu 的载入事件，进行每项列表布局的个性化设计。<br>每当显示到每项列表内容就会调用一次此载入事件，并且将该项的布局控件赋值给 st_vW 变量对象，<br>然后可以通过 gvs(st_vW, a.2, b) 获取其中的子控件对象，然后进行操作子控件即可。<br>还可以通过 st_pN 获取当前的视图中的序号，方便判断目前操作的是那一个视图。</p>
+<p>【ulag 获取列表内容数据】<br>用法：</p>
+<p>//输入当前的控件对象，输入获取控件ID 1的数据参数，输入赋值变量<br>ulag(a, 1, b)</p>
+<p>//输入当前的控件对象，输入获取标识为 -1的数据参数，输入赋值变量<br>ulag(a, -1, b)</p>
+<p>//通过 数据列表对象 或 列表控件对象 获取数据<br>//输入数据列表对象 或 列表控件对象，输入视图中的位置序号，输入获取标识为 -1的数据参数，输入赋值变量<br>ulag(a, 1, -1, b)</p>
+<p>//如v7列表、滑动窗体控制 的加载界面中的 载入事件里可使用此方法获取数据内容<br>ulag(st_vW, 1, b)</p>
+<p>说明：<br>常用与在列表控件的事件中，获取参数数据与用户进行互动。获取失败将赋值变量为 null</p>
+<p>注意：<br>使用此方法在uls中设置控件参数后，有设置参数的控件，在事件中可使用此方法。</p>
+<p>【ulas 更新列表内容数据】<br>用法：</p>
+<p>//输入当前的控件对象，输入获取控件ID 1的数据参数，输入新的数据<br>ulas(a, 1, b)</p>
+<p>//输入当前的控件对象，输入获取标识为 -1的数据参数，输入新的数据<br>ulas(a, -1, b)</p>
+<p>//通过 数据列表对象 或 列表控件对象 获取数据<br>//输入数据列表对象 或 列表控件对象，输入视图中的位置序号，输入获取标识为 -1的数据参数，输入新的数据<br>ulas(a, 1, -1, b)</p>
+<p>//刷新列表显示内容，常用增加数据后的刷新。<br>ula(a)</p>
+<p>//如v7列表、滑动窗体控制 的加载界面中的 载入事件里可使用此方法获取数据内容<br>ulas(st_vW, 1, b)</p>
+<p>说明：<br>常用与更新修改列表内容数据。修改数据后，别忘记刷新列表。</p>
+<p>【usms 发送短信】<br>用法：<br>s a = “10086”<br>s b = “0”<br>usms(a, b)</p>
+<p>注意:测试时只显示syso日志，不直接 发送短信，打包即可。</p>
+<p>【ucall 拨打电话】<br>用法：<br>s a = “10086”<br>ucall(a)</p>
+<p>注意:测试时只显示syso日志，不直接 拨出号码，打包即可。</p>
+<p>【time 当前时间】<br>用法：<br>s a = 0<br>time(a, b)<br>tw(b)</p>
+<p>说明：<br>第一个参数为时间类型，第二个赋值变量</p>
+<p>[数字类型]<br>0：2014-07-07 09:10:08<br>1：2014/07/07 09:10:08<br>2：2014-07-07<br>3：09:10:08<br>4：18144133553151<br>5：2014年07月07日 09:10:08<br>[字符类型，输入字符形式需引号概括]<br>Y 年<br>m 月<br>d 日<br>H 时<br>M 分<br>S 秒<br>a/A 星期几</p>
+<p>【fi 判断路径是否文件夹】<br>用法：<br>s a = “abc”<br>fi(a, b)<br>tw(b)</p>
+<p>说明：<br>指定路径，判断是否为目录文件夹，返回：true 或 false</p>
+<p>【swh 获取屏幕分辨率】<br>用法：<br>s a = “w”<br>//获取屏幕宽度的dp<br>swh(a, w)<br>s a = “h”<br>//获取屏幕高度的dp<br>swh(a, h)<br>s a = “hh”<br>//获取屏幕真实高度的dp<br>swh(a, hh)</p>
+<p>s a = “pxw”<br>//获取屏幕宽度的px像素<br>swh(a, w)<br>s a = “pxh”<br>//获取屏幕高度的px像素<br>swh(a, h)<br>s a = “pxhh”<br>//获取屏幕真实高度的px像素<br>swh(a, hh)</p>
+<p>s a = “pxztl”<br>//获取屏幕状态栏高度的px像素<br>swh(a, h)</p>
+<p>s a = “pxbvk”<br>//获取屏幕底部虚拟键盘的高度的px像素<br>swh(a, h)</p>
+<p>说明：<br>常用于获取屏幕的大小。</p>
+<p>真实高度：不去除其他系统界面所占用（如状态栏）</p>
+<p>【stobm 汉子转换编码字符】<br>用法：（你 转换 %E4%BD%A0）<br>stobm(“你”, “utf-8”, b)<br>tw(b)</p>
+<p>//转换网址中的汉字<br>stobm(“你”, “utf-8”, true, b)<br>tw(b)</p>
+<p>说明：<br>有些时候网络操作的时候，网址需要带有字符参数，就可以把这个汉字转换下。</p>
+<p>【sutf8to 将UTF-8编码字符转换中文】<br>sutf8to(“%E4%BD%A0”, b)<br>tw(b)</p>
+<p>//网址中的汉字<br>sutf8to(“%E4%BD%A0”, “utf-8”, true, b)<br>tw(b)</p>
+<p>【uycl 隐藏状态栏】<br>用法：<br>//隐藏<br>uycl(true)<br>//不隐藏<br>uycl(false)</p>
+<p>说明：<br>隐藏手机顶部的状态栏</p>
+<p>【uycl 修改状态栏颜色】<br>用法：<br>//输入更变颜色，并且保留状态栏空间，并默认设置软键盘<br>uycl(“#50c4e5”, true)</p>
+<p>//输入更变颜色，并且不保留状态栏空间，并默认设置软键盘<br>uycl(“#50c4e5”, false)</p>
+<p>//输入更变颜色，并且保留状态栏空间，只设置状态栏，不设置软键盘<br>uycl(“#50c4e5”, true, 0)</p>
+<p>//输入更变颜色，并且不保留状态栏空间，只设置软键盘，不设置状态栏<br>uycl(“#50c4e5”, false, 1)</p>
+<p>说明：<br>常用与设置一体化颜色，以及更变不同的状态栏颜色。</p>
+<p>ps:如果不保留状态栏空间的话，你的底部控件可能会与底部软键盘重叠，你可以使用 swh 获取底部虚拟键盘的高度，然后可以增加一个底部外边距。</p>
+<p>注意：<br>仅系统android 4.4以及以上才有效果，系统android 5.0以及以上效果更佳！<br>android 4.4以下的系统，无效果！</p>
+<p>【ushsp 设置横屏或竖屏】<br>用法：<br>//横屏<br>ushsp(true)<br>//竖屏<br>ushsp(false)</p>
+<p>说明：<br>设置屏幕的显示方式，注意的是设置后载入事件将重新执行</p>
+<p>【bfv 播放视频】<br>用法：(播放SD卡上的视频文件)<br>s a = “%abcd.mp4”<br>bfv(a)</p>
+<p>//并且横屏<br>s a = “%abcd.mp4”<br>s b = true<br>bfv(a, b)</p>
+<p>//并且横屏<br>s a = “<a target="_blank" rel="noopener" href="http://m.baidu.com/abcd.mp4&quot;">http://m.baidu.com/abcd.mp4&quot;</a><br>s b = true<br>bfv(a, b)<br>说明：<br>此方法将全屏播放SD卡上的视频文件。调用自带的播放器。</p>
+<p>注意：<br>不支持加载assets文件。支持SD卡文件、应用私有文件、（http）远程网络文件！</p>
+<p>支持格式：<br>3gp、MP4、avi</p>
+<p>【endcode 结束执行】<br>用法：<br>s a = 1<br>s b = 1<br>f(a == b)<br>{<br>tw(“会提示”)<br>//结束执行代码<br>endcode<br>}<br>tw(“不会提示”)</p>
+<p>说明：<br>可用于提前结束执行代码，也可以用于模块的函数结束。</p>
+<p>【break 跳出循环以及代码块】<br>用法：<br>w(1 == 1)<br>{<br>syso(“1”)<br>break<br>syso(“2”)<br>}<br>f(1 == 1)<br>{<br>syso(“1”)<br>break<br>syso(“2”)<br>}</p>
+<p>说明：<br>代码块当执行 break 语句后，将跳出。</p>
+<p>【fn 模块与函数】<br>1.创建一个模块：<br>在程序文件列表，新建一个模块名“mokuai”</p>
+<p>2.在模块mokuai.myu里定义各种函数：<br>fn hanshu(a, b)<br>ss(a + b, c)<br>tw(c)<br>end fn<br>fn hanshu(a)<br>tw(a)<br>end fn</p>
+<p>3.在事件里根据模块对象来调用函数：<br>s a = “abc”<br>s b = “def”<br>fn mokuai.hanshu(a, b)<br>fn mokuai.hanshu(a)</p>
+<p>说明：<br>常用与将重复性的代码，放入模块中执行。</p>
+<p>注意：<br>模块的调用过程将不共享使用 调用事件的局部变量；</p>
+<p>例：<br>//(m.myu模块代码)<br>fn abc()<br>s bb = “456”<br>sss cc = “789”<br>end fn</p>
+<p>//（mian.iyu载入事件代码）<br>s bb = “123”<br>fn abc()</p>
+<p>//将提示 123，因为模块代码与事件代码的局部变量是不共享的；<br>tw(bb)</p>
+<p>//将提示 789，可以通过全局变量进行共享数据<br>tw(sss.cc)</p>
+<p>【ftz 发送通知栏】<br>用法：</p>
+<p>ftz(“提醒标题”, “标题”, “内容”, null)<br>{<br>tw(“点击了”)<br>}</p>
+<p>//设置显示图标<br>ftz(“提醒标题”, “标题”, “内容”, “%abc.png”)<br>{<br>tw(“点击了”)<br>}</p>
+<p>说明：<br>可以用于通知用户。</p>
+<p>【uapp 打开App应用或游戏】<br>用法：<br>uapp(“com.iapp”, c)</p>
+<p>//或 带有指定类名的启动<br>uapp(“com.iapp”, “com.yougaile.MakeiApp.logoActivity”, c)</p>
+<p>说明：<br>输入应用包名，赋值变量； 赋值变量返回启动结果：true 或 false</p>
+<p>【uapplist 获取App列表】<br>用法：<br>uapplist(true, b)<br>sgsz(b, 1, d)<br>tw(d)</p>
+<p>说明：<br>输入 是否包括获取系统App，返回一个列表数组 至变量 “b”，每列数据将存储一个应用的信息，并且以 “\n”隔开。</p>
+<p>其中列内容格式：<br>应用包名，启动类，应用标题，应用版本</p>
+<p>【uapplistgo 获取正在运行的App列表】<br>用法：<br>uapplistgo(b)<br>sgsz(b, 1, d)<br>tw(d)</p>
+<p>说明：<br>输入 返回一个列表数组 至变量 “b”，每列数据将存储一个应用的信息，并且以 “\n”隔开。</p>
+<p>其中列内容格式：<br>应用包名，pid, uid</p>
+<p>【uninapp 卸载应用】<br>用法：<br>uninapp(“com.iapp”)</p>
+<p>说明：<br>输入应用包名</p>
+<p>【huf 上传文件】<br>用法：<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/upfile.php&quot;">http://abc.com/upfile.php&quot;</a><br>s b = “filename=iApp我的应用.apk&amp;test=一款非常好的应用哦”<br>s c = “%abc/iApp.apk”<br>s d = “utf-8”<br>huf(a, b, c, d, e)<br>tw(e)<br>}</p>
+<p>2.设置 header文件头，文件头包括了Cookie，User-Agent设备型号。。<br>t()<br>{<br>s a = “<a target="_blank" rel="noopener" href="http://abc.com/upfile.php&quot;">http://abc.com/upfile.php&quot;</a><br>s b = “filename=iApp我的应用.apk&amp;test=一款非常好的应用哦”<br>s c = “%abc/iApp.apk”<br>s d = “utf-8”<br>s e = “User-Agent=Mozilla/5.0 (iPad; U; CPU OS 6_0 like Mac OS X; zh-CN; iPad2)||Cookie=aa:123;bb:456;||accept-language=zh-CN”<br>huf(a, b, c, d, e, e)<br>tw(e)<br>}</p>
+<p>说明：<br>输入 http接口，表单内容，手机内存选择文件，接口的网页编码， 赋值变量。 返回网页内容将赋值给变量 “e”</p>
+<p>【nvw 创建动态控件】<br>用法：<br>//将控件添加至指定的控件作为子控件<br>//输入要添加的控件ID或控件对象，输入添加至指定控件ID或控件对象<br>nvw(id, did)</p>
+<p>//输入要添加的控件ID或控件对象，输入添加至指定控件ID或控件对象，输入插入指定序号<br>nvw(id, did, 0)</p>
+<p>//创建文本控件<br>//输入控件ID，输入添加至指定控件ID或控件对象，输入控件类型，输入控件属性<br>s id = 123456<br>s did = 1<br>nvw(id, did, “文本”, “width=-2\nheight=-2\ntext=内容”)</p>
+<p>//创建文本控件<br>//输入控件ID，输入添加至指定控件ID或控件对象（若不添加则输入null），输入控件类型，输入控件属性，赋值变量为创建控件的对象<br>s id = 123456<br>s did = 1<br>nvw(id, did, “文本”, “width=-2\nheight=-2\ntext=内容”, b)</p>
+<p>说明：<br>输入创建的控件ID，输入将新控件添加至指定控件ID或控件对象，创建控件的类型，创建控件的属性，可带有赋值变量</p>
+<p>【uall 获取子控件】<br>用法：<br>//输入控件ID或控件对象，输入false时将赋值子控件ID，输入赋值变量将返回一个数据列表<br>uall(1, false, a)</p>
+<p>//输入控件ID或控件对象，输入true时将赋值子控件对象，输入赋值变量将返回一个数据列表<br>uall(1, true, a)</p>
+<p>s b = 1<br>gslist(a, b，c)<br>tw(c)</p>
+<p>说明：<br>获取一个包含子控件的，控件中所有的子控件。</p>
+<p>【urvw 移除控件】<br>用法：<br>urvw(3)</p>
+<p>说明：<br>输入需要移除的控件ID或控件对象</p>
+<p>【sbp 图像分割】<br>用法：<br>//载入一个图像变量，并赋值到图像变量“b”<br>sbp(“%1.png”, b)</p>
+<p>//载入一个用户图标，{裁剪图像区域（像素）：x坐标:80，y坐标:90，裁剪宽度:50，裁剪高度:60}<br>//并将裁剪好的赋值到图像变量“b”<br>sbp(“%1.png”, 80, 90, 50, 60, b)</p>
+<p>//载入一个SD卡上的图标，{裁剪图像区域（像素）：x坐标:80，y坐标:90，裁剪宽度:50，裁剪高度:60}，图像旋转图像:180度<br>//并将裁剪好的赋值到图像变量“b”<br>sbp(“%1.png”, 80, 90, 50, 60, 180, b)</p>
+<p>说明：<br>三种方式载入图像，从图像变量，从用户图标，从SD上图标；并可设置裁剪图片；可设置图像旋转； 并赋值到新的图像变量；</p>
+<p>【bfs 保存图像】<br>用法：<br>bfs(b, “%1.jpg”)</p>
+<p>//或 压缩比例（1至100）<br>bfs(b, 70, “%1.jpg”)</p>
+<p>说明：<br>输入图像变量，输入压缩比例（1至100），输入保存图像的路径，图像将保存至该路径。</p>
+<p>【sdeg 启动调试模式】<br>用法：<br>sdeg(0)<br>sdeg(1)<br>sdeg(2)</p>
+<p>说明：<br>提示日志方式。0打包后没有任何提示，1打包后可任然打印错误，2打包后记录日志保存至文件 iApp/Log</p>
+<p>【tot 获取控件图标】<br>用法：<br>s id = 4<br>tot(id, b)</p>
+<p>说明：<br>输入控件ID或控件对象，返回将赋值“b”图像变量。注：此方法仅限于 图片控件，图标按钮控件。</p>
+<p>【tzz 图像旋转】<br>用法：<br>sbp(“%1.png”, a)<br>s b = 90<br>tzz(a, b, c)</p>
+<p>说明：<br>输入被旋转图像变量，输入旋转度数（逆向旋转数为负数），返回将赋值“c”图像变量。</p>
+<p>【tsf 图像缩放】<br>用法：<br>sbp(“%1.png”, a)</p>
+<p>//按照倍增缩放，值小于则为缩小，否则为放大<br>s b = 2<br>tsf(a, b, c)</p>
+<p>//指定高度与宽度缩放<br>s w = 100<br>s h = 200<br>tsf(a, w, h, c)</p>
+<p>说明：<br>输入被缩放图像变量，输入缩放倍数 或 指定图像高度与宽度缩放，返回将赋值“c”图像变量。</p>
+<p>【tfz 图像反转】<br>用法：<br>sbp(“%1.png”, a)<br>//水平反转<br>s b = “x”<br>tfz(a, b, c)</p>
+<p>//垂直反转<br>s b = “y”<br>tfz(a, b, c)</p>
+<p>说明：<br>输入被反转图像变量，输入反转方式 x为水平 y为垂直，返回将赋值“c”图像变量。</p>
+<p>【tcc 获取图像变量尺寸】<br>用法：<br>sbp(“%1.png”, a)<br>s b = “w”<br>tcc(a, b, c)<br>tw(c)</p>
+<p>s b = “h”<br>tcc(a, b, c)<br>tw(c)</p>
+<p>说明：<br>获取图像变量的 w宽度 和 h高度。</p>
+<p>【sxb 写入剪切板】<br>用法：<br>s a = “nihao”<br>sxb(a)</p>
+<p>说明：<br>可用于复制到剪切板，其他应用可获取到此数据。</p>
+<p>【shb 获取剪切板】<br>用法：<br>shb(a)<br>tw(a)</p>
+<p>说明：<br>可获取剪切板数据，得到其他地方写入的剪切板数据。</p>
+<p>【usjxm 手机休眠】<br>用法：<br>usjxm(false)</p>
+<p>说明：<br>设置后手机将不休眠，不锁屏。默认为 true 需要休眠。</p>
+<p>【bfvs 播放视频】<br>用法：</p>
+<p>//设置SD卡视频文件<br>bfvs(1, “%a.mp4”)</p>
+<p>//设置网络远程视频文件<br>bfvs(1, “<a target="_blank" rel="noopener" href="http://abc.com/a.mp4&quot;">http://abc.com/a.mp4&quot;</a>)</p>
+<p>//增加控制器，c为赋值变量<br>bfvss(1, “media”, c)<br>//开始播放<br>bfvss(1, “st”)</p>
+<p>说明：<br>自定义视频播放控件进行播放视频。</p>
+<p>注意：<br>不支持加载assets文件。支持SD卡文件、（http）远程网络文件！</p>
+<p>支持格式：<br>3gp、MP4、avi</p>
+<p>【bfvss 播放视频控制】<br>用法：<br>//开始播放<br>bfvss(1, “st”)</p>
+<p>//暂停播放<br>bfvss(1, “pe”)</p>
+<p>//停止播放<br>bfvss(1, “sp”)</p>
+<p>//定位到指定帧<br>bfvss(1, “seekto”, 300)</p>
+<p>//增加控制器，c为赋值变量<br>bfvss(1, “media”, c)</p>
+<p>//是否在播放<br>bfvss(1, “ip”, c)<br>tw(c)</p>
+<p>//获取视频时长（毫秒）<br>bfvss(1, “dn”, c)<br>tw(c)</p>
+<p>//获取当前播放时长（毫秒）<br>bfvss(1, “cn”, c)<br>tw(c)</p>
+<p>【addv 加载界面】<br>用法：<br>//界面中载入其他界面<br>s id = 1<br>addv(id, “a.iyu”)<br>addv(id, “b.iyu”)</p>
+<p>//侧滑窗体<br>s id = 1<br>addv(id, “a.iyu|b.iyu”)</p>
+<p>//滑动窗体，将带有赋值变量。此处变量“b”赋值为根控件列表，先通过 gslist 访问指定序号的根控件。通过 gvs 指定的根控件访问指定ID的控件。<br>s id = 1<br>addv(id, “a.iyu|b.iyu”, b)</p>
+<p>说明：<br>输入控件ID，输入界面名，输入辅助参数。可用将一个界面的控件，载入到指定控件作为子控件。</p>
+<p>如何设置或获取属性上例 a.iyu 中的控件呢？<br>通过文件名作为对象，进行访问，如：</p>
+<p>//注意：此对象的使用方式。<br>ug(a.2, “text”, b)<br>us(a.3, “text”, “你好”)</p>
+<p>注意：<br>如果载入事件中使用 addv 滑动窗体进行绑定， 如果还需要给滑动窗体内的界面中的控件设置数据，需要将设置控件的代码写在 载入完毕事件 中。否将将可能设置数据失败。</p>
+<p>注意：<br>若增加 侧滑窗体 与 滑动窗体 的子控件，需要在被载入的界面设计中，自设一个根目录，作为界面唯一根目录。</p>
+<p>【gvs 获取控件对象】<br>用法：<br>//根据当前界面，来获取控件<br>//输入要获取的控件ID，输入赋值变量<br>gvs(1, c)</p>
+<p>//根据控件对象，来获取内部的子控件<br>//输入控件ID或控件对象，输入要获取的控件ID，输入赋值变量<br>gvs(1, 2, c)</p>
+<p>说明：<br>常用与于利用根控件获取内部的子控件 或 获取控件对象。获取失败将赋值返回 null</p>
+<p>【aslist 添加数据列表】<br>用法：<br>s b = “你好”<br>aslist(a, b)<br>s c = “你好2”<br>aslist(a, c)</p>
+<p>//可插入数据到指定序号<br>s c = “你好3”<br>s b = 1<br>aslist(a, c, b)</p>
+<p>说明：<br>输入列表对象，输入要添加的数据，输入插入指定序号。</p>
+<p>【sslist 数据列表设置数据】<br>用法：<br>s b = 1<br>s c = “数据”<br>sslist(a, b，c)</p>
+<p>说明：<br>输入列表对象，输入指定数据序号，输入设置的数据</p>
+<p>【gslist 数据列表访问数据】<br>用法：<br>s b = 1<br>gslist(a, b，c)<br>tw(c)</p>
+<p>说明：<br>输入列表对象，输入指定数据序号，输入赋值变量</p>
+<p>【gslistl 数据列表访问数据总数】<br>用法：<br>gslistl(a, b)<br>tw(b)</p>
+<p>说明：<br>输入列表对象，输入赋值变量</p>
+<p>【dslist 数据列表删除指定数据】<br>用法：<br>s b = 1<br>dslist(a, b)</p>
+<p>//清空所有数据<br>s b = -1<br>dslist(a, b)</p>
+<p>说明：<br>输入列表对象，输入指定数据序号</p>
+<p>提示：<br>如果需要清空所有数据，[输入指定数据序号]可输入 -1 即会删除当前数据列表所有数据。</p>
+<p>【gslistsz 列表数据转化为数组】<br>用法：<br>gslistsz(a, b)</p>
+<p>说明：<br>输入列表对象，输入赋值变量</p>
+<p>【gslistis 列表数据检查是否存在指定数据】<br>用法：<br>s b = “数据”<br>gslistis(a, b, c)</p>
+<p>说明：<br>输入列表对象，被判断的数据，输入赋值变量。赋值数据：true 或 false</p>
+<p>【gslistiof 列表数据从头开始检查是否包含该数据】<br>用法：<br>s b = “数据”<br>gslistiof(a, b, c)</p>
+<p>说明：<br>输入列表对象，被判断的数据，输入赋值变量</p>
+<p>【gslistlof 列表数据从尾开始检查是否包含该数据】<br>用法：<br>s b = “数据”<br>gslistlof(a, b, c)</p>
+<p>说明：<br>输入列表对象，被判断的数据，输入赋值变量</p>
+<p>【nuibs 背景选择器】<br>用法：<br>//使用颜色作为背景<br>s pressed = “#333333”<br>s selected = “#333333”<br>s normal = “#888888”<br>nuibs(pressed, selected, normal, b)</p>
+<p>//使用图像作为背景<br>s pressed = “%a.png”<br>s selected = “%a.png”<br>s normal = “%b.png”<br>nuibs(pressed, selected, normal, b)</p>
+<p>//使用渐变颜色作为背景<br>.配置选中状态背景<br>s a = 0<br>s b = 0<br>s c = “#255779|#3e7492|#a6c0cd”<br>s d = “0”<br>s e = “topbottom”<br>ngde(a, b, c, d, e, pressed)</p>
+<p>.配置正常状态背景<br>s a = 0<br>s b = 0<br>s c = “#255779|#3e7492|#a6c0cd”<br>s d = “0”<br>s e = “rightleft”<br>ngde(a, b, c, d, e, normal)</p>
+<p>s selected = pressed</p>
+<p>nuibs(pressed, selected, normal, b)</p>
+<p>说明：<br>输入按下背景，输入选中背景，正常状态背景，输入赋值变量。</p>
+<p>【ngde 背景调控器】<br>用法：<br>//输入圆角半径，输入背景填充色，输入赋值变量<br>s a = 15<br>s b = “#888888”<br>ngde(a, b, c)</p>
+<p>//输入边框宽度，输入背景填充色，输入边框颜色，输入赋值变量<br>s a = 5<br>s b = “#888888”<br>s c = “#333333”<br>ngde(a, b, c, d)</p>
+<p>//输入边框宽度，输入圆角半径，输入背景填充色，输入边框颜色，输入赋值变量<br>s a = 5<br>s b = 15<br>s c = “#888888”<br>s d = “#333333”<br>ngde(a, b, c, d, e)</p>
+<p>//颜色渐变。输入边框宽度，输入圆角半径，输入背景填充渐变色组，输入边框颜色，输入颜色渐变方向，输入赋值变量<br>s a = 5<br>s b = 15<br>s c = “#255779|#3e7492|#a6c0cd”<br>s d = “#333333”<br>s e = “topbottom”<br>ngde(a, b, c, d, e, f)</p>
+<p>说明：<br>背景空调生成的赋值变量，可配合背景选择器进行应用。</p>
+<p>注意：<br>ngde 代码将赋值返回一个背景对象，此背景对象如果被多个不同大小的控件引用为背景。因为控件的大小不同，会导致此背景对象大小被修改。从而影响其他引用者控件。</p>
+<p>提示：<br>边框与圆角半径 若不想调整，可设值为0 。适用于颜色渐变，不需要调节圆角半径和边框。</p>
+<p>颜色渐变方向说明：<br>    topbottom：绘制从顶部梯度至底部<br>    trbl：借鉴右上角渐变左下角<br>    rightleft：绘制从右侧的梯度向左<br>    brtl：借鉴右下角渐变左上角<br>    bottomtop：绘制从底部梯度顶端<br>    bltr：借鉴渐变左下角到右上角<br>    leftright：绘制从左侧的梯度向右<br>    TL_BR：从绘制渐变的左上角到右下角</p>
+<p>【sit 目标的设置】<br>用法：<br>//如，分享软件<br>//输入对象，输入属性标识，输入属性值<br>sit(a, “action”, “android.intent.action.SEND”)<br>sit(a, “type”, “text/plain”)<br>sit(a, “extra”, “android.intent.extra.SUBJECT”, “共享软件”)<br>sit(a, “extra”, “android.intent.extra.TEXT”, “共享内容文本”)<br>sit(a, “flags”, 268435456)<br>uit(a, “chooser”, “标题”)</p>
+<p>说明：<br>常用于调用系统程序以及功能 或 第三方程序功能。</p>
+<p>可属性标识：action、type、extra、flags、data、classname、component</p>
+<p>【uit 目标的执行】<br>用法：<br>//输入目标对象，输入属性，输入属性值<br>uit(a, “chooser”, “标题”)</p>
+<p>//输入目标对象，输入属性，输入请求数值<br>uit(a, “result”, 1)</p>
+<p>//输入目标对象<br>uit(a)</p>
+<p>说明：<br>常用于调用系统程序以及功能 或 第三方程序功能。</p>
+<p>属性支持：chooser、result</p>
+<p>【git 目标获取参数】<br>用法：<br>//输入目标对象，输入属性标识，输入赋值变量<br>git(a, “action”, c)<br>git(a, “type”, c)<br>git(a, “extra”, “title”, c)<br>git(a, “flags”, c)</p>
+<p>说明：<br>获取目标的属性。</p>
+<p>【uqr 二维码扫描】<br>用法：</p>
+<p>//扫描二维码<br>uqr()</p>
+<p>//扫描结果，需要在 回调结果事件 写代码<br>f(st_sC == 1102)<br>{<br>git(st_iT, “extra”, “result”, c)<br>tw(c)<br>}</p>
+<p>//生成二维码图像<br>s a = “<a target="_blank" rel="noopener" href="https://m.baidu.com&quot;/">https://m.baidu.com&quot;</a><br>//输入字符串数据，输入图像长宽像素，输入赋值变量；将返回一个图像变量<br>uqr(a, 400, c)</p>
+<p>//识别二维码图像<br>//输入图像变量或图片路径，输入赋值变量；将返回一个字符串<br>uqr(a, c)</p>
+<p>说明：<br>常用于网络通用二维码扫描。</p>
+<p>【zdp  dip转换px】<br>用法：<br>s dp = 10<br>//输入dp数值，输入赋值变量<br>zdp(dp, c)</p>
+<p>说明：<br>用于常用数据转换。</p>
+<p>【zpd  px转换dip】<br>用法：<br>s px = 10<br>//输入px数值，输入赋值变量<br>zpd(px, c)</p>
+<p>说明：<br>用于常用数据转换。</p>
+<p>【zps  px转换sp】<br>用法：<br>s px = 10<br>//输入px数值，输入赋值变量<br>zps(px, c)</p>
+<p>说明：<br>用于常用数据转换。</p>
+<p>【zsp  sp转换px】<br>用法：<br>s sp = 10<br>//输入sp数值，输入赋值变量<br>zsp(sp, c)</p>
+<p>说明：<br>用于常用数据转换。</p>
+<p>【lan 跳转界面动画】<br>用法：<br>uigo(“abc.iyu”)<br>//输入跳转界面动画的序号；6 右往左推出效果<br>lan(6)</p>
+<p>说明：<br>用于跳转界面时候进行的动画效果</p>
+<p>提示：<br>0.淡入淡出效果 1.放大淡出效果 2.转动淡出效果1 3.转动淡出效果2 4.左上角展开淡出效果 5.压缩变小淡出效果 6.右往左推出效果 7.下往上推出效果 8.左右交错效果 9.放大淡出效果 10.缩小效果 11.上下交错效果</p>
+<p>【sjxx 获取设备信息】<br>用法：<br>sjxx(a)<br>sgsz(a, 0, d)<br>tw(d)</p>
+<p>说明：<br>获取手机基本信息，将返回一个数组到赋值变量“a”，数组格式如下：</p>
+<p>数据格式：（真实数据 \n 旁边将不没有空格）</p>
+<p>CPU型号 \n CPU频率<br>屏幕宽度 \n 屏幕高度 \n 分辨率宽度 \n 分辨率高度<br>手机型号 \n 手机品牌 \n 手机SDK</p>
+<p>【simsi 获取设备imsi】<br>用法：<br>simsi(a)<br>tw(a)</p>
+<p>说明：<br>常用于识别用户的手段。</p>
+<p>【simei 获取设备imei】<br>用法：<br>simei(a)<br>tw(a)</p>
+<p>说明：<br>常用于识别用户的手段。</p>
+<p>【endkeyboard 强制隐藏虚拟键盘】<br>用法：<br>endkeyboard()</p>
+<p>说明：<br>常用于需要隐藏安卓弹出的虚拟键盘。</p>
+<p>【hdfl 文件下载器】<br>用法：<br>//两个参数的方法设置<br>s savedir = “%SaveDir”<br>//输入下载保存目录，输入赋值变量返回一个下载器对象<br>hdfl(savedir, a)<br>{<br>//每当下载完一个执行<br>//系统赋值 st_drD 文件下载项的序号<br>//系统赋值 st_drI 文件下载项的状态</p>
+<p>//获取下载的URL<br>ulag(a, st_drD, “url”, b1)<br>syso(b1)</p>
+<p>//获取自定义整数标识<br>ulag(a, st_drD, “type”, b2)<br>syso(b2)</p>
+<p>//获取自定义参数任意数据<br>ulag(a, st_drD, “text”, b3)<br>syso(b3)</p>
+<p>//获取下载文件保存的路径<br>ulag(a, st_drD, “filename”, b4)<br>syso(b4)</p>
+<p>}<br>else<br>{<br>//当下载完目前所有执行<br>//系统赋值 st_drJ 本次文件下载完成总数<br>ufnsui()<br>{<br>tw(st_drJ)<br>}<br>}</p>
+<p>//三个参数的方法设置<br>s tempdir = “%TempDir”<br>s savedir = “%SaveDir”<br>//输入下载临时文件保存目录，输入下载保存目录，输入赋值变量返回一个下载器对象<br>hdfl(tempdir, savedir, a)<br>{<br>ufnsui()<br>{<br>tw(st_drD)<br>}<br>}<br>else<br>{<br>ufnsui()<br>{<br>tw(st_drJ)<br>}<br>}</p>
+<p>//六个参数的方法设置<br>s tempdir = “%TempDir”<br>s savedir = “%SaveDir”<br>//输入下载临时文件保存目录，输入下载保存目录, 下载线程数量，连接网络超时时间（25秒的意思），文件重复是否覆盖，输入赋值变量返回一个下载器对象<br>hdfl(tempdir, savedir, 3, 25000, true, a)<br>{<br>ufnsui()<br>{<br>tw(st_drD)<br>}<br>}<br>else<br>{<br>ufnsui()<br>{<br>tw(st_drJ)<br>}<br>}</p>
+<p>说明：<br>常用与单个或多个的文件下载。推荐图片列表下载或小文件下载。</p>
+<p>提示：<br>代码{ 区域中 }属于线程内执行。在其中更新界面控件属性需要使用ufnsui代码<br>上例子使用tw代码，并且用了ufnsui代码。</p>
+<p>【hdfla 文件下载器 增加文件下载项】<br>用法：<br>//创建一个文件下载器<br>hdfl(tempdir, a)<br>{<br>ufnsui()<br>{<br>tw(st_drD)<br>}<br>}<br>else<br>{<br>ufnsui()<br>{<br>tw(st_drJ)<br>}<br>}</p>
+<p>//增加下载项<br>//输入下载器对象，输入下载连接URL，输入自定义整数标识，输入自定义参数任意数据<br>hdfla(a, “<a target="_blank" rel="noopener" href="http://abc.com/1.jpg&quot;">http://abc.com/1.jpg&quot;</a>, 1, “abcd123”)</p>
+<p>//增加下载项，并且自定义保存目录<br>//输入下载器对象，输入下载连接URL，输入自定义整数标识，输入自定义参数任意数据，输入自定义保存路径<br>hdfla(a, “<a target="_blank" rel="noopener" href="http://abc.com/2.jpg&quot;">http://abc.com/2.jpg&quot;</a>, 1, “abcd123”, “%abc.jpg”)</p>
+<p>说明：<br>调用下载器增加下载项，并且立刻进行下载。</p>
+<p>【hdd 配置下载管理器】<br>用法：<br>//下载产生的临时文件目录<br>s a = “%tempdir”<br>//下载至保存的目录<br>s b = “%filedir”<br>//允许同时下载任务数量<br>s c = 3<br>//每个任务开启线程数量<br>s d = 3<br>//连接失败重试次数<br>s e = 2<br>//连接超时时间，25秒的意思<br>s f = 25000<br>//是否显示下载进度通知<br>s g = true<br>hdd(a, b, c, d, e, f, g)</p>
+<p>说明：<br>如果不使用此代码进行配置，那么系统将使用默认配置。下载配置器可以很方便的制作下载文件，并且方便管理。</p>
+<p>默认目录属性：<br>临时文件目录：iApp/DownloadFileDir/TempDefaultDownFile<br>保存文件目录：iApp/DownloadFileDir/DefaultDownFile</p>
+<p>【hdda 下载管理器 增加文件下载项】<br>用法：</p>
+<p>//===========方法一<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a></p>
+<p>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”</p>
+<p>//输入自定义参数任意数据<br>s data = “abcde123”</p>
+<p>//变量v为赋值变量，为下载对象<br>hdda(url, name, data, v)</p>
+<p>//===========方法二<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a></p>
+<p>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”</p>
+<p>//下载任务的标题<br>s title = “abc.apk最新版”</p>
+<p>//输入自定义参数任意数据<br>s data = “abcde123”</p>
+<p>//变量v为赋值变量，为下载对象<br>hdda(url, name, title, data, v)</p>
+<p>//===========方法三<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a></p>
+<p>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”</p>
+<p>//下载任务的标题<br>s title = “abc.apk最新版”</p>
+<p>//下载任务的图标<br>s icon = “@abc.png”</p>
+<p>//输入自定义参数任意数据<br>s data = “abcde123”</p>
+<p>//变量v为赋值变量，为下载对象<br>hdda(url, name, title, icon, data, v)</p>
+<p>//===========方法四<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a></p>
+<p>//保存至目录<br>s dir = “%filedir”</p>
+<p>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”</p>
+<p>//下载任务的标题<br>s title = “abc.apk最新版”</p>
+<p>//下载任务的图标<br>s icon = “@abc.png”</p>
+<p>//是否显示下载进度通知<br>s notsohw = true</p>
+<p>//输入自定义参数任意数据<br>s data = “abcde123”</p>
+<p>//变量v为赋值变量，为下载对象<br>hdda(url, dir, name, title, icon, notsohw, data, v)</p>
+<p>说明：<br>增加常用的网络文件进行下载。</p>
+<p>【hddgl 获取下载管理器下载列表】<br>用法：<br>//输入赋值变量返回下载列表<br>hddgl(list)</p>
+<p>//使用for循环下载列表<br>for(b; list)<br>{<br>hddg(b, “url”, c)<br>syso(c)<br>}</p>
+<p>说明：<br>获取下载管理器所有的下载列表。</p>
+<p>【hddg 获取下载管理器获取下载项属性】<br>用法：<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”<br>//输入自定义参数任意数据<br>s data = “abcde123”<br>//变量v为赋值变量，为下载对象<br>hdda(url, name, data, v)</p>
+<p>//===========获取下载项的属性<br>//获取下载项的 ID<br>hddg(v, “id”, b)</p>
+<p>//获取下载项的 下载链接<br>hddg(v, “url”, b)</p>
+<p>//获取下载项的 保存的绝对路径<br>hddg(v, “dirfilename”, b)</p>
+<p>//获取下载项的 下载链接的md5<br>hddg(v, “urlmd5”, b)</p>
+<p>//获取下载项的 保存的目录<br>hddg(v, “dir”, b)</p>
+<p>//获取下载项的 保存的文件名<br>hddg(v, “filename”, b)</p>
+<p>//获取下载项的 下载文件的大小（字节）<br>hddg(v, “contentlength”, b)</p>
+<p>//获取下载项的 已下载的数据（字节）<br>hddg(v, “equivalent”, b)</p>
+<p>//获取下载项的 当前下载速度（字节）<br>hddg(v, “downloadspeed”, b)</p>
+<p>//获取下载项的 当前下载进度百分比<br>hddg(v, “downloadpercentage”, b)</p>
+<p>//获取下载项的 下载状态；（0为等待下载；1为正在下载；2为下载完成；3下载已经暂停或停止；-1下载失败；-2已删除）<br>hddg(v, “status”, b)</p>
+<p>//获取下载项的 是否显示下载通知<br>hddg(v, “notificationshow”, b)</p>
+<p>//获取下载项的 自定义的数据<br>hddg(v, “text”, b)</p>
+<p>//获取下载项的 通知标题<br>hddg(v, “title”, b)</p>
+<p>//获取下载项的 通知图标<br>hddg(v, “icon”, b)</p>
+<p>说明：<br>可获取详细的下载项目状态属性。</p>
+<p>【hdds 设置下载管理器下载项的属性】<br>用法：<br>//下载的链接<br>s url = “<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&quot;">http://abc.com/abc.apk&quot;</a><br>//保存的文件名（仅输入文件名,请勿不包含目录）<br>s name = “abc.apk”<br>//输入自定义参数任意数据<br>s data = “abcde123”<br>//变量v为赋值变量，为下载对象<br>hdda(url, name, data, v)</p>
+<p>//===========可设置的下载项属性</p>
+<p>//设置下载项的 下载状态；（0为等待下载；1为正在下载；2为下载完成；3下载已经暂停或停止；-1下载失败；-2已删除）<br>hdds(v, “status”, 0)</p>
+<p>//设置下载项的 是否显示下载通知<br>hdds(v, “notificationshow”, true)</p>
+<p>//设置下载项的 自定义的数据<br>hdds(v, “text”, “abcd123”)</p>
+<p>//设置下载项的 通知标题<br>hdds(v, “title”, “abc.apk最新版本”)</p>
+<p>//设置下载项的 通知图标<br>hdds(v, “icon”, “@abc.png”)</p>
+<p>说明：<br>设置下载项目的属性。</p>
+<p>【hdduigo 跳转至下载管理器】<br>用法：<br>//跳转至下载管理器<br>hdduigo()</p>
+<p>//跳转至下载管理器，并且自定义标题栏颜色<br>//主体颜色<br>s a = “#387bd6”<br>//底部横杠颜色<br>s b = “#255eab”<br>hdduigo(a, b)</p>
+<p>说明：<br>跳转至文件下载的管理器。</p>
+<p>【ufnsui 线程更新界面】<br>用法：<br>ufnsui()<br>{<br>tw(a)<br>us(1, “text”, “内容”)<br>}</p>
+<p>说明：<br>线程中直接修改界面或修改设置控件属性，出错。<br>需要使用ufnsui模块进行更新或设置控件属性。</p>
+<p>提示：<br>线程中获取控件数据不会出错。</p>
+<p>【se 正则表达式操作】<br>用法：<br>//===========例子1；所有属性展示<br>//字符串<br>s a = “qqqq123456eee”<br>//正则表达式<br>s b = “([a-z]+)(\d+)”<br>//更多参数<br>s c = 0<br>se(a, b, c, d)</p>
+<p>//替换成，将替换全部<br>se(d, “sral”, “1:$1, 2:$2”, e)<br>syso(e)<br>//替换成，只替换第一个<br>se(d, “srft”, “1:$1, 2:$2”, e)<br>syso(e)</p>
+<p>//返回是否匹配成功，需字符串被完全匹配，赋值返回true或 false<br>.se(d, “ms”, e)</p>
+<p>//开始匹配 或 匹配下一个，赋值返回true或 false<br>.se(d, “find”, e)</p>
+<p>//给定位置序号进行匹配，赋值返回true或 false<br>.se(d, “find”, 1, e)</p>
+<p>//获取匹配组的数量，当前为2组：([a-z]+)、(\d+)<br>.se(d, “gl”, e)</p>
+<p>//获取第1组匹配到的子字符串在字符串中的开头位置<br>.se(d, “start”, 1, e)</p>
+<p>//获取第1组匹配到的子字符串在字符串中的结尾位置<br>.se(d, “end”, 1, e)</p>
+<p>//获取第1组匹配到的子字符串<br>.se(d, “group”, 1, e)<br>//获取第2组匹配到的子字符串<br>.se(d, “group”, 2, e)</p>
+<p>//===========例子2；获取所有手机号</p>
+<p>//字符串<br>s a = “我的号码 13612345678 , 你的号码 13412345678”<br>//正则表达式<br>s b = “[1][3-8]\d{9}”<br>//更多参数<br>s c = 0<br>se(a, b, c, d)</p>
+<p>//开始匹配 或 匹配下一个<br>se(d, “find”, e)</p>
+<p>//循环判断是否匹配成功<br>w(e == true)<br>{<br>//因为 [1][3-8]\d{9} 没有组，所以这里我们输入 0<br>se(d, “group”, 0, e)</p>
+<p>//打印出匹配到的子字符串<br>syso(e)</p>
+<p>//开始匹配 或 匹配下一个<br>se(d, “find”, e)<br>}</p>
+<p>//===========例子3；判断是否为手机号</p>
+<p>//字符串<br>s a = “13612345678”<br>//正则表达式<br>s b = “^[1][3-8]\d{9}$”<br>//更多参数<br>s c = 0<br>se(a, b, c, d)</p>
+<p>se(d, “ms”, e)<br>f(e == true)<br>{<br>syso(“手机号格式正确”)<br>}<br>else<br>{<br>syso(“手机号格式错误”)<br>}</p>
+<p>说明：<br>常用与字符串处理，高效的处理字符串，以及检测字符串类型等。使用此方法，需要对正则表达式有部分知识。</p>
+<p>【usg 闪光灯操作】<br>用法：<br>//开启闪光灯<br>//输入闪光灯变量对象，输入是否开启闪光灯<br>usg(sss.sgd, true)</p>
+<p>//关闭闪光灯<br>//输入闪光灯变量对象，输入是否开启闪光灯<br>usg(sss.sgd, false)</p>
+<p>说明：<br>开启或关闭 设备闪光灯！</p>
+<p>说明：<br>常用照明。</p>
+<p>注意：<br>此方法调用将无法与摄像头同时调用。如启动摄像头需要使用闪光灯，可在摄像头操作中开启闪光灯。</p>
+<p>【uzd 震动器操作】<br>用法：<br>//震动1秒时长<br>//输入振动器变量对象，输入震动时长<br>uzd(sss.zdq, 1000)</p>
+<p>//静止1秒，震动1秒，静止1秒，震动1秒，静止1秒，震动1秒，静止1秒，..， 并且不重复<br>//输入振动器变量对象，输入震动规则，输入是否重复循环执行<br>uzd(sss.zdq, “1000 1000 1000 1000 1000 1000 1000 1000”, false)</p>
+<p>//强制停止震动器<br>uzd(sss.zdq, “sp”)</p>
+<p>//检查硬件是否具有振动器<br>uzd(sss.zdq, “ip”, b)<br>syso(b)</p>
+<p>说明：<br>常用提示用户。</p>
+<p>【usxq 开启前置摄像头】<br>用法：<br>//开启摄像头<br>//输入摄像头变量对象，输入面控件的对象或ID，摄像头旋转角度<br>usxq(sss.ps, 1, 90)</p>
+<p>//输入摄像头变量对象，输入面控件的对象或ID，摄像头旋转角度，输入拍摄宽度像素，输入拍摄高度像素，输入图像品质1-100<br>usxq(sss.ps, 1, 90, 640, 480, 95)</p>
+<p>//自动对焦拍摄<br>//输入摄像头变量对象，输入保存路径，输入图像旋转角度，输入拍摄是否停止预览<br>usx(sss.ps, “shot”, “%abc.jpg”, -90, false)</p>
+<p>说明：<br>指定打开前置摄像头。</p>
+<p>注意：<br>此功能需要与一个面控件进行绑定，你可以在面控件上面设置拍摄事件。</p>
+<p>注意：<br>此代码仅限于载入事件调用。</p>
+<p>【usxh 开启后置摄像头】<br>用法：<br>//开启摄像头<br>//输入摄像头变量对象，输入面控件的对象或ID，摄像头旋转角度<br>usxh(sss.ps, 1, 90)</p>
+<p>//输入摄像头变量对象，输入面控件的对象或ID，摄像头旋转角度，输入拍摄宽度像素，输入拍摄高度像素，输入图像品质1-100<br>usxh(sss.ps, 1, 90, 1280, 960, 95)</p>
+<p>//自动对焦拍摄<br>//输入摄像头变量对象，输入保存路径，输入图像旋转角度，输入拍摄是否停止预览<br>usx(sss.ps, “shot”, “%abc.jpg”, 90, false)</p>
+<p>说明：<br>指定打开后置摄像头。</p>
+<p>注意：<br>此功能需要与一个面控件进行绑定，你可以在面控件上面设置拍摄事件。</p>
+<p>注意：<br>此代码仅限于载入事件调用。</p>
+<p>【usx 摄像头操作】<br>用法：<br>//开启摄像头<br>usxh(sss.ps, 1, 90)</p>
+<p>//自动对焦拍摄<br>//输入摄像头变量对象，输入保存路径，输入图像旋转角度，输入拍摄是否停止预览<br>usx(sss.ps, “shot”, “%abc.jpg”, 90, false)</p>
+<p>//开始预览<br>usx(sss.ps, “st”)</p>
+<p>//停止预览<br>usx(sss.ps, “sp”)</p>
+<p>//旋转摄像头角度<br>usx(sss.ps, “rotaing”, 180)<br>//获取旋转摄像头角度<br>usx(sss.ps, “getrotaing”, b)<br>syso(b)</p>
+<p>//启动摄像头闪光灯<br>usx(sss.ps, “usg”, true)</p>
+<p>//结束摄像头组件变量对象<br>usx(sss.ps, “re”)</p>
+<p>说明：<br>摄像头的控制。</p>
+<p>【bly 录制音频】<br>用法：<br>//开始录制<br>//输入录音变量对象，输入保存文件路径<br>bly(sss.ly, “%abcd.amr”)</p>
+<p>//停止录音<br>bly(sss.ly, “sp”)</p>
+<p>说明：<br>常用于录制音频。</p>
+<p>说明：<br>可使用 bfm 代码来播放录制好的音频。</p>
+<p>【ujp 截取屏幕】<br>用法：<br>//输入保存路径，输入图像品质（1-100）<br>ujp(“%123.jpg”, 70)</p>
+<p>说明：<br>常用于截取当前界面。</p>
+<p>【sqlite 数据库操作】<br>用法：<br>//连接一个私有数据库，如果不存在将自动新建<br>//输入数据库对象变量，输入数据库文件名<br>sqlite(sss.data, “iapp.db”)</p>
+<p>//连接一个公共数据库，如果不存在将自动新建<br>//输入数据库对象变量，输入数据库文件名<br>sqlite(sss.data, “%iapp.db”)</p>
+<p>//判断数据库是否存在<br>sqlite(“iapp.db”, “ip”, b)<br>syso(b)</p>
+<p>//删除数据库<br>sqlite(“iapp.db”, “del”, b)<br>syso(b)</p>
+<p>//释放数据库<br>sqlite(sss.data, “re”)</p>
+<p>说明：<br>进行数据库的操作。</p>
+<p>【sql 数据表操作】<br>用法：</p>
+<p>//创建数据表<br>s table = “_id integer primary key,url text, filename text,status interger,createTime datetime”<br>sql(sss.data, “info”, “add”, table, b)</p>
+<p>//判断数据表是否存在<br>sql(sss.data, “info”, “ip”, b)<br>syso(b)</p>
+<p>//删除数据表<br>sql(sss.data, “info”, “del”, b)<br>syso(b)</p>
+<p>//添加数据表一条数据<br>s table = “url,filename,status,createTime”<br>time(0, sj)<br>ss(“‘<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&#39;">http://abc.com/abc.apk&#39;</a>, ‘abc.apk’, 1, ‘“ + sj + “‘“, data)<br>sql(sss.data, “info”, “add”, table, data, b)<br>syso(b)</p>
+<p>//修改数据表的数据，若不需要设置条件(status=2)可设为 null 视为适用于执行所以数据<br>sql(sss.data, “info”, “up”, “status=2”, “_id=1”, b)<br>syso(b)</p>
+<p>//删除数据表的数据，若不需要设置条件(_id=1)可设为 null 视为适用于执行所以数据<br>sql(sss.data, “info”, “del”, “_id=1”, b)<br>syso(b)</p>
+<p>//查询，若不需要设置条件(status=1 order by _id desc LIMIT 0,1)可设为 null 视为适用于执行所以数据</p>
+<p>// LIMIT &lt;跳过的数据数目&gt;, &lt;取数据数目&gt;<br>s table = “_id,url,filename,status,createTime”<br>s sqlx = “status=1 order by _id desc LIMIT 0,1”<br>sql(sss.data, “info”, “sele”, table, sqlx, data)</p>
+<p>//自定义sql查询<br>//s sqlx = “select _id,url,filename,status,createTime from info where status=1 order by _id desc LIMIT 0,1”<br>//sql(sss.data, sqlx, data)</p>
+<p>//光标对象移到下一条数据<br>sqlsele(data, “next”, e)<br>w(e == true)<br>{<br>//获取光标对象的第一列数据<br>sqlsele(data, 0, e)<br>syso(e)</p>
+<p>//获取光标对象的第二列数据<br>sqlsele(data, 1, e)<br>syso(e)</p>
+<p>//光标对象移到下一条数据<br>sqlsele(data, “next”, e)<br>}</p>
+<p>//自定义的sql执行，需要对sql语法了解才能灵活运用<br>s sqlx = “insert into info (url,filename,status,createTime) values (‘<a target="_blank" rel="noopener" href="http://abc.com/abc.apk&#39;">http://abc.com/abc.apk&#39;</a>, ‘abc.apk’, 1, ‘2016-7-31 10:31:21’)”<br>sql(sss.data, sqlx)</p>
+<p>说明：<br>数据表的操作。</p>
+<p>注意：<br>在执行sql语句的时候，需要注意你的字符串的特殊字符的转义。<br>     /   -&gt;    //<br>     ‘   -&gt;    ‘’<br>     [   -&gt;    /[<br>     ]   -&gt;    /]<br>     %   -&gt;    /%<br>     &amp;   -&gt;    /&amp;<br>     _   -&gt;    /_<br>     (   -&gt;    /(<br>     )   -&gt;    /)</p>
+<p>【sqlsele 查询数据操作】<br>用法：</p>
+<p>//获取光标对象的第一列数据<br>sqlsele(data, 0, e)</p>
+<p>//获取光标对象有多少列<br>sqlsele(data, “columncount”, e)<br>syso(e)</p>
+<p>//获取总共查询到多少条数据<br>sqlsele(data, “count”, e)<br>syso(e)</p>
+<p>//光标对象移到下一条数据<br>sqlsele(data, “next”, e)</p>
+<p>//光标对象移到上一条数据<br>sqlsele(data, “previous”, e)</p>
+<p>//光标对象移到第一条数据<br>sqlsele(data, “first”, e)</p>
+<p>//光标对象移到最后第一条数据<br>sqlsele(data, “last”, e)</p>
+<p>//光标对象移到指定第2条数据<br>sqlsele(data, “position”, 2)</p>
+<p>//获取光标对象当前位置<br>sqlsele(data, “getposition”, e)<br>syso(e)</p>
+<p>//释放数据查询<br>sqlite(data, “re”)</p>
+<p>说明：<br>数据查询的操作。</p>
+<p>【dha 渐变透明度动画】<br>用法：<br>//创建一个渐变透明度动画，开始显示，然后渐变消失<br>//输入动画开始是否透明，输入动画结束是否透明<br>dha(dh, true, false)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>说明：<br>常用于控件透明度动画。</p>
+<p>【dhs 渐变尺寸伸缩动画】<br>用法：<br>//创建一个渐变尺寸伸缩动画<br>//0为没有，2.5为原始2.5倍</p>
+<p>//输入X开始尺寸比例，输入X结束尺寸比例，输入Y开始尺寸比例，输入Y结束尺寸比例<br>dhs(dh, 0.5, 2.5, 0.5, 2.5)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>//输入X开始尺寸比例，输入X结束尺寸比例，输入Y开始尺寸比例，输入Y结束尺寸比例，输入X位置类型，输入X坐标的开始位置，输入Y位置类型，输入Y坐标的开始位置<br>dhs(dh, 0.5, 2.5, 0.5, 2.5, 1, 0.5, 1, 0.5)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>说明：<br>常用于控件伸缩动画。</p>
+<p>位置类型：<br>0 默认<br>1 以对象本身为基准位置类型<br>2 以父控件为基准位置类型</p>
+<p>【dht 画面位置移动动画】<br>用法：<br>//创建一个画面位置移动动画<br>//输入开始X坐标上的移动位置，结束X坐标上的移动位置，开始Y坐标上的移动位置，结束Y坐标上的移动位置<br>dht(dh, 30, 80, 30, 80)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>说明：<br>常用于控件移动动画。</p>
+<p>【dhr 画面旋转动画】<br>用法：<br>//创建一个画面旋转动画<br>//输入动画开始的旋转角度，输入动画旋转到的角度<br>dhr(dh, 0, 180)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>//输入动画开始的旋转角度，输入动画旋转到的角度，输入X位置类型，输入X坐标的开始位置，输入Y位置类型，输入Y坐标的开始位置<br>dhr(dh, 0, 180, 1, 0.5, 1, 0.5)<br>dh(dh, “duration”, 2000)<br>us(2, “dh”, dh)</p>
+<p>说明：<br>常用于控件旋转动画。</p>
+<p>位置类型：<br>0 默认<br>1 以对象本身为基准位置类型<br>2 以父控件为基准位置类型</p>
+<p>【dhset 动画集合】<br>用法：</p>
+<p>//渐变尺寸伸缩动画<br>dhs(dh1, 0.5, 2.5, 0.5, 2.5)<br>dh(dh1, “duration”, 2000)</p>
+<p>//画面位置移动动画<br>dht(dh2, 30, 80, 30, 80)<br>dh(dh2, “duration”, 2000)</p>
+<p>//画面旋转动画<br>dhr(dh3, 0, 180)<br>dh(dh3, “duration”, 2000)</p>
+<p>//创建一个动画集合<br>//输入动画集合变量对象，输入是否使用动画集合的interpolator，输入动画…（可输入N个参数）<br>dhset(dhlist, false, dh1, dh2, dh3, dh4)<br>us(2, “dh”, dhlist)</p>
+<p>说明：<br>常用于动画集合执行。</p>
+<p>提示：<br>动画集合允许被其他动画集合添加成为子动画。</p>
+<p>提示：<br>动画集合如果设置了动画控制属性，同时也会重置所有子控件的属性。</p>
+<p>【dhas 队列动画执行】<br>用法：<br>//旋转动画<br>//输入动画变量对象，输入控件ID或控件对象，输入动画类型，输入旋转角度…（可输入N个参数）<br>dhas(dh, 2, “rotation”, 60, 180)<br>//dhas(dh, 2, “rotationX”, 30, 80, 60, 20, 60)<br>//dhas(dh, 2, “rotationY”, 30, 80)<br>dh(dh, “duration”, 2000)<br>dh(dh, “start”)</p>
+<p>//伸缩动画<br>//输入动画变量对象，输入控件ID或控件对象，输入动画类型，输入伸缩尺寸比例…（可输入N个参数）<br>dhas(dh, 2, “scaleX”, 1.5, 2.5)<br>//dhas(dh, 2, “scaleY”, 1.5, 2.5, 1.2, 2.6, 1.3)<br>dh(dh, “duration”, 2000)<br>dh(dh, “start”)</p>
+<p>//移动动画<br>//输入动画变量对象，输入控件ID或控件对象，输入动画类型，输入移动到位置…（可输入N个参数）<br>dhas(dh, 2, “translationX”, 0, 60)<br>//dhas(dh, 2, “translationY”, 0, 60, 30, 10, 60)<br>dh(dh, “duration”, 2000)<br>dh(dh, “start”)</p>
+<p>//透明度<br>//输入动画变量对象，输入控件ID或控件对象，输入动画类型，可见度比例(0.0至1.0)…（可输入N个参数）<br>dhas(dh, 2, “alpha”, 1, 0.3, 1, 0.2, 1)<br>dh(dh, “duration”, 2000)<br>dh(dh, “start”)</p>
+<p>说明：<br>自定义队列动画执行。</p>
+<p>【dhast 队列动画集合】<br>用法：</p>
+<p>//旋转动画<br>dhas(dh1, 2, “rotation”, 60, 180)<br>dh(dh1, “duration”, 2000)</p>
+<p>//伸缩动画<br>dhas(dh2, 2, “scaleX”, 1.5, 2.5)<br>dh(dh2, “duration”, 2000)</p>
+<p>//移动动画<br>dhas(dh3, 2, “translationX”, 0, 60)<br>dh(dh3, “duration”, 2000)</p>
+<p>//透明度<br>dhas(dh4, 2, “alpha”, 1, 0.3, 1, 0.2, 1)<br>dh(dh4, “duration”, 2000)</p>
+<p>//顺序执行<br>dhast(dhlist, “sequen”, dh1, dh2, dh3, dh4)</p>
+<p>//同时执行<br>//dhast(dhlist, “together”, dh1, dh2, dh3, dh4)<br>dh(dhlist, “start”)</p>
+<p>说明：<br>常用于动画集合执行。</p>
+<p>提示：<br>队列动画集合允许被其他队列动画集合添加成为子动画。</p>
+<p>提示：<br>动画集合如果设置了动画控制属性，同时也会重置所有子控件的属性。</p>
+<p>【dh 动画控制】<br>用法：</p>
+<p>//========动画的属性（非队列动画）设置========================</p>
+<p>//取消动画，取消后若需要重新播放，需要先执行 reset 然后再执行 start 进行播放<br>dh(dh, “cancel”)</p>
+<p>//重置动画属性<br>dh(dh, “reset”)</p>
+<p>//启动动画<br>dh(dh, “start”)</p>
+<p>//动画持续时长<br>dh(dh, “duration”, 2000)</p>
+<p>//延迟执行，延迟指定时长后才执行动画<br>dh(dh, “delay”, 2000)</p>
+<p>//启动动画结束填充效果（如果设false 那么 after 与 before将无效）<br>dh(dh, “enabled”, true)</p>
+<p>//动画执行后，控件停留执行结束状态<br>dh(dh, “after”, true)</p>
+<p>//动画执行后，控件停留执行开始状态<br>dh(dh, “before”, true)</p>
+<p>//动画重复执行的次数<br>dh(dh, “repeat”, 20)</p>
+<p>dhas(dh2, 2, “rotation”, 60, 180)<br>//动画集合添加动画，仅用于 dhset 动画集合追加更多的动画<br>dh(dh, “add”, dh2)</p>
+<p>//========队列动画的属性设置========================</p>
+<p>//取消动画<br>dh(dh, “cancel”)</p>
+<p>//播放动画<br>dh(dh, “start”)</p>
+<p>//动画持续时长<br>dh(dh, “duration”, 2000)</p>
+<p>//延迟执行，延迟指定时长后才执行动画<br>dh(dh, “delay”, 2000)</p>
+<p>//动画是否正在运行<br>dh(dh, “running”, b)<br>syso(b)</p>
+<p>//设置动画执行的控件ID或控件对象<br>dh(dh, “target”, 2)</p>
+<p>//克隆动画<br>dh(dh, “clone”, dh2)</p>
+<p>说明：<br>常用于动画的控制管理。</p>
+<p>【dhon 动画监听事件】<br>用法：<br>//========动画（非队列动画）设置监听事件========================<br>dhon(dh)<br>{<br>//当结束动画时<br>syso(“End”)<br>}</p>
+<p>//或</p>
+<p>dhon(dh)<br>{<br>//当结束动画时<br>syso(“End”)<br>}<br>else<br>{<br>//当重复动画时<br>syso(“Repeat”)<br>}<br>else<br>{<br>//当启动动画时<br>syso(“Start”)<br>}</p>
+<p>//========队列动画设置监听事件========================</p>
+<p>dhon(dh)<br>{<br>//当结束动画时<br>syso(“End”)<br>}</p>
+<p>//或</p>
+<p>dhon(dh)<br>{<br>//当结束动画时<br>syso(“End”)<br>}<br>else<br>{<br>//当重复动画时<br>syso(“Repeat”)<br>}<br>else<br>{<br>//当启动动画时<br>syso(“Start”)<br>}<br>else<br>{<br>//当取消动画时<br>syso(“Cancel”)<br>}</p>
+<p>说明：<br>常用于动画状态的监听。</p>
+<p>提示：<br>该事件使用的选择性，可顺序选择性保留。</p>
+<p>【dhb 动画背景】<br>用法：<br>//创建动画背景<br>//输入动画背景变量对象，输入是否重复执行<br>dhb(dh, true)</p>
+<p>//添加元素<br>//输入动画背景变量对象，输入背景图像或图片变量或背景对象，输入显示时长<br>dhb(dh, “@t1.png”, 1000)<br>dhb(dh, “@t2.png”, 1000)<br>dhb(dh, “@t3.png”, 1000)</p>
+<p>//设为指定控件背景<br>us(2, “background”, dh)</p>
+<p>//启动动画<br>dhb(dh, “start”)</p>
+<p>//停止动画<br>//dhb(dh, “stop”)</p>
+<p>//是否在运行<br>dhb(dh, “running”, b)<br>syso(b)</p>
+<p>说明：<br>常用于组合一个背景动画。</p>
+<p>【hsas 开启浏览器控件交互(裕语言+js+html5)】<br>用法：<br>//开启浏览器控件支持iapp交互<br>//输入浏览器控件ID或对象，输入是否开启<br>hsas(1, true)</p>
+<p>//hsas(1, false)</p>
+<p>说明：<br>常用于浏览器中的JavaScript代码于iapp代码的互相调用。</p>
+<p>【has 裕语言交互JavaScript语言】<br>用法：<br>//首先将 web.html 放入用户文件中</p>
+<p>//设置浏览器控件显示的html内容<br>s a = “@web.html”<br>s b = “utf-8”<br>fr(a, b, c)</p>
+<p>s d = “utf-8”<br>s e = “text/html”<br>us(1, “url”, c, d, e, f)</p>
+<p>//因为浏览器加载内容属于异步操作，如果立刻执行下面的代码会执行失败<br>//所以将下面的代码放入某项单击事件中</p>
+<p>s a = “go(‘呀！’)”<br>//输入浏览器控件ID或对象，输入JavaScript的方法<br>has(1, a)</p>
+<p>//带返回值解决方案<br>//s a = “go2(‘呀！’)”<br>//输入浏览器控件ID或对象，输入JavaScript的方法<br>//has(1, a)<br>//tw(sss.sb)</p>
+<p>说明：<br>常用于浏览器中的JavaScript代码于iapp代码的互相调用。</p>
+<p>注意：<br>在载入事件设置浏览器控件的加载html内容，它不会立刻加载完成。所以如果将 裕语言交互js的代码也写在载入事件，会导致交互调用失败。必须等待浏览器加载完毕html内容后，才能交互。</p>
+<p>注意：<br>建议尽量使用JavaScript调用交互裕语言，效率较高。裕语言调用执行JavaScript的方法效率要慢数倍。</p>
+<p>注意：<br>has 不应该放在新线程中，测试发现5.1系统has放入新线程中报错。</p>
+<p>注意：<br>本例子需要注意编码，否则将乱码。</p>
+<p>html（web.html）文件（utf-8编码）例子：</p>
+<html>
+<head>
+<script type="text/javascript">
+function go(o)
+{
+document.getElementById("sb").innerHTML += "打我" + o;
+}
+function go2(o)
+{
+document.getElementById("sb").innerHTML += "打我" + o;
+iapp.s("sss.sb", document.getElementById("sb").innerHTML);
+}
+</script>
+</head>
+<p id="sb">哈哈，你来</p>
+</html>
+
+
+<p>【JavaScript交互裕语言】<br>用法：<br>//首先将 web.html 放入用户文件中</p>
+<p>//设置浏览器控件显示的html内容<br>s a = “@web.html”<br>s b = “utf-8”<br>fr(a, b, c)</p>
+<p>s d = “utf-8”<br>s e = “text/html”<br>us(1, “url”, c, d, e, f)</p>
+<p>//此方法，主要是在JavaScript中写交互代码哦<br>//JavaScript中交互方法列表（用于交互裕语言）：</p>
+<p>/.</p>
+<p>//调用裕语言模块方法，不带返回变量的<br>iapp.fn(‘a.b(“‘ + o + ‘“)’);</p>
+<p>//调用裕语言模块方法，带返回变量的<br>var value = iapp.fn2(‘a.c(“‘ + o + ‘“)’, b);</p>
+<p>//设置裕语言变量数据<br>iapp.s(o);</p>
+<p>//获取裕语言变量数据<br>var value = iapp.g(o);<br>./<br>说明：<br>常用于浏览器中的JavaScript代码于iapp代码的互相调用。</p>
+<p>注意：<br>建议尽量使用JavaScript调用交互裕语言，效率较高。裕语言调用执行JavaScript的方法效率要慢数倍。</p>
+<p>注意：<br>本例子需要注意编码，否则将乱码。</p>
+<p>html（web.html）文件（utf-8编码）例子：</p>
+<html>
+<head>
+<script type="text/javascript">
+
+<p>//不带返回变量的<br>function go(o)<br>{<br>//调用的是 模块a.myu 中的 b方法<br>iapp.fn(‘a.b(“‘ + o + ‘“)’);<br>}</p>
+<p>//带返回变量的<br>//执行模块后，获取一个变量并返回到javascript方法里<br>function go2(o, b)<br>{<br>//调用的是 模块a.myu 中的 c方法<br>var value = iapp.fn2(‘a.c(“‘ + o + ‘“)’, b);<br>alert(‘变量 sss.abc：’ + value);<br>}</p>
+<p>//设置全局变量数据<br>//同理，下面也有设置界面变量、设置局部变量的例子<br>function ss(o, b)<br>{<br>iapp.s(o, b);<br>}</p>
+<p>//获取全局变量数据<br>//同理，下面也有获取界面变量、获取局部变量的例子<br>function gs(o)<br>{<br>var value = iapp.g(o);<br>alert(‘变量 sss.abc：’ + value);<br>}</p>
+<p></script></p>
+</head>
+<p><a href="javascript:void(0)" onclick="go('呵呵')">调用裕语言的模块方法</a></p>
+<p></p>
+<p></p>
+<p><a href="javascript:void(0)" onclick="go2('呵呵', 'sss.abc')">调用裕语言的模块方法，并返回sss.abc变量内容</a></p>
+<p></p>
+<p></p>
+<p><a href="javascript:void(0)" onclick="ss('sss.abc', '呵呵')">设置裕语言的sss.abc全局变量数据</a></p>
+<p></p>
+<p></p>
+<p><a href="javascript:void(0)" onclick="gs('sss.abc')">获取裕语言的sss.abc全局变量数据</a></p>
+</html>
+
+<p>模块（a.myu）例子：<br>fn b(a)<br>//打印出数据<br>syso(a)<br>end fn</p>
+<p>fn c(a)<br>//打印出数据<br>syso(a)<br>sss abc = “666呵呵”<br>end fn</p>
+<p>【uxf 显示悬浮窗】<br>用法：</p>
+<p>//输入界面名，输入宽度，输入高度，输入对其方式，输入赋值变量<br>s w = -1<br>s h = -1<br>s gravity = “top|right”<br>uxf(“a.iyu”, w, h, gravity, sss.v)</p>
+<p>//输入界面名，输入X显示位置，输入Y显示位置，输入宽度，输入高度，输入类型的窗口，输入对其方式，输入flags，输入format，输入赋值变量<br>s x = 0<br>s y = 0<br>s w = -1<br>s h = -1<br>s type = 0<br>s gravity = “top|right”<br>s flags = 0<br>s format = 0<br>uxf(“a.iyu”, x, y, w, h, type, gravity, flags, format, sss.v)</p>
+<p>//刷新悬浮窗口的布局，常用于通过us设置后的刷新<br>//输入界面根控件的控件对象<br>uxf(sss.v)</p>
+<p>//移除悬浮窗口<br>//输入界面根控件的控件对象，输入标识<br>uxf(sss.v, “del”)</p>
+<p>//重置悬浮窗的属性<br>//输入界面根控件的控件对象，输入标识，输入X显示位置，输入Y显示位置，输入宽度，输入高度，输入对其方式<br>s x = 0<br>s y = 0<br>s w = -2<br>s h = -2<br>s gravity = “top|right”<br>uxf(sss.v, “set”, x, y, w, h, gravity)</p>
+<p>//重置悬浮窗的属性<br>//输入界面根控件的控件对象，输入标识，输入X显示位置，输入Y显示位置，输入宽度，输入高度，输入对其方式<br>s x = 0<br>s y = 0<br>s w = -1<br>s h = -1<br>s type = 0<br>s gravity = “top|right”<br>s flags = 0<br>s format = 0<br>uxf(sss.v, “set”, x, y, w, h, type, gravity, flags, format)</p>
+<p>说明：<br>常用于显示悬浮窗窗口。</p>
+<p>提示：<br>可通过 gvs(sss.v, a.1, b) 代码进行获取悬浮窗内的子控件，然后对其进行操作。</p>
+<p>提示：<br>可通过下例代码，控制窗口位置的移动<br>//更新窗口位置<br>us(sss.v, “x”, 100)<br>us(sss.v, “y”, 100)</p>
+<p>//获取窗口位置<br>ug(sss.v, “x”, xx)<br>ug(sss.v, “y”, yy)</p>
+<p>//通过us 更新后， 需要刷新悬浮窗口的布局<br>uxf(sss.v)</p>
+<p>对齐方式：<br>center：居中<br>top：顶<br>bottom：底<br>left：左<br>right：右<br>center_vertical：垂直居中<br>center_horizontal：水平居中</p>
+<p>输入flags：<br>0 不许获得焦点（编辑框输入法将无法弹出）<br>1 可以获得焦点，返回键将不可用</p>
+<p>【tts 文本转换语音】<br>用法：<br>//创建一个TTS对象<br>//输入赋值对象<br>tts(a)</p>
+<p>//创建一个TTS对象；并且直接设置播放<br>//输入赋值对象，输入语言代码，输入语速率，输入音高率，输入播放文字（可传入null）<br>tts(a, “en”, “I love you”, 1, 1)</p>
+<p>//获取TTS对象初始化状态；赋值变量返回 0未完成初始化 1初始化成功 -1初始化失败 -2初始化语言失败 -3当前TTS对象不可用<br>//输入TTS对象，输入标识，输入赋值变量<br>tts(a, “zt”, b)<br>syso(b)</p>
+<p>//播放文字；模式 0替换以前的任务 1队列追加至后面<br>//输入TTS对象，输入标识，输入播放文字，输入模式，输入赋值变量<br>tts(a, “st”, “I love you”, 0, b)<br>syso(b)</p>
+<p>//文字转换音频文件<br>//输入TTS对象，输入标识，输入文字，输入保存路径，输入赋值变量<br>tts(a, “ft”, “I love you”, “123.wav”, b)<br>syso(b)</p>
+<p>//设置语言<br>//输入TTS对象，输入标识，输入语言代码<br>tts(a, “lg”, “en”)</p>
+<p>//设置语音播放速率。1为正常，值越低语速越慢（0.5是正常的一半），值越大语速越快（2是正常的两倍）<br>//输入TTS对象，输入标识，输入小数<br>tts(a, “se”, 1)</p>
+<p>//设置音高率，值越大声音越高音，值越小声音越低音，正常为1.0<br>//输入TTS对象，输入标识，输入小数<br>tts(a, “ph”, 1)</p>
+<p>//检查是否TTS正在播放<br>//输入TTS对象，输入标识<br>tts(a, “ip”, b)<br>syso(b)</p>
+<p>//释放TTS使用的资源<br>//输入TTS对象，输入标识<br>tts(a, “re”)</p>
+<p>//停止所有任务<br>//输入TTS对象，输入标识，输入赋值变量<br>tts(a, “sp”, b)<br>syso(b)</p>
+<p>//检查是否一个可用的TTS对象<br>//输入TTS对象，输入标识，输入赋值变量<br>tts(a, “is”, b)<br>syso(b)</p>
+<p>说明：<br>常用于文本转化为音频，并且播放。</p>
+<p>语言代码：</p>
+<ul>
+<li><p>系统默认支持语言<br>美国    en<br>德国    de<br>意大利  it<br>法国    fr</p>
+</li>
+<li><p>需安装第三方语言包（讯飞语音TTS），并且设置语言<br>日本    ja<br>韩国    ko<br>中国    zh</p>
+</li>
+</ul>
+<p>安装与设置中文语言：</p>
+<p>下载其中一个<br>(4.0系统)讯飞语音TTS <a target="_blank" rel="noopener" href="http://m.yx93.com/app.aspx?id=28515">http://m.yx93.com/app.aspx?id=28515</a><br>(2.2系统)讯飞语音TTS <a target="_blank" rel="noopener" href="http://m.yx93.com/app.aspx?id=28513">http://m.yx93.com/app.aspx?id=28513</a></p>
+<p>安装 讯飞语音TTS</p>
+<p>安卓手机》设置》语言和输入法》文本转语音输入》选择 讯飞语音合成 ,默认引擎 讯飞语音合成 , 语言 中文<br>（设置因为各品牌细节不同，但是都大同小异）</p>
+<p>注意事项：<br>单独TTS对象创建后，需要有一个异步初始化过程，如果创建TTS对象然后直接播放文本将无法成功。需要先完成初始化后，然后播放文本。</p>
+<p>注意事项：<br>文字转语音TTS输出；默认语言状态：完全支持 中文</p>
+<p>【blp 录制屏幕】<br>用法：<br>s b = “123.mp4”<br>//输入储存录制文件路径，输入视频宽度，输入视频高度，输入视频码率，输入视频帧率<br>blp(b, 1280, 720, 1024000, 30)</p>
+<p>//开始录制<br>blp(“st”, b)<br>syso(b)</p>
+<p>//停止录制<br>blp(“sp”, b)<br>syso(b)</p>
+<p>//释放资源<br>blp(“re”, b)<br>syso(b)</p>
+<p>//判断是否正在录制<br>blp(“ip”, b)<br>syso(b)</p>
+<p>说明：<br>用于手机屏幕录制。</p>
+<p>注意：<br>仅支持系统Android 5.0以及以上才有效果！<br>Android 5.0以下的系统，无效果！</p>
+<p>【otob 转换为字节组】<br>用法：<br>//将文件转换为字节组，字节组将为字符串形式返回赋值给“b”<br>otob(“%abc.txt”, b)<br>syso(b)</p>
+<p>//将字符串转换为字节组<br>otob(“utf-8”, “nihao”, b)<br>syso(b)<br>//不设置编码<br>otob(null, “nihao”, b)</p>
+<p>//将文件转换成 byte[] 字节数组对象<br>otob(“file”, null, “%abc.txt”, b)<br>syso(b)</p>
+<p>//将字符串转换成 byte[] 字节数组对象<br>otob(“str”, “utf-8”, “nihao”, b)<br>syso(b)</p>
+<p>说明：<br>将字符或文件转换为字节组</p>
+<p>【btoo 字节组还原】<br>用法：<br>otob(“%abc.txt”, b)<br>//将字节组转换为文件，变量 b 可为byte[] 字节数组对象<br>btoo(b, “%abc2.txt”)</p>
+<p>otob(“utf-8”, “nihao”, b)<br>//字节组转换为字符串，变量 b 可为byte[] 字节数组对象<br>btoo(“utf-8”, b, c)<br>syso(c)</p>
+<p>//不设置编码，变量 b 可为byte[] 字节数组对象<br>btoo(null, b, c)</p>
+<p>说明：<br>将字节组转换为字符或文件</p>
+<p>【sot Socket网络通信】<br>用法：<br>//服务端<br>//服务端口，临时文件目录，接受客户超时，客户连接超时，是否覆盖文件<br>sot(8668, “%iApp/tempSocket”, 0, 0, false, b)<br>{<br>//消息内容<br>syso(st_msG)<br>//连接对象<br>syso(st_ssR)</p>
+<p>}</p>
+<p>//客户端<br>//服务地址，服务端口，服务连接超时，是否覆盖文件<br>sot(“192.168.1.100”, 8668, 0, false, b)<br>{<br>//消息内容<br>syso(st_msG)<br>//连接对象<br>syso(st_ssR)</p>
+<p>}</p>
+<p>//发送字符串，必须放在线程内<br>sot(b, “str”, “nihao”)</p>
+<p>//发送文件，必须放在线程内<br>sot(b, “file”, “%abc.txt”)</p>
+<p>//发送字节组，必须放在线程内<br>otob(“utf-8”, “nihao”, c)<br>sot(b, “bt”, c)</p>
+<p>//发送不带信息头 byte[]字节组，必须放在线程内<br>sot(b, “bt2”, bytes)</p>
+<p>//关闭释放sot<br>sot(b, “re”)</p>
+<p>//获取sot是否已释放<br>sot(b, “ip”, c)</p>
+<p>//获取ID总数<br>sot(b, “id”, c)</p>
+<p>//获取连接对象列表<br>sot(b, “list”, c)</p>
+<p>//获取连接对象列表的第一位<br>sot(b, “list”, 0, c)</p>
+<p>//获取连接总数<br>sot(b, “size”, c)</p>
+<p>//是否允许接受新连接<br>sot(b, “new”, true)</p>
+<p>说明：<br>Socket 管理操作。服务端发送消息将批量发送给所有连接。</p>
+<p>服务端说明：<br>要求：<br>1.能连接公共网络 或 内网<br>2.拥有固定IP作为客户端连接的目标<br>3.电脑、手机、平板电脑等设备上运行服务端。<br>4.可使用iapp在自己的手机上面开发服务端，并运行服务端。</p>
+<p>客户端说明：<br>要求：<br>1.能连接公共网络 或 内网<br>2.可使用iapp在自己的手机上面开发客户端，并连接服务端。</p>
+<p>常见开发：<br>使用手机或电脑作为服务端，手机客户端与服务端相互传递文件、数据等。</p>
+<p>【sota 单个Socket通信操作】<br>用法：<br>//获取连接对象列表的第一位，变量“c”属于单个Socket通信<br>sot(b, “sl”, 0, c)</p>
+<p>//获取通信对方的IP<br>sota(c, “ht”, d)</p>
+<p>//获取sota是否已释放<br>sota(c, “ip”, d)</p>
+<p>//关闭释放sota<br>sota(c, “re”)</p>
+<p>//获取socket对象<br>sota(c, “socket”, d)</p>
+<p>//获取连接对象ID<br>sota(c, “id”, d)</p>
+<p>//发送字符串，必须放在线程内<br>sota(c, “str”, “nihao”)</p>
+<p>//发送文件，必须放在线程内<br>sota(c, “file”, “%abc.txt”)</p>
+<p>//发送字节组，必须放在线程内<br>otob(“utf-8”, “nihao”, d)<br>sota(c, “bt”, d)</p>
+<p>//发送不带信息头 byte[]字节组，必须放在线程内<br>sota(c, “bt2”, bytes)</p>
+<p>说明：<br>常用于单个Socket通信的操作管理</p>
+<p>【loadso 加载动态库】<br>用法：<br>//比如加载 libabc.so<br>loadso(“abc”)</p>
+<p>说明：<br>加载SO动态链接库。</p>
+<p>【loadjar 加载jar库】<br>用法：<br>//比如加载 abc.jar<br>//赋值变量 库对象<br>loadjar(“abc.jar”, b)<br>syso(b)</p>
+<p>//比如加载 abc.apk<br>//包含Activity需要传入true，赋值变量 库对象<br>loadjar(“abc.apk”, true, b)<br>syso(b)</p>
+<p>说明：<br>用于加载一些jar，dex，apk 的 sdk。需要把jar文件载入至项目资源，加载过程将联网校验。<br>如果附带SO动态链接库，需要把SO文件载入至项目资源。</p>
+<p>【cls 获取完整接口类】<br>用法：<br>//获取一个类，输入完整类名如 java.lang.Math<br>//赋值变量 类对象<br>cls(“java.lang.Math”, a)<br>syso(a)</p>
+<p>//获取一个字符串类，常用类型可直接输入类名如 String<br>cls(“String”, b)<br>syso(b)</p>
+<p>//加载SDK abc.jar，并获取SDK里一个类 输入完整类名 com.sdk.abc<br>loadjar(“abc.jar”, a)<br>cls(a, “com.sdk.ceshi”, c)<br>syso(c)</p>
+<p>用法：<br>获取一个类；或从 jar SDK包获取类；</p>
+<p>注意：完整类名区分大小写</p>
+<p>【clssm 获取类的所有接口】<br>用法：<br>cls(“String”, b)</p>
+<p>//获取所有构造函数<br>clssm(b, “init”, c)</p>
+<p>//获取所有函数方法<br>clssm(b, “method”, c)</p>
+<p>//获取所有变量<br>clssm(b, “field”, c)</p>
+<p>说明：<br>返回一个数组。</p>
+<p>【java 调用java代码方法】<br>用法：<br>//调用java api java.lang.String.indexOf(String string) 查询字符56 在123456789 中位置<br>cls(“String”, c)<br>javax(a, “123456789”, c, “indexOf”, “String”, “56”)<br>syso(a)</p>
+<p>//初始化一个StringBuilderd<br>javanew(a, “java.lang.StringBuilder”, “String”, “12345”)<br>java(b, a, “java.lang.StringBuilder.append”, “String”, “6789”)<br>java(c, a, “java.lang.StringBuilder.toString”)<br>syso(c)</p>
+<p>loadjar(“test.jar”, jar)<br>cls(jar, “com.sdk.ceshi”, c1)<br>//调用静态方法 com.sdk.ceshi类 c 方法<br>javax(c, null, c1, “c”, “int”, 123)<br>syso(c)</p>
+<p>//调用静态变量 com.sdk.ceshi类 a 变量<br>javags(c, null, c1, “a”)<br>syso(c)</p>
+<p>//初始化com.sdk.ceshi类<br>//输入赋值对象变量，输入完整类名或 cls方法的赋值变量<br>javanew(a, c1)</p>
+<p>//访问变量，com.sdk.ceshi类 b变量<br>javags(c, a, c1, “b”)<br>syso(c)</p>
+<p>//设置变量，com.sdk.ceshi类 b变量<br>javass(c, a, c1, “b”, “123456”)<br>syso(c)</p>
+<p>//设置回调方法<br>javanew(a, “android.widget.TextView”, “android.content.Context”, activity)<br>java(b, a, “android.widget.TextView.setText”, “CharSequence”, “我是文本控件”)<br>//注意回调接口类名前面需要加一个“.”，如.android.view.View.OnClickListener<br>java(b, a, “android.view.View.setOnClickListener”, “.android.view.View$OnClickListener”, null)<br>{<br>//系统赋值<br>syso(st_mD)<br>syso(st_aS)</p>
+<p>}</p>
+<p>说明：<br>支持 android 所有的api；以及 自加载的jar SDK 的 api </p>
+<p>注意：完整类名或 方法名 或 变量名 区分大小写</p>
+<p>activity：默认变量 Activity组件</p>
+<p>javax 与 java 方法区别：<br>javax：第3位参数完整类名，第4位参数方法名。类名可传入 cls方法的赋值变量；<br>java：第3位参数 完整类名和方法名。</p>
+<p>【javax 调用java代码方法】<br>用法：<br>loadjar(“test.jar”, jar)<br>cls(jar, “com.sdk.ceshi”, c1)<br>//调用静态方法 com.sdk.ceshi类 c 方法<br>javax(c, null, c1, “c”, “int”, 123)<br>syso(c)</p>
+<p>//调用静态变量 com.sdk.ceshi类 a 变量<br>javags(c, null, c1, “a”)<br>syso(c)</p>
+<p>//初始化com.sdk.ceshi类<br>//输入赋值对象变量，输入完整类名或 cls方法的赋值变量<br>javanew(a, c1)</p>
+<p>//访问变量，com.sdk.ceshi类 b变量<br>javags(c, a, c1, “b”)<br>syso(c)</p>
+<p>//设置变量，com.sdk.ceshi类 b变量<br>javass(c, a, c1, “b”, “123456”)<br>syso(c)</p>
+<p>说明：<br>常用于自定义SDK加载后的操作。</p>
+<p>javax：第3位参数完整类名，第4位参数方法名。类名可传入 cls方法的赋值变量；</p>
+<p>【javacb 自定义回调】<br>用法：</p>
+<p>loadjar(“test.jar”, jar)<br>cls(jar, “com.ceshi.dex.main”, c1)<br>javanew(o, c1)<br>cls(jar, “com.ceshi.dex.main$huidiao”, c2)</p>
+<p>javacb(hd, c2)<br>{<br>//系统赋值<br>syso(st_mD)<br>syso(st_aS)</p>
+<p>}</p>
+<p>//设置回调<br>javax(a, o, c1, “sethuidiao”, c2, hd)<br>//调用回调方法<br>javax(a, o, c1, “get”, “String”, “666”)</p>
+<p>说明：<br>常用于设置自定义SDK的回调方法。</p>
+<p>【res 安装包资源管理器】<br>用法：<br>//获取应用自己的对象<br>res(a)</p>
+<p>//获取其他apk安装包内的资源对象，只支持加载SD卡上的apk<br>res(“%abc.apk”, a)</p>
+<p>//获取资源<br>//输入资源对象，输入资源标识或文件名(没后缀)，输入资源类型，输入赋值变量<br>res(a, “ic_launcher”, “drawable”, b)</p>
+<p>//获取资源ID，打包测试才有效<br>res(a, “ic_launcher”, “drawable”, false, b)</p>
+<p>//获取 AssetManager 或 Resources 对象<br>res(a, “asset”, b)<br>res(a, “resources”, b)</p>
+<p>说明：<br>可获取的资源类型 drawable、string、color、stringarray、layout</p>
+<p>【call 交互式语言调用】<br>用法：</p>
+<p>//输入赋值变量，语言类型，模块m的abc方法，输入参数1，输入参数2<br>call(null, “myu”, “m.abc”, “nihao”, 66)</p>
+<p>//输入赋值变量，语言类型，模块mk的abc方法，输入参数1<br>call(a, “mlua”, “mk.abcd”, 123)</p>
+<p>//输入赋值变量，语言类型，模块mk的abc方法，，输入参数1，输入参数2，输入参数3<br>call(a, “mjava”, “mk.abcd”, 123, 456, 789 )</p>
+<p>//没有参数的<br>//输入赋值变量，语言类型，模块mk的abc方法<br>call(null, “mjs”, “mk.abcdf”)</p>
+<p>说明：<br>用于多语言的代码交互。</p>
+<p>注意：<br>此方法只能调用模块方法，输入是字符串如 m.abc 模块m 的abc方法</p>
+<p>注意：<br>参数数量要与实际模块方法的参数的数量一致。</p>
+<p>注意：<br>三种语言，只有 mlua 可以返回赋值变量，裕语言可以通过设置全局变量变相返回变量， mjs设置赋值变量无效。</p>
+<p>【json json数据解析】<br>用法：<br>//解析json数据<br>s text = “{“id”:1, “name”:”xiaobai”, “age”:16}”<br>json(text, jo)<br>//获取id<br>json(jo, “get”, “id”, a)<br>syso(a)<br>//获取name<br>json(jo, “get”, “name”, b)<br>syso(b)<br>//获取age<br>json(jo, “get”, “age”, c)<br>syso(c)</p>
+<p>//修改age数据<br>json(jo, “set”, “age”, 20)</p>
+<p>//删除id数据<br>json(jo, “del”, “id”)</p>
+<p>//打印json数据<br>json(jo, “json”, text)<br>syso(text)</p>
+<p>//解析json列表数据<br>s text = “{“userlist”:[{“id”:1, “name”:”niubi”, “age”:16},{“id”:2, “name”:”wangba”, “age”:18},{“id”:3, “name”:”goudan”, “age”:17}]}”<br>json(text, jo)</p>
+<p>//打印json数据<br>json(jo, “list”, “userlist”, list)<br>json(list, “size”, size)<br>w(size &gt; 0)<br>{<br>s-(1, size)<br>json(list, “data”, size, item)</p>
+<p>//获取id<br>json(item, “get”, “id”, a)<br>syso(a)<br>//获取name<br>json(item, “get”, “name”, b)<br>syso(b)<br>//获取age<br>json(item, “get”, “age”, c)<br>syso(c)</p>
+<p>}</p>
+<p>说明：<br>常用于解析服务器反馈的数据。</p>
+<p>【utb Toolbar工具栏设置】<br>用法：</p>
+<p>//设置自定义的工具栏 为当前界面的工具栏<br>//输入Toolbar工具栏的 控件id或控件对象<br>s id = 3<br>utb(id)</p>
+<p>//绑定侧滑控件，侧滑控件内需要包含左侧滑，绑定后可以在Toolbar工具栏的左图标 控制左边侧滑<br>//输入Toolbar工具栏的 控件id或控件对象，输入侧滑的 控件id或控件对象<br>utb(3, 2)</p>
+<p>//设置参数</p>
+<p>s id = 3<br>utb(“set”, “dshe”, true)</p>
+<p>//设置左图标，可以设置事件监听<br>utb(“left”, id, “@a.png”)</p>
+<p>//设置左图标的点击事件，注意此代码需在 utb(id) 后，否则事件将无效。<br>utb(“set”, “leftck”, id)<br>{<br>syso(“lefticon”)<br>}</p>
+<p>//设置右菜单图标，无事件。可使用界面菜单事件<br>utb(“right”, id, “@b.png”)</p>
+<p>//标题<br>utb(“set”, “title”, “apptitle”)</p>
+<p>//子标题<br>utb(“set”, “subtitle”, “appsubtitle”)</p>
+<p>//自定义布局可输入View类型布局<br>utb(“set”, “cv”, v)</p>
+<p>//显示选项<br>utb(“set”, “do”, 0)</p>
+<p>//显示或隐藏 标题<br>utb(“set”, “dste”, true)</p>
+<p>//显示或隐藏 自定义布局<br>utb(“set”, “dsce”, true)</p>
+<p>//显示或隐藏 主页图标<br>utb(“set”, “dshe”, true)</p>
+<p>//获取参数</p>
+<p>//标题<br>utb(“get”, “title”, c)</p>
+<p>//子标题<br>utb(“get”, “subtitle”, c)</p>
+<p>//自定义布局可输入View类型布局<br>utb(“get”, “cv”, c)</p>
+<p>//显示选项<br>utb(“get”, “do”, c)</p>
+<p>//动作栏布局高度<br>utb(“get”, “height”, c)</p>
+<p>说明：<br>常用于设计应用顶部工具栏。</p>
+<p>【tws 弹窗提醒】<br>用法：<br>//获取展示的控件对象，提醒将在这个控件里展示<br>gvs(1, v)</p>
+<p>//无按钮弹出提醒<br>//输入控件对象可设置null，输入字符，输入显示时长（值0 -1 -2）<br>tws(v, “ni hao!”, 0)</p>
+<p>//有按钮弹出提醒<br>//输入控件对象可设置null，输入字符，输入显示时长（值0 -1 -2），输入按钮标题<br>tws(v, “ni hao ma?”, 0, “hao”)<br>{<br>syso(“go”)<br>}</p>
+<p>【uht 滑动窗体控制】<br>用法：</p>
+<p>//添加新的页面，设置的界面会执行载入事件里的代码<br>//输入滑动窗体的 控件id或控件对象，输入标识，输入插入序号 如-1为尾部 0为头部，输入标题，输入界面名，输入控件对应的数据项…不限制数量可参考代码ula<br>uht(2, “add”, -1, “标题”, “a.iyu”, 1=”abc”, 2=”bac”, 3=”bbc”)</p>
+<p>//删除界面<br>//输入滑动窗体的 控件id或控件对象，输入标识，输入界面序号 序号以0开始 -1为尾部<br>uht(2, “del”, 0)</p>
+<p>//修改界面标题<br>//输入滑动窗体的 控件id或控件对象，输入标识，输入界面序号 序号以0开始 -1为尾部<br>uht(2, “title”, 0, “标题2”)</p>
+<p>//获取页面总数<br>uht(2, “size”, b)<br>syso(b)</p>
+<p>//释放内存<br>uht(2, “close”)</p>
+<p>//绑定标签布局，绑定后滑动界面时标签布局会跟随运动，需要注意 标签布局 和 滑动窗体 的子项数量应一致，新增子项时也需要同时增加<br>//输入滑动窗体的 控件id或控件对象，输入标识，输入标签布局的 控件id或控件对象，是否应刷新其内容<br>uht(2, “bd”, 3, true)<br>//注意：如果绑定前 标签布局 如有设置子项，绑定时会被清空。绑定后直接添加滑动窗体 的子项并设置 标题</p>
+<p>//增加标签布局 的子项<br>us(3, “app_tabadd”, “选项”)</p>
+<p>//添加滑动窗体 的子项<br>uht(2, “add”, -1, “标题”, “a.iyu”, 1=”abc”, 2=”bac”, 3=”bbc”)</p>
+<p>说明：<br>用于动态管理控制滑动窗体和垂直滑动窗体的 新增页面、删除页面、绑定标签布局等。</p>
+<p>【cast 强制转换数据类型】<br>用法：</p>
+<p>s a = 123<br>//转换数据类型并直接赋值<br>//输入完整类名 或 类对象，输入需要转换的数据变量<br>cast(“String”, a)<br>syso(a)</p>
+<p>//获取类对象<br>cls(“java.lang.Math”, a)<br>//输入完整类名 或 类对象，输入需要转换的数据变量，输入赋值变量<br>cast(a, b, c)<br>syso(c)</p>
+<p>说明：<br>常用于数据强制转换。</p>
+<p>【yul 加载yul布局】<br>用法：</p>
+<p>//将布局加载展示到指定的布局控件里<br>//输入控件id或控件对象（比如输入线性布局ID），输入 yul 布局文件名<br>yul(1, “a.yul”)</p>
+<p>//返回布局对象<br>//输入 yul 布局文件名，输入赋值变量返回一个View对象<br>yul(“a.yul”, a)<br>syso(a)</p>
+<p>说明：<br>yul布局是以 android 的 xml布局为基础，用于动态加载布局到应用界面。和安卓xml布局用法和代码都是一致的。</p>
+<p>在设计 yul布局 时需要自定义控件ID，如设置控件ID:123 编写代码 android:id=”123” 或 android:id=”@+id/s123” 两种写法都可以，效果都是ID为 123</p>
+<p>【zj 组件控制】<br>用法：<br>//如有米广告组件，首先下载有米的组件，并且设置好组件。</p>
+<p>//初始化有米SDK，放在第一个界面的载入事件里<br>//输入赋值变量，标识，发布 ID，密钥，是否开启有米的Log输出（需要换自己的渠道信息）<br>zj(a, “init”, “String”, “85aa56a59eac8b3d”, “String”, “a14006f66f58d5d7”, “boolean”, true)</p>
+<p>//初始化积分墙<br>//输入赋值变量，标识<br>zj(a, “initjfq”)</p>
+<p>//展示积分墙<br>zj(a, “jfqgo”)</p>
+<p>说明：<br>用于控制组件。</p>
+<p>【无障碍服务】<br>用法：<br>固定模块名为 ays_service 可创建模块 ays_service.myu，代码如下：</p>
+<p>//事件方法 on 实时回调变化事件<br>fn on(e)<br>//获取事件类型<br>java(b, ays, “com.iapp.app.ays.gtype”, “android.view.accessibility.AccessibilityEvent”, e)<br>//如果事件类型<br>f(b == 32 || b == 2048){<br>  //获取事件源的对象节点列表<br>  java(node, ays, “com.iapp.app.ays.gall”, “AccessibilityEvent”, e)<br>  //判断事件来源是不是包名为com.iapp.app的应用<br>  java(gpn, ays, “com.iapp.app.ays.gpn”, “AccessibilityEvent”, e)<br>  f(“com.iapp.app” == gpn)<br>  {<br>     //判断类名，根据指定的类名进行不同的操作<br>     java(gcn, ays, “com.iapp.app.ays.gcn”, “AccessibilityEvent”, e)<br>     f(“com.iapp.app.HomeMian” == gcn)<br>     {<br>        //从对象列表搜索文本为“创建”的对象，并点击该对象<br>        java(b, ays, “com.iapp.app.ays.cktext”, “AccessibilityNodeInfo”, node, “int”, 16, “String”, “创建”)<br>     }<br>     else f(“com.iapp.app.HomeAdd” == gcn)<br>     {<br>        //根据ID获取指定的节点<br>        java(b, ays, “com.iapp.app.ays.id”, “AccessibilityNodeInfo”, node, “String”, “com.iapp.app:id/ui_home_add_title”)<br>    //设置节点的文本框输入指定字符<br>        java(c, ays, “com.iapp.app.ays.enter”, “java.util.List”, b, “String”, “name”)<br>        //根据ID获取指定的节点<br>        java(b, ays, “com.iapp.app.ays.id”, “AccessibilityNodeInfo”, node, “String”, “com.iapp.app:id/ui_home_add_remark”)<br>    //设置节点的文本框输入指定字符<br>        java(c, ays, “com.iapp.app.ays.enter”, “java.util.List”, b, “String”, “remark”)<br>        //从对象列表搜索指定ID的对象，并点击该节点对象<br>        java(b, ays, “com.iapp.app.ays.ckid”, “AccessibilityNodeInfo”, node, “int”, 16, “String”, “com.iapp.app:id/ui_home_add_go”)<br>     }<br>  }<br>  //释放根源节点<br>  java(b, ays, “com.iapp.app.ays.re”, “AccessibilityNodeInfo”, node)</p>
+<p>}</p>
+<p>end fn</p>
+<p>//初始化事件方法 onsc 启动时回调一次<br>fn onsc()<br>s pns = “com.iapp.app”<br>//设置监听指定的包名，可以设置多个包名用逗号隔开如”com.xxx.a,com.xxx.b”<br>javass(a, null, “com.iapp.app.ays.pns”, pns)<br>//设置相应时间<br>javass(a, null, “com.iapp.app.ays.nt”, 1000)<br>end fn</p>
+<p>然后 权限配置管理》application配置 将下面的配置粘贴进去：<br>    <service
+            android:name="com.iapp.app.ays"
+            android:label="iapp开发工具无障碍辅助功能"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"><br>            <intent-filter><br>                <action android:name="android.accessibilityservice.AccessibilityService"/><br>            </intent-filter><br>            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/aya_config"/><br>        </service></p>
+<p>最后，【正式打包发布】打包完成后，安装测试。记得自行去设置》辅助功能》打开我们的服务《iapp开发工具无障碍辅助功能》。<br>注意：直接在iapp里测试无效。</p>
+<p>更多代码示范：</p>
+<p>//——静态调用<br>//获取无障碍功能是否已经授权<br>java(a, null, “com.iapp.app.ays.isas”, “Context”, activity)</p>
+<p>//如果没有授权，可跳转设置界面<br>java(a, null, “com.iapp.app.ays.goset”, “Context”, activity)</p>
+<p>//——事件源操作<br>//获取Context功能类<br>java(a, ays, “com.iapp.app.ays.gbc”)</p>
+<p>//获取无障碍功能配置信息<br>java(a, ays, “com.iapp.app.ays.gsi”)</p>
+<p>//设置无障碍功能配置信息<br>java(b, ays, “com.iapp.app.ays.ssi”, “AccessibilityServiceInfo”, a)</p>
+<p>//调用全局事件<br>//输入值：1. 返回键 2. HOME键 3. 最近打开应用列表 4. 打开通知栏 5. 设置 6. 锁屏<br>java(a, ays, “com.iapp.app.ays.pga”, “int”, 1)</p>
+<p>//获取事件类型<br>//值：32 打开PopupWindow，Menu，Dialog等的事件  64 显示通知的事件  2048 更改窗口内容的事件  4194304 屏幕上显示的窗口中的事件更改<br>java(a, ays, “com.iapp.app.ays.gtype”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源类的类型<br>java(a, ays, “com.iapp.app.ays.gcn”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源的包名<br>java(a, ays, “com.iapp.app.ays.gpn”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源的是否可用<br>java(a, ays, “com.iapp.app.ays.ised”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源的节点总数<br>java(a, ays, “com.iapp.app.ays.gsl”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源的整数ID<br>java(a, ays, “com.iapp.app.ays.gwid”, “AccessibilityEvent”, e)</p>
+<p>//获取事件源的时间<br>java(a, ays, “com.iapp.app.ays.gtime”, “AccessibilityEvent”, e)</p>
+<p>//释放资源<br>java(a, ays, “com.iapp.app.ays.re”, “AccessibilityEvent”, e)</p>
+<p>//——节点的操作<br>//获取事件源的节点对象列表<br>java(a, ays, “com.iapp.app.ays.gall”, “AccessibilityEvent”, e)</p>
+<p>//获取窗口的对象节点列表，需要Android 4.1及以上才可调用<br>java(a, ays, “com.iapp.app.ays.gall”)</p>
+<p>//根据序号；获取对象的子节点<br>java(a, ays, “com.iapp.app.ays.gi”, “AccessibilityNodeInfo”, node, “int”, 0)</p>
+<p>//获取对象的子节点总数<br>java(a, ays, “com.iapp.app.ays.gi”, “AccessibilityNodeInfo”, node)</p>
+<p>//根据当前焦点向某个方向进行搜索可以获得输入焦点的最近控件<br>//输入值：33 向上  130 向下  17 向左  66 向右<br>java(a, ays, “com.iapp.app.ays.focussearch”, “AccessibilityNodeInfo”, node, “int”, 130)</p>
+<p>//根据文本查询控件，返回节点列表<br>java(nodelist, ays, “com.iapp.app.ays.text”, “AccessibilityNodeInfo”, node, “String”, “创建”)</p>
+<p>//根据id查询控件，返回节点列表<br>java(nodelist, ays, “com.iapp.app.ays.id”, “AccessibilityNodeInfo”, node, “String”, “com.iapp.app:id/ui_home_add_go”)</p>
+<p>//根据焦点查询<br>//输入值：1 输入焦点  2 可访问性焦点<br>java(a, ays, “com.iapp.app.ays.focus”, “AccessibilityNodeInfo”, node, “int”, 1)</p>
+<p>//获取节点文本<br>java(a, ays, “com.iapp.app.ays.gt”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点类的类型<br>java(a, ays, “com.iapp.app.ays.gcn”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点整数ID<br>java(a, ays, “com.iapp.app.ays.gwid”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点ID<br>java(a, ays, “com.iapp.app.ays.gid”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取可以在节点上执行的操作<br>java(a, ays, “com.iapp.app.ays.gal”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点在屏幕上坐标<br>java(a, ays, “com.iapp.app.ays.gbis”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取父节点在屏幕上坐标<br>java(a, ays, “com.iapp.app.ays.gbip”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点的包名<br>java(a, ays, “com.iapp.app.ays.gpn”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点的父节点<br>java(a, ays, “com.iapp.app.ays.gp”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取此节点是否可点击<br>java(a, ays, “com.iapp.app.ays.isck”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取此节点是否已启用<br>java(a, ays, “com.iapp.app.ays.ised”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取此节点是否已选中<br>java(a, ays, “com.iapp.app.ays.iscd”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取这个节点是否被聚焦<br>java(a, ays, “com.iapp.app.ays.isfd”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取此节点是否可以长时间点击<br>java(a, ays, “com.iapp.app.ays.islck”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取此节点是否是密码<br>java(a, ays, “com.iapp.app.ays.ispd”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取节点是否可滚动<br>java(a, ays, “com.iapp.app.ays.isse”, “AccessibilityNodeInfo”, node)</p>
+<p>//获取是否选择此节点<br>java(a, ays, “com.iapp.app.ays.issd”, “AccessibilityNodeInfo”, node)</p>
+<p>//根据文本查询；模拟控件点击控件<br>java(a, ays, “com.iapp.app.ays.cktext”, “AccessibilityNodeInfo”, node, “int”, 16, “String”, “创建”)</p>
+<p>//根据ID查询；模拟控件点击控件<br>java(a, ays, “com.iapp.app.ays.ckid”, “AccessibilityNodeInfo”, node, “int”, 16, “String”, “com.iapp.app:id/ui_home_add_go”)</p>
+<p>//根据焦点查询；模拟控件点击控件<br>//输入值：1 输入焦点  2 可访问性焦点<br>java(a, ays, “com.iapp.app.ays.ckfocus”, “AccessibilityNodeInfo”, node, “int”, 16, “int”, 1)</p>
+<p>​    /.<br>​      模拟执行操作<br>​      1 将输入焦点输入到节点的操作<br>​      16 点击节点信息的动作<br>​      32 长时间点击节点的动作<br>​      32768 操作来粘贴当前的剪贴板内容<br>​     ./<br>//开始模拟控件点击<br>//输入节点列表<br>java(b, ays, “com.iapp.app.ays.ck”, “java.util.List”, nodelist, “int”, 16)</p>
+<p>//开始模拟控件点击<br>//输入节点列表，输入自定义的Bundle<br>java(b, ays, “com.iapp.app.ays.ck”, “java.util.List”, nodelist, “int”, 16, “android.os.Bundle”, be)</p>
+<p>//对单项模拟控件点击<br>//输入节点列表<br>java(b, ays, “com.iapp.app.ays.ck”, “AccessibilityNodeInfo”, node, “int”, 16)</p>
+<p>//对单项模拟控件点击<br>//输入节点列表，输入自定义的Bundle<br>java(b, ays, “com.iapp.app.ays.ck”, “AccessibilityNodeInfo”, node, “int”, 16, “android.os.Bundle”, be)</p>
+<p>//对单项模拟执行输入文本,Android 4.3 版本及以上<br>java(b, ays, “com.iapp.app.ays.enter”, “AccessibilityNodeInfo”, node, “String”, “nihao”)</p>
+<p>//开始模拟执行输入文本,Android 4.3 版本及以上<br>java(b, ays, “com.iapp.app.ays.enter”, “java.util.List”, nodelist, “String”, “nihao”)</p>
+<p>//获取节点所有子节点列表<br>java(nodelist, ays, “com.iapp.app.ays.ganiall”, “AccessibilityNodeInfo”, node)</p>
+<p>//释放节点资源<br>java(b, ays, “com.iapp.app.ays.re”, “AccessibilityNodeInfo”, node)</p>
+<p>说明：<br>无障碍功能（辅助功能）常用于简化操作，使应用或 系统的变得更智能、简便。</p>
+<p>【自定义代码提示】<br>说明：<br>iapp允许开发者自定义代码提示，这样可以最大程度保留开发者的个人习惯，可以定义成你自己熟悉的关键词。</p>
+<p>格式：<br>代码\说明<br>如：<br>abcde\变量名<br>abc()\方法名</p>
+<p>配置对应文件：/data/data/com.iapp.app/files/config/srctonew.xml</p>
+<p>【HTML5项目】<br>例子：<br>//输入浏览器控件ID或对象，输入标识，输入项目网页路径<br>us(1, “url”, “@html5/index.html”)<br>//us(1, “url”, “%html5/index.html”)</p>
+<p>说明：<br>常用与运行一个HTML5项目，包括HTML5应用、HTML5游戏等。</p>
+<p>【上传项目】</p>
+<p>项目内导入覆盖规则：</p>
+<p>​    综合：一个完整应用项目的导入；先清空当前项目源码与资源后，导入源码与资源 以及根据需求导入项目信息与图标</p>
+<p>​    其他分类通用：<br>​    1. 项目中mian.iyu启动界面，只导入其中有备注的控件，导入至当前项目打开的界面里；<br>​    2. 不清空当前项目文件，直接覆盖除了mian.iyu以外的其他所有界面与资源；<br>​    3. 覆盖过程如有模块文件重复，将以追加方式模块增加，不覆盖；<br>​    4. 建议复杂命名界面名，复杂命名模块方法名；</p>
+<p>项目外导入覆盖规则：<br>    1. 遇本地重复项目，不覆盖。<br>    2. 导入为完整项目。</p>
+<p>说明：<br>分享技术，享受乐趣。</p>
+<p>【代码规范】<br>例子：<br>//下面的判断语句，使用了字符串；存在规范问题，会出错；<br>f(“1?2(3}4,5==6” == “1?2(3}4,5==6”)<br>{<br>f(“a”!=sb” != “a”!=sb6”)<br>{<br>tw(“{1},(2)”)<br>}<br>}</p>
+<p>转义关键符号，需修正为：<br>f(“1?2(3}4,5==6” == “1?2(3}4,5==6”)<br>{<br>f(“a”!=sb” != “a”!=sb6”)<br>{<br>tw(“{1},(2)”)<br>}<br>}</p>
+<p>//下面判断读取文本文件，<br>fr(“%ab,c.txt”, “utf-8”, c)<br>tw(c)</p>
+<p>转义关键符号，需修正为：<br>fr(“%ab,c.txt”, “utf-8”, c)<br>tw(c)</p>
+<p>以上为规范异常，系统关键符号需要进行转义，转义在符号前增加“\”。</p>
+<p>系统关键符号(小写符号)：( ) , = ! &gt; &lt; ? * + { } | &amp;</p>
+<p>注意：<br>“\”作为转义符号需注意例子：</p>
+<p>.例子1<br>tw(“ni\nhao”)<br>/.<br>输出：<br>ni<br>hao<br>./</p>
+<p>.例子2<br>tw(“ni\nhao”)<br>/.<br>输出：<br>ni\nhao<br>./</p>
+<p>.例子3<br>tw(“ni\hao”)<br>/.<br>输出：<br>ni\hao<br>./</p>
+<p>.例子4<br>tw(“ni\hao”)<br>/.<br>输出：<br>ni\hao<br>./</p>
+<p>.例子5<br>tw(“ni\\hao”)<br>/.<br>输出：<br>ni\hao<br>./</p>
+<p>.例子6<br>tw(“ni,hao”)<br>/.<br>输出：<br>ni,hao<br>./</p>
+<p>【单击触屏事件】</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象</p>
+<p>说明：<br>该事件无返回值，当用户完成单击触屏即执行事件代码。</p>
+<p>【触屏监听事件】<br>用法：<br>[true]<br>tw(“将返回值为true”)</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_eA：执行的动作<br>st_eX：触屏位置X坐标<br>st_eY：触屏位置Y坐标<br>st_rX：原始位置X坐标<br>st_rY：原始位置Y坐标</p>
+<p>说明：<br>该事件有返回值，不设置返回值将默认为false。当用户触屏屏幕即执行事件代码。</p>
+<p>返回值说明：<br>在事件代码编辑框顶部一行填写 “[true]”，即设置为返回true<br>当返回true值时，说明已完成该事件的执行，将不在执行此事件。<br>当返回false值时，将持续执行当前事件。</p>
+<p>【触屏长按事件】<br>用法：<br>[true]<br>tw(“将返回值为true”)</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象</p>
+<p>说明：<br>该事件有返回值，不设置返回值将默认为false。当用户长久触屏屏幕即执行事件代码。</p>
+<p>返回值说明：<br>在事件代码编辑框顶部一行填写 “[true]”，即设置为返回true<br>当返回true值时，说明已完成该事件的执行，将不在执行此事件。<br>当返回false值时，将持续执行当前事件。</p>
+<p>【键盘触发事件】<br>用法：<br>[true]<br>tw(“将返回值为true”)</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_kC：按下的物理按键对应的数值<br>st_eA：执行的动作<br>st_eR：</p>
+<p>说明：<br>该事件有返回值，不设置返回值将默认为false。当用户按下物理按键即执行事件代码。</p>
+<p>返回值说明：<br>在事件代码编辑框顶部一行填写 “[true]”，即设置为返回true<br>当返回true值时，说明已完成该事件的执行，将不在执行此事件。<br>当返回false值时，将持续执行当前事件。</p>
+<p>【触屏长按菜单事件】<br>用法：<br>title:操作<br>case 选择A:<br>tw(“A”)<br>break<br>case 选择B:<br>tw(“B”)<br>break<br>case 选择C:<br>tw(“C”)<br>break<br>default:<br>tw(“载入成功”)<br>break</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象</p>
+<p>说明：<br>常用于需要多操作选项。</p>
+<p>【框编辑监听事件】<br>用法：<br>[true]<br>tw(“将返回值为true”)</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_aI：动作的标识数值<br>st_eA：执行的动作<br>st_eR：<br>st_eK：键值</p>
+<p>说明：<br>该事件有返回值，不设置返回值将默认为false。当用户按下动作键即执行事件代码。</p>
+<p>注意：<br>需要编辑框设置相应的控件 imeoptions 属性</p>
+<p>事件例子：<br>f(st_aI != 0)<br>{<br>//动作的标识数值<br>syso(st_aI)<br>}</p>
+<p>返回值说明：<br>在事件代码编辑框顶部一行填写 “[true]”，即设置为返回true<br>当返回true值时，说明已完成该事件的执行，将不在执行此事件。<br>当返回false值时，将持续执行当前事件。</p>
+<p>【文本更新监听事件】</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_sS：文本内容<br>st_sT：<br>st_bE：<br>st_cT：<br>st_aR：</p>
+<p>说明：<br>该事件无返回值。常用于监听文本即时更新。</p>
+<p>【获得焦点事件】</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_hF：是否获得焦点</p>
+<p>说明：<br>该事件无返回值，当控件获得/失去焦点即执行事件代码。</p>
+<p>【触屏滑动事件】</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_sE：<br>st_fM：<br>st_vT：<br>st_bT：</p>
+<p>说明：<br>常用于滑动控件的滑动监听。</p>
+<p>【单击项目事件】</p>
+<p>系统赋值：<br>st_vId：控件id<br>st_vW：控件对象<br>st_pN：被点击视图中的位置<br>st_iD：被点击的项目</p>
+<p>说明：<br>常用于列表项点击监听。</p>
+<p>【浏览器事件】</p>
+<p>说明：<br>常用于浏览器的互动。</p>
+<p>【滑动窗体事件】</p>
+<p>说明：<br>常用于滑动窗体的互动。</p>
+<p>【侧滑窗体事件】</p>
+<p>说明：<br>常用于侧滑窗体的互动。</p>
+<p>【下拉菜单事件】</p>
+<p>说明：<br>常用于下拉菜单的互动。</p>
+<p>【摄像头拍摄事件】</p>
+<p>说明：<br>常用于摄像头拍摄事件的互动。</p>
+<p>【载入事件】</p>
+<p>说明：<br>将于界面加载完毕后执行。</p>
+<p>【载入完毕事件（界面可交互）】</p>
+<p>说明：<br>将于界面加载完毕后，并且用户可于界面交互时执行。常用需要在载入事件中设置控件属性。</p>
+<p>如：<br>使用 addv 添加将界面后，如果设置控件属性，请将设置属性的代码写入 载入完毕事件中。</p>
+<p>【菜单事件】<br>用法：<br>case 选择A:<br>tw(“A”)<br>break<br>case 选择B:<br>tw(“B”)<br>break<br>case 选择C:<br>tw(“C”)<br>break<br>default:<br>tw(“载入成功”)<br>break</p>
+<p>//参数为多个并以“|”隔开<br>//参数1为选项标题|参数2为图标|参数3为显示动作值分别为0 1 2 4 8|参数4为次序根据数值大小<br>带图标的<br>case 选择A|@a.png|1|1:<br>tw(“A”)<br>break<br>case 选择B|@b.png|0|2:<br>tw(“B”)<br>break<br>case 选择C|@c.png|0|3:<br>tw(“C”)<br>break<br>default:<br>tw(“载入成功”)<br>break</p>
+<p>说明：<br>当用户触屏菜单事件。</p>
+<p>【按键按下事件】</p>
+<p>说明：<br>用户设备物理按键按下将执行。</p>
+<p>【按键释放事件】</p>
+<p>说明：<br>用户设备物理按键按下然后释放触屏，将执行。</p>
+<p>【销毁界面事件】</p>
+<p>说明：<br>当用户销毁当前界面时将执行。</p>
+<p>【停止事件】</p>
+<p>说明:<br>界面处于停止或暂停事将执行。（如：用户切出到其他应用）</p>
+<p>【重新开始事件】</p>
+<p>说明：<br>界面重新获得焦点，可视时将执行。（如：用户从其他应用切换回来了）</p>
+<p>【回调结果事件】</p>
+<p>系统赋值：<br>st_sC：请求标识数值<br>st_lC：结果状态数值<br>st_iT：结果目标对象</p>
+<p>说明：<br>常用于界面或功能回调返回的结果或传递的数据。</p>
+<p>【重力感应事件】</p>
+<p>系统赋值：<br>st_x：X轴<br>st_y：Y轴<br>st_z：Z轴</p>
+<p>说明：<br>获取手机的即时动作。</p>
+<p>参考：<br>　　手机屏幕向上(z轴朝天)水平放置的时侯，(x，y，z)的值分别为(0，0，10);<br>　　手机屏幕向下(z轴朝地)水平放置的时侯，(x，y，z)的值分别为(0，0，-10);<br>　　手机屏幕向左侧放(x轴朝天)的时候，(x，y，z)的值分别为(10，0，0);<br>　　手机竖直(y轴朝天)向上的时候，(x，y，z)的值分别为(0，10，0);</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/02/28/IAPP/">http://example.com/2021/02/28/IAPP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wzass/giteezp/iapp.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/04/python%E7%88%AC%E8%99%AB4/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python爬虫4requests库使用</div></div></a></div><div class="next-post pull-right"><a href="/2021/02/26/tianxuan/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210311104552063.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">天选姬电脑常见问题和linux的问题解决</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/17/1.php面向对象/" title="1.php面向对象基础"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-17</div><div class="title">1.php面向对象基础</div></div></a></div><div><a href="/2020/12/04/3.JavaScriptDOM基本使用/" title="3.JavaScript的DOM使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-04</div><div class="title">3.JavaScript的DOM使用</div></div></a></div><div><a href="/2020/12/08/4.JavaScript的XMLHttpRequest使用/" title="4.JavaScript的XMLHttpRequest使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-08</div><div class="title">4.JavaScript的XMLHttpRequest使用</div></div></a></div><div><a href="/2020/11/26/HTML表单/" title="HTML表单"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201126082632.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-26</div><div class="title">HTML表单</div></div></a></div><div><a href="/2021/04/20/pikachu/" title="Docker安装pikachu靶场搭建"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-20</div><div class="title">Docker安装pikachu靶场搭建</div></div></a></div><div><a href="/2021/06/09/pythonddq/" title="python迭代器"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/image-20210122115323618.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-09</div><div class="title">python迭代器</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/09/%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF/" title="钉钉脚本编写和和思路"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20210909185727600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="钉钉脚本编写和和思路"/></a><div class="content"><a class="title" href="/2021/09/09/%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF/" title="钉钉脚本编写和和思路">钉钉脚本编写和和思路</a><time datetime="2021-09-09T11:10:30.000Z" title="发表于 2021-09-09 19:10:30">2021-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/08/screenfetch/" title="screenfetch脚本工具卡住问题解决"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20210904185727094.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="screenfetch脚本工具卡住问题解决"/></a><div class="content"><a class="title" href="/2021/09/08/screenfetch/" title="screenfetch脚本工具卡住问题解决">screenfetch脚本工具卡住问题解决</a><time datetime="2021-09-08T13:50:30.000Z" title="发表于 2021-09-08 21:50:30">2021-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/08/linuxyindao/" title="双系统linux启动出现error:unknown filesystem"><img src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210315085326409.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="双系统linux启动出现error:unknown filesystem"/></a><div class="content"><a class="title" href="/2021/09/08/linuxyindao/" title="双系统linux启动出现error:unknown filesystem">双系统linux启动出现error:unknown filesystem</a><time datetime="2021-09-08T01:10:30.000Z" title="发表于 2021-09-08 09:10:30">2021-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4"><img src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解析库BeautifulSoup4"/></a><div class="content"><a class="title" href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4">解析库BeautifulSoup4</a><time datetime="2021-09-01T03:10:30.000Z" title="发表于 2021-09-01 11:10:30">2021-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/28/1.%E6%9C%AC%E5%9C%B0%E7%B3%BB%E7%BB%9F%E6%8F%90%E6%9D%83/" title="后渗透阶段Windows系统提权"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Photo_clone/img/20201101163741.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="后渗透阶段Windows系统提权"/></a><div class="content"><a class="title" href="/2021/08/28/1.%E6%9C%AC%E5%9C%B0%E7%B3%BB%E7%BB%9F%E6%8F%90%E6%9D%83/" title="后渗透阶段Windows系统提权">后渗透阶段Windows系统提权</a><time datetime="2021-08-28T11:02:25.000Z" title="发表于 2021-08-28 19:02:25">2021-08-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

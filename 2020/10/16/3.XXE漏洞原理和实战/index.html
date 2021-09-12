@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>3.XXE漏洞原理和实战复现 | Hexo</title><meta name="keywords" content="web安全"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="下载靶场https:&#x2F;&#x2F;www.lanzoux.com&#x2F;i0Txnhgnxgf 文件在xxe-lab-master\php_xxe xxe-lab-master靶场实战我们用户密码都输入admin用burp截断可以看到是一个自定义的标签我们故意修改一下标签提交他报错了可以看到他就是xml![])(https:&#x2F;&#x2F;gitee.com&#x2F;wZass&#x2F;zp&#x2F;raw&#x2F;master&#x2F;img&#x2F;202010160">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.XXE漏洞原理和实战复现">
+<meta property="og:url" content="http://example.com/2020/10/16/3.XXE%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="下载靶场https:&#x2F;&#x2F;www.lanzoux.com&#x2F;i0Txnhgnxgf 文件在xxe-lab-master\php_xxe xxe-lab-master靶场实战我们用户密码都输入admin用burp截断可以看到是一个自定义的标签我们故意修改一下标签提交他报错了可以看到他就是xml![])(https:&#x2F;&#x2F;gitee.com&#x2F;wZass&#x2F;zp&#x2F;raw&#x2F;master&#x2F;img&#x2F;202010160">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg">
+<meta property="article:published_time" content="2020-10-16T01:20:50.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/10/16/3.XXE%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E6%88%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '3.XXE漏洞原理和实战复现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">3.XXE漏洞原理和实战复现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-16T01:20:50.000Z" title="发表于 2020-10-16 09:20:50">2020-10-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/XXE%E6%BC%8F%E6%B4%9E/">XXE漏洞</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="3.XXE漏洞原理和实战复现"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="下载靶场"><a href="#下载靶场" class="headerlink" title="下载靶场"></a>下载靶场</h2><p><a target="_blank" rel="noopener" href="https://www.lanzoux.com/i0Txnhgnxgf">https://www.lanzoux.com/i0Txnhgnxgf</a></p>
+<p>文件在<code>xxe-lab-master\php_xxe</code><br><img src="https://gitee.com/wZass/zp/raw/master/img/20201016083547.png"></p>
+<h2 id="xxe-lab-master靶场实战"><a href="#xxe-lab-master靶场实战" class="headerlink" title="xxe-lab-master靶场实战"></a>xxe-lab-master靶场实战</h2><p>我们用户密码都输入<code>admin</code><br>用burp截断<br>可以看到是一个自定义的标签<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201016084139.png"><br>我们故意修改一下标签<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201016084319.png"><br>提交他报错了可以看到他就是xml<br>![])(<a target="_blank" rel="noopener" href="https://gitee.com/wZass/zp/raw/master/img/20201016084343.png">https://gitee.com/wZass/zp/raw/master/img/20201016084343.png</a>)</p>
+<p>我在靶场文件里面添加一个a.txt文件<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201016084704.png"></p>
+<p>我们修改成这样</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">user</span> [<span class="meta">&lt;!ENTITY a <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;file:///C:/a.txt&quot;</span>&gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">user</span>&gt;</span><span class="tag">&lt;<span class="name">username</span>&gt;</span><span class="symbol">&amp;a;</span><span class="tag">&lt;/<span class="name">username</span>&gt;</span><span class="tag">&lt;<span class="name">password</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">password</span>&gt;</span><span class="tag">&lt;/<span class="name">user</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>叫<code>c:/a.txt</code>内容给读出来了</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201016090322.png"></p>
+<h2 id="xxe预防"><a href="#xxe预防" class="headerlink" title="xxe预防"></a>xxe预防</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">libxml_disable_entity_loader(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/10/16/3.XXE%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E6%88%98/">http://example.com/2020/10/16/3.XXE%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E6%88%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web%E5%AE%89%E5%85%A8/">web安全</a></div><div class="post_share"><div class="social-share" data-image="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/17/1.php%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><img class="prev-cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1.php面向对象基础</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/16/2.XXE%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E6%88%98%E4%B9%8BDTD%E7%9A%84%E5%AE%9E%E4%BD%93/"><img class="next-cover" src="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2.XXE漏洞原理和实战之DTD的实体</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/11/1. 文件上发漏洞/" title="1. 文件上发漏洞之php编写上传文件"><img class="cover" src="https://pic.3gbizhi.com/2020/0914/20200914111243880.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-11</div><div class="title">1. 文件上发漏洞之php编写上传文件</div></div></a></div><div><a href="/2020/08/10/1. 网易手动sql注入/" title="1. 网易web安全渗透  手动sql注入"><img class="cover" src="https://pic.3gbizhi.com/2020/0827/20200827070138265.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="title">1. 网易web安全渗透  手动sql注入</div></div></a></div><div><a href="/2020/10/14/1.XXE漏洞原理和实战/" title="1.XXE漏洞原理和实战之xml的学习1"><img class="cover" src="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-14</div><div class="title">1.XXE漏洞原理和实战之xml的学习1</div></div></a></div><div><a href="/2020/10/27/1.web信息收集之搜索引擎/" title="1.web信息收集之google搜索引擎"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201027095251.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="title">1.web信息收集之google搜索引擎</div></div></a></div><div><a href="/2019/09/14/1.手动挖掘漏洞明实验和使用/" title="1.手动挖掘漏洞身份认证"><img class="cover" src="https://img-blog.csdnimg.cn/20190913191358248.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-09-14</div><div class="title">1.手动挖掘漏洞身份认证</div></div></a></div><div><a href="/2020/08/10/2. 网易union联合查询注入/" title="2. 网易web安全渗透  union联合查询注入"><img class="cover" src="https://pic.3gbizhi.com/2020/0629/20200629095051433.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="title">2. 网易web安全渗透  union联合查询注入</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E9%9D%B6%E5%9C%BA"><span class="toc-number">1.</span> <span class="toc-text">下载靶场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe-lab-master%E9%9D%B6%E5%9C%BA%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">xxe-lab-master靶场实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe%E9%A2%84%E9%98%B2"><span class="toc-number">3.</span> <span class="toc-text">xxe预防</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

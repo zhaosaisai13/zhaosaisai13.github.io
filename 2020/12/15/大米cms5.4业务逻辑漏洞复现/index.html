@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>大米cms5.4业务逻辑漏洞复现 | Hexo</title><meta name="keywords" content="漏洞复现"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="测试环境服务器，win2003，大米cms5.4攻击者windows10 环境搭建叫文件解压出来 访问http:&#x2F;&#x2F;ip&#x2F;dami出现下面这个选择同意 看看有没有错的  数据库名默认是root这样就安装成功了 漏洞复现我们先注册一个用户 我们登录上去 我们购买商品 他显示余额不足  我们用Burp抓一下包我们解码一下这个应该就是数量 我们把他改成-1放包 发现他购买成功   还增加了现金">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大米cms5.4业务逻辑漏洞复现">
+<meta property="og:url" content="http://example.com/2020/12/15/%E5%A4%A7%E7%B1%B3cms5.4%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="测试环境服务器，win2003，大米cms5.4攻击者windows10 环境搭建叫文件解压出来 访问http:&#x2F;&#x2F;ip&#x2F;dami出现下面这个选择同意 看看有没有错的  数据库名默认是root这样就安装成功了 漏洞复现我们先注册一个用户 我们登录上去 我们购买商品 他显示余额不足  我们用Burp抓一下包我们解码一下这个应该就是数量 我们把他改成-1放包 发现他购买成功   还增加了现金">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wZass/zp/raw/master/img/20201216075453.png">
+<meta property="article:published_time" content="2020-12-15T10:30:56.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="漏洞复现">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wZass/zp/raw/master/img/20201216075453.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/15/%E5%A4%A7%E7%B1%B3cms5.4%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大米cms5.4业务逻辑漏洞复现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/wZass/zp/raw/master/img/20201216075453.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">大米cms5.4业务逻辑漏洞复现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-15T10:30:56.000Z" title="发表于 2020-12-15 18:30:56">2020-12-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大米cms5.4业务逻辑漏洞复现"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><p>服务器，win2003，大米cms5.4<br>攻击者windows10</p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>叫文件解压出来<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215110151.png"></p>
+<p>访问<a target="_blank" rel="noopener" href="http://ip/dami">http://ip/dami</a><br>出现下面这个选择同意<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215111801.png"></p>
+<p>看看有没有错的</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215111959.png"></p>
+<p>数据库名默认是root<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215112101.png"><br>这样就安装成功了<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215112423.png"></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>我们先注册一个用户</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215112800.png"><br>我们登录上去<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215112837.png"></p>
+<p>我们购买商品<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215113001.png"></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215113203.png"><br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215113121.png"><br>他显示余额不足</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215113135.png"></p>
+<p>我们用Burp抓一下包<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215114529.png"><br>我们解码一下<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215114614.png"><br>这个应该就是数量<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215161530.png"></p>
+<p>我们把他改成<code>-1</code>放包<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201215161719.png"></p>
+<p>发现他购买成功</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215161757.png"></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215162058.png"></p>
+<p>还增加了现金</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201215162214.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/15/%E5%A4%A7%E7%B1%B3cms5.4%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">http://example.com/2020/12/15/%E5%A4%A7%E7%B1%B3cms5.4%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/">漏洞复现</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wZass/zp/raw/master/img/20201216075453.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/16/MetInfo4.0%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"><img class="prev-cover" src="https://gitee.com/wZass/zp/raw/master/img/20201216131324.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MetInfo4.0任意用户密码修改漏洞复现</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/15/VM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85OpenVAS/"><img class="next-cover" src="https://gitee.com/wZass/zp/raw/master/img/20200930093532.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">VM虚拟机安装OpenVAS</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/09/28/DedeCMS-V5.7SP2后台代码执行漏洞复现/" title="DedeCMS-V5.7SP2后台代码执行漏洞复现"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200924203020.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-28</div><div class="title">DedeCMS-V5.7SP2后台代码执行漏洞复现</div></div></a></div><div><a href="/2020/12/16/MetInfo4.0任意用户密码修改漏洞复现/" title="MetInfo4.0任意用户密码修改漏洞复现"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201216131324.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-16</div><div class="title">MetInfo4.0任意用户密码修改漏洞复现</div></div></a></div><div><a href="/2020/12/12/Office漏洞复现CVE-2017-11882/" title="Office漏洞复现CVE-2017-11882"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201212153933.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-12</div><div class="title">Office漏洞复现CVE-2017-11882</div></div></a></div><div><a href="/2020/09/28/OpenSSH 漏洞复现用户名枚举漏洞(CVE-2018-15473)/" title="OpenSSH 漏洞复现用户名枚举漏洞(CVE-2018-15473)"><img class="cover" src="https://pic.3gbizhi.com/2020/0529/thumb_1680_0_20200529040047300.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-28</div><div class="title">OpenSSH 漏洞复现用户名枚举漏洞(CVE-2018-15473)</div></div></a></div><div><a href="/2020/12/15/OpenVAS的使用/" title="OpenVAS的使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200930093532.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-15</div><div class="title">OpenVAS的使用</div></div></a></div><div><a href="/2020/12/12/Weblogic SSRF漏洞复现/" title="Weblogic SSRF漏洞复现"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201212153933.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-12</div><div class="title">Weblogic SSRF漏洞复现</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">测试环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">漏洞复现</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

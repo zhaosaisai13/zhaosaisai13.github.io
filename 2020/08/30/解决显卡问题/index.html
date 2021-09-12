@@ -1,0 +1,165 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>解决显卡问题，kali启动死循环&quot; 5.921.261] nouveau 0000:01:00.0:&quot; | Hexo</title><meta name="keywords" content="问题的解决"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="我的笔记本是winodws10和kali双系统启动kali出现死循环5.921.261] nouveau 0000:01:00.0: fifo: SCHED_ERROR 06 ，就算重新装kali也是这个问题 ，根本就进不去系统,研究了多个深夜， 我花了很长时间琢磨摸索研究是什么问题，终于叫这个问题给解决了 摸索过程，win10独立显卡驱动安装不上就算是安装上了，也不能用，报43错误，官方最新驱动">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决显卡问题，kali启动死循环&quot; 5.921.261] nouveau 0000:01:00.0:&quot;">
+<meta property="og:url" content="http://example.com/2020/08/30/%E8%A7%A3%E5%86%B3%E6%98%BE%E5%8D%A1%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我的笔记本是winodws10和kali双系统启动kali出现死循环5.921.261] nouveau 0000:01:00.0: fifo: SCHED_ERROR 06 ，就算重新装kali也是这个问题 ，根本就进不去系统,研究了多个深夜， 我花了很长时间琢磨摸索研究是什么问题，终于叫这个问题给解决了 摸索过程，win10独立显卡驱动安装不上就算是安装上了，也不能用，报43错误，官方最新驱动">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.3gbizhi.com/2020/0625/20200625045341349.jpg">
+<meta property="article:published_time" content="2020-08-30T02:10:25.000Z">
+<meta property="article:modified_time" content="2021-08-07T00:18:12.037Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="问题的解决">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.3gbizhi.com/2020/0625/20200625045341349.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/08/30/%E8%A7%A3%E5%86%B3%E6%98%BE%E5%8D%A1%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '解决显卡问题，kali启动死循环" 5.921.261] nouveau 0000:01:00.0:"',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-07 08:18:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.3gbizhi.com/2020/0625/20200625045341349.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">解决显卡问题，kali启动死循环&quot; 5.921.261] nouveau 0000:01:00.0:&quot;</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-30T02:10:25.000Z" title="发表于 2020-08-30 10:10:25">2020-08-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-07T00:18:12.037Z" title="更新于 2021-08-07 08:18:12">2021-08-07</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3/">问题的解决</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="解决显卡问题，kali启动死循环&quot; 5.921.261] nouveau 0000:01:00.0:&quot;"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>我的笔记本是winodws10和kali双系统<br>启动kali出现死循环5.921.261] nouveau 0000:01:00.0: fifo: SCHED_ERROR 06 ，就算重新装kali也是这个问题 ，根本就进不去系统,研究了多个深夜，<br><img src="https://img-blog.csdnimg.cn/20200511105630754.jpeg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_emhhb19zZV9haS5naXRlZS5pbw==,size_20,color_006400,t_70"></p>
+<p>我花了很长时间琢磨摸索研究是什么问题，终于叫这个问题给解决了</p>
+<h2 id="摸索过程"><a href="#摸索过程" class="headerlink" title="摸索过程"></a>摸索过程</h2><p>，win10独立显卡驱动安装不上就算是安装上了，也不能用，报43错误，官方最新驱动以前的老驱动，重做系统，win10还是这样，我估计是独立显卡坏了，</p>
+<p>，启动kali无线<strong>5.921.261] nouveau 0000:01:00.0: fifo: SCHED_ERROR 06</strong> ，是显卡驱动nouveau  ，<br>然后我在百度上找了很多资料，<br>刚开始kali是好的，然后突然就出现了这个问题，有大神说可能所引导没有安装好，从新安装kali，也是没有解决这个问题，我想可能是我的镜像有问题，我计算了他的值和官方的值一样，说明镜像是没有问题的，找了很多方法，还是没有解决，已经到了深夜了，我最后看了一篇文字，<a target="_blank" rel="noopener" href="https://blog.csdn.net/yaorengjin0808/article/details/81613331">https://blog.csdn.net/yaorengjin0808/article/details/81613331</a> 用了这个方法发现可以进入系统了，应为kali2020系统GRUB内核参数有变动，下面是我研究了好长时间，</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li><p>进入系统，叫你选系统的时候按e键，进入编辑模式，</p>
+</li>
+<li><p>在这里添加这串字符<code>nouveau.modeset=0;</code>，splash在前面也可以<br><img src="https://img-blog.csdnimg.cn/20200511105947952.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_emhhb19zZV9haS5naXRlZS5pbw==,size_20,color_006400,t_70" alt="在这里插入图片描述"></p>
+<p>   俺F10值启动发现就可以进入系统了<br>   <img src="https://img-blog.csdnimg.cn/20200511110429756.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>添加GRUB添加内核参数<br>进入<code>sudo vim /etc/default/grub</code><br>添加这个<code>splash nouveau.modeset=0</code></p>
+</li>
+</ol>
+<p> <img src="https://img-blog.csdnimg.cn/20200511110632400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70"></p>
+<p>  命令<code>update-grub</code></p>
+<h2 id="解决这个问题参考了很多网上的资料，"><a href="#解决这个问题参考了很多网上的资料，" class="headerlink" title="解决这个问题参考了很多网上的资料，"></a>解决这个问题参考了很多网上的资料，</h2><h2 id="QQ2737977997"><a href="#QQ2737977997" class="headerlink" title="QQ2737977997"></a>QQ2737977997</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/08/30/%E8%A7%A3%E5%86%B3%E6%98%BE%E5%8D%A1%E9%97%AE%E9%A2%98/">http://example.com/2020/08/30/%E8%A7%A3%E5%86%B3%E6%98%BE%E5%8D%A1%E9%97%AE%E9%A2%98/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3/">问题的解决</a></div><div class="post_share"><div class="social-share" data-image="https://pic.3gbizhi.com/2020/0625/20200625045341349.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/02/2.%20%E6%A0%91%E8%8E%93%E6%B4%BE%E8%BF%9B%E8%A1%8C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><img class="prev-cover" src="https://pic.3gbizhi.com/2020/0709/20200709015947629.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">用树莓派做移动黑客</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/30/%E6%A0%91%E8%8E%93%E6%B4%BE%EF%BC%8C%E5%8F%8D%E5%90%91ssh%EF%BC%8C%E5%86%85%E7%BD%91%E9%80%9A%E8%BF%87%E5%85%AC%E7%BD%91%E8%AE%BF%E9%97%AE%E5%88%B0%E5%85%B6%E4%BB%96%E5%86%85%E7%BD%91/"><img class="next-cover" src="https://i.loli.net/2019/07/21/5d33d5dc1531213134.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">树莓派，反向ssh，内网通过公网访问到其他内网</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/25/Windowshf/" title="格式化数据恢复"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/image-20210125172657370.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">格式化数据恢复</div></div></a></div><div><a href="/2021/01/22/latte-dock/" title="latte-dock崩溃无法启动问题解决"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20201225170357977.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-22</div><div class="title">latte-dock崩溃无法启动问题解决</div></div></a></div><div><a href="/2021/01/25/linuxcor/" title="kali linux解决you are in emergency mode"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/IMG_20210125_153159.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">kali linux解决you are in emergency mode</div></div></a></div><div><a href="/2021/01/25/linuxswap/" title="kali 解决a start job is running for/dev/disk/bg-uuid"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/IMG_20210124_203234.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-25</div><div class="title">kali 解决a start job is running for/dev/disk/bg-uuid</div></div></a></div><div><a href="/2021/09/08/linuxyindao/" title="双系统linux启动出现error:unknown filesystem"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210315085326409.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-08</div><div class="title">双系统linux启动出现error:unknown filesystem</div></div></a></div><div><a href="/2020/12/24/linux系统用户apt下载安装输出dpkg 无法恢复的致命错误/" title="linux系统用户apt下载安装输出dpkg 无法恢复的致命错误"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20201225170357977.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-24</div><div class="title">linux系统用户apt下载安装输出dpkg 无法恢复的致命错误</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%B8%E7%B4%A2%E8%BF%87%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">摸索过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E5%8F%82%E8%80%83%E4%BA%86%E5%BE%88%E5%A4%9A%E7%BD%91%E4%B8%8A%E7%9A%84%E8%B5%84%E6%96%99%EF%BC%8C"><span class="toc-number">3.</span> <span class="toc-text">解决这个问题参考了很多网上的资料，</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QQ2737977997"><span class="toc-number">4.</span> <span class="toc-text">QQ2737977997</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

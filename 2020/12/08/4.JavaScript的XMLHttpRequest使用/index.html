@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>4.JavaScript的XMLHttpRequest使用 | Hexo</title><meta name="keywords" content="编程"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="什么是XMLHttpRequestXMLHttpRequest 对象用于同幕后服务器交换数据。这意味着可以更新网页的部分，而不需要重新加载整个页面。 XMLHttpRequest他是用http实现的通信 XMLHttpRequest的方法   方法 描述    open(&quot;请求类型&quot;,&quot;URL&quot;) 请求类型 GET 或 POST，url：文件位置   sen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.JavaScript的XMLHttpRequest使用">
+<meta property="og:url" content="http://example.com/2020/12/08/4.JavaScript%E7%9A%84XMLHttpRequest%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是XMLHttpRequestXMLHttpRequest 对象用于同幕后服务器交换数据。这意味着可以更新网页的部分，而不需要重新加载整个页面。 XMLHttpRequest他是用http实现的通信 XMLHttpRequest的方法   方法 描述    open(&quot;请求类型&quot;,&quot;URL&quot;) 请求类型 GET 或 POST，url：文件位置   sen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png">
+<meta property="article:published_time" content="2020-12-08T03:36:00.000Z">
+<meta property="article:modified_time" content="2021-05-01T23:57:08.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/12/08/4.JavaScript%E7%9A%84XMLHttpRequest%E4%BD%BF%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '4.JavaScript的XMLHttpRequest使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-02 07:57:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://gitee.com/wZass/zp/raw/master/img/20201123162658.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">4.JavaScript的XMLHttpRequest使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-08T03:36:00.000Z" title="发表于 2020-12-08 11:36:00">2020-12-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-01T23:57:08.327Z" title="更新于 2021-05-02 07:57:08">2021-05-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/JavaScript/">JavaScript</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="4.JavaScript的XMLHttpRequest使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="什么是XMLHttpRequest"><a href="#什么是XMLHttpRequest" class="headerlink" title="什么是XMLHttpRequest"></a>什么是XMLHttpRequest</h2><p>XMLHttpRequest 对象用于同幕后服务器交换数据。这意味着可以更新网页的部分，而不需要重新加载整个页面。</p>
+<p>XMLHttpRequest他是用http实现的通信</p>
+<h2 id="XMLHttpRequest的方法"><a href="#XMLHttpRequest的方法" class="headerlink" title="XMLHttpRequest的方法"></a>XMLHttpRequest的方法</h2><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="right">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>open(&quot;请求类型&quot;,&quot;URL&quot;)</code></td>
+<td align="right">请求类型 GET 或 POST，url：文件位置</td>
+</tr>
+<tr>
+<td align="center"><code>send()</code></td>
+<td align="right">将请求发送到服务器，用于 GET 请求</td>
+</tr>
+<tr>
+<td align="center"><code>send(&quot;数据内容&quot;)</code></td>
+<td align="right">将请求发送到服务器，用于 POST 请求</td>
+</tr>
+<tr>
+<td align="center"><code>abort()</code></td>
+<td align="right">取消当前请求</td>
+</tr>
+<tr>
+<td align="center"><code>getAllResponseHeaders()</code></td>
+<td align="right">返回头部信息</td>
+</tr>
+<tr>
+<td align="center"><code>getResponseHeader()</code></td>
+<td align="right">返回特定的头部信息</td>
+</tr>
+<tr>
+<td align="center"><code>setRequestHeader()</code></td>
+<td align="right">向要发送的报头添加标签/值对</td>
+</tr>
+</tbody></table>
+<h2 id="XMLHttpRequest的属性"><a href="#XMLHttpRequest的属性" class="headerlink" title="XMLHttpRequest的属性"></a>XMLHttpRequest的属性</h2><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="right">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>readyState</code></td>
+<td align="right">0：请求未初始化1：服务器连接已建立2：请求已收到3：正在处理请求4：请求已完成且响应已就绪</td>
+</tr>
+<tr>
+<td align="center"><code>responseText</code></td>
+<td align="right">返回响应数据以字符串格式显示</td>
+</tr>
+<tr>
+<td align="center"><code>responseXML</code></td>
+<td align="right">以 XML 数据返回响应数据</td>
+</tr>
+<tr>
+<td align="center"><code>status</code></td>
+<td align="right">返回请求的状态号 200: “OK”，403: “Forbidden” ，404: “Not Found”</td>
+</tr>
+<tr>
+<td align="center"><code>statusText</code></td>
+<td align="right">返回状态文本（比如 “OK” 或 “Not Found”）</td>
+</tr>
+</tbody></table>
+<h2 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h2><p><strong>下面我用到的</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="right">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>open(&quot;请求类型&quot;,&quot;URL&quot;)</code></td>
+<td align="right">请求类型 GET 或 POST，url：文件位置</td>
+</tr>
+<tr>
+<td align="center"><code>send()</code></td>
+<td align="right">将请求发送到服务器，用于 GET 请求</td>
+</tr>
+<tr>
+<td align="center"><code>send(string)</code></td>
+<td align="right">将请求发送到服务器，用于 POST 请求</td>
+</tr>
+<tr>
+<td align="center"><code>setRequestHeader()</code></td>
+<td align="right">向要发送的报头添加键名/值</td>
+</tr>
+</tbody></table>
+<h3 id="创建XMLHttpRequest对象"><a href="#创建XMLHttpRequest对象" class="headerlink" title="创建XMLHttpRequest对象"></a>创建XMLHttpRequest对象</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> XMLHttpRequest();</span><br></pre></td></tr></table></figure>
+<h3 id="创建请求行"><a href="#创建请求行" class="headerlink" title="创建请求行"></a>创建请求行</h3><p>创建请求行用的方法是<code>open()</code></p>
+<p>第一个猜数请求类型 GET 或 POST<br>第二个猜数url：文件位置 </p>
+<h4 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h4><p>如果要添加参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;a.php?username=admin&amp;password=admin&quot;</span>);  </span><br></pre></td></tr></table></figure>
+<h4 id="POST请求"><a href="#POST请求" class="headerlink" title="POST请求"></a>POST请求</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.open(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;a.php&quot;</span>);  </span><br></pre></td></tr></table></figure>
+<h3 id="添加请求头"><a href="#添加请求头" class="headerlink" title="添加请求头"></a>添加请求头</h3><p>向要发送的报头用到<code>setRequestHeader()</code>方法<br>里面可以随便改<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201207084205.png"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.setRequestHeader(<span class="string">&quot;头键名&quot;</span>,<span class="string">&quot;头值&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>实咧</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建XMLHttpRequest对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> a = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建请求行</span></span></span><br><span class="line"><span class="javascript">	a.open(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;a.php&quot;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//添加请求头</span></span></span><br><span class="line"><span class="javascript">	a.setRequestHeader(<span class="string">&quot;aaaaa&quot;</span>,<span class="string">&quot;bbbbbb&quot;</span>);</span></span><br><span class="line"><span class="javascript">	<span class="comment">//将请求发送到服务器</span></span></span><br><span class="line"><span class="javascript">	a.send();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201207084413.png"></p>
+<h3 id="将请求发送到服务器"><a href="#将请求发送到服务器" class="headerlink" title="将请求发送到服务器"></a>将请求发送到服务器</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.send(); <span class="comment">//里面没有参数发送的是GET请求</span></span><br><span class="line">a.send(<span class="string">&quot;username=admin&amp;password=admin&quot;</span>); <span class="comment">//这个就是POST的数据内容</span></span><br></pre></td></tr></table></figure>
+<h3 id="实咧测试"><a href="#实咧测试" class="headerlink" title="实咧测试"></a>实咧测试</h3><p>代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建XMLHttpRequest对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> a = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建请求行</span></span></span><br><span class="line"><span class="javascript">	a.open(<span class="string">&quot;POST&quot;</span>,<span class="string">&quot;a.php&quot;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//将请求发送到服务器</span></span></span><br><span class="line"><span class="javascript">	a.send();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看见里面有username=admin&amp;password=admin<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201206193450.png"></p>
+<h2 id="响应接受"><a href="#响应接受" class="headerlink" title="响应接受"></a>响应接受</h2><p>会用到<code>responseText</code>属性他是返回响应数据以字符串格式显示</p>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="right">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>readyState</code></td>
+<td align="right">0：请求未初始化1：服务器连接已建立2：请求已收到3：正在处理请求4：请求已完成且响应已就绪</td>
+</tr>
+</tbody></table>
+<h3 id="不用属性接受返回的值"><a href="#不用属性接受返回的值" class="headerlink" title="不用属性接受返回的值"></a>不用属性接受返回的值</h3><p>如果不用任何东西他会在响应的数据内容里面，不会在页面上<br><strong>下面就看一下他会在数据内容里面</strong><br>实咧<br>a.php文件代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;你好啊&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>a.html文件代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建XMLHttpRequest对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> a = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建请求行</span></span></span><br><span class="line"><span class="javascript">	a.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;a.php&quot;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//将请求发送到服务器</span></span></span><br><span class="line"><span class="javascript">	a.send();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201207092604.png"></p>
+<h3 id="接受他返回的值"><a href="#接受他返回的值" class="headerlink" title="接受他返回的值"></a>接受他返回的值</h3><p>会用到<code>responseText</code>属性他是返回响应数据以字符串格式显示<br>实咧</p>
+<p>a.php文件代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;你好啊&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>a.html文件代码<br>下面用到<code>onload</code>事件当页面加载完蛋时候触发</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建XMLHttpRequest对象</span></span></span><br><span class="line"><span class="javascript">	<span class="keyword">var</span> a = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//创建请求行</span></span></span><br><span class="line"><span class="javascript">	a.open(<span class="string">&quot;GET&quot;</span>,<span class="string">&quot;a.php&quot;</span>);</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//页面加载完触发这个</span></span></span><br><span class="line"><span class="javascript">	a.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="comment">//responseText属性他是返回响应数据以字符串格式显示</span></span></span><br><span class="line"><span class="javascript">		alert(a.responseText);</span></span><br><span class="line"><span class="javascript">	&#125;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="comment">//将请求发送到服务器</span></span></span><br><span class="line"><span class="javascript">	a.send();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201207093759.png"></p>
+<h2 id="属性的使用"><a href="#属性的使用" class="headerlink" title="属性的使用"></a>属性的使用</h2><table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="right">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>readyState</code></td>
+<td align="right">0：请求未初始化1：服务器连接已建立2：请求已收到3：正在处理请求4：请求已完成且响应已就绪</td>
+</tr>
+<tr>
+<td align="center"><code>open(&quot;请求类型&quot;,&quot;URL&quot;)</code></td>
+<td align="right">请求类型 GET 或 POST，url：文件位置</td>
+</tr>
+<tr>
+<td align="center"><code>send()</code></td>
+<td align="right">将请求发送到服务器，用于 GET 请求</td>
+</tr>
+<tr>
+<td align="center"><code>send(string)</code></td>
+<td align="right">将请求发送到服务器，用于 POST 请求</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/12/08/4.JavaScript%E7%9A%84XMLHttpRequest%E4%BD%BF%E7%94%A8/">http://example.com/2020/12/08/4.JavaScript%E7%9A%84XMLHttpRequest%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/12/10/%E9%98%BF%E9%87%8C%E4%BA%91docker%E5%AE%89%E8%A3%85kali%20Linux/"><img class="prev-cover" src="https://gitee.com/wZass/zp/raw/master/img/kali-2020.4-release-1-600x400.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">阿里云docker安装kali Linux</div></div></a></div><div class="next-post pull-right"><a href="/2020/12/04/3.JavaScriptDOM%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"><img class="next-cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">3.JavaScript的DOM使用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/10/17/1.php面向对象/" title="1.php面向对象基础"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-17</div><div class="title">1.php面向对象基础</div></div></a></div><div><a href="/2020/12/04/3.JavaScriptDOM基本使用/" title="3.JavaScript的DOM使用"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-04</div><div class="title">3.JavaScript的DOM使用</div></div></a></div><div><a href="/2020/11/26/HTML表单/" title="HTML表单"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201126082632.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-26</div><div class="title">HTML表单</div></div></a></div><div><a href="/2021/04/20/pikachu/" title="Docker安装pikachu靶场搭建"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-20</div><div class="title">Docker安装pikachu靶场搭建</div></div></a></div><div><a href="/2021/06/09/pythonddq/" title="python迭代器"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/image-20210122115323618.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-09</div><div class="title">python迭代器</div></div></a></div><div><a href="/2020/11/23/1.JavaScript/" title="1.JavaScript基础"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201123162658.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-23</div><div class="title">1.JavaScript基础</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFXMLHttpRequest"><span class="toc-number">1.</span> <span class="toc-text">什么是XMLHttpRequest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XMLHttpRequest%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">XMLHttpRequest的方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XMLHttpRequest%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-number">3.</span> <span class="toc-text">XMLHttpRequest的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-number">4.</span> <span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAXMLHttpRequest%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.1.</span> <span class="toc-text">创建XMLHttpRequest对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="toc-number">4.2.</span> <span class="toc-text">创建请求行</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GET%E8%AF%B7%E6%B1%82"><span class="toc-number">4.2.1.</span> <span class="toc-text">GET请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#POST%E8%AF%B7%E6%B1%82"><span class="toc-number">4.2.2.</span> <span class="toc-text">POST请求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">4.3.</span> <span class="toc-text">添加请求头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E8%AF%B7%E6%B1%82%E5%8F%91%E9%80%81%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">将请求发送到服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E5%92%A7%E6%B5%8B%E8%AF%95"><span class="toc-number">4.5.</span> <span class="toc-text">实咧测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%8E%A5%E5%8F%97"><span class="toc-number">5.</span> <span class="toc-text">响应接受</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E7%94%A8%E5%B1%9E%E6%80%A7%E6%8E%A5%E5%8F%97%E8%BF%94%E5%9B%9E%E7%9A%84%E5%80%BC"><span class="toc-number">5.1.</span> <span class="toc-text">不用属性接受返回的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%97%E4%BB%96%E8%BF%94%E5%9B%9E%E7%9A%84%E5%80%BC"><span class="toc-number">5.2.</span> <span class="toc-text">接受他返回的值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">属性的使用</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

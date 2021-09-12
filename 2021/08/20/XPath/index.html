@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>解析库XPath的语法 | Hexo</title><meta name="keywords" content="Python爬虫"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习总结     XPath( XML Path Language)，他是在html和xml中查找信息的语言,他是通过标签属性来查询     谷歌安装XPath插件和说明名称XPath Helper     按Shift+鼠标上下可以调整位置      XPath语法   表达式 描述    &#x2F;&#x2F; 查询的父标签，比如&#x2F;&#x2F;div就是查询这个页面的全部是div的标签   &#x2F; 查询的子标签，比如&#x2F;&#x2F;di">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解析库XPath的语法">
+<meta property="og:url" content="http://example.com/2021/08/20/XPath/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习总结     XPath( XML Path Language)，他是在html和xml中查找信息的语言,他是通过标签属性来查询     谷歌安装XPath插件和说明名称XPath Helper     按Shift+鼠标上下可以调整位置      XPath语法   表达式 描述    &#x2F;&#x2F; 查询的父标签，比如&#x2F;&#x2F;div就是查询这个页面的全部是div的标签   &#x2F; 查询的子标签，比如&#x2F;&#x2F;di">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png">
+<meta property="article:published_time" content="2021-08-20T07:10:30.000Z">
+<meta property="article:modified_time" content="2021-08-25T04:12:52.549Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/20/XPath/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '解析库XPath的语法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-25 12:12:52'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">143</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">38</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">59</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">解析库XPath的语法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-08-20T07:10:30.000Z" title="发表于 2021-08-20 15:10:30">2021-08-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-08-25T04:12:52.549Z" title="更新于 2021-08-25 12:12:52">2021-08-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python%E7%88%AC%E8%99%AB/">Python爬虫</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="解析库XPath的语法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><div class="note info simple"><p>学习总结</p>
+</div>
+
+
+
+<div class="note blue icon simple"><i class="note-icon fas fa-bullhorn"></i><p>XPath( XML Path Language)，他是在html和xml中查找信息的语言,他是通过标签属性来查询</p>
+</div>
+
+
+
+<h1 id="谷歌安装XPath插件和说明"><a href="#谷歌安装XPath插件和说明" class="headerlink" title="谷歌安装XPath插件和说明"></a>谷歌安装XPath插件和说明</h1><p>名称<code>XPath Helper</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820104511190.png" alt="image-20210820104511190"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820104544136.png" alt="image-20210820104544136"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820104555070.png" alt="image-20210820104555070"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820105845926.png" alt="image-20210820105845926"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>按Shift+鼠标上下可以调整位置</p>
+</div> 
+
+
+
+<h1 id="XPath语法"><a href="#XPath语法" class="headerlink" title="XPath语法"></a>XPath语法</h1><table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">//</td>
+<td>查询的父标签，比如<code>//div</code>就是查询这个页面的全部是div的标签</td>
+</tr>
+<tr>
+<td align="left">/</td>
+<td>查询的子标签，比如<code>//div/span</code>就会叫<code>div</code>标签下的<code>span</code>子标签</td>
+</tr>
+<tr>
+<td align="left">[@xxx]</td>
+<td>指定标签里面属性来查询，比如<code>//div[@class]</code>就是查询<code>div</code>标签里面带<code>class</code>属性的</td>
+</tr>
+<tr>
+<td align="left">/@xxx</td>
+<td>指定查询的属性内容，比如<code>//a/img/@src</code> 意思就是要<code>a</code>标签下的<code>img</code>里面的<code>src</code>属性的内容，可以用来提取照片</td>
+</tr>
+<tr>
+<td align="left">.</td>
+<td>当前节点</td>
+</tr>
+<tr>
+<td align="left">..</td>
+<td>选取当前节点的父节点</td>
+</tr>
+</tbody></table>
+<h2 id="查询的父标签"><a href="#查询的父标签" class="headerlink" title="//查询的父标签"></a>//查询的父标签</h2><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我想查看他的上映日期，他的标签是<code>span</code></p>
+</div> 
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820143934513.png" alt="image-20210820143934513"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>那我语法就可以用<code>//</code>查询全部的的<code>span</code>标签里面的内容，</p>
+</div> 
+
+<p>可以看见他会叫全部的<code>span</code>标签的全部的数据都显示出来了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820144247618.png" alt="image-20210820144247618"></p>
+<h2 id="查询的子标签"><a href="#查询的子标签" class="headerlink" title="/查询的子标签"></a>/查询的子标签</h2><p>上面的<code>//</code>他是输出的是全部</p>
+<p>我们就可以用<code>/</code>指定输出里面的子标签</p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>我们可以他的父标签是<code>div</code>子标签是<code>span</code></p>
+</div> 
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820145652208.png" alt="image-20210820145652208"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>那我们就可以用<code>//</code>指定父标签<code>/</code>指定子标签，可以看见下面的查询的结果就少了</p>
+</div> 
+
+<p>语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//要指定的父标签/要指定的子标签</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820150113015.png" alt="image-20210820150113015"></p>
+<h2 id="xxx-指定查询属性"><a href="#xxx-指定查询属性" class="headerlink" title="[@xxx]指定查询属性"></a>[@xxx]指定查询属性</h2><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>上面我们看见<code>//</code>指定父标签<code>/</code>指定子标签查询的结果还是有点多我们可以通过<code>[@xxx]</code>指定查询标签里面的属性来查询</p>
+<p>可以看下面他有一个<code>property=&quot;v:initialReleaseDate&quot;</code>属性我们就可以通过这个属性来查询了</p>
+</div> 
+
+<p>语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[@要查询的属性名]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820152347021.png" alt="image-20210820152347021"></p>
+<p>可以看见这样就搜索出来时间了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;]</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820152445231.png" alt="image-20210820152445231"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>父标签也是可以指定的</p>
+</div> 
+
+<p>比如想要<code>豆瓣成员常用的标签 · · · · · ·</code>的标签，我们就可以下面这样写</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820153520090.png" alt="image-20210820153520090"></p>
+<p>我们就可以这样写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class=&quot;tags-body&quot;]/a  # div是父标签 class=&quot;tags-body&quot;是父标签的属性  a是子标签</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820153917538.png" alt="image-20210820153917538"></p>
+<h2 id="指定查询的属性内容"><a href="#指定查询的属性内容" class="headerlink" title="@指定查询的属性内容"></a>@指定查询的属性内容</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`//a[class=&quot;nbgnbg&quot;]/img/@src`  # 意思就是要`a`标签里面有`class=&quot;nbgnbg&quot;`属性下的`img`里面的`src`属性的内容</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210821185317596.png" alt="image-20210821185317596"></p>
+<h1 id="XPath表达式"><a href="#XPath表达式" class="headerlink" title="XPath表达式"></a>XPath表达式</h1><p>更详细的<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/xpath/xpath_operators.asp">https://www.w3school.com.cn/xpath/xpath_operators.asp</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[n]</td>
+<td align="left">指定查询我想要的，他这个和列表是一样的比如xxxx[1]，这个是从1开始的不是0</td>
+</tr>
+<tr>
+<td align="left">[last()]</td>
+<td align="left">指定最后一个，一个你查询的结果太多我就想要最后一个就可以用<code>last()</code></td>
+</tr>
+<tr>
+<td align="left">[position()&lt;n]</td>
+<td align="left">指定前面<code>n</code>个结果，比如<code>[position()&lt;4]</code>就是指定输出前面<code>3</code>个</td>
+</tr>
+<tr>
+<td align="left">and</td>
+<td align="left">与，比如有一个点不成立就没有显示</td>
+</tr>
+<tr>
+<td align="left">or</td>
+<td align="left">或，只有有一个成立的就显示那个成立的</td>
+</tr>
+<tr>
+<td align="left">|</td>
+<td align="left">这个|就是和或者是或，比如`//a</td>
+</tr>
+<tr>
+<td align="left">*</td>
+<td align="left">* 代表匹配所有节点</td>
+</tr>
+</tbody></table>
+<h2 id="指定查询我想要的"><a href="#指定查询我想要的" class="headerlink" title="[]指定查询我想要的"></a>[]指定查询我想要的</h2><div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>可以看见的时间有好几个但是我只想要一个怎么办，我们就可以用<code>[]</code>来指定了,这个是从1开始的不是0</p>
+</div> 
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820154434322.png" alt="image-20210820154434322"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我只想要第一个，我们就可以下面这样写</p>
+</div> 
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;][1]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820154632239.png" alt="image-20210820154632239"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>比如我只想要第三个，我们就可以下面这样写</p>
+</div> 
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;][3]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820154746770.png" alt="image-20210820154746770"></p>
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>我们也可以指定父目录比如<code>//div[3]/span[@property=&quot;v:initialReleaseDate&quot;]</code>我就不演示了</p>
+</div> 
+
+<div class="note red icon simple"><i class="note-icon fas fa-fan"></i><p>他还可以用多个<code>[]</code></p>
+</div> 
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210821183122580.png" alt="image-20210821183122580"></p>
+<h2 id="last-指定最后一个"><a href="#last-指定最后一个" class="headerlink" title="[last()]指定最后一个"></a>[last()]指定最后一个</h2><div class="note info simple"><p><code>[last()]</code>  指定最后一个，一个你查询的结果太多我就想要最后一个就可以用<code>last()</code></p>
+</div>
+
+<p>下面我只想要最后一个就可以用<code>last()</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820155509253.png" alt="image-20210820155509253"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class=&quot;tags-body&quot;]/a[last()]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820155559049.png" alt="image-20210820155559049"></p>
+<h2 id="position-lt-n-指定前面n个结果"><a href="#position-lt-n-指定前面n个结果" class="headerlink" title="[position()&lt;n]  指定前面n个结果"></a>[position()&lt;n]  指定前面<code>n</code>个结果</h2><div class="note info simple"><p>[position()&lt;n]  指定前面<code>n</code>个结果，比如<code>[position()&lt;4]</code>就是指定输出前面<code>3</code>个</p>
+</div>
+
+
+
+<p>比如下面我只想要前面三个结果就可以用[position()&lt;n]  指定前面<code>n</code>个结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class=&quot;tags-body&quot;]/a</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820160037782.png" alt="image-20210820160037782"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div[@class=&quot;tags-body&quot;]/a[position()&lt;4]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210820160130203.png" alt="image-20210820160130203"></p>
+<h2 id="and与"><a href="#and与" class="headerlink" title="and与"></a>and与</h2><div class="note info simple"><p>and  与，比如有一个点不成立就没有显示</p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210825120451131.png" alt="image-20210825120451131"></p>
+<p>如果我错一个他就不显示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210825120521450.png" alt="image-20210825120521450"></p>
+<h2 id="or或"><a href="#or或" class="headerlink" title="or或"></a>or或</h2><div class="note info simple"><p>or  或，只有有一个成立的就显示那个成立的</p>
+</div>
+
+<p>俩个都正确都显示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210825120642286.png" alt="image-20210825120642286"></p>
+<p>如果错一个他也会显示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210825120728818.png" alt="image-20210825120728818"></p>
+<h2 id="和或者是与"><a href="#和或者是与" class="headerlink" title="|和或者是与"></a>|和或者是与</h2><div class="note info simple"><p>这个|就是和或者是或，比如<code>//a | //b</code>意思是如果他俩都有都匹配，如果只有一个他也会匹配那个有点</p>
+</div>
+
+<p>测试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;] </span><br></pre></td></tr></table></figure>
+
+<p>我没有添加<code>|</code>他会匹配3个</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210821181852860.png" alt="image-20210821181852860"></p>
+<div class="note info simple"><p>如果我还想在匹配一个那我们就可以添加<code>|</code>来实现了</p>
+</div>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/span[@property=&quot;v:initialReleaseDate&quot;] | //div[@class=&quot;tags-body&quot;]/a</span><br></pre></td></tr></table></figure>
+
+<p>可以看见结果是11个</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210821182029158.png" alt="image-20210821182029158"></p>
+<div class="note info simple"><p>如果他其中一个是有问题的他也会匹配那个没有问题的这个就是或</p>
+</div>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//div/spa| //div[@class=&quot;tags-body&quot;]/a</span><br></pre></td></tr></table></figure>
+<p>下面这个前面我故意写错可以看见他会匹配后面的</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210821182241449.png" alt="image-20210821182241449"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/20/XPath/">http://example.com/2021/08/20/XPath/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E7%88%AC%E8%99%AB/">Python爬虫</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/24/lxml/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">lxml解析库用XPath语言提取数据</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/18/jiaoben/"><img class="next-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">脚本编写实现简单登录爆破</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/01/18/Python爬虫2/" title="Python爬虫2.基础"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-18</div><div class="title">Python爬虫2.基础</div></div></a></div><div><a href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-01</div><div class="title">解析库BeautifulSoup4</div></div></a></div><div><a href="/2021/01/15/Python爬虫/" title="Python爬虫1.环境"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-15</div><div class="title">Python爬虫1.环境</div></div></a></div><div><a href="/2021/08/24/lxml/" title="lxml解析库用XPath语言提取数据"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="title">lxml解析库用XPath语言提取数据</div></div></a></div><div><a href="/2021/03/04/python爬虫4/" title="Python爬虫4requests库使用"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210115210536259.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-04</div><div class="title">Python爬虫4requests库使用</div></div></a></div><div><a href="/2021/08/26/wyy/" title="全站视频解析技术"><img class="cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/github-universe.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-26</div><div class="title">全站视频解析技术</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%B7%E6%AD%8C%E5%AE%89%E8%A3%85XPath%E6%8F%92%E4%BB%B6%E5%92%8C%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">谷歌安装XPath插件和说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XPath%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">XPath语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%88%B6%E6%A0%87%E7%AD%BE"><span class="toc-number">2.1.</span> <span class="toc-text">&#x2F;&#x2F;查询的父标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%AD%90%E6%A0%87%E7%AD%BE"><span class="toc-number">2.2.</span> <span class="toc-text">&#x2F;查询的子标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxx-%E6%8C%87%E5%AE%9A%E6%9F%A5%E8%AF%A2%E5%B1%9E%E6%80%A7"><span class="toc-number">2.3.</span> <span class="toc-text">[@xxx]指定查询属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%B1%9E%E6%80%A7%E5%86%85%E5%AE%B9"><span class="toc-number">2.4.</span> <span class="toc-text">@指定查询的属性内容</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#XPath%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">XPath表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%9F%A5%E8%AF%A2%E6%88%91%E6%83%B3%E8%A6%81%E7%9A%84"><span class="toc-number">3.1.</span> <span class="toc-text">[]指定查询我想要的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#last-%E6%8C%87%E5%AE%9A%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA"><span class="toc-number">3.2.</span> <span class="toc-text">[last()]指定最后一个</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#position-lt-n-%E6%8C%87%E5%AE%9A%E5%89%8D%E9%9D%A2n%E4%B8%AA%E7%BB%93%E6%9E%9C"><span class="toc-number">3.3.</span> <span class="toc-text">[position()&lt;n]  指定前面n个结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#and%E4%B8%8E"><span class="toc-number">3.4.</span> <span class="toc-text">and与</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#or%E6%88%96"><span class="toc-number">3.5.</span> <span class="toc-text">or或</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%92%8C%E6%88%96%E8%80%85%E6%98%AF%E4%B8%8E"><span class="toc-number">3.6.</span> <span class="toc-text">|和或者是与</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
