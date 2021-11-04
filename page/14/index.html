@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-10-06 12:26:13'
+  postUpdate: '2021-11-04 10:29:57'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -147,112 +147,205 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">147</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="SSL中间人攻击">     <img class="post_bg" src="http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SSL中间人攻击"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="SSL中间人攻击">SSL中间人攻击</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-10T02:38:30.000Z" title="发表于 2020-03-10 10:38:30">2020-03-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></span></div><div class="content">任务104：SSL、TLS中间人攻击
-下面是攻击原理
-开 始 实 验下面开始演示
-1.先利用openssl先生成伪造证书
-生成证书 需要两步
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">160</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/08/09/2.%20%E5%86%8D%E5%AD%A6Mestasploit%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="2. Mestasploit 基本使用">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0821/thumb_1680_0_20200821113456781.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2. Mestasploit 基本使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/08/09/2.%20%E5%86%8D%E5%AD%A6Mestasploit%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="2. Mestasploit 基本使用">2. Mestasploit 基本使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-09T03:01:25.000Z" title="发表于 2020-08-09 11:01:25">2020-08-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/Metasploit/">Metasploit</a></span></div><div class="content">苑房弘课程我的学习笔记进行更新Mestasploit命令：apt update; apt install metasploit-framework
 
-先利用openssl生成一个证书的私钥
-1openssl genrsa -out ca.key 2048   		
-后面2048位是长度还有4096位        生成出来的文件
-1.2. 在用上面私钥生成证书
-1openssl req -new -x509 -days 200 -key ca.key -out ca.crt	
--x509是证书格式        200是天这个证书有效时间  ca.key是要用到的私钥这个密钥就是上面生成出来的       ca.crt生成的证书需要叫你填写
-2.启动路由功能
-启动后他会将客户端发来的数据包的地址进行转发，可以当作一个路由器使用不然ARP欺骗后客户端就不能利用我的电脑访问服务器了1sysctl -w net.ipv4.ip_forward=1
+Mestasploit启动 安静的启动-q 指定文件启动-r 查看版本信息-v
 
-上面意思是叫这个net.ipv4.ip_forward参数设置成1
-3. 用Iptables端口转发规则和sslscan工具进行中间人攻击
+常用的参数
+查看参数help查看参数或者输入？也可以但是？不能Tab补齐了-h查看参数的使用如果你那个参数忘了怎么使用的了可以用 参数名 -h
+banner(小贴士)命令
+color(颜色修改)
+connect(和nc一样)
+show命令 请一定认真看。如果单纯的输入show，那么就会显示出所有的payload，利用模块，post模块，插件等等。但是一般我们都不这么使用 下面的模块在这个有介绍https://blog.csdn.net/qq_41860876/article/details/105383802 rank：表示好用级别：normal（正常），excellent（优秀），good（良好），average（平均）
 
+5.1  payloads（攻击载荷模块） payloads 模块:命名规则: 操作系统/类型/名称  5.2 auxiliary （ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/08/09/1.Metasploit%E4%BB%8B%E7%BB%8D%E5%92%8C%E6%A8%A1%E5%9D%97/" title="1.Metasploit介绍和模块">     <img class="post_bg" src="https://pic.3gbizhi.com/2019/0927/thumb_1680_0_20190927040015427.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.Metasploit介绍和模块"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/08/09/1.Metasploit%E4%BB%8B%E7%BB%8D%E5%92%8C%E6%A8%A1%E5%9D%97/" title="1.Metasploit介绍和模块">1.Metasploit介绍和模块</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-09T02:01:25.000Z" title="发表于 2020-08-09 10:01:25">2020-08-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/Metasploit/">Metasploit</a></span></div><div class="content">苑房弘课程学习msf的笔记
+Metasploit是一个非常强大的渗透测试框架
 
-为什么 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/01/20/http%E5%8D%8F%E8%AE%AE/" title="http协议">     <img class="post_bg" src="https://www.outsourcesem.com/blog/img/http%20vs%20https/http-vs-https.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="http协议"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/20/http%E5%8D%8F%E8%AE%AE/" title="http协议">http协议</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-20T02:38:30.000Z" title="发表于 2020-01-20 10:38:30">2020-01-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a></span></div><div class="content">http协议和https协议的区别
-https
-https是加密传输的黑客可以进行嗅探不到明文(黑客也可以用伪造密钥进行嗅探) 
+2003年有HD Moore编写的，2007 年用 ruby 语言编写
+框架继承了渗透测试标准（PETS）标准
+一定程度上统一了渗透测试研究的工作环境
+新的攻击代码可以比较容易的加入框架
 
 
-http
-他是明文传输的可以轻松的嗅探的密码
+开发活跃版本更新频繁
+早期版本基于社区力量维护，被 Rapid 7 收购后大枣出其商业版本产品
+目前分化为四个版本，社区版依然十分活跃
+HD More说：为 Metasploit 写书是种自虐
 
 
 
-http请求http请求有：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成
-常见的http报文
+2009年10月21号，漏洞管理解决公司Rapid7收购Metasploit项目
+Metasploit 有四个版本，默认kali linux 集成的是Metasploit  Framework版本
+开始Metasploit  Framework简称msf下面我们就说Metasploit  Framework这个来介绍
 
-常见的请求报文123456789GET / HTTP/1.1Host: localhost:4000User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2Accept-Encoding: gzip, deflateConnection: closeCookie: crisp ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/01/20/kali2020%E6%95%99%E7%A8%8BBurpsuite%E7%A0%B4%E8%A7%A3%E6%B1%89%E5%8C%96%E7%89%88%E5%AE%89%E8%A3%85/" title="kali2020教程Burpsuite破解汉化版安装">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0827/20200827064249298.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali2020教程Burpsuite破解汉化版安装"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/20/kali2020%E6%95%99%E7%A8%8BBurpsuite%E7%A0%B4%E8%A7%A3%E6%B1%89%E5%8C%96%E7%89%88%E5%AE%89%E8%A3%85/" title="kali2020教程Burpsuite破解汉化版安装">kali2020教程Burpsuite破解汉化版安装</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-20T02:38:30.000Z" title="发表于 2020-01-20 10:38:30">2020-01-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/Burpsuite/">Burpsuite</a></span></div><div class="content">BurpSuite废话不多说正题
-
-下载下面是我提供的下载版本和工具
-
-[Burp Suite2.0.1.1版]https://pan.baidu.com/s/1EyD0kYTE2K5EH46sYB6e3A提取码：t3hp破解文件下载地址（https://wwa.lanzous.com/isWu2gs6n6j）[汉化包]https://pan.baidu.com/s/1wAHXJwADA7cw3pf_zIKDJQ提取码：b8u0[java ]https://pan.baidu.com/s/1Yo2PlNTAcr-s678cpkiFHw提取码：6346
-
-进行配置叫下载好的保存到一个目录里然后解压出来叫下载好的jdk-8u161-linux-x64.tar.gz命令
-
-1tar -xzvf jdk-8u161-linux-x64.tar.gz
-解压好进行配置运行下面的代码1
-1export JAVA_HOME=/root/桌面/jdk1.8/
-2
-1export JRE_HOME=JAVAHOME/jreexportCLASSPATH=.:&#123;JAVA_HOME&#125;/li ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/30/5.%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1097%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%BE%E5%88%B0%E6%BC%8F%E6%B4%9E%E5%90%8E%E9%98%B6%E6%AE%B5/" title="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/30/5.%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1097%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%BE%E5%88%B0%E6%BC%8F%E6%B4%9E%E5%90%8E%E9%98%B6%E6%AE%B5/" title="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段">5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-29T16:50:25.000Z" title="发表于 2019-11-30 00:50:25">2019-11-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">指纹参数12345678910111213141516171819202122232425262728293031323334353637383940414243ngerprint:    -f, --fingerprint   Perform an extensive DBMS version fingerprint  Enumeration:    These options can be used to enumerate the back-end database    management system information, structure and data contained in the    tables. Moreover you can run your own SQL statements    -a, --all           Retrieve everything    -b, --banner        Retrieve DBMS banner    --current-user      Retrieve DBMS current use ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/11/24/4.%E4%BB%BB%E5%8A%A1096%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87WAF%20,%20IPS/" title="4.任务096：SQLMAP自动注入绕过WAF , IPS">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4.任务096：SQLMAP自动注入绕过WAF , IPS"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/24/4.%E4%BB%BB%E5%8A%A1096%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87WAF%20,%20IPS/" title="4.任务096：SQLMAP自动注入绕过WAF , IPS">4.任务096：SQLMAP自动注入绕过WAF , IPS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-24T04:34:25.000Z" title="发表于 2019-11-24 12:34:25">2019-11-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">注射参数1234567891011121314151617181920Injection:These options can be used to specify which parameters to test for,provide custom injection payloads and optional tampering scripts-p TESTPARAMETER    Testable parameter(s)--skip=SKIP         Skip testing for given parameter(s)--skip-static       Skip testing parameters that not appear to be dynamic--param-exclude=..  Regexp to exclude parameters from testing (e.g. &quot;ses&quot;)--param-filter=P..  Select testable parameter(s) by place (e.g. &quot;PO ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/19/3%20sqlma%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20%20%20%E4%BB%BB%E5%8A%A1095pSQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%AB%E6%8F%8F%E6%97%B6%E9%97%B4%E5%92%8C%E4%BC%98%E5%8C%96/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/19/3%20sqlma%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20%20%20%E4%BB%BB%E5%8A%A1095pSQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%AB%E6%8F%8F%E6%97%B6%E9%97%B4%E5%92%8C%E4%BC%98%E5%8C%96/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化">3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-18T16:04:25.000Z" title="发表于 2019-11-19 00:04:25">2019-11-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">任务095：SQLMAP自动注入（二）-REQUEST和SQLMAP自动注入（三）-OPTIMIZATION
-设置时间参数设置扫描时间用sqlmap去扫描别人的网站会发送大量的请求可能目标服务器会发现你给你屏蔽掉，我们可以设置发送包的时间
-1--delay 要指定的时间				时间是秒
-设置超时时间1--timeout  要设置的时间          默认为30秒，30要没有响就超时了
-尝试连接1--retries  要设置的次数	比如超时时间设置30妙那么就是90妙
-请求错误如果你发送大量的错误请求就会被防护机制被注销掉可以用–safe-url每请求错误几次就放送正常的请求
-1--safe-url  要设置几次
-
-
-过滤日志里的没有用的地址参数 --scope1sqlmap -l 日志文件  --scope=&quot;(www)?\.target\.(com|net|org)“
-解释用日志文件扫描目标，日志文件可以有其他的不想扫描的地址可以用--scope进行过滤--scope代码里的意思，只扫描有www.target.com或cet或org
-1sqlmap -l 日志文件 -- ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/11/08/2%20%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20SQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E5%A4%B4%E9%83%A8%E7%9A%84%E4%BF%AE%E6%94%B9/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/08/2%20%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20SQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E5%A4%B4%E9%83%A8%E7%9A%84%E4%BF%AE%E6%94%B9/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改">2  sqlmap工具详细使用 SQLMAP自动注入头部的修改</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-08T10:44:25.000Z" title="发表于 2019-11-08 18:44:25">2019-11-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">学习笔记：任务094：SQLMAP自动注入-REQUEST
-请求类型的参数：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091这些选项可用于指定如何连接到目标URL--method=method强制使用给定的HTTP方法（例如PUT）--data=要通过POST发送的数据数据字符串（例如“id=1”）PARAM-DEL = PARA。用于分割参数值的字符（例如&amp;）--cookie=cookie HTTP cookie头值（例如“PHPSESSID=a8d127e…”）--cookie del=首席运营官。。用于分割cookie值的字符（例如；）--加载cookies=L包含Netscape/wget格式cookies的文件--从响应中删除set cookie Ignore set coo ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/08/1%20sqlmapSQLMAP-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/08/1%20sqlmapSQLMAP-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入">1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-08T02:34:25.000Z" title="发表于 2019-11-08 10:34:25">2019-11-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">任务093：SQLMAP- 自动注入 笔记
-sqlmap介绍介绍
-开源sql注入漏洞检测，利用
-检测动态页面中get/post参数,cookie,http头
-
-
-数据榨取
-文件访问               
-操作系统命令执行                  
-引擎强大，特性丰富
-Xss漏洞检测
+msf他使用的是 postgresql 数据库
+扫描下来得到的信息都保存到postgresql数据库数据库里
 
 
 
-五种漏洞检测技术
-基于布尔的盲注检测
-  - ’ and 1=1 
+MSF架构
+1. Rex
+Rex是msf最基本依赖的库，
+基本功能库，用于完成日常基本任务 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/08/09/1.%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85kalilinux%E5%92%8C%E8%AF%B4%E6%98%8E/" title="树莓派安装kali linux和说明">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0821/20200821111007895.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树莓派安装kali linux和说明"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/08/09/1.%E6%A0%91%E8%8E%93%E6%B4%BE%E5%AE%89%E8%A3%85kalilinux%E5%92%8C%E8%AF%B4%E6%98%8E/" title="树莓派安装kali linux和说明">树莓派安装kali linux和说明</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-09T02:01:25.000Z" title="发表于 2020-08-09 10:01:25">2020-08-09</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">我玩树莓派的经历，自学习网络安全也有好几年了
+应为我也是才上职高二年级的一个普通的学生，买树莓派也是考虑了很长时间，毕竟是学生党几百块已经算很贵的了，考虑了很长时间就决定买了一个树莓派，我买的是
+
+树莓派4b 4g
+32g内存卡和读卡器
+电源
+壳子
+摄像头
+
+开始安装kali linux玩过kali的人，其实在树莓派安装kali很简单的官方下载地址：https://www.offensive-security.com/kali-linux-arm-images/我下载的是这个下载完成要解压出来，也可以校验一下是否下载时缺少什么吗记得要叫下载好的文件解压出来用win32diskimager工具可以在百度上下载到
+插入树莓派启动即可如果没有屏幕，可以插入网线，
+用Xshell 6工具去连接ssh点击连接然后输入账号默认是root密码是toor看一下已经连接上去了这个我就用他默认的源
+12deb http://http.kali.org/kali kali-rolling main non-free contribdeb-src http://http.kali.org/kali kali- ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/07/17/Sqli-labs%20Less1-4%E5%85%B3%E5%8D%A1/" title="Sqli-labs Less1-4关卡">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200918093827.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Sqli-labs Less1-4关卡"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/17/Sqli-labs%20Less1-4%E5%85%B3%E5%8D%A1/" title="Sqli-labs Less1-4关卡">Sqli-labs Less1-4关卡</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-17T06:49:56.000Z" title="发表于 2020-07-17 14:49:56">2020-07-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9D%B6%E5%9C%BA/">靶场</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%9D%B6%E5%9C%BA/Sqli-labs%E9%9D%B6%E5%9C%BA/">Sqli-labs靶场</a></span></div><div class="content">Less1
+开始打开 Less1可以看到是这样的输入http://192.168.43.90/Less-1/?id=1sql语句是SELECT * FROM users WHERE id=&#39; 1&#39; LIMIT 0,1可以看到有显示输入http://192.168.43.90/Less-1/?id= 1 &#39;sql语句是SELECT * FROM users WHERE id=&#39; 1&#39;&#39; LIMIT 0,1发现错了存在sql注入漏洞
+
+判断是字符还是数字输入http://192.168.43.90/Less-1/?id=1 &#39; --+ &#39;sql语句是SELECT * FROM users WHERE id=&#39; 1 &#39; 他没有报错发现是字符输入http://192.168.43.90/Less-1/?id= &#39;union select 1,user(),3 --+可以看到执行成功
+Less2
+ 开始输入http://192.168.43.90/Less-2/?id=1sql语句是SELECT * FROM ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/07/11/1.%20%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="1. 文件上发漏洞之php编写上传文件">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0914/20200914111243880.jpeg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1. 文件上发漏洞之php编写上传文件"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/07/11/1.%20%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="1. 文件上发漏洞之php编写上传文件">1. 文件上发漏洞之php编写上传文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-11T02:38:30.000Z" title="发表于 2020-07-11 10:38:30">2020-07-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/">文件上发漏洞</a></span></div><div class="content">php.ini文件配置上传限制php.ini文件php7.4默认文件上传最大是2m在
+1upload_max_filesize=要上传最大的文件
+
+上发最多默认是20
+1max_file_uploads = 要可以连续发送几个
 
 
-基于时间的盲注检测基于错误的检测
+$_FILES上传参数我们上发的文件都是用$_FILES来获得的里面有参数用print_r()来查看一下a.html代码
+123456789101112131415&lt;html&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;title&gt;文件上发&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;form action=&quot;a.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;    &lt;label for=&quot;file&quot;&gt;要上发的文件名：&lt;/label&gt;    &lt;input type=&quo ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/06/26/python3%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8Bsocket/" title="python3网络编程socket">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/image-20210122115323618.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python3网络编程socket"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/06/26/python3%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8Bsocket/" title="python3网络编程socket">python3网络编程socket</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-26T01:10:44.000Z" title="发表于 2020-06-26 09:10:44">2020-06-26</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/python/">python</a></span></div><div class="content">实验环境搭建接收端和发送
+我在虚拟机win7启动一个网络调试工具这个我已经启动了
+创建套接字代码
+12345678910#导入库import socket    #创建套接字s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)   #关闭套接字s.close()
+代码说明
 
-’ and (select * from (select(sleep(20)))a)–+
+导入socket
 
-基于UNION联合查询的检测
+1import socket
 
-适用于通过循环直接输出联合查询结果，否则只显示第一项结果
+Python 中，我们用 socket() 函数来创建套接字，语法格式如下
 
-
-基于堆叠查询的检测
-
-;堆叠多个查询语句
-适用于非select的数据修改、删除的操作
-
-
-支持的数据库管理系统DBMS  MySQL,Oracle,PostgreSQL,Microsoft SQL Server,Microsoft Access,IBM DB2,SQLite,Firebird,Sybase,SAP MaxDB
-
-
+1s=socket.socket(socket. AF_INET,SOCK_STREAM或者SOCK_DGRAM)
+解释第一个:  socket. AF_INET是IPv4的意思第二个: SOCK_STREAM和SOCK_DGRAM，如果填写SOCK_STREAM是tcp的意思，SOCK_DGRAM是udp的意思3. 关闭socket
+1s.close()
 
 
-其他特性​        
 
-数据库直接连接-d与burpsu ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/10/10/5.%E6%89%8B%E5%8A%A8%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%EF%BC%8Csql%E6%B3%A8%E5%85%A5/" title="5.手动漏洞挖掘，sql注入">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20190913191358248.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5.手动漏洞挖掘，sql注入"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/10/5.%E6%89%8B%E5%8A%A8%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%EF%BC%8Csql%E6%B3%A8%E5%85%A5/" title="5.手动漏洞挖掘，sql注入">5.手动漏洞挖掘，sql注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-10T02:23:01.000Z" title="发表于 2019-10-10 10:23:01">2019-10-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E/">手动挖掘漏洞</a></span></div><div class="content"> 任务089：KALI版本更新（第一个ROLLING RELEASE）和手动漏洞挖掘（SQL注入） 
-实验环境实验靶机metasploitable-linux-2.0.0里面的DVWA
-sql注入介绍服务器端程序将用户输入参数作为查询条件，直接拼接SQL语句，并将查询结果返回给客户端浏览器也可以控制到客户端，也可以用sql注入上发文件，sql注入也读取文件其实注入的都是sql语句
+​    
+向目标发送信息
+发送端代码
 
-原理下面是一个比如无需密码登陆
-这个是正常情况下 SELECT * FROM users WHERE user=&#39;里面是用户输入的账号&#39; AND password=&#39;里面是用户输入的密码&#39;
-注入无需密码登陆SELECT * FROM users WHERE user=&#39;账号还是原账号&#39; AND password=&#39;&#39;空格OR&#39;1&#39;=&#39;1&#39;上面那个输入密码的地方’’空格OR’1’=’1’意思介绍，’空密码’ OR是逻辑运算符或1=1这两个数都是真条件就满足，满足就是真，账号对密码对就登陆成功了。
-应为服务器端没有过 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/09/24/4,%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="4,手动挖掘漏洞，文件上发漏洞">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20190913191358248.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4,手动挖掘漏洞，文件上发漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/09/24/4,%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="4,手动挖掘漏洞，文件上发漏洞">4,手动挖掘漏洞，文件上发漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-09-24T12:44:06.000Z" title="发表于 2019-09-24 20:44:06">2019-09-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E/">手动挖掘漏洞</a></span></div><div class="content">任务088：手动漏洞挖掘（四）
-文件上传漏洞文件上传漏洞是非常经典的漏洞，非常有名的漏洞，文件上这个功能传不能说是一个漏洞应为文件上传web应用需要的程序，比如在论坛里上发一个一些头像图片的话是非常好的功能，电子商务比如要上发身份证，为什么叫他叫做漏洞是应为主要是程序员没有做好web的编码和web过滤的了解欠缺，web上传做的好的话其实是可以完全不了的
-实验环境实验靶机metasploitable-linux-2.0.0里面的DVWA
-正常情况文件上发这样就可以看见我刚才上发的文件了
-低安全级别上发木马下面是低安全级别，然后上发木马下面是操作先创建一个木马文件文件名a.php内容&lt;?php echo shell_exec($_GET[&#39;cmd&#39;]);?&gt;这个是个一句话的木马可以叫是输入的URL变成目标web的系统命令开始上发发现已经上发成功然后我就可以利用这个木马进行系统命令操作访问这个目录复制到URL里要运行这个木马文件里的cmd这个所有要添加 ?cmd=pwd这个pwd就是你要输入的命令pwd是查看当前文件所在的位置然后回车访问这个web就可以查看当前文 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/13/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#content-inner">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="extend next" rel="next" href="/page/15/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">147</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/09/13/dirb/" title="dirb目录爬取类工具"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20210913183442254.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="dirb目录爬取类工具"/></a><div class="content"><a class="title" href="/2021/09/13/dirb/" title="dirb目录爬取类工具">dirb目录爬取类工具</a><time datetime="2021-09-13T11:10:30.000Z" title="发表于 2021-09-13 19:10:30">2021-09-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/09/%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF/" title="钉钉脚本编写和和思路"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20210909185727600.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="钉钉脚本编写和和思路"/></a><div class="content"><a class="title" href="/2021/09/09/%E8%84%9A%E6%9C%AC%E7%BC%96%E5%86%99%E6%80%9D%E8%B7%AF/" title="钉钉脚本编写和和思路">钉钉脚本编写和和思路</a><time datetime="2021-09-09T11:10:30.000Z" title="发表于 2021-09-09 19:10:30">2021-09-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/08/screenfetch/" title="screenfetch脚本工具卡住问题解决"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20210904185727094.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="screenfetch脚本工具卡住问题解决"/></a><div class="content"><a class="title" href="/2021/09/08/screenfetch/" title="screenfetch脚本工具卡住问题解决">screenfetch脚本工具卡住问题解决</a><time datetime="2021-09-08T13:50:30.000Z" title="发表于 2021-09-08 21:50:30">2021-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/08/linuxyindao/" title="双系统linux启动出现error:unknown filesystem"><img src="https://cdn.jsdelivr.net/gh/wzass/giteezp/image-20210315085326409.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="双系统linux启动出现error:unknown filesystem"/></a><div class="content"><a class="title" href="/2021/09/08/linuxyindao/" title="双系统linux启动出现error:unknown filesystem">双系统linux启动出现error:unknown filesystem</a><time datetime="2021-09-08T01:10:30.000Z" title="发表于 2021-09-08 09:10:30">2021-09-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="解析库BeautifulSoup4"/></a><div class="content"><a class="title" href="/2021/09/01/BeautifulSoup4/" title="解析库BeautifulSoup4">解析库BeautifulSoup4</a><time datetime="2021-09-01T03:10:30.000Z" title="发表于 2021-09-01 11:10:30">2021-09-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+1234567891011#导入库import socket    #创ipv4,和UDP类型的建套接字s=socket.socket(s ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/05/01/xray/" title="xray">     <img class="post_bg" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xray"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/05/01/xray/" title="xray">xray</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-01T10:19:30.000Z" title="发表于 2020-05-01 18:19:30">2020-05-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/xray/">xray</a></span></div><div class="content">他的地址项目地址：https://github.com/chaitin/xray官方主页：https://github.com/chaitin/xray
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/05/01/python%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" title="python基础总结">     <img class="post_bg" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python基础总结"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/05/01/python%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" title="python基础总结">python基础总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-01T10:19:30.000Z" title="发表于 2020-05-01 18:19:30">2020-05-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/python/">python</a></span></div><div class="content">为什么我要总结
+应为就是编程语言学习的多了容易搞混，比如c语言的数组和python的列字典等搞混
+还有我英语真的是小学等级的很多函数方法属性记不住我就写到这个了
+总结方法/函数修改字符串
+
+
+方法/函数
+作用
+
+
+
+title()方法
+这个方法可以叫字符串首字母修改成大写
+
+
+rstrip()方法
+方法会移出尾的空格
+
+
+strip()方法
+方法会移出头和尾的空格
+
+
+增加元素
+
+
+方法/函数
+作用
+
+
+
+append()方法
+这个方法会在列表最后增加元素
+
+
+insert()方法
+这个方法可以在选择在那个地址增加元素
+
+
+删除元素
+
+
+方法/函数
+作用
+
+
+
+del语句
+指定删除如何变量或元素字典
+
+
+pop()方法
+删除指定的元素,如果不指定默认删除最后一个,他返回被删除的值
+
+
+remove()方法
+指定元素内容删除
+
+
+列表排序
+
+
+方法/函数
+作用
+
+
+
+sort()方法
+他会按大小进行排序，他是永久性的
+
+
+sorted()函数
+他会按大小进行排序，他是临时排序的
+
+
+reverse()方法
+倒着排序
+
+
+查看列表长度
+
+
+方法/函数
+作用
+
+
+
+len()函数
+查看列表长 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/21/%E6%8A%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%95%B0%E6%8D%AE/" title="抓微信小程序数据">     <img class="post_bg" src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抓微信小程序数据"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/21/%E6%8A%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%95%B0%E6%8D%AE/" title="抓微信小程序数据">抓微信小程序数据</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-21T02:38:30.000Z" title="发表于 2020-04-21 10:38:30">2020-04-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></span></div><div class="content">我用了很多方法进行抓取微信小程序里面的数据网上也有很多文章抓取小程序，都是都不靠谱，可能是我操作有问题吧还是那是小程序安全？，我就不研究了通过抓包还是能抓取到内容的url都是可以获取到的，叫内容直接下载到本地
+我用burp进行抓包 官方下载地址https://portswigger.net/burp burp这个工具我之前学习过将近2个月差不多，学习还算容易写笔记难 安装ca证书 可是他进去小程序显示网络不能用，这样不知道是什么原因，可能是有什么安全机制吗
+
+访问https正常
+
+charles 官方下载地址https://www.charlesproxy.com/latest-release/download.do
+结果还是一样
+手机版的抓包软件AndroidHttpCapture
+进行抓包效果 还是一样 
+
+
+其他方法1.还用了叫https请求强制成http请求 这个方法还是不行2.抓包分析这个有个缺点就是都是加密的，但是有的是不加密的
+我就是难受理论应该我可以行得通的都是实现是很难吗我又用了很多方法，比如叫用Wireshark进行抓包是可以抓的到的分析了很长时间，在电脑上打开小程 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/11/linux%E7%89%88qv2ray%E5%AE%89%E8%A3%85/" title="linux版qv2ray安装">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0529/thumb_1680_0_20200529040047300.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux版qv2ray安装"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/11/linux%E7%89%88qv2ray%E5%AE%89%E8%A3%85/" title="linux版qv2ray安装">linux版qv2ray安装</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-11T04:38:30.000Z" title="发表于 2020-04-11 12:38:30">2020-04-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/">工具安装</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/qv2ray%E5%AE%89%E8%A3%85/">qv2ray安装</a></span></div><div class="content">在国内有的网络技术文档都已经很老了，在外国能查看到新的互联网技术进行学习废话不多说
+
+下载V2ray客户端 应为github下载的比较慢，我下载好的放到了蓝奏云里面，蓝奏云下载的快 https://wwa.lanzous.com/iIatmf0cmqf 更多其他系统版本 https://github.com/Qv2ray/Qv2ray/releases/tag/v1.99.6
+下载核心 应为github下载的比较慢，我下载好的放到了蓝奏云里面，蓝奏云下载的快 https://wwa.lanzous.com/ixPOUf0cpyb 更多其他系统版本 https://github.com/v2fly/v2ray-core/releases/
+
+配置我创建了一个v2ray文件夹里面是解压好的下载的核心和V2ray客户端
+
+然后在终端输入运行 给他执行权限
+ 1chmod +x ./Qv2ray.v2.6.2.linux-x64.AppImage	 
+ 运行
+ 1./Qv2ray.v2.6.2.linux-x64.AppImage	 
+设置 设置中文 他默认是英文的
+
+
+添加核心上面下载的核心 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/13/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/#content-inner">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/#content-inner">15</a><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/15/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">160</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">42</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">63</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/11/03/CVE-2021-40444%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C/" title="Office漏洞复现：CVE-2021-40444远程代码执行"><img src="https://gitee.com/wZass/zp/raw/master/img/20201212153933.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Office漏洞复现：CVE-2021-40444远程代码执行"/></a><div class="content"><a class="title" href="/2021/11/03/CVE-2021-40444%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C/" title="Office漏洞复现：CVE-2021-40444远程代码执行">Office漏洞复现：CVE-2021-40444远程代码执行</a><time datetime="2021-11-03T12:31:55.000Z" title="发表于 2021-11-03 20:31:55">2021-11-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/11/02/pythonmysql/" title="Python操控mysql"><img src="https://gitee.com/wzass/zp/raw/master/img/image-20210115210536259.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python操控mysql"/></a><div class="content"><a class="title" href="/2021/11/02/pythonmysql/" title="Python操控mysql">Python操控mysql</a><time datetime="2021-11-02T13:10:30.000Z" title="发表于 2021-11-02 21:10:30">2021-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/29/Veil-evasion/" title="2.木马病毒和免杀技术，1.Veil-evasion"><img src="https://img-blog.csdnimg.cn/20200401133716385.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2.木马病毒和免杀技术，1.Veil-evasion"/></a><div class="content"><a class="title" href="/2021/10/29/Veil-evasion/" title="2.木马病毒和免杀技术，1.Veil-evasion">2.木马病毒和免杀技术，1.Veil-evasion</a><time datetime="2021-10-29T13:10:30.000Z" title="发表于 2021-10-29 21:10:30">2021-10-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/17/Samba/" title="树莓派Samba文件共享"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211028131623313.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="树莓派Samba文件共享"/></a><div class="content"><a class="title" href="/2021/10/17/Samba/" title="树莓派Samba文件共享">树莓派Samba文件共享</a><time datetime="2021-10-17T03:19:30.000Z" title="发表于 2021-10-17 11:19:30">2021-10-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/16/fzf/" title="fzf模糊搜索"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/fzf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="fzf模糊搜索"/></a><div class="content"><a class="title" href="/2021/10/16/fzf/" title="fzf模糊搜索">fzf模糊搜索</a><time datetime="2021-10-16T03:19:30.000Z" title="发表于 2021-10-16 11:19:30">2021-10-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
