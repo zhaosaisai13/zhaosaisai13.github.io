@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>adb使用 | Hexo</title><meta name="keywords" content="自动化工具"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习总结  官方说明https:&#x2F;&#x2F;developer.android.google.cn&#x2F;studio&#x2F;command-line&#x2F;adb?hl&#x3D;zh-cn 不错的使用方法https:&#x2F;&#x2F;github.com&#x2F;mzlogin&#x2F;awesome-adb Android 调试桥 (adb) 是一种功能多样的命令行工具，可让您与设备进行通信。adb 命令可用于执行各种设备操作（例如安装和调试应用），并提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="adb使用">
+<meta property="og:url" content="http://example.com/2021/11/14/adb/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="学习总结  官方说明https:&#x2F;&#x2F;developer.android.google.cn&#x2F;studio&#x2F;command-line&#x2F;adb?hl&#x3D;zh-cn 不错的使用方法https:&#x2F;&#x2F;github.com&#x2F;mzlogin&#x2F;awesome-adb Android 调试桥 (adb) 是一种功能多样的命令行工具，可让您与设备进行通信。adb 命令可用于执行各种设备操作（例如安装和调试应用），并提">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211114223711680.png">
+<meta property="article:published_time" content="2021-11-14T10:19:30.000Z">
+<meta property="article:modified_time" content="2021-11-14T14:37:41.646Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="自动化工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211114223711680.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/11/14/adb/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'adb使用',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-14 22:37:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">174</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">adb使用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-14T10:19:30.000Z" title="发表于 2021-11-14 18:19:30">2021-11-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-14T14:37:41.646Z" title="更新于 2021-11-14 22:37:41">2021-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/adb/">adb</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="adb使用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>学习总结</p>
+</blockquote>
+<p>官方说明<a target="_blank" rel="noopener" href="https://developer.android.google.cn/studio/command-line/adb?hl=zh-cn">https://developer.android.google.cn/studio/command-line/adb?hl=zh-cn</a></p>
+<p>不错的使用方法<a target="_blank" rel="noopener" href="https://github.com/mzlogin/awesome-adb">https://github.com/mzlogin/awesome-adb</a></p>
+<p>Android 调试桥 (adb) 是一种功能多样的命令行工具，可让您与设备进行通信。adb 命令可用于执行各种设备操作（例如安装和调试应用），并提供对 Unix shell（可用来在设备上运行各种命令）的访问权限。它是一种客户端-服务器程序，包括以下三个组件：</p>
+<ul>
+<li><strong>客户端</strong>：用于发送命令。客户端在开发机器上运行。您可以通过发出 adb 命令从命令行终端调用客户端。</li>
+<li>**守护程序 (adbd)**：用于在设备上运行命令。守护程序在每个设备上作为后台进程运行。</li>
+<li><strong>服务器</strong>：用于管理客户端与守护程序之间的通信。服务器在开发机器上作为后台进程运行。</li>
+</ul>
+<h1 id="安装adb"><a href="#安装adb" class="headerlink" title="安装adb"></a>安装adb</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install adb</span><br></pre></td></tr></table></figure>
+
+<h1 id="获取手机的序列号"><a href="#获取手机的序列号" class="headerlink" title="获取手机的序列号"></a>获取手机的序列号</h1><p>这个用的多</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb get-serialno <span class="comment">#方法一</span></span><br><span class="line"></span><br><span class="line">adb shell getprop ro.serialno　<span class="comment">#方法二</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="ADB获取手机信息"><a href="#ADB获取手机信息" class="headerlink" title="ADB获取手机信息"></a>ADB获取手机信息</h1><h4 id="１、获取手机系统版本"><a href="#１、获取手机系统版本" class="headerlink" title="１、获取手机系统版本"></a>１、获取手机系统版本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop ro.build.version.release</span><br></pre></td></tr></table></figure>
+
+<h4 id="２、获取手机系统api版本"><a href="#２、获取手机系统api版本" class="headerlink" title="２、获取手机系统api版本"></a>２、获取手机系统api版本</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell getprop ro.build.version.sdk</span><br></pre></td></tr></table></figure>
+
+<h4 id="３、获取手机设备型"><a href="#３、获取手机设备型" class="headerlink" title="３、获取手机设备型"></a>３、获取手机设备型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -d shell getprop ro.product.model</span><br></pre></td></tr></table></figure>
+
+<h4 id="5、获取手机厂商名称"><a href="#5、获取手机厂商名称" class="headerlink" title="5、获取手机厂商名称"></a>5、获取手机厂商名称</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -d shell getprop ro.product.brand</span><br></pre></td></tr></table></figure>
+
+<h4 id="６、获取手机的IME"><a href="#６、获取手机的IME" class="headerlink" title="６、获取手机的IME"></a>６、获取手机的IME</h4><p>有三种方式，由于手机和系统的限制，不一定获取到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1、 adb shell dumpsys iphonesubinfo</span><br></pre></td></tr></table></figure>
+
+<p>其中Device ID即为IMEI号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2、 adb shell getprop gsm.baseband.imei</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3、 service call iphonesubinfo 1 </span><br></pre></td></tr></table></figure>
+
+
+<p>此种方式，需要自己处理获取的信息得到</p>
+<h4 id="７、获取手机mac地址"><a href="#７、获取手机mac地址" class="headerlink" title="７、获取手机mac地址"></a>７、获取手机mac地址</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /sys/class/net/wlan0/address</span><br></pre></td></tr></table></figure>
+
+<h4 id="８、获取手机内存信息"><a href="#８、获取手机内存信息" class="headerlink" title="８、获取手机内存信息"></a>８、获取手机内存信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /proc/meminfo</span><br></pre></td></tr></table></figure>
+
+<h4 id="９、获取手机存储信息"><a href="#９、获取手机存储信息" class="headerlink" title="９、获取手机存储信息"></a>９、获取手机存储信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell df</span><br></pre></td></tr></table></figure>
+
+<h4 id="1０、获取手机分辨率"><a href="#1０、获取手机分辨率" class="headerlink" title="1０、获取手机分辨率"></a>1０、获取手机分辨率</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell &quot;dumpsys window | grep mUnrestrictedScreen&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1１、获取手机物理密度"><a href="#1１、获取手机物理密度" class="headerlink" title="1１、获取手机物理密度"></a>1１、获取手机物理密度</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell wm density</span><br></pre></td></tr></table></figure>
+
+<h4 id="12、获取IP-地址"><a href="#12、获取IP-地址" class="headerlink" title="12、获取IP 地址"></a>12、获取IP 地址</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ifconfig | grep Mask</span><br></pre></td></tr></table></figure>
+
+<h4 id="13、CPU信息"><a href="#13、CPU信息" class="headerlink" title="13、CPU信息"></a>13、CPU信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /proc/cpuinfo</span><br></pre></td></tr></table></figure>
+
+<h4 id="14、内存信息"><a href="#14、内存信息" class="headerlink" title="14、内存信息"></a>14、内存信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell cat /proc/meminfo</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查看已经连接的设备"><a href="#查看已经连接的设备" class="headerlink" title="查看已经连接的设备"></a>查看已经连接的设备</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb devices</span><br><span class="line"></span><br><span class="line"><span class="comment"># 演示</span></span><br><span class="line">&gt;&gt;adb devices</span><br><span class="line">List of devices attached</span><br><span class="line">6f0efe58        device</span><br></pre></td></tr></table></figure>
+
+<h1 id="无线连接"><a href="#无线连接" class="headerlink" title="无线连接"></a>无线连接</h1><blockquote>
+<p>开启监听的端口，下面命令:这个是开启让设备在 5555 端口监听 TCP/IP 连接</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb tcpip 5555</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 断开 USB 连接</p>
+</blockquote>
+<blockquote>
+<p>获取您的设备 IP 地址</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">adb shell ip route | awk <span class="string">&#x27;&#123;print $9&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line">演示</span><br><span class="line">&gt;&gt;&gt; adb shell ip route | awk <span class="string">&#x27;&#123;print $9&#125;&#x27;</span></span><br><span class="line">10.104.83.11</span><br><span class="line">192.168.248.112</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>通过 IP 地址连接设备</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">adb connect ip:端口</span><br><span class="line"></span><br><span class="line">演示</span><br><span class="line">&gt;&gt;&gt; adb connect  192.168.248.112:5555 <span class="comment"># 连接</span></span><br><span class="line">connected to 192.168.248.112:5555</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; adb devices   <span class="comment"># 确定连接的状态</span></span><br><span class="line">List of devices attached</span><br><span class="line">192.168.248.112:5555    device</span><br></pre></td></tr></table></figure>
+
+<h1 id="断开无线连接"><a href="#断开无线连接" class="headerlink" title="断开无线连接"></a>断开无线连接</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb disconnect ip:端口</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; adb disconnect 192.168.248.112:5555</span><br><span class="line">disconnected 192.168.248.112:5555</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看应用列表"><a href="#查看应用列表" class="headerlink" title="查看应用列表"></a>查看应用列表</h1><p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages 参数</span><br></pre></td></tr></table></figure>
+
+<p>相关的参数</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>显示列表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无</td>
+<td>所有应用</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>显示应用关联的 apk 文件</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>只显示 disabled 的应用</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>只显示 enabled 的应用</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>只显示系统应用</td>
+</tr>
+<tr>
+<td>-3</td>
+<td>只显示第三方应用</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>显示应用的 installer</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>包含已卸载应用</td>
+</tr>
+<tr>
+<td><code>&lt;FILTER&gt;</code></td>
+<td>包名包含 <code>&lt;FILTER&gt;</code> 字符串</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>查看全部的程序</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages </span><br><span class="line"></span><br><span class="line"><span class="comment">#演示</span></span><br><span class="line">&gt;&gt;&gt; adb shell pm list packages  </span><br><span class="line">package:com.miui.screenrecorder</span><br><span class="line">package:com.github.uiautomator</span><br><span class="line">package:cn.xiaochuankeji.tieba</span><br><span class="line">package:com.android.cts.priv.ctsshim</span><br><span class="line">package:com.quark.browser</span><br><span class="line">package:com.google.android.youtube</span><br><span class="line">package:com.miui.contentextension</span><br><span class="line">package:com.qualcomm.qti.qcolor</span><br><span class="line">package:com.android.internal.displa</span><br><span class="line">......................................</span><br></pre></td></tr></table></figure>
+
+<h1 id="安装-APK"><a href="#安装-APK" class="headerlink" title="安装 APK"></a>安装 APK</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install 文件</span><br></pre></td></tr></table></figure>
+
+<h1 id="卸载应用"><a href="#卸载应用" class="headerlink" title="卸载应用"></a>卸载应用</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb uninstall 程序名 </span><br></pre></td></tr></table></figure>
+
+<h1 id="清除应用数据与缓存"><a href="#清除应用数据与缓存" class="headerlink" title="清除应用数据与缓存"></a>清除应用数据与缓存</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm clear 程序名 </span><br></pre></td></tr></table></figure>
+
+<h1 id="强制停止应用"><a href="#强制停止应用" class="headerlink" title="强制停止应用"></a>强制停止应用</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell am force-stop 程序名 </span><br></pre></td></tr></table></figure>
+
+<h1 id="复制设备里的文件到电脑"><a href="#复制设备里的文件到电脑" class="headerlink" title="复制设备里的文件到电脑"></a>复制设备里的文件到电脑</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull &lt;设备里的文件路径&gt; [电脑上的目录]</span><br></pre></td></tr></table></figure>
+
+<h1 id="复制电脑里的文件到设备"><a href="#复制电脑里的文件到设备" class="headerlink" title="复制电脑里的文件到设备"></a>复制电脑里的文件到设备</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push &lt;电脑上的文件路径&gt; &lt;设备里的目录&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="模拟按键-输入"><a href="#模拟按键-输入" class="headerlink" title="模拟按键/输入"></a>模拟按键/输入</h1><h3 id="电源键"><a href="#电源键" class="headerlink" title="电源键"></a>电源键</h3><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 26</span><br></pre></td></tr></table></figure>
+
+<p>执行效果相当于按电源键。</p>
+<h3 id="菜单键"><a href="#菜单键" class="headerlink" title="菜单键"></a>菜单键</h3><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 82</span><br></pre></td></tr></table></figure>
+
+<h3 id="HOME-键"><a href="#HOME-键" class="headerlink" title="HOME 键"></a>HOME 键</h3><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 3</span><br></pre></td></tr></table></figure>
+
+<h3 id="返回键"><a href="#返回键" class="headerlink" title="返回键"></a>返回键</h3><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 4</span><br></pre></td></tr></table></figure>
+
+<h3 id="音量控制"><a href="#音量控制" class="headerlink" title="音量控制"></a>音量控制</h3><p>增加音量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 24</span><br></pre></td></tr></table></figure>
+
+<p>降低音量：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 25</span><br></pre></td></tr></table></figure>
+
+<p>静音：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 164</span><br></pre></td></tr></table></figure>
+
+<h3 id="媒体控制"><a href="#媒体控制" class="headerlink" title="媒体控制"></a>媒体控制</h3><p>播放/暂停：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 85</span><br></pre></td></tr></table></figure>
+
+<p>停止播放：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 86</span><br></pre></td></tr></table></figure>
+
+<p>播放下一首：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 87</span><br></pre></td></tr></table></figure>
+
+<p>播放上一首：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 88</span><br></pre></td></tr></table></figure>
+
+<p>恢复播放：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 126</span><br></pre></td></tr></table></figure>
+
+<p>暂停播放：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 127</span><br></pre></td></tr></table></figure>
+
+<h3 id="点亮-熄灭屏幕"><a href="#点亮-熄灭屏幕" class="headerlink" title="点亮/熄灭屏幕"></a>点亮/熄灭屏幕</h3><p>可以通过上文讲述过的模拟电源键来切换点亮和熄灭屏幕，但如果明确地想要点亮或者熄灭屏幕，那可以使用如下方法。</p>
+<p>点亮屏幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 224</span><br></pre></td></tr></table></figure>
+
+<p>熄灭屏幕：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input keyevent 223</span><br></pre></td></tr></table></figure>
+
+<h3 id="滑动解锁"><a href="#滑动解锁" class="headerlink" title="滑动解锁"></a>滑动解锁</h3><p>如果锁屏没有密码，是通过滑动手势解锁，那么可以通过 <code>input swipe</code> 来解锁。</p>
+<p>命令（参数以机型 Nexus 5，向上滑动手势解锁举例）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input swipe 300 1000 300 500</span><br></pre></td></tr></table></figure>
+
+<p>参数 <code>300 1000 300 500</code> 分别表示<code>起始点x坐标 起始点y坐标 结束点x坐标 结束点y坐标</code>。</p>
+<h3 id="输入文本"><a href="#输入文本" class="headerlink" title="输入文本"></a>输入文本</h3><p>在焦点处于某文本框时，可以通过 <code>input</code> 命令来输入文本。</p>
+<p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell input text hello</span><br></pre></td></tr></table></figure>
+
+<p>现在 <code>hello</code> 出现在文本框了。</p>
+<h1 id="重启手机"><a href="#重启手机" class="headerlink" title="重启手机"></a>重启手机</h1><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb reboot</span><br></pre></td></tr></table></figure>
+
+<h1 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h1><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell ps</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USER     PID   PPID  VSIZE  RSS     WCHAN    PC        NAME</span><br><span class="line">root      1     0     8904   788   ffffffff 00000000 S /init</span><br><span class="line">root      2     0     0      0     ffffffff 00000000 S kthreadd</span><br><span class="line">...</span><br><span class="line">u0_a71    7779  5926  1538748 48896 ffffffff 00000000 S com.sohu.inputmethod.sogou:classic</span><br><span class="line">u0_a58    7963  5926  1561916 59568 ffffffff 00000000 S org.mazhuang.boottimemeasure</span><br><span class="line">...</span><br><span class="line">shell     8750  217   10640  740   00000000 b6f28340 R ps</span><br></pre></td></tr></table></figure>
+
+<p>各列含义：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER</td>
+<td>所属用户</td>
+</tr>
+<tr>
+<td>PID</td>
+<td>进程 ID</td>
+</tr>
+<tr>
+<td>PPID</td>
+<td>父进程 ID</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>进程名</td>
+</tr>
+</tbody></table>
+<h3 id="查看实时资源占用情况"><a href="#查看实时资源占用情况" class="headerlink" title="查看实时资源占用情况"></a>查看实时资源占用情况</h3><p>命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell top</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">User 0%, System 6%, IOW 0%, IRQ 0%</span><br><span class="line">User 3 + Nice 0 + Sys 21 + Idle 280 + IOW 0 + IRQ 0 + SIRQ 3 = 307</span><br><span class="line"></span><br><span class="line">  PID PR CPU% S  #THR     VSS     RSS PCY UID      Name</span><br><span class="line"> 8763  0   3% R     1  10640K   1064K  fg shell    top</span><br><span class="line">  131  0   3% S     1      0K      0K  fg root     dhd_dpc</span><br><span class="line"> 6144  0   0% S   115 1682004K 115916K  fg system   system_server</span><br><span class="line">  132  0   0% S     1      0K      0K  fg root     dhd_rxf</span><br><span class="line"> 1731  0   0% S     6  20288K    788K  fg root     /system/bin/mpdecision</span><br><span class="line">  217  0   0% S     6  18008K    356K  fg shell    /sbin/adbd</span><br><span class="line"> ...</span><br><span class="line"> 7779  2   0% S    19 1538748K  48896K  bg u0_a71   com.sohu.inputmethod.sogou:classic</span><br><span class="line"> 7963  0   0% S    18 1561916K  59568K  fg u0_a58   org.mazhuang.boottimemeasure</span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>各列含义：</p>
+<table>
+<thead>
+<tr>
+<th>列名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PID</td>
+<td>进程 ID</td>
+</tr>
+<tr>
+<td>PR</td>
+<td>优先级</td>
+</tr>
+<tr>
+<td>CPU%</td>
+<td>当前瞬间占用 CPU 百分比</td>
+</tr>
+<tr>
+<td>S</td>
+<td>进程状态（R=运行，S=睡眠，T=跟踪/停止，Z=僵尸进程）</td>
+</tr>
+<tr>
+<td>#THR</td>
+<td>线程数</td>
+</tr>
+<tr>
+<td>VSS</td>
+<td>Virtual Set Size 虚拟耗用内存（包含共享库占用的内存）</td>
+</tr>
+<tr>
+<td>RSS</td>
+<td>Resident Set Size 实际使用物理内存（包含共享库占用的内存）</td>
+</tr>
+<tr>
+<td>PCY</td>
+<td>调度策略优先级，SP_BACKGROUND/SPFOREGROUND</td>
+</tr>
+<tr>
+<td>UID</td>
+<td>进程所有者的用户 ID</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>进程名</td>
+</tr>
+</tbody></table>
+<p><code>top</code> 命令还支持一些命令行参数，详细用法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Usage: top [ -m max_procs ] [ -n iterations ] [ -d delay ] [ -s sort_column ] [ -t ] [ -h ]</span><br><span class="line">    -m num  最多显示多少个进程</span><br><span class="line">    -n num  刷新多少次后退出</span><br><span class="line">    -d num  刷新时间间隔（单位秒，默认值 5）</span><br><span class="line">    -s col  按某列排序（可用 col 值：cpu, vss, rss, thr）</span><br><span class="line">    -t      显示线程信息</span><br><span class="line">    -h      显示帮助文档</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看进程-UID"><a href="#查看进程-UID" class="headerlink" title="查看进程 UID"></a>查看进程 UID</h3><p>有两种方案：</p>
+<ol>
+<li><p><code>adb shell dumpsys package &lt;packagename&gt; | grep userId=</code></p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell dumpsys package org.mazhuang.guanggoo | grep userId=</span><br><span class="line">   userId=10394</span><br></pre></td></tr></table></figure></li>
+<li><p>通过 ps 命令找到对应进程的 pid 之后 <code>adb shell cat /proc/&lt;pid&gt;/status | grep Uid</code></p>
+<p>如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ adb shell</span><br><span class="line">gemini:/ $ ps | grep org.mazhuang.guanggoo</span><br><span class="line">u0_a394   28635 770   1795812 78736 SyS_epoll_ 0000000000 S org.mazhuang.guanggoo</span><br><span class="line">gemini:/ $ cat /proc/28635/status | grep Uid</span><br><span class="line">Uid:    10394   10394   10394   10394</span><br><span class="line">gemini:/ $</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h1><p>如下是其它常用命令的简单描述，前文已经专门讲过的命令不再额外说明：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cat</td>
+<td>显示文件内容</td>
+</tr>
+<tr>
+<td>cd</td>
+<td>切换目录</td>
+</tr>
+<tr>
+<td>chmod</td>
+<td>改变文件的存取模式/访问权限</td>
+</tr>
+<tr>
+<td>df</td>
+<td>查看磁盘空间使用情况</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>过滤输出</td>
+</tr>
+<tr>
+<td>kill</td>
+<td>杀死指定 PID 的进程</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>列举目录内容</td>
+</tr>
+<tr>
+<td>mount</td>
+<td>挂载目录的查看和管理</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动或重命名文件</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>查看正在运行的进程</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td>top</td>
+<td>查看进程的资源占用情况</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/11/14/adb/">http://example.com/2021/11/14/adb/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E5%85%B7/">自动化工具</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211114223711680.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/14/UIAutomator2/"><img class="prev-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Python之UIAutomator2自动化工具</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/12/genymotion/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210210214718406.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">genymotion安卓模拟器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/14/UIAutomator2/" title="Python之UIAutomator2自动化工具"><img class="cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-14</div><div class="title">Python之UIAutomator2自动化工具</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85adb"><span class="toc-number">1.</span> <span class="toc-text">安装adb</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E7%9A%84%E5%BA%8F%E5%88%97%E5%8F%B7"><span class="toc-number">2.</span> <span class="toc-text">获取手机的序列号</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ADB%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E4%BF%A1%E6%81%AF"><span class="toc-number">3.</span> <span class="toc-text">ADB获取手机信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%91%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">１、获取手机系统版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%92%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E7%B3%BB%E7%BB%9Fapi%E7%89%88%E6%9C%AC"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">２、获取手机系统api版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%93%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E8%AE%BE%E5%A4%87%E5%9E%8B"><span class="toc-number">3.0.0.3.</span> <span class="toc-text">３、获取手机设备型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%8E%82%E5%95%86%E5%90%8D%E7%A7%B0"><span class="toc-number">3.0.0.4.</span> <span class="toc-text">5、获取手机厂商名称</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%96%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E7%9A%84IME"><span class="toc-number">3.0.0.5.</span> <span class="toc-text">６、获取手机的IME</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%97%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BAmac%E5%9C%B0%E5%9D%80"><span class="toc-number">3.0.0.6.</span> <span class="toc-text">７、获取手机mac地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%98%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF"><span class="toc-number">3.0.0.7.</span> <span class="toc-text">８、获取手机内存信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%99%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%AD%98%E5%82%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">3.0.0.8.</span> <span class="toc-text">９、获取手机存储信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%90%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%88%86%E8%BE%A8%E7%8E%87"><span class="toc-number">3.0.0.9.</span> <span class="toc-text">1０、获取手机分辨率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%EF%BC%91%E3%80%81%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E7%89%A9%E7%90%86%E5%AF%86%E5%BA%A6"><span class="toc-number">3.0.0.10.</span> <span class="toc-text">1１、获取手机物理密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12%E3%80%81%E8%8E%B7%E5%8F%96IP-%E5%9C%B0%E5%9D%80"><span class="toc-number">3.0.0.11.</span> <span class="toc-text">12、获取IP 地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13%E3%80%81CPU%E4%BF%A1%E6%81%AF"><span class="toc-number">3.0.0.12.</span> <span class="toc-text">13、CPU信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14%E3%80%81%E5%86%85%E5%AD%98%E4%BF%A1%E6%81%AF"><span class="toc-number">3.0.0.13.</span> <span class="toc-text">14、内存信息</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%B7%B2%E7%BB%8F%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%AE%BE%E5%A4%87"><span class="toc-number">4.</span> <span class="toc-text">查看已经连接的设备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">无线连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%AD%E5%BC%80%E6%97%A0%E7%BA%BF%E8%BF%9E%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">断开无线连接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8"><span class="toc-number">7.</span> <span class="toc-text">查看应用列表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-APK"><span class="toc-number">8.</span> <span class="toc-text">安装 APK</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD%E5%BA%94%E7%94%A8"><span class="toc-number">9.</span> <span class="toc-text">卸载应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E5%BA%94%E7%94%A8%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%BC%93%E5%AD%98"><span class="toc-number">10.</span> <span class="toc-text">清除应用数据与缓存</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%81%9C%E6%AD%A2%E5%BA%94%E7%94%A8"><span class="toc-number">11.</span> <span class="toc-text">强制停止应用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E8%AE%BE%E5%A4%87%E9%87%8C%E7%9A%84%E6%96%87%E4%BB%B6%E5%88%B0%E7%94%B5%E8%84%91"><span class="toc-number">12.</span> <span class="toc-text">复制设备里的文件到电脑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%94%B5%E8%84%91%E9%87%8C%E7%9A%84%E6%96%87%E4%BB%B6%E5%88%B0%E8%AE%BE%E5%A4%87"><span class="toc-number">13.</span> <span class="toc-text">复制电脑里的文件到设备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E6%8C%89%E9%94%AE-%E8%BE%93%E5%85%A5"><span class="toc-number">14.</span> <span class="toc-text">模拟按键&#x2F;输入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E6%BA%90%E9%94%AE"><span class="toc-number">14.0.1.</span> <span class="toc-text">电源键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8F%9C%E5%8D%95%E9%94%AE"><span class="toc-number">14.0.2.</span> <span class="toc-text">菜单键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HOME-%E9%94%AE"><span class="toc-number">14.0.3.</span> <span class="toc-text">HOME 键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E9%94%AE"><span class="toc-number">14.0.4.</span> <span class="toc-text">返回键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9F%B3%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">14.0.5.</span> <span class="toc-text">音量控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AA%92%E4%BD%93%E6%8E%A7%E5%88%B6"><span class="toc-number">14.0.6.</span> <span class="toc-text">媒体控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E4%BA%AE-%E7%86%84%E7%81%AD%E5%B1%8F%E5%B9%95"><span class="toc-number">14.0.7.</span> <span class="toc-text">点亮&#x2F;熄灭屏幕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E8%A7%A3%E9%94%81"><span class="toc-number">14.0.8.</span> <span class="toc-text">滑动解锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%96%87%E6%9C%AC"><span class="toc-number">14.0.9.</span> <span class="toc-text">输入文本</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E6%89%8B%E6%9C%BA"><span class="toc-number">15.</span> <span class="toc-text">重启手机</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="toc-number">16.</span> <span class="toc-text">查看进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%AE%9E%E6%97%B6%E8%B5%84%E6%BA%90%E5%8D%A0%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">16.0.1.</span> <span class="toc-text">查看实时资源占用情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B-UID"><span class="toc-number">16.0.2.</span> <span class="toc-text">查看进程 UID</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">17.</span> <span class="toc-text">其它</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

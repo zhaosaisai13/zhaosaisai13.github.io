@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>1 nmap扫描 扫描格式，活主机，端口扫描 | Hexo</title><meta name="keywords" content="渗透工具使用"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="笔记 nmap范围扫描格式法 123456192.168.0.1-255		&#x2F;&#x2F;指定范围192.168.0.1&#x2F;24     &#x2F;&#x2F;对整个子网进行扫描192.168.0.1，192.168.0.50，192.168.0.30	&#x2F;&#x2F;对多个主机进行扫描nmap [目标]  --exclude  [指定不扫描的主机] 	&#x2F;&#x2F;排除主机扫描-iL a.txt 	&#x2F;&#x2F;指定a.txt 文件内容进行扫描-iR  [">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1 nmap扫描 扫描格式，活主机，端口扫描">
+<meta property="og:url" content="http://example.com/2020/08/30/1,nmap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="笔记 nmap范围扫描格式法 123456192.168.0.1-255		&#x2F;&#x2F;指定范围192.168.0.1&#x2F;24     &#x2F;&#x2F;对整个子网进行扫描192.168.0.1，192.168.0.50，192.168.0.30	&#x2F;&#x2F;对多个主机进行扫描nmap [目标]  --exclude  [指定不扫描的主机] 	&#x2F;&#x2F;排除主机扫描-iL a.txt 	&#x2F;&#x2F;指定a.txt 文件内容进行扫描-iR  [">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.devapp.it/wordpress/wp-content/uploads/2015/11/nmap-logo.jpg">
+<meta property="article:published_time" content="2020-08-29T19:00:25.000Z">
+<meta property="article:modified_time" content="2021-11-16T11:46:42.683Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透工具使用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.devapp.it/wordpress/wp-content/uploads/2015/11/nmap-logo.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/08/30/1,nmap/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '1 nmap扫描 扫描格式，活主机，端口扫描',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-16 19:46:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">174</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">1 nmap扫描 扫描格式，活主机，端口扫描</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-29T19:00:25.000Z" title="发表于 2020-08-30 03:00:25">2020-08-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-16T11:46:42.683Z" title="更新于 2021-11-16 19:46:42">2021-11-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/nmap/">nmap</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="1 nmap扫描 扫描格式，活主机，端口扫描"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><p>笔记</p>
+<h1 id="nmap范围扫描"><a href="#nmap范围扫描" class="headerlink" title="nmap范围扫描"></a>nmap范围扫描</h1><p>格式法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">192.168.0.1-255		//指定范围</span><br><span class="line">192.168.0.1/24     //对整个子网进行扫描</span><br><span class="line">192.168.0.1，192.168.0.50，192.168.0.30	//对多个主机进行扫描</span><br><span class="line">nmap [目标]  --exclude  [指定不扫描的主机] 	//排除主机扫描</span><br><span class="line">-iL a.txt 	//指定a.txt 文件内容进行扫描</span><br><span class="line">-iR  [数量]   //要指定的随机ip扫面</span><br></pre></td></tr></table></figure>
+
+<h1 id="探测存活主机"><a href="#探测存活主机" class="headerlink" title="探测存活主机"></a>探测存活主机</h1><p>nmap发送的那些数据包可以用<code>--packet-trace</code>来查看</p>
+<h2 id="ARP扫描探测存活主机"><a href="#ARP扫描探测存活主机" class="headerlink" title="ARP扫描探测存活主机"></a>ARP扫描探测存活主机</h2><blockquote>
+<p>交换机里面中每个接口都有寻址寄存器，里面存放这物理地址表<br>ARP扫描原理就是，向内网送ARP包如果主机给我相应了，就说明主机存活<br>注意：这个ARP扫描很难防御，在内网扫描ARP扫描是最佳的扫描<br>列</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PR [目标]</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20200529112421987.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="ICMP探测探测存活主机"><a href="#ICMP探测探测存活主机" class="headerlink" title="ICMP探测探测存活主机"></a>ICMP探测探测存活主机</h2><p><img src="https://img-blog.csdnimg.cn/20200529113412411.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h3 id="请求和响应应答探测存活主机"><a href="#请求和响应应答探测存活主机" class="headerlink" title="请求和响应应答探测存活主机"></a>请求和响应应答探测存活主机</h3><p>发送ICMP响应请求，如果得到目标主机发回的ICMP响应，则说明该主机处于活跃状态，就和ping命令一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PE [目标地址]</span><br></pre></td></tr></table></figure>
+<p>列<br><img src="https://img-blog.csdnimg.cn/20200529115611152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="时间戳请求和响应探测存活主机"><a href="#时间戳请求和响应探测存活主机" class="headerlink" title="时间戳请求和响应探测存活主机"></a>时间戳请求和响应探测存活主机</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap   -sn  -PP [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="地址俺码请求和响应探测存活主机"><a href="#地址俺码请求和响应探测存活主机" class="headerlink" title="地址俺码请求和响应探测存活主机"></a>地址俺码请求和响应探测存活主机</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  -sn   -PM  [端口，或多个端口] [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="TCP探测存活主机"><a href="#TCP探测存活主机" class="headerlink" title="TCP探测存活主机"></a>TCP探测存活主机</h2><h3 id="SYN探测存活主机"><a href="#SYN探测存活主机" class="headerlink" title="SYN探测存活主机"></a>SYN探测存活主机</h3><p>原理是客户端发送SYN目标会返回SYN ACK创建连接，如果端口没有开放就断开连接回RST数据包，如何有一个返回就说明目标存活<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  -sn  -PS [端口，或多个端口] [目标]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="ACK探测存活主机"><a href="#ACK探测存活主机" class="headerlink" title="ACK探测存活主机"></a>ACK探测存活主机</h3><pre><code>这个被防火墙过滤
+原理客户端发送一个ACK数据包给服务器，如果服务器存活就发送RST数据包，如果没有存活就没有都不响应
+格式
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  -sn -PA [端口，或多个端口] [目标]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="UDP探测存活主机"><a href="#UDP探测存活主机" class="headerlink" title="UDP探测存活主机"></a>UDP探测存活主机</h3><p>当目标收到UDP数据包如果这个端口是关闭的，就返回ICMP端口不可达数据包，<br>    这个扫描不太准<br>    格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn PU  [端口，或多个端口] [目标]</span><br></pre></td></tr></table></figure>
+
+<h3 id="SCTP探测存活主机"><a href="#SCTP探测存活主机" class="headerlink" title="SCTP探测存活主机"></a>SCTP探测存活主机</h3><p>SCTP用的比较少<br>流控制传输协议（SCTP，Stream Control Transmission Protocol）是一种在网络连接两端之间同时传输多个数据流的协议。SCTP提供的服务于UDP和TCP类似<br>SCTP是可以确保数据传输的，和TCP类似，也是通过确认机制来实现的。和TCP不同的是：</p>
+<p> TCP是以字节为单位传输的，SCTP是以数据块为单位传输的</p>
+<p>TCP接收端确认的是收到的字节数，SCTP接收端确认的是接收到的数据块。SCTP的这种数据块（被称为DATA CHUNK）通常会携带应用的一个数据包，或者说是应用要发送的一个消息。</p>
+<p>在实际的应用中，TCP发送方的可以将应用程序需要发送的多个消息打包到一个TCP包里面发出去。比如，应用程序连续调用两次send()向对端发送两条消息，TCP协议可能把这两条消息都打包放在同一个TCP包中。接收端在收到这个TCP包时，回给对端的ACK只是表明自己接收到了多少个字节，TCP协议本身并不会把收到的数据重新拆散分成两条应用层消息并通知应用程序去接收。事实上，应用程序可能只需要调用一次receive()，就会把两条消息都收上来，然后应用需要根据应用程序自己定义的格式去拆成两条消息。</p>
+<p>与TCP不同，SCTP是将应用程序的每次调用sendmsg()发送的数据当作一个整体，放到一个被称为DATA CHUNK的数据块里面，接收端也是以DATA CHUNK为单位接收数据，并重新组包，通知应用程序接收。通常，应用程序每次调用recvmesg()都会收到一条完整的消息。</p>
+<p>在SCTP的发送端，多条短的应用层消息可以被SCTP协议打包放在同一个SCTP包中，此时在SCTP包中可以看到多个DATA CHUNK。另一方面，一条太长（比如，超过了路径MTU）的应用层消息也可能被SCTP协议拆分成多个片段，分别放在多个DATA CHUNK并通过不同的SCTP包发送给对端。这两种情况下，SCTP的接收端都能重新组包，并通知应用程序去接收。<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn  -PY [端口,多个端口]   [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用IP进行主机发现"><a href="#使用IP进行主机发现" class="headerlink" title="使用IP进行主机发现"></a>使用IP进行主机发现</h2><p>ICMP为1<br>IGMP为2<br>TCP为6<br>UDP为7<br>GRE4为7<br>ESP为50</p>
+<p>格式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn PO 号  [目标]</span><br></pre></td></tr></table></figure>
+<p>如果不指定号默认是1<br>这个方法容易被被目标检查出来<br>可以加上<code>--data-length</code>添加随机数据包</p>
+<h3 id="DNS活跃主机发现和DNS相关选项"><a href="#DNS活跃主机发现和DNS相关选项" class="headerlink" title="DNS活跃主机发现和DNS相关选项"></a>DNS活跃主机发现和DNS相关选项</h3><p>在对一台主机扫描的时候，如果它有域名的话，nmap会向域名服务器提出请求，显示ip对映的域名，扫描的时候可以指定范围</p>
+<ol>
+<li>无论是活跃的主机和不活跃的主机都叫域名给列出来 <code>-R</code><br>列</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">​```</span><br><span class="line">nmap -R  192.168.1.1-20</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
+<p>这个扫描可能会消耗大量的时间</p>
+<h1 id="端口扫描技术"><a href="#端口扫描技术" class="headerlink" title="端口扫描技术"></a>端口扫描技术</h1><h2 id="1-nmap对端口的状态的定义"><a href="#1-nmap对端口的状态的定义" class="headerlink" title="1. nmap对端口的状态的定义"></a>1. nmap对端口的状态的定义</h2><ol>
+<li>open：如果目标端口的状态为open，这表明在该端口有应用程序接收TCP连接或者UDP报文。</li>
+<li>closed：如果目标端口的状态为closed，这里要注意closed并不意味着没有任何反应，状态为closed的端口是可访问的，这种端口可以接收Nmap探测报文并做出响应。相比较而言，没有应用程序在open上监听。</li>
+<li>filtered：产生这种结果的原因主要是存在目标网络数据包过滤，由于这些设备过滤了探测数据包，导致Nmap无法确定该端口是否开放。这种设备可能是路由器、防火墙甚至专门的安全软件。</li>
+<li>unfiltered：这种结果很少见，它表明目标端口是可以访问的，但是Nmap却无法判断它到底是open还是closed的。通常只有在进行ACK扫描时才会出现这种状态。</li>
+<li>open | filtered：无法确定端口是开放的还是被过滤了，开放的端口不响应就是一个例子。</li>
+<li>closed|filtered：无法确定端口是关闭的还是被过滤了。只有在使用idle扫描时才会发生这种情况。</li>
+</ol>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><h2 id="SYN扫描"><a href="#SYN扫描" class="headerlink" title="SYN扫描"></a>SYN扫描</h2><p>nmap默认就是SYN扫描，扫描速度快<br>nmap会像主机发送一个SYN数据包，目标会返回SYN加ACK进行应答。然后nmap会返回给服务器RST数据包断开连接，没有建立三次握手，目标主机是不记录的<br><strong>响应状态</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20200530165532233.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>扫描语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS [目标]</span><br></pre></td></tr></table></figure>
+
+<h3 id="Connect扫描"><a href="#Connect扫描" class="headerlink" title="Connect扫描"></a>Connect扫描</h3><p>和SYN扫描方式一样，只是完成三次握手了<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sT [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="UDP扫描"><a href="#UDP扫描" class="headerlink" title="UDP扫描"></a>UDP扫描</h2><p><strong>响应状态</strong><img src="https://img-blog.csdnimg.cn/2020053017092356.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="TCP-FIN扫描"><a href="#TCP-FIN扫描" class="headerlink" title="TCP  FIN扫描"></a>TCP  FIN扫描</h2><p>发一个FIN数据包目标端口返回RST就说明端口是关闭的<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sF [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="NULL扫描"><a href="#NULL扫描" class="headerlink" title="NULL扫描"></a>NULL扫描</h2><p>NULL扫描发送一个没有包含任何数据的数据包，目标端口返回RST就说明端口是关闭的<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sN [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Xmas-Tree-扫描"><a href="#Xmas-Tree-扫描" class="headerlink" title="Xmas Tree 扫描"></a>Xmas Tree 扫描</h2><p>是向目标端发送一个含有FIN,URG和PUSH标志的数据包，目标端口返回RST就说明端口是关闭的<br>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sX [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="idle扫描"><a href="#idle扫描" class="headerlink" title="idle扫描"></a>idle扫描</h2><p><strong>僵尸机扫描端口开发</strong><br>1.攻击端给僵尸机发一个SYN/ACK僵尸机回RST/包里面有IPID=x<br>2.攻击端发服务器端口SYN是伪造僵尸机ip服务器发给僵尸                        机SYN/ACK，应为没有建立连接僵尸机就回RST/IPID=x+1<br>3.攻击端在给僵尸机发一个SYN/ACK僵尸机回RST/IPIF=x+2<br><strong>僵尸机扫描端口开发</strong><br>1.攻击端给僵尸机发一个SYN/ACK僵尸机回RST/IPID=x<br>2.攻击端发服务器端口SYN是伪造僵尸机ip服务器发给僵尸机没有建立连接服务器回发僵尸机RST<br>3.攻击端在给僵尸机发一个SYN/ACK僵尸机回RST/IPIF=x+1</p>
+<p><strong>判断是否是僵尸机–script是使用脚本</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p端口 要判断是僵尸机的ip  --script=ipidseq.nse  </span><br></pre></td></tr></table></figure>
+
+<p>使用僵尸机扫描目标端口 -sI是僵尸扫描</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 目标ip -sI 僵尸机ip -Pn -p 0-100  </span><br></pre></td></tr></table></figure>
+
+<h2 id="指定扫描的端口"><a href="#指定扫描的端口" class="headerlink" title="指定扫描的端口"></a>指定扫描的端口</h2><p><img src="https://img-blog.csdnimg.cn/20200531163447804.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxODYwODc2,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ol>
+<li>指定常见的100个端口<br>格式</li>
+</ol>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -F [目标]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ol start="2">
+<li>指定一个端口扫描<br>格式</li>
+</ol>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p [端口]  [目标]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ol start="3">
+<li><p>使用名字指定扫描端口<br>格式<br>nmap -p U:53  [目标]</p>
+</li>
+<li><p>扫描所有的端口<br>格式</p>
+</li>
+</ol>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p *  [目标]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<ol start="5">
+<li>常用的端口扫描<br>格式 </li>
+</ol>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  --top-ports [目标]</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h1 id="远程系统与服务探测"><a href="#远程系统与服务探测" class="headerlink" title="远程系统与服务探测"></a>远程系统与服务探测</h1><h2 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h2><p>查看返回的ttl值查看主机的系统<br>ttl值Windows 是128(65——128)<br>Linux 和 Unix = 64 (1-64) Unix = 255</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -O [目标]</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本探测"><a href="#版本探测" class="headerlink" title="版本探测"></a>版本探测</h2><p>发送探针报文，得到返回确认值，得到服务的版本</p>
+<blockquote>
+<p>探测服务器版本参数-sV</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap  -sV [目标]</span><br></pre></td></tr></table></figure>
+<p>1.如果想对全端口扫描可以加上<code>--allport</code><br>2.设置版本扫描的强度加上<code>--version-intensity   [1到9]</code><br>3.如果轻量级模式扫描可以加上<code>--version-light</code><br>4.尝试每个探测相当于<code>--version-intensity  9</code>  加上<code>--version-all</code><br>6.<code>--version-trace</code>这个参数将会打印出关于正在进行的扫描的详细调试信息<br>7.<strong>-sR(RPC扫描)</strong><br>这个方法和许多端口扫描方法联合使用。它对所有的被发现的开发的TCP/UDP端口执行SunRPC程序NULL命令试图确定他们是否RPC端口，如果是，可以确定是什么程序和版本号<br>nmap -sP [目标]</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/08/30/1,nmap/">http://example.com/2020/08/30/1,nmap/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">渗透工具使用</a></div><div class="post_share"><div class="social-share" data-image="http://www.devapp.it/wordpress/wp-content/uploads/2015/11/nmap-logo.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/30/3nmapNSE%E8%84%9A%E6%9C%AC%E6%A0%BC%E5%BC%8F%E5%92%8C%E7%BC%96%E5%86%99/"><img class="prev-cover" src="http://www.devapp.it/wordpress/wp-content/uploads/2015/11/nmap-logo.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">3，nmap，NSE脚本格式和编写</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/23/win7%E5%AE%89%E8%A3%85%E5%AE%89%E5%85%A8%E7%8B%97/"><img class="next-cover" src="https://gitee.com/wZass/zp/raw/master/img/20200910124405341.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">win7安装安全狗</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2019/11/08/1 sqlmapSQLMAP-自动注入/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-08</div><div class="title">1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入</div></div></a></div><div><a href="/2020/08/09/1.Metasploit介绍和模块/" title="1.Metasploit介绍和模块"><img class="cover" src="https://pic.3gbizhi.com/2019/0927/thumb_1680_0_20190927040015427.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">1.Metasploit介绍和模块</div></div></a></div><div><a href="/2019/11/08/2  sqlmap工具详细使用 SQLMAP自动注入头部的修改/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-08</div><div class="title">2  sqlmap工具详细使用 SQLMAP自动注入头部的修改</div></div></a></div><div><a href="/2020/08/09/2. 再学Mestasploit基本使用/" title="2. Mestasploit 基本使用"><img class="cover" src="https://pic.3gbizhi.com/2020/0821/thumb_1680_0_20200821113456781.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">2. Mestasploit 基本使用</div></div></a></div><div><a href="/2019/11/19/3 sqlma工具详细使用   任务095pSQLMAP自动注入扫描时间和优化/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-19</div><div class="title">3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化</div></div></a></div><div><a href="/2020/08/09/3.Metasploit使用/" title="3.Metasploit使用"><img class="cover" src="https://pic.3gbizhi.com/2019/1220/thumb_1680_0_20191220122945429.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">3.Metasploit使用</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#nmap%E8%8C%83%E5%9B%B4%E6%89%AB%E6%8F%8F"><span class="toc-number">1.</span> <span class="toc-text">nmap范围扫描</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">探测存活主机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP%E6%89%AB%E6%8F%8F%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">ARP扫描探测存活主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ICMP%E6%8E%A2%E6%B5%8B%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">ICMP探测探测存活主机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E5%BA%94%E7%AD%94%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.2.1.</span> <span class="toc-text">请求和响应应答探测存活主机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%88%B3%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.3.</span> <span class="toc-text">时间戳请求和响应探测存活主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E4%BF%BA%E7%A0%81%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.4.</span> <span class="toc-text">地址俺码请求和响应探测存活主机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.5.</span> <span class="toc-text">TCP探测存活主机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SYN%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.5.1.</span> <span class="toc-text">SYN探测存活主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACK%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.5.2.</span> <span class="toc-text">ACK探测存活主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UDP%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.5.3.</span> <span class="toc-text">UDP探测存活主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SCTP%E6%8E%A2%E6%B5%8B%E5%AD%98%E6%B4%BB%E4%B8%BB%E6%9C%BA"><span class="toc-number">2.5.4.</span> <span class="toc-text">SCTP探测存活主机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8IP%E8%BF%9B%E8%A1%8C%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0"><span class="toc-number">2.6.</span> <span class="toc-text">使用IP进行主机发现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E6%B4%BB%E8%B7%83%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0%E5%92%8CDNS%E7%9B%B8%E5%85%B3%E9%80%89%E9%A1%B9"><span class="toc-number">2.6.1.</span> <span class="toc-text">DNS活跃主机发现和DNS相关选项</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F%E6%8A%80%E6%9C%AF"><span class="toc-number">3.</span> <span class="toc-text">端口扫描技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-nmap%E5%AF%B9%E7%AB%AF%E5%8F%A3%E7%9A%84%E7%8A%B6%E6%80%81%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text">1. nmap对端口的状态的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">3.2.</span> <span class="toc-text">端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SYN%E6%89%AB%E6%8F%8F"><span class="toc-number">3.3.</span> <span class="toc-text">SYN扫描</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Connect%E6%89%AB%E6%8F%8F"><span class="toc-number">3.3.1.</span> <span class="toc-text">Connect扫描</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDP%E6%89%AB%E6%8F%8F"><span class="toc-number">3.4.</span> <span class="toc-text">UDP扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-FIN%E6%89%AB%E6%8F%8F"><span class="toc-number">3.5.</span> <span class="toc-text">TCP  FIN扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NULL%E6%89%AB%E6%8F%8F"><span class="toc-number">3.6.</span> <span class="toc-text">NULL扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Xmas-Tree-%E6%89%AB%E6%8F%8F"><span class="toc-number">3.7.</span> <span class="toc-text">Xmas Tree 扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#idle%E6%89%AB%E6%8F%8F"><span class="toc-number">3.8.</span> <span class="toc-text">idle扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%89%AB%E6%8F%8F%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-number">3.9.</span> <span class="toc-text">指定扫描的端口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E7%B3%BB%E7%BB%9F%E4%B8%8E%E6%9C%8D%E5%8A%A1%E6%8E%A2%E6%B5%8B"><span class="toc-number">4.</span> <span class="toc-text">远程系统与服务探测</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E6%8E%A2%E6%B5%8B"><span class="toc-number">4.1.</span> <span class="toc-text">主机探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A2%E6%B5%8B"><span class="toc-number">4.2.</span> <span class="toc-text">版本探测</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

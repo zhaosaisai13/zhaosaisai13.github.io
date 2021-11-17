@@ -1,0 +1,519 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>git基本命令 | Hexo</title><meta name="keywords" content="安装"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="看到尚硅谷和狂神说的视频教程   尚硅谷git版本控制版本控制有两个 1. 分布式版本控制 2. 集中式版本控制    集中式版本控制就是叫一个中央服务器存在代码，我修改好的代码了给传送上去，这个项目的其他人在下载下来做他的项目，然后再上传上面。 他有一个缺点就是服务器坏了，没有历史记录了  分布式版本控制分布式版本控制和集中式版本控制区别就是，每个开发者自己的电脑上都有自己的，完整版本库分布式版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git基本命令">
+<meta property="og:url" content="http://example.com/2021/11/08/git/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="看到尚硅谷和狂神说的视频教程   尚硅谷git版本控制版本控制有两个 1. 分布式版本控制 2. 集中式版本控制    集中式版本控制就是叫一个中央服务器存在代码，我修改好的代码了给传送上去，这个项目的其他人在下载下来做他的项目，然后再上传上面。 他有一个缺点就是服务器坏了，没有历史记录了  分布式版本控制分布式版本控制和集中式版本控制区别就是，每个开发者自己的电脑上都有自己的，完整版本库分布式版">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/Git-Version-Control-System.png">
+<meta property="article:published_time" content="2021-11-08T07:19:21.000Z">
+<meta property="article:modified_time" content="2021-11-10T02:22:10.214Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="安装">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/Git-Version-Control-System.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/11/08/git/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'git基本命令',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-10 10:22:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">174</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">47</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">68</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">git基本命令</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-08T07:19:21.000Z" title="发表于 2021-11-08 15:19:21">2021-11-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-10T02:22:10.214Z" title="更新于 2021-11-10 10:22:10">2021-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E8%A3%85/">安装</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="git基本命令"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><div class="note blue no-icon flat"><p><strong>看到尚硅谷和狂神说的视频教程</strong></p>
+</div>
+
+<h1 id="尚硅谷"><a href="#尚硅谷" class="headerlink" title="尚硅谷"></a>尚硅谷</h1><h1 id="git版本控制"><a href="#git版本控制" class="headerlink" title="git版本控制"></a>git版本控制</h1><div class="note blue no-icon flat"><p>版本控制有两个 1. 分布式版本控制 2. 集中式版本控制</p>
+</div>
+
+
+<h2 id="集中式版本控制"><a href="#集中式版本控制" class="headerlink" title="集中式版本控制"></a>集中式版本控制</h2><p>就是叫一个中央服务器存在代码，我修改好的代码了给传送上去，这个项目的其他人在下载下来做他的项目，然后再上传上面。</p>
+<p><strong>他有一个缺点就是服务器坏了，没有历史记录了</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210502112122566.png" alt="image-20210502112122566"></p>
+<h2 id="分布式版本控制"><a href="#分布式版本控制" class="headerlink" title="分布式版本控制"></a>分布式版本控制</h2><p>分布式版本控制和集中式版本控制区别就是，每个开发者自己的电脑上都有自己的，完整版本库分布式版本控制系统可通过推送版本库到比如Github上面，实现项目共享开发</p>
+<p><strong>就算服务器坏了，你自己也有完整的版本库</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210502113148806.png" alt="image-20210502113148806"></p>
+<h1 id="git工作机制"><a href="#git工作机制" class="headerlink" title="git工作机制"></a>git工作机制</h1><ol>
+<li>工作区：就是你的代码存放的那个目录</li>
+<li>暂存区：工作区的代码需要用git add添加到暂存区</li>
+<li>本地库：git commit命令叫暂存区提交到本地库就是历X史版本</li>
+<li>远程库：将代码从本地库推送到远程库用git pash</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106084022600.png" alt="image-20211106084022600"></p>
+<h1 id="git的区域"><a href="#git的区域" class="headerlink" title="git的区域"></a>git的区域</h1><ul>
+<li>workspace：工作区</li>
+<li>staging area：暂存区/缓存区</li>
+<li>local repository：版本库或本地仓库</li>
+<li>remote repository：远程仓库</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211008112104323.png" alt="image-20211008112104323"></p>
+<h1 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h1><p>git克隆他会自动的初始化工作区还会创建<code>origin</code>远程地址别名</p>
+<p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> 地址</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用的命令"><a href="#常用的命令" class="headerlink" title="常用的命令"></a>常用的命令</h1><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>git clone</code></td>
+<td align="right">Git 仓库中拷贝项目</td>
+</tr>
+<tr>
+<td align="center"><code>git status</code></td>
+<td align="right">查看仓库当前的状态，显示有变更的文件</td>
+</tr>
+<tr>
+<td align="center"><code>git init</code></td>
+<td align="right">初始化仓库</td>
+</tr>
+<tr>
+<td align="center"><code>git add</code></td>
+<td align="right">添加文件到暂存区</td>
+</tr>
+<tr>
+<td align="center"><code>git commit</code></td>
+<td align="right">将暂存区内容添加到仓库中</td>
+</tr>
+<tr>
+<td align="center"><code>git reset</code></td>
+<td align="right"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody></table>
+<h1 id="git配置文件"><a href="#git配置文件" class="headerlink" title="git配置文件"></a>git配置文件</h1><ul>
+<li><p>查看当前系统的配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+
+<p>配置文件在<code>/etc/gitconfig</code></p>
+</li>
+<li><p>查看本地用户配置文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global --list</span><br></pre></td></tr></table></figure>
+
+<p>文件在用下的<code>.gitconfig</code>文件里面</p>
+</li>
+<li><p>查看当前仓库配置信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span>  --list</span><br></pre></td></tr></table></figure>
+
+<p>他会查看当前文件夹的git的配置信息,文件夹中<code>.git/config</code>文件里面</p>
+</li>
+</ul>
+<h1 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/zhao-sai-sai/Picture/image-20211008102432581.png" alt="image-20211008102432581"></p>
+<p>指定目录作为Git仓库</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init 指定的目录  <span class="comment">#  例如git init abc</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="设置签名"><a href="#设置签名" class="headerlink" title="设置签名"></a>设置签名</h1><p>这个签名用于表示开发者的身份，和git库一点关系都没有的</p>
+<h2 id="签名等级和添加签名"><a href="#签名等级和添加签名" class="headerlink" title="签名等级和添加签名"></a>签名等级和添加签名</h2><p>他的优先级是项目级别</p>
+<ol>
+<li><p>系统级别的级别：就是只~的配置文件里面的</p>
+<p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;名字&quot; </span><br><span class="line">git config --global user.email &quot;xxx@qq.com&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>项目级别：就是在当前项目里面的，比如我的<code>/home/zss/github/Blog-testhexo</code></p>
+<p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config  user.name &quot;名字&quot; </span><br><span class="line">git config  user.email &quot;xxx@qq.com&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="查看签名"><a href="#查看签名" class="headerlink" title="查看签名"></a>查看签名</h2><div class="note blue no-icon flat"><p>签名会在配置文件里面，windows系统大同小异</p>
+<p>系统级别的级别：文件在用下的<code>.gitconfig</code>文件里面</p>
+<p>项目级别：文件夹中<code>.git/config</code>文件里面</p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211008173046949.png" alt="image-20211008173046949"></p>
+<h1 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h1><p>这个命令可以查看工作区和暂存区的状态</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106101834960.png" alt="image-20211106101834960"></p>
+<h1 id="提交和删除暂存区"><a href="#提交和删除暂存区" class="headerlink" title="提交和删除暂存区"></a>提交和删除暂存区</h1><h2 id="提交到暂存区"><a href="#提交到暂存区" class="headerlink" title="提交到暂存区"></a>提交到暂存区</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment"># 这个.代表全部的意思</span></span><br><span class="line">git add *.txt <span class="comment">#意思是将全部的.txt的文件提交暂存区</span></span><br><span class="line">git add a.txt b.txt <span class="comment">#意思是将a.txt b.txt提交暂存区</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看见下面的结果已经提交到了暂存区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211008120713603.png" alt="image-20211008120713603"></p>
+<h2 id="删除暂存区"><a href="#删除暂存区" class="headerlink" title="删除暂存区"></a>删除暂存区</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm  --cached 文件名</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106102535152.png" alt="image-20211106102535152"></p>
+<h1 id="提交到本地"><a href="#提交到本地" class="headerlink" title="提交到本地"></a>提交到本地</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git commit . <span class="comment"># 这个.代表全部的意思</span></span><br><span class="line">git commit *.txt <span class="comment">#意思是将全部的.txt的文件提交暂存区</span></span><br><span class="line">git commit a.txt b.txt <span class="comment">#意思是将a.txt b.txt提交暂存区</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106104540703.png" alt="image-20211106104540703"></p>
+<p>第一次提交他会跳到这个页面，什么就相当于代码的注释</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106104550008.png" alt="image-20211106104550008"></p>
+<p>我添加几个aaa</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106104732641.png" alt="image-20211106104732641"></p>
+<p>然后保存退出</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106104759176.png" alt="image-20211106104759176"><br>说明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[master（根提交） f51286a] aaaaaaaaaaaaaaaaa  </span><br><span class="line"># 这个f51286a就相当于我们提交的版本号 </span><br><span class="line"># aaaaaaaaaaaaaaaaa 是我们在上面文件里面写的</span><br><span class="line"> 1 file changed, 5 insertions(+)</span><br><span class="line"> create mode 100644 a.txt</span><br></pre></td></tr></table></figure>
+
+<p>在查看一下状态</p>
+<p>可以看见已经提交到了本地，本地已经没有什么要提交了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106105732066.png" alt="image-20211106105732066"></p>
+<p>我叫a,.txt文件给改一下然后在查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106110134830.png" alt="image-20211106110134830"></p>
+<p>然后在查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106142153632.png" alt="image-20211106142153632"></p>
+<div class="note blue no-icon flat"><p>我们可以直接加<code>-m</code>，不用每次都需要进行进入vim进行编辑，或者直接不加</p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106142455941.png" alt="image-20211106142455941"></p>
+<h1 id="查看历史版本"><a href="#查看历史版本" class="headerlink" title="查看历史版本"></a>查看历史版本</h1><h2 id="第一种显示"><a href="#第一种显示" class="headerlink" title="第一种显示"></a>第一种显示</h2><p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106161930052.png" alt="image-20211106161930052"></p>
+<h2 id="第二种简化显示"><a href="#第二种简化显示" class="headerlink" title="第二种简化显示"></a>第二种简化显示</h2><p>上面的显示有一个毛病就是如果多就会得往下翻，我们可以用下面这个添加一个参数就可以了</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=oneline</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106162448598.png" alt="image-20211106162448598"></p>
+<h2 id="第三种简更简化显示"><a href="#第三种简更简化显示" class="headerlink" title="第三种简更简化显示"></a>第三种简更简化显示</h2><p>这个可以更简化显示</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106162714475.png" alt="image-20211106162714475"></p>
+<h2 id="第四种版本号显示"><a href="#第四种版本号显示" class="headerlink" title="第四种版本号显示"></a>第四种版本号显示</h2><p>这个可以显示可以跳到的版本号里面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106163349467.png" alt="image-20211106163349467"></p>
+<h1 id="版本控制前进后退"><a href="#版本控制前进后退" class="headerlink" title="版本控制前进后退"></a>版本控制前进后退</h1><ol>
+<li><code>--soft</code>参数<ol>
+<li>他只移动本地库的HEAD指针</li>
+</ol>
+</li>
+<li><code>--mixed</code>参数<ol>
+<li>移动本地库的HEAD指针</li>
+<li>重新配置暂存区</li>
+</ol>
+</li>
+<li><code>--hard</code>参数<ol>
+<li>移动本地库的HEAD指针</li>
+<li>重新配置暂存区</li>
+<li>会重置工作区</li>
+</ol>
+</li>
+</ol>
+<h2 id="–hard参数"><a href="#–hard参数" class="headerlink" title="–hard参数"></a>–hard参数</h2><p>这个原理就是指针指向</p>
+<p>比如下面这个图**HEAD -&gt;**这个我们后退的话就是指向下一个</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106163349467.png" alt="image-20211106163349467"></p>
+<h3 id="根据索引值来版本控制"><a href="#根据索引值来版本控制" class="headerlink" title="根据索引值来版本控制"></a>根据索引值来版本控制</h3><p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 索引值</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个索引就是下面这个，拿一部分就可以了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106164034301.png" alt="image-20211106164034301"></p>
+<p><strong>演示</strong></p>
+<p>先查看一个a.txt文件内容</p>
+<p><img src="/home/zss/.config/Typora/typora-user-images/image-20211106164523627.png" alt="image-20211106164523627"></p>
+<p>查看<code>git reflog</code>版本</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106164627711.png" alt="image-20211106164627711"></p>
+<p>我就演示cccc那个</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106164811422.png" alt="image-20211106164811422"></p>
+<p>在查看一下a.txt文件</p>
+<p>可以看见文件已经修改了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106164918492.png" alt="image-20211106164918492"></p>
+<p>在看一下版本号可以看见已经指针指向了我们要指定的地方</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211106165005828.png" alt="image-20211106165005828"></p>
+<h3 id="用-来后退"><a href="#用-来后退" class="headerlink" title="用^来后退"></a>用^来后退</h3><p>这个只能后退不能前进</p>
+<p>格式</p>
+<p>下面这个一个^就是退一个，n个就是退n个，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^  </span><br></pre></td></tr></table></figure>
+
+<h3 id="用-来后退-1"><a href="#用-来后退-1" class="headerlink" title="用~来后退"></a>用~来后退</h3><p>这个只能后退不能前进</p>
+<p>格式</p>
+<p>n是数字指定退的n步</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~n</span><br></pre></td></tr></table></figure>
+
+<h2 id="其他移动版本参数"><a href="#其他移动版本参数" class="headerlink" title="其他移动版本参数"></a>其他移动版本参数</h2><p>上面用的是<code>--hard</code>还有两个参数<code>--soft</code>和 <code>--mixed</code> </p>
+<p>这三个命令的区别</p>
+<ol>
+<li><p><code>--soft</code>参数</p>
+<ol>
+<li>他只移动本地库的HEAD指针</li>
+</ol>
+</li>
+<li><p><code>--mixed</code>参数</p>
+<ol>
+<li>移动本地库的HEAD指针</li>
+<li>重新配置暂存区</li>
+</ol>
+</li>
+<li><p><code>--hard</code>参数</p>
+<ol>
+<li>移动本地库的HEAD指针</li>
+<li>重新配置暂存区</li>
+<li>会重置工作区</li>
+</ol>
+<p>​    </p>
+</li>
+</ol>
+<h1 id="本地区文件删除找回"><a href="#本地区文件删除找回" class="headerlink" title="本地区文件删除找回"></a>本地区文件删除找回</h1><p>这个找回必须你叫这个文件提交到了本地库才能找回</p>
+<p>只要提交到了本地库的都可以找回</p>
+<p>演示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107144918552.png" alt="image-20211107144918552"></p>
+<p>应为上面的b.txt已经删除了本地区已经被修改了下面在叫这个记录给提交到工作区</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107145008651.png" alt="image-20211107145008651"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107143643899.png" alt="image-20211107143643899"></p>
+<p>查看一下历史版本<code>git reflog</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107144054296.png" alt="image-20211107144054296"></p>
+<p>切换到有b.txt文件的版本可以看见文件回来了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107144256378.png" alt="image-20211107144256378"></p>
+<h1 id="文件比较"><a href="#文件比较" class="headerlink" title="文件比较"></a>文件比较</h1><p>语法</p>
+<p>他是叫工作区的内容进行给其他的比较</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff [文件名/本地库的版本]</span><br></pre></td></tr></table></figure>
+
+<h1 id="分支操作"><a href="#分支操作" class="headerlink" title="分支操作"></a>分支操作</h1><p><strong>分支是互不干扰的</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107152140320.png" alt="image-20211107152140320"></p>
+<h2 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h2><p>查看分支命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -v</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211107152842707.png" alt="image-20211107152842707"></p>
+<h2 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h2><p>语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure>
+
+<p><strong>演示</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108063926088.png" alt="image-20211108063926088"></p>
+<p>查看一下分支<code>git branch -v</code> 可以看见已经多了一个分支<code>aaaa</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108064002796.png" alt="image-20211108064002796"></p>
+<h2 id="分支切换"><a href="#分支切换" class="headerlink" title="分支切换"></a>分支切换</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br></pre></td></tr></table></figure>
+
+<p><strong>演示</strong></p>
+<p>可以看见下面这个分支在<code>master</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108064002796.png" alt="image-20211108064002796"></p>
+<p>分支</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108064224808.png" alt="image-20211108064224808"></p>
+<p>查看一下分支<code>git branch -v</code>可以看见在aaa分支里面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108071123737.png" alt="image-20211108071123737"></p>
+<h2 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge 要跟那个分支合并的分支名</span><br></pre></td></tr></table></figure>
+
+
+
+<p>演示</p>
+<p>下面是<code>aaa</code>分支里面</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108071123737.png" alt="image-20211108071123737"></p>
+<p>下面我在aaa分支里面创建一个<code>c.txt</code>文件然后提交到本地库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108155559069.png" alt="image-20211108155559069"></p>
+<p>下面在查看一下分支可以看见<code>aaa</code>这个分支和<code>master</code>分支就不一样了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108155849772.png" alt="image-20211108155849772"></p>
+<p>下面操作给<code>master</code>分支给<code>aaa</code>分支合并</p>
+<p>先切换到<code>master</code>分支里面</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge aaa</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108160715950.png" alt="image-20211108160715950"></p>
+<h2 id="解决分支的冲突"><a href="#解决分支的冲突" class="headerlink" title="解决分支的冲突"></a>解决分支的冲突</h2><div class="note blue no-icon flat"><p>在两个分支的文件都有修改的时候正好是同一个文件和同一个位置，就会出错</p>
+</div>
+
+<p>演示</p>
+<ul>
+<li><p>在<code>master</code>分支操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108162638754.png" alt="image-20211108162638754"></p>
+</li>
+<li><p>在<code>aaa</code>分支里面操作</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108162939268.png" alt="image-20211108162939268"></p>
+</li>
+</ul>
+<div class="note blue no-icon flat"><p>合并的时候可以看见报错了</p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108173707210.png" alt="image-20211108173707210"></p>
+<div class="note blue no-icon flat"><p>查看一下文件，他叫这两个修改的内容都给放到文件里面了</p>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108173833551.png" alt="image-20211108173833551"></p>
+<p>这就叫你手动修改文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108174213571.png" alt="image-20211108174213571"></p>
+<p>查看一下状态</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108174335000.png" alt="image-20211108174335000"></p>
+<p>上面说了用<code>git add</code>来修复</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108174503998.png" alt="image-20211108174503998"></p>
+<p>在查看一下状态还是处于合并状态，上面说了用<code>git commit</code>来终止合并</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108174406005.png" alt="image-20211108174406005"></p>
+<p>下面提交到本地库不要指定文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&quot;hebing&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108174658522.png" alt="image-20211108174658522"></p>
+<h1 id="推送和别名"><a href="#推送和别名" class="headerlink" title="推送和别名"></a>推送和别名</h1><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull [git地址] [分支]</span><br></pre></td></tr></table></figure>
+
+<p>例如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push https://github.com/Zhao-sai-sai/Configuration.git  master</span><br></pre></td></tr></table></figure>
+
+<p>我下面这个应为用了<code>proxychains</code>4安全上网</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108183433504.png" alt="image-20211108183433504"></p>
+<h2 id="查看别名"><a href="#查看别名" class="headerlink" title="查看别名"></a>查看别名</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote  -v</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108185748121.png" alt="image-20211108185748121"></p>
+<h2 id="别名推送"><a href="#别名推送" class="headerlink" title="别名推送"></a>别名推送</h2><p>这个有一个毛病就是每次推送都要输入github地址比较麻烦</p>
+<p>我们就可以给这个github地址起别名就和变量一样</p>
+<p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [起的名字] [github地址]</span><br></pre></td></tr></table></figure>
+
+<p>例如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin  https://github.com/Zhao-sai-sai/Configuration.git </span><br></pre></td></tr></table></figure>
+
+<p>这个<code>origin</code>就相当于<code>https://github.com/Zhao-sai-sai/Configuration.git</code> </p>
+<p>演示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108190020896.png" alt="image-20211108190020896"></p>
+<p>我们就可以直接用别名进行推送</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108190203690.png" alt="image-20211108190203690"></p>
+<h2 id="删除别名"><a href="#删除别名" class="headerlink" title="删除别名"></a>删除别名</h2><p>语法</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote rm [别名的名字]</span><br></pre></td></tr></table></figure>
+
+<h1 id="邀请人员加入"><a href="#邀请人员加入" class="headerlink" title="邀请人员加入"></a>邀请人员加入</h1><p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203335777.png" alt="image-20211108203335777"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203316660.png" alt="image-20211108203316660"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203627495.png" alt="image-20211108203627495"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203701276.png" alt="image-20211108203701276"></p>
+<p>切换到被邀请的号上面访问复制的url</p>
+<p>或者点击下面这个</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203755805.png" alt="image-20211108203755805"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108203913961.png" alt="image-20211108203913961"></p>
+<p>我们就可以用被邀请的账号就可以推送了</p>
+<h1 id="拉取pull"><a href="#拉取pull" class="headerlink" title="拉取pull"></a>拉取pull</h1><p>视频地址<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pW411A7a5?p=39">https://www.bilibili.com/video/BV1pW411A7a5?p=39</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fetch加merge等于pull</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/11/08/git/">http://example.com/2021/11/08/git/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E8%A3%85/">安装</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wzass/zp/Git-Version-Control-System.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/11/08/Gitlab/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/Git-Version-Control-System.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Gitlab安装</div></div></a></div><div class="next-post pull-right"><a href="/2021/11/05/1.0d1/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211108161046885.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ctf之web</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/11/08/Gitlab/" title="Gitlab安装"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/Git-Version-Control-System.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">Gitlab安装</div></div></a></div><div><a href="/2020/11/03/Savvius Omnipeek破解版汉化版下载和安装/" title="Savvius Omnipeek破解版汉化版下载和安装"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20201103091611.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-03</div><div class="title">Savvius Omnipeek破解版汉化版下载和安装</div></div></a></div><div><a href="/2021/03/16/github/" title="Archlinux安装和U盘安装和配置"><img class="cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Photo_clone/image-20210213163306377.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-16</div><div class="title">Archlinux安装和U盘安装和配置</div></div></a></div><div><a href="/2021/03/16/jt/" title="i3wm环境配置问题"><img class="cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Photo_clone/image-20210213163306377.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-16</div><div class="title">i3wm环境配置问题</div></div></a></div><div><a href="/2020/01/20/kali2020教程Burpsuite破解汉化版安装/" title="kali2020教程Burpsuite破解汉化版安装"><img class="cover" src="https://pic.3gbizhi.com/2020/0827/20200827064249298.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-01-20</div><div class="title">kali2020教程Burpsuite破解汉化版安装</div></div></a></div><div><a href="/2020/04/11/linux版qv2ray安装/" title="linux版qv2ray安装"><img class="cover" src="https://pic.3gbizhi.com/2020/0529/thumb_1680_0_20200529040047300.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-11</div><div class="title">linux版qv2ray安装</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%9A%E7%A1%85%E8%B0%B7"><span class="toc-number">1.</span> <span class="toc-text">尚硅谷</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">git版本控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">2.1.</span> <span class="toc-text">集中式版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">分布式版本控制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">3.</span> <span class="toc-text">git工作机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E7%9A%84%E5%8C%BA%E5%9F%9F"><span class="toc-number">4.</span> <span class="toc-text">git的区域</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%8B%E9%9A%86"><span class="toc-number">5.</span> <span class="toc-text">克隆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">6.</span> <span class="toc-text">常用的命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">7.</span> <span class="toc-text">git配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93"><span class="toc-number">8.</span> <span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%AD%BE%E5%90%8D"><span class="toc-number">9.</span> <span class="toc-text">设置签名</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%BE%E5%90%8D%E7%AD%89%E7%BA%A7%E5%92%8C%E6%B7%BB%E5%8A%A0%E7%AD%BE%E5%90%8D"><span class="toc-number">9.1.</span> <span class="toc-text">签名等级和添加签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%AD%BE%E5%90%8D"><span class="toc-number">9.2.</span> <span class="toc-text">查看签名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81"><span class="toc-number">10.</span> <span class="toc-text">查看状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%92%8C%E5%88%A0%E9%99%A4%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-number">11.</span> <span class="toc-text">提交和删除暂存区</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-number">11.1.</span> <span class="toc-text">提交到暂存区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9A%82%E5%AD%98%E5%8C%BA"><span class="toc-number">11.2.</span> <span class="toc-text">删除暂存区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">12.</span> <span class="toc-text">提交到本地</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC"><span class="toc-number">13.</span> <span class="toc-text">查看历史版本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%E6%98%BE%E7%A4%BA"><span class="toc-number">13.1.</span> <span class="toc-text">第一种显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E7%AE%80%E5%8C%96%E6%98%BE%E7%A4%BA"><span class="toc-number">13.2.</span> <span class="toc-text">第二种简化显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%A7%8D%E7%AE%80%E6%9B%B4%E7%AE%80%E5%8C%96%E6%98%BE%E7%A4%BA"><span class="toc-number">13.3.</span> <span class="toc-text">第三种简更简化显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%A7%8D%E7%89%88%E6%9C%AC%E5%8F%B7%E6%98%BE%E7%A4%BA"><span class="toc-number">13.4.</span> <span class="toc-text">第四种版本号显示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80"><span class="toc-number">14.</span> <span class="toc-text">版本控制前进后退</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%93hard%E5%8F%82%E6%95%B0"><span class="toc-number">14.1.</span> <span class="toc-text">–hard参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%B4%A2%E5%BC%95%E5%80%BC%E6%9D%A5%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">14.1.1.</span> <span class="toc-text">根据索引值来版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-%E6%9D%A5%E5%90%8E%E9%80%80"><span class="toc-number">14.1.2.</span> <span class="toc-text">用^来后退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8-%E6%9D%A5%E5%90%8E%E9%80%80-1"><span class="toc-number">14.1.3.</span> <span class="toc-text">用~来后退</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%A7%BB%E5%8A%A8%E7%89%88%E6%9C%AC%E5%8F%82%E6%95%B0"><span class="toc-number">14.2.</span> <span class="toc-text">其他移动版本参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%8C%BA%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4%E6%89%BE%E5%9B%9E"><span class="toc-number">15.</span> <span class="toc-text">本地区文件删除找回</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%AF%94%E8%BE%83"><span class="toc-number">16.</span> <span class="toc-text">文件比较</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C"><span class="toc-number">17.</span> <span class="toc-text">分支操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%88%86%E6%94%AF"><span class="toc-number">17.1.</span> <span class="toc-text">查看分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%86%E6%94%AF"><span class="toc-number">17.2.</span> <span class="toc-text">创建分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%88%87%E6%8D%A2"><span class="toc-number">17.3.</span> <span class="toc-text">分支切换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6"><span class="toc-number">17.4.</span> <span class="toc-text">分支合并</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%88%86%E6%94%AF%E7%9A%84%E5%86%B2%E7%AA%81"><span class="toc-number">17.5.</span> <span class="toc-text">解决分支的冲突</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%E5%92%8C%E5%88%AB%E5%90%8D"><span class="toc-number">18.</span> <span class="toc-text">推送和别名</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%88%AB%E5%90%8D"><span class="toc-number">18.1.</span> <span class="toc-text">查看别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%AB%E5%90%8D%E6%8E%A8%E9%80%81"><span class="toc-number">18.2.</span> <span class="toc-text">别名推送</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%88%AB%E5%90%8D"><span class="toc-number">18.3.</span> <span class="toc-text">删除别名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%82%80%E8%AF%B7%E4%BA%BA%E5%91%98%E5%8A%A0%E5%85%A5"><span class="toc-number">19.</span> <span class="toc-text">邀请人员加入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8B%89%E5%8F%96pull"><span class="toc-number">20.</span> <span class="toc-text">拉取pull</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
