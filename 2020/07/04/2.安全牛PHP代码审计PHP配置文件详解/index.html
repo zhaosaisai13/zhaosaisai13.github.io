@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2.安全牛PHP代码审计:PHP配置文件详解 | Hexo</title><meta name="keywords" content="php代码审计"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="笔记  介绍他是一个全局的配置文件在PHP启动的时候会被读取，他启动的时候只读取一次，如果要生效要重启PHP文件配置在这个里面 汉化版出来的内容https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_41860876&#x2F;article&#x2F;details&#x2F;107042443 配置的基本语法 大小写敏感  12directive&#x3D; value指令&#x3D;值)foo&#x3D;bar≠FOo&#x3D;bar 运算符  1|,&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.安全牛PHP代码审计:PHP配置文件详解">
+<meta property="og:url" content="http://example.com/2020/07/04/2.%E5%AE%89%E5%85%A8%E7%89%9BPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1PHP%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="笔记  介绍他是一个全局的配置文件在PHP启动的时候会被读取，他启动的时候只读取一次，如果要生效要重启PHP文件配置在这个里面 汉化版出来的内容https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_41860876&#x2F;article&#x2F;details&#x2F;107042443 配置的基本语法 大小写敏感  12directive&#x3D; value指令&#x3D;值)foo&#x3D;bar≠FOo&#x3D;bar 运算符  1|,&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png">
+<meta property="article:published_time" content="2020-07-04T06:11:30.000Z">
+<meta property="article:modified_time" content="2021-12-25T04:24:08.828Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php代码审计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/07/04/2.%E5%AE%89%E5%85%A8%E7%89%9BPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1PHP%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2.安全牛PHP代码审计:PHP配置文件详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-12-25 12:24:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">2.安全牛PHP代码审计:PHP配置文件详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-04T06:11:30.000Z" title="发表于 2020-07-04 14:11:30">2020-07-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-12-25T04:24:08.828Z" title="更新于 2021-12-25 12:24:08">2021-12-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">php代码审计</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2.安全牛PHP代码审计:PHP配置文件详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>笔记</p>
+</blockquote>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>他是一个全局的配置文件<br>在PHP启动的时候会被读取，他启动的时候只读取一次，如果要生效要重启PHP<br>文件配置在这个里面<br><img src="https://img-blog.csdnimg.cn/20200630143902607.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20200630145127206.png" alt="在这里插入图片描述"></p>
+<p>汉化版出来的内容<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41860876/article/details/107042443">https://blog.csdn.net/qq_41860876/article/details/107042443</a></p>
+<h2 id="配置的基本语法"><a href="#配置的基本语法" class="headerlink" title="配置的基本语法"></a>配置的基本语法</h2><ul>
+<li><p>大小写敏感</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">directive= value指令=值)</span><br><span class="line">foo=bar≠FOo=bar</span><br></pre></td></tr></table></figure></li>
+<li><p>运算符</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|,&amp;,~,!</span><br></pre></td></tr></table></figure></li>
+<li><p>空值的表达方式</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo=   ;</span><br><span class="line">o= none;</span><br><span class="line">o= &quot;none&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="基本配置的安全模式"><a href="#基本配置的安全模式" class="headerlink" title="基本配置的安全模式"></a>基本配置的安全模式</h2></li>
+</ul>
+<h3 id="安全模式"><a href="#安全模式" class="headerlink" title="安全模式"></a>安全模式</h3><pre><code>`safe_mode = off`
+</code></pre>
+<p>安全模式，用来限制文档的存取、限制环境变量的存取，控制外部程序的执行。<br><code>本特性已在PHP5.4.0被移除</code><br>看一下他默认是关闭的状态<br><img src="https://img-blog.csdnimg.cn/20200630150141291.png" alt="在这里插入图片描述"></p>
+<h4 id="对比一下他开启和关闭的区别"><a href="#对比一下他开启和关闭的区别" class="headerlink" title="对比一下他开启和关闭的区别"></a>对比一下他开启和关闭的区别</h4><p><strong>我用的PHP的版本是5.2</strong></p>
+<ol>
+<li>关闭的情况下<br>php代码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>;</span><br><span class="line">system(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre/&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+URL地址：<code>http://192.168.31.95/a.php?cmd=ipconfig</code><br>结果<br><img src="https://img-blog.csdnimg.cn/20200630150635360.png" alt="在这里插入图片描述"></li>
+<li>开启的情况下<br><img src="https://img-blog.csdnimg.cn/20200630150940504.png" alt="在这里插入图片描述"><br>然后在重启服务器<br>PHP代码<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>;</span><br><span class="line">system(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre/&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+URL：    <code>http://192.168.31.95/a.php?cmd=ipconfig</code><br>结果<br>可以看到没有任何结果<br><img src="https://img-blog.csdnimg.cn/20200630151150700.png" alt="在这里插入图片描述"></li>
+</ol>
+<h3 id="限制环境变量存取"><a href="#限制环境变量存取" class="headerlink" title="限制环境变量存取"></a>限制环境变量存取</h3><p><code>safe_mode allowed_env_vars = string</code><br>指定 PHP 程序可以改变的环境变量的前缀,当这个选项的值为空时，那么 php 可以<br>改变任何环境变量。如:safe_mode_allowed_env_vars = PHP_，当这个选项的值为空时，那么 php<br>可以改变任何环境变量</p>
+<h3 id="外部程序执行目录"><a href="#外部程序执行目录" class="headerlink" title="外部程序执行目录"></a>外部程序执行目录</h3><p><code>safe mode exec dir = “E:\Local Test\WWW&quot;</code></p>
+<h3 id="禁用函数"><a href="#禁用函数" class="headerlink" title="禁用函数"></a>禁用函数</h3><p><code>disable_functions</code><br>为了更安全的运行PHP，可以用此指令来禁止一些敏感函数的使用，当你想用本指<br>令禁止一些危险函数时，切忌把dl()函数也加到禁止列表，攻击者可以利用dl()函数加载<br>自定义的php扩展来突破disable_function。配置禁用函数时可以使用逗号分隔函数名<br><strong>默认情况下是什么都没有</strong><br><img src="https://img-blog.csdnimg.cn/20200630152122299.png" alt="在这里插入图片描述"><br>咧<br>现在我禁用一个函数然后再重启服务器<br><img src="https://img-blog.csdnimg.cn/2020063015242314.png" alt="在这里插入图片描述"><br>然后使用这个函数<br>PHP代码<br>    &lt;?php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"> </span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;&quot;</span>;</span><br><span class="line">system(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre/&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<p><img src="https://img-blog.csdnimg.cn/20200630152557557.png" alt="在这里插入图片描述"></p>
+<h3 id="com组件"><a href="#com组件" class="headerlink" title="com组件"></a>com组件</h3><p><code>com.allow dcom = false</code><br>PHP设置在安全模式下(safe_mode)，仍旧允许攻击者使用COM()函数来创建系统<br>组件来执行任意命令，我推荐关闭这个函数来防止出现此漏洞<br>使用COM()函数需要在PHP.ini中配置extension=php_com_dotnet.dll，如果PHP<br>VERSION&lt;5.4.5 则不需要</p>
+<h2 id="基本配置控制变量"><a href="#基本配置控制变量" class="headerlink" title="基本配置控制变量"></a>基本配置控制变量</h2><h3 id="全局变量注册开关"><a href="#全局变量注册开关" class="headerlink" title="全局变量注册开关"></a>全局变量注册开关</h3><p><code>register_globals = off</code><br>php.ini的register_globals选项的默认值预设为Off，在4.2版本之前是默认开启的，当 register globals 的设定为 On 时，程序可以接收来自服务器的各种环境变量，包括表单提交的变量，这是对服务器来讲是非常不安全的，<br>所以我们不能让它注册为全局变量。</p>
+<ul>
+<li><code>rr egister_globals=Off</code>时，服务器端获取数据的时候用$_GET[‘name’]来获取数据</li>
+<li><code>register_globals=On</code>时，服务端使用POST或者GET提交的变量，都将自动使用全使用局变量的值来接受值<h4 id="开启和关闭的比较"><a href="#开启和关闭的比较" class="headerlink" title="开启和关闭的比较"></a>开启和关闭的比较</h4>我用的PHP版本是5.2</li>
+</ul>
+<ol>
+<li>关闭的状态<br> php代码</li>
+</ol>
+<h3 id="魔术引号自动过滤"><a href="#魔术引号自动过滤" class="headerlink" title="魔术引号自动过滤"></a>魔术引号自动过滤</h3><p><code>magic_quotes_gpc= on</code>        <strong>本特性已在PHP5.4.0被移除</strong><br>magic_quotes_gpc = Off 在php.ini里是默认关闭的，如果它打开后将自动把用户提交对sql的查询语句进行转换，如果设置成ON的话，php会把所有的单引号（“”),双引号(“”) ，反斜杠（“\”)和空字符(NULL)加上反斜杠进行转义，它会影响 HTTP 请求的数据有(GET、POST、Cookies)，开启它会提高网站的安全性，当然，您也可以使用 addslashes 来转义提交的 HTTP 请求数据，或者用 stripslashes 来删除转义</p>
+<h2 id="基本配置，远程文件"><a href="#基本配置，远程文件" class="headerlink" title="基本配置，远程文件"></a>基本配置，远程文件</h2><h3 id="是否允许包含远程文件"><a href="#是否允许包含远程文件" class="headerlink" title="是否允许包含远程文件"></a>是否允许包含远程文件</h3><p><code>allow—uri include = off</code></p>
+<p>该配置_为on的情况下，可以直接包含远程文件，若包含的变通为司投的慵况下，可以直接控制変置来执行PHP代码</p>
+<h3 id="是否允许打开远程文件"><a href="#是否允许打开远程文件" class="headerlink" title="是否允许打开远程文件"></a>是否允许打开远程文件</h3><p><code> allow uri open = on</code></p>
+<p>允许文件通过调用 URL重写来打开和关闭写权限，默认的封装协议提<br>供的ftp和http协议来访问文件</p>
+<h2 id="基本配置，目录权限"><a href="#基本配置，目录权限" class="headerlink" title="基本配置，目录权限"></a>基本配置，目录权限</h2><h3 id="HTTP头部版本信息"><a href="#HTTP头部版本信息" class="headerlink" title="HTTP头部版本信息"></a>HTTP头部版本信息</h3><p><code>expose_php = off</code><br>防止了通过http头部泄露的php版本信息</p>
+<h3 id="文件上传临时目录"><a href="#文件上传临时目录" class="headerlink" title="文件上传临时目录"></a>文件上传临时目录</h3><p><code>upload_tmp_dir</code><br>上传文件临时保存的目录</p>
+<h3 id="用户可访问目录"><a href="#用户可访问目录" class="headerlink" title="用户可访问目录"></a>用户可访问目录</h3><p><code>open_basedir = E:\Local Test\WWW</code><br>该访问的文件，一定程度上限制了phpshell的危害，如果不设置的话，则采用系统的临时目录能够控制PHP脚本只能访问指定的目录，这样能够避免PHP脚本访问，不应</p>
+<h2 id="基本配置，报错休息"><a href="#基本配置，报错休息" class="headerlink" title="基本配置，报错休息"></a>基本配置，报错休息</h2><h3 id="内部错误选项"><a href="#内部错误选项" class="headerlink" title="内部错误选项"></a>内部错误选项</h3><p><code>display_errors = on</code><br>候通常把PHP错误显示打开</p>
+<h3 id="错误报告级别"><a href="#错误报告级别" class="headerlink" title="错误报告级别"></a>错误报告级别</h3><p><code>error_reporting = E_ALL &amp; ~ E NOTICE</code><br>表明显示PHP脚本的内部错误，网站发布后建议关闭PHP的错误回显，在调试的时这个设置的作用是将错误级别调到最高，显示所有问题，方便排错</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/07/04/2.%E5%AE%89%E5%85%A8%E7%89%9BPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1PHP%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/">http://example.com/2020/07/04/2.%E5%AE%89%E5%85%A8%E7%89%9BPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1PHP%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/php%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">php代码审计</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/04/3.%E5%AE%89%E5%85%A8%E7%89%9BPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E4%BB%A3%E7%A0%81%E8%B0%83%E8%AF%95%E5%8F%8AXdebug%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">3.安全牛PHP代码审计代码调试及Xdebug的配置使用</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/26/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%90%AD%E5%BB%BA/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">代码审计搭建</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/08/24/php/" title="5.php代码审计常见漏洞"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="title">5.php代码审计常见漏洞</div></div></a></div><div><a href="/2020/06/26/代码审计搭建/" title="代码审计搭建"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-26</div><div class="title">代码审计搭建</div></div></a></div><div><a href="/2021/06/30/安全牛PHP代码审计代码审计的思路及流程/" title="2.安全牛PHP代码审计:代码审计的思路及流程"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-30</div><div class="title">2.安全牛PHP代码审计:代码审计的思路及流程</div></div></a></div><div><a href="/2020/07/04/3.安全牛PHP代码审计代码调试及Xdebug的配置使用/" title="3.安全牛PHP代码审计代码调试及Xdebug的配置使用"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-04</div><div class="title">3.安全牛PHP代码审计代码调试及Xdebug的配置使用</div></div></a></div><div><a href="/2020/07/06/4.安全牛PHP代码审计审计涉及的超全局变量/" title="4.安全牛PHP代码审计审计涉及的超全局变量"><img class="cover" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210824192136695.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-06</div><div class="title">4.安全牛PHP代码审计审计涉及的超全局变量</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">配置的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E7%9A%84%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">基本配置的安全模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">安全模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E4%B8%80%E4%B8%8B%E4%BB%96%E5%BC%80%E5%90%AF%E5%92%8C%E5%85%B3%E9%97%AD%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.1.1.</span> <span class="toc-text">对比一下他开启和关闭的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E5%AD%98%E5%8F%96"><span class="toc-number">3.2.</span> <span class="toc-text">限制环境变量存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9B%AE%E5%BD%95"><span class="toc-number">3.3.</span> <span class="toc-text">外部程序执行目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%81%E7%94%A8%E5%87%BD%E6%95%B0"><span class="toc-number">3.4.</span> <span class="toc-text">禁用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#com%E7%BB%84%E4%BB%B6"><span class="toc-number">3.5.</span> <span class="toc-text">com组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%8E%A7%E5%88%B6%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">基本配置控制变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E6%B3%A8%E5%86%8C%E5%BC%80%E5%85%B3"><span class="toc-number">4.1.</span> <span class="toc-text">全局变量注册开关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%92%8C%E5%85%B3%E9%97%AD%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">4.1.1.</span> <span class="toc-text">开启和关闭的比较</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AD%94%E6%9C%AF%E5%BC%95%E5%8F%B7%E8%87%AA%E5%8A%A8%E8%BF%87%E6%BB%A4"><span class="toc-number">4.2.</span> <span class="toc-text">魔术引号自动过滤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%EF%BC%8C%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text">基本配置，远程文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8%E5%8C%85%E5%90%AB%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">是否允许包含远程文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E5%85%81%E8%AE%B8%E6%89%93%E5%BC%80%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">是否允许打开远程文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%EF%BC%8C%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90"><span class="toc-number">6.</span> <span class="toc-text">基本配置，目录权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP%E5%A4%B4%E9%83%A8%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">6.1.</span> <span class="toc-text">HTTP头部版本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%B4%E6%97%B6%E7%9B%AE%E5%BD%95"><span class="toc-number">6.2.</span> <span class="toc-text">文件上传临时目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%8F%AF%E8%AE%BF%E9%97%AE%E7%9B%AE%E5%BD%95"><span class="toc-number">6.3.</span> <span class="toc-text">用户可访问目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE%EF%BC%8C%E6%8A%A5%E9%94%99%E4%BC%91%E6%81%AF"><span class="toc-number">7.</span> <span class="toc-text">基本配置，报错休息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E9%94%99%E8%AF%AF%E9%80%89%E9%A1%B9"><span class="toc-number">7.1.</span> <span class="toc-text">内部错误选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%8A%A5%E5%91%8A%E7%BA%A7%E5%88%AB"><span class="toc-number">7.2.</span> <span class="toc-text">错误报告级别</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

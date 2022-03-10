@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/20/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/20/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-03-10 14:18:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/01/23/vlc/" title="linux打不开vlc怎么办下面是解决方法">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20200123164223646.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux打不开vlc怎么办下面是解决方法"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/23/vlc/" title="linux打不开vlc怎么办下面是解决方法">linux打不开vlc怎么办下面是解决方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-23T08:45:23.000Z" title="发表于 2020-01-23 16:45:23">2020-01-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">问题解决</a></span></div><div class="content">今天我发现打不开vlc了我就百度了一下发现修改下面的就可以完美解决这个问题打开vlc出现root@kali:~# vlc     is not supposed to be run as root. Sorry.    If you need to use real-time priorities and/or privileged TCP ports    you can use vlc-wrapper (make sure it is Set-UID root and    cannot be run by non-trusted users first).
+或者打击vlc图标没有反映修改vi /usr/bin/vlc文件即可解决问题叫下面的geteuid修改为getppid
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/01/20/http%E5%8D%8F%E8%AE%AE/" title="http协议">     <img class="post_bg" src="https://www.outsourcesem.com/blog/img/http%20vs%20https/http-vs-https.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="http协议"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/20/http%E5%8D%8F%E8%AE%AE/" title="http协议">http协议</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-20T02:38:30.000Z" title="发表于 2020-01-20 10:38:30">2020-01-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">网络协议</a></span></div><div class="content">http协议和https协议的区别
+https
+https是加密传输的黑客可以进行嗅探不到明文(黑客也可以用伪造密钥进行嗅探) 
+
+
+http
+他是明文传输的可以轻松的嗅探的密码
+
+
+
+http请求http请求有：请求行（request line）、请求头部（header）、空行和请求数据四个部分组成
+常见的http报文
+
+常见的请求报文123456789GET / HTTP/1.1Host: localhost:4000User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2Accept-Encoding: gzip, deflateConnection: closeCookie: crisp ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/01/20/kali2020%E6%95%99%E7%A8%8BBurpsuite%E7%A0%B4%E8%A7%A3%E6%B1%89%E5%8C%96%E7%89%88%E5%AE%89%E8%A3%85/" title="kali2020教程Burpsuite破解汉化版安装">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0827/20200827064249298.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kali2020教程Burpsuite破解汉化版安装"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/01/20/kali2020%E6%95%99%E7%A8%8BBurpsuite%E7%A0%B4%E8%A7%A3%E6%B1%89%E5%8C%96%E7%89%88%E5%AE%89%E8%A3%85/" title="kali2020教程Burpsuite破解汉化版安装">kali2020教程Burpsuite破解汉化版安装</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-20T02:38:30.000Z" title="发表于 2020-01-20 10:38:30">2020-01-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/Burpsuite/">Burpsuite</a></span></div><div class="content">BurpSuite废话不多说正题
+
+下载下面是我提供的下载版本和工具
+
+[Burp Suite2.0.1.1版]https://pan.baidu.com/s/1EyD0kYTE2K5EH46sYB6e3A提取码：t3hp破解文件下载地址（https://wwa.lanzous.com/isWu2gs6n6j）[汉化包]https://pan.baidu.com/s/1wAHXJwADA7cw3pf_zIKDJQ提取码：b8u0[java ]https://pan.baidu.com/s/1Yo2PlNTAcr-s678cpkiFHw提取码：6346
+
+进行配置叫下载好的保存到一个目录里然后解压出来叫下载好的jdk-8u161-linux-x64.tar.gz命令
+
+1tar -xzvf jdk-8u161-linux-x64.tar.gz
+解压好进行配置运行下面的代码1
+1export JAVA_HOME=/root/桌面/jdk1.8/
+2
+1export JRE_HOME=JAVAHOME/jreexportCLASSPATH=.:&#123;JAVA_HOME&#125;/li ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/30/5.%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1097%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%BE%E5%88%B0%E6%BC%8F%E6%B4%9E%E5%90%8E%E9%98%B6%E6%AE%B5/" title="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/30/5.%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%E4%BB%BB%E5%8A%A1097%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%BE%E5%88%B0%E6%BC%8F%E6%B4%9E%E5%90%8E%E9%98%B6%E6%AE%B5/" title="5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段">5. sqlmap工具详细使用任务097：SQLMAP自动注入找到漏洞后阶段</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-29T16:50:25.000Z" title="发表于 2019-11-30 00:50:25">2019-11-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">指纹参数12345678910111213141516171819202122232425262728293031323334353637383940414243ngerprint:    -f, --fingerprint   Perform an extensive DBMS version fingerprint  Enumeration:    These options can be used to enumerate the back-end database    management system information, structure and data contained in the    tables. Moreover you can run your own SQL statements    -a, --all           Retrieve everything    -b, --banner        Retrieve DBMS banner    --current-user      Retrieve DBMS current use ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/11/24/4.%E4%BB%BB%E5%8A%A1096%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87WAF%20,%20IPS/" title="4.任务096：SQLMAP自动注入绕过WAF , IPS">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4.任务096：SQLMAP自动注入绕过WAF , IPS"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/24/4.%E4%BB%BB%E5%8A%A1096%EF%BC%9ASQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E7%BB%95%E8%BF%87WAF%20,%20IPS/" title="4.任务096：SQLMAP自动注入绕过WAF , IPS">4.任务096：SQLMAP自动注入绕过WAF , IPS</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-24T04:34:25.000Z" title="发表于 2019-11-24 12:34:25">2019-11-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">注射参数1234567891011121314151617181920Injection:These options can be used to specify which parameters to test for,provide custom injection payloads and optional tampering scripts-p TESTPARAMETER    Testable parameter(s)--skip=SKIP         Skip testing for given parameter(s)--skip-static       Skip testing parameters that not appear to be dynamic--param-exclude=..  Regexp to exclude parameters from testing (e.g. &quot;ses&quot;)--param-filter=P..  Select testable parameter(s) by place (e.g. &quot;PO ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/19/3%20sqlma%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20%20%20%E4%BB%BB%E5%8A%A1095pSQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%AB%E6%8F%8F%E6%97%B6%E9%97%B4%E5%92%8C%E4%BC%98%E5%8C%96/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/19/3%20sqlma%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20%20%20%E4%BB%BB%E5%8A%A1095pSQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E6%89%AB%E6%8F%8F%E6%97%B6%E9%97%B4%E5%92%8C%E4%BC%98%E5%8C%96/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化">3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-18T16:04:25.000Z" title="发表于 2019-11-19 00:04:25">2019-11-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">任务095：SQLMAP自动注入（二）-REQUEST和SQLMAP自动注入（三）-OPTIMIZATION
+设置时间参数设置扫描时间用sqlmap去扫描别人的网站会发送大量的请求可能目标服务器会发现你给你屏蔽掉，我们可以设置发送包的时间
+1--delay 要指定的时间				时间是秒
+设置超时时间1--timeout  要设置的时间          默认为30秒，30要没有响就超时了
+尝试连接1--retries  要设置的次数	比如超时时间设置30妙那么就是90妙
+请求错误如果你发送大量的错误请求就会被防护机制被注销掉可以用–safe-url每请求错误几次就放送正常的请求
+1--safe-url  要设置几次
+
+过滤日志里的没有用的地址参数 --scope1sqlmap -l 日志文件  --scope=&quot;(www)?\.target\.(com|net|org)“
+解释用日志文件扫描目标，日志文件可以有其他的不想扫描的地址可以用--scope进行过滤--scope代码里的意思，只扫描有www.target.com或cet或org
+1sqlmap -l 日志文件 --s ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/11/08/2%20%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20SQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E5%A4%B4%E9%83%A8%E7%9A%84%E4%BF%AE%E6%94%B9/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/08/2%20%20sqlmap%E5%B7%A5%E5%85%B7%E8%AF%A6%E7%BB%86%E4%BD%BF%E7%94%A8%20SQLMAP%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5%E5%A4%B4%E9%83%A8%E7%9A%84%E4%BF%AE%E6%94%B9/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改">2  sqlmap工具详细使用 SQLMAP自动注入头部的修改</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-08T10:44:25.000Z" title="发表于 2019-11-08 18:44:25">2019-11-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">学习笔记：任务094：SQLMAP自动注入-REQUEST
+请求类型的参数：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091这些选项可用于指定如何连接到目标URL--method=method强制使用给定的HTTP方法（例如PUT）--data=要通过POST发送的数据数据字符串（例如“id=1”）PARAM-DEL = PARA。用于分割参数值的字符（例如&amp;）--cookie=cookie HTTP cookie头值（例如“PHPSESSID=a8d127e…”）--cookie del=首席运营官。。用于分割cookie值的字符（例如；）--加载cookies=L包含Netscape/wget格式cookies的文件--从响应中删除set cookie Ignore set coo ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/11/08/1%20sqlmapSQLMAP-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入">     <img class="post_bg" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/11/08/1%20sqlmapSQLMAP-%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入">1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-08T02:34:25.000Z" title="发表于 2019-11-08 10:34:25">2019-11-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="content">任务093：SQLMAP- 自动注入 笔记
+sqlmap介绍介绍
+开源sql注入漏洞检测，利用
+检测动态页面中get/post参数,cookie,http头
+
+
+数据榨取
+文件访问               
+操作系统命令执行                  
+引擎强大，特性丰富
+Xss漏洞检测
+
+
+
+五种漏洞检测技术
+基于布尔的盲注检测
+  - ’ and 1=1 
+
+
+基于时间的盲注检测基于错误的检测
+
+’ and (select * from (select(sleep(20)))a)–+
+
+基于UNION联合查询的检测
+
+适用于通过循环直接输出联合查询结果，否则只显示第一项结果
+
+
+基于堆叠查询的检测
+
+;堆叠多个查询语句
+适用于非select的数据修改、删除的操作
+
+
+支持的数据库管理系统DBMS  MySQL,Oracle,PostgreSQL,Microsoft SQL Server,Microsoft Access,IBM DB2,SQLite,Firebird,Sybase,SAP MaxDB
+
+
+
+
+其他特性​        
+
+数据库直接连接-d与burpsu ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2019/10/10/5.%E6%89%8B%E5%8A%A8%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%EF%BC%8Csql%E6%B3%A8%E5%85%A5/" title="5.手动漏洞挖掘，sql注入">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20190913191358248.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="5.手动漏洞挖掘，sql注入"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/10/10/5.%E6%89%8B%E5%8A%A8%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%EF%BC%8Csql%E6%B3%A8%E5%85%A5/" title="5.手动漏洞挖掘，sql注入">5.手动漏洞挖掘，sql注入</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-10T02:23:01.000Z" title="发表于 2019-10-10 10:23:01">2019-10-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%89%9Bkalilinux%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E/">安全牛kalilinux手动挖掘漏洞</a></span></div><div class="content"> 任务089：KALI版本更新（第一个ROLLING RELEASE）和手动漏洞挖掘（SQL注入） 
+实验环境实验靶机metasploitable-linux-2.0.0里面的DVWA
+sql注入介绍服务器端程序将用户输入参数作为查询条件，直接拼接SQL语句，并将查询结果返回给客户端浏览器也可以控制到客户端，也可以用sql注入上发文件，sql注入也读取文件其实注入的都是sql语句
+
+原理下面是一个比如无需密码登陆
+这个是正常情况下 SELECT * FROM users WHERE user=&#39;里面是用户输入的账号&#39; AND password=&#39;里面是用户输入的密码&#39;
+注入无需密码登陆SELECT * FROM users WHERE user=&#39;账号还是原账号&#39; AND password=&#39;&#39;空格OR&#39;1&#39;=&#39;1&#39;上面那个输入密码的地方’’空格OR’1’=’1’意思介绍，’空密码’ OR是逻辑运算符或1=1这两个数都是真条件就满足，满足就是真，账号对密码对就登陆成功了。
+应为服务器端没有过 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2019/09/24/4,%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="4,手动挖掘漏洞，文件上发漏洞">     <img class="post_bg" src="https://img-blog.csdnimg.cn/20190913191358248.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4,手动挖掘漏洞，文件上发漏洞"></a></div><div class="recent-post-info"><a class="article-title" href="/2019/09/24/4,%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E%EF%BC%8C%E6%96%87%E4%BB%B6%E4%B8%8A%E5%8F%91%E6%BC%8F%E6%B4%9E/" title="4,手动挖掘漏洞，文件上发漏洞">4,手动挖掘漏洞，文件上发漏洞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-09-24T12:44:06.000Z" title="发表于 2019-09-24 20:44:06">2019-09-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/web%E5%AE%89%E5%85%A8/%E5%AE%89%E5%85%A8%E7%89%9Bkalilinux%E6%89%8B%E5%8A%A8%E6%8C%96%E6%8E%98%E6%BC%8F%E6%B4%9E/">安全牛kalilinux手动挖掘漏洞</a></span></div><div class="content">任务088：手动漏洞挖掘（四）
+文件上传漏洞文件上传漏洞是非常经典的漏洞，非常有名的漏洞，文件上这个功能传不能说是一个漏洞应为文件上传web应用需要的程序，比如在论坛里上发一个一些头像图片的话是非常好的功能，电子商务比如要上发身份证，为什么叫他叫做漏洞是应为主要是程序员没有做好web的编码和web过滤的了解欠缺，web上传做的好的话其实是可以完全不了的
+实验环境实验靶机metasploitable-linux-2.0.0里面的DVWA
+正常情况文件上发这样就可以看见我刚才上发的文件了
+低安全级别上发木马下面是低安全级别，然后上发木马下面是操作先创建一个木马文件文件名a.php内容&lt;?php echo shell_exec($_GET[&#39;cmd&#39;]);?&gt;这个是个一句话的木马可以叫是输入的URL变成目标web的系统命令开始上发发现已经上发成功然后我就可以利用这个木马进行系统命令操作访问这个目录复制到URL里要运行这个木马文件里的cmd这个所有要添加 ?cmd=pwd这个pwd就是你要输入的命令pwd是查看当前文件所在的位置然后回车访问这个web就可以查看当前文 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/19/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/#content-inner">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/#content-inner">21</a><a class="extend next" rel="next" href="/page/21/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/02/14/BtleJuicey%E8%93%9D%E7%89%99%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="BtleJuicey蓝牙中间人攻击"><img src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BtleJuicey蓝牙中间人攻击"/></a><div class="content"><a class="title" href="/2022/02/14/BtleJuicey%E8%93%9D%E7%89%99%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="BtleJuicey蓝牙中间人攻击">BtleJuicey蓝牙中间人攻击</a><time datetime="2022-02-14T02:38:30.000Z" title="发表于 2022-02-14 10:38:30">2022-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/php%E6%80%BB%E7%BB%93/" title="php基础总结"><img src="https://gitee.com/wZass/zp/raw/master/img/php.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="php基础总结"/></a><div class="content"><a class="title" href="/2022/01/23/php%E6%80%BB%E7%BB%93/" title="php基础总结">php基础总结</a><time datetime="2022-01-23T03:11:25.000Z" title="发表于 2022-01-23 11:11:25">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/" title="前端总结"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220122170631991.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端总结"/></a><div class="content"><a class="title" href="/2022/01/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/" title="前端总结">前端总结</a><time datetime="2022-01-22T12:38:30.000Z" title="发表于 2022-01-22 20:38:30">2022-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/22/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="文件上传漏洞总结"><img src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="文件上传漏洞总结"/></a><div class="content"><a class="title" href="/2022/01/22/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="文件上传漏洞总结">文件上传漏洞总结</a><time datetime="2022-01-22T02:38:30.000Z" title="发表于 2022-01-22 10:38:30">2022-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/20/phpcms_v9.6.0_sql%E6%B3%A8%E5%85%A5/" title="phpcms_v9.6.0_sql注入漏洞复现"><img src="https://gitee.com/wZass/zp/raw/master/img/20201216131324.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="phpcms_v9.6.0_sql注入漏洞复现"/></a><div class="content"><a class="title" href="/2022/01/20/phpcms_v9.6.0_sql%E6%B3%A8%E5%85%A5/" title="phpcms_v9.6.0_sql注入漏洞复现">phpcms_v9.6.0_sql注入漏洞复现</a><time datetime="2022-01-20T06:51:06.000Z" title="发表于 2022-01-20 14:51:06">2022-01-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

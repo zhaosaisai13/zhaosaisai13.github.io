@@ -1,0 +1,741 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>php基础总结 | Hexo</title><meta name="keywords" content="php"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="php基础   学习代码审计做铺垫   加油奥利给   学习书名《php7底层设计与源码实现》学习网站https:&#x2F;&#x2F;www.w3school.com.cn&#x2F;html&#x2F;index.asp  1&lt;?php  代码部分 ?&gt;  常见的函数   函数 作用    phpinfo()函数 查看php关于PHP的信息   strlen()函数 函数返回字符串的长度，以字符计   isset()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php基础总结">
+<meta property="og:url" content="http://example.com/2022/01/23/php%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="php基础   学习代码审计做铺垫   加油奥利给   学习书名《php7底层设计与源码实现》学习网站https:&#x2F;&#x2F;www.w3school.com.cn&#x2F;html&#x2F;index.asp  1&lt;?php  代码部分 ?&gt;  常见的函数   函数 作用    phpinfo()函数 查看php关于PHP的信息   strlen()函数 函数返回字符串的长度，以字符计   isset()">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wZass/zp/raw/master/img/php.png">
+<meta property="article:published_time" content="2022-01-23T03:11:25.000Z">
+<meta property="article:modified_time" content="2022-02-05T13:22:06.795Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="php">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wZass/zp/raw/master/img/php.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/23/php%E6%80%BB%E7%BB%93/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'php基础总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-02-05 21:22:06'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">php基础总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-23T03:11:25.000Z" title="发表于 2022-01-23 11:11:25">2022-01-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-02-05T13:22:06.795Z" title="更新于 2022-02-05 21:22:06">2022-02-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E7%A8%8B/php/">php</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="php基础总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>php基础</p>
+</blockquote>
+<blockquote>
+<p>学习代码审计做铺垫</p>
+</blockquote>
+<blockquote>
+<p>加油奥利给</p>
+</blockquote>
+<blockquote>
+<p>学习书名《php7底层设计与源码实现》<br>学习网站<br><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/html/index.asp">https://www.w3school.com.cn/html/index.asp</a></p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  代码部分 <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="常见的函数"><a href="#常见的函数" class="headerlink" title="常见的函数"></a>常见的函数</h1><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a href="#phpinfo()">phpinfo()</a>函数</td>
+<td align="right">查看php关于PHP的信息</td>
+</tr>
+<tr>
+<td align="center">strlen()函数</td>
+<td align="right">函数返回字符串的长度，以字符计</td>
+</tr>
+<tr>
+<td align="center">isset()函数</td>
+<td align="right">函数用于检测变量是否已设置并且非 NULL</td>
+</tr>
+<tr>
+<td align="center">count() 函数</td>
+<td align="right">用于返回数组的长度（元素数）</td>
+</tr>
+<tr>
+<td align="center"><a href="#end()%E5%87%BD%E6%95%B0">end()函数</a></td>
+<td align="right">输出数组中的当前元素和最后一个元素的值</td>
+</tr>
+<tr>
+<td align="center">current()</td>
+<td align="right">end()函数相反输出数组中的当前元素和最前面一个元素的值</td>
+</tr>
+<tr>
+<td align="center"><a href="#explode()">explode()函数</a></td>
+<td align="right">把字符串打散为数组</td>
+</tr>
+<tr>
+<td align="center"><a href="#trim()">trim()函数</a></td>
+<td align="right">函数移除字符串两侧的空白字符或其他预定义字符</td>
+</tr>
+<tr>
+<td align="center"><a href="#str_ireplace()">str_ireplace()函数</a></td>
+<td align="right">函数替换字符串中的一些字符（不区分大小写）</td>
+</tr>
+<tr>
+<td align="center"><a href="#strrchr()">strrchr()函数</a></td>
+<td align="right">查询字符串最后的要找到内容，并获取后面的内容</td>
+</tr>
+<tr>
+<td align="center"><a href="#strrpos()">strrpos()函数</a></td>
+<td align="right">字符串中最后一次出现的位置</td>
+</tr>
+<tr>
+<td align="center"><a href="#substr()">substr()函数</a></td>
+<td align="right">函数指定返回字符串的一部分</td>
+</tr>
+<tr>
+<td align="center"><a href="#getimagesize()">getimagesize()函数</a></td>
+<td align="right">函数用于获取图像及相关信息返回是一个数组</td>
+</tr>
+<tr>
+<td align="center"><a href="#image_type_to_extension">image_type_to_extension()函数</a></td>
+<td align="right">根据指定的数字图像类型返回对应的后缀名</td>
+</tr>
+</tbody></table>
+<h2 id="phpinfo"><a href="#phpinfo" class="headerlink" title="phpinfo()"></a>phpinfo()</h2><blockquote>
+<p>phpinfo();函数查看php版本还能看到其它很多关于PHP的信息，叫做探针</p>
+</blockquote>
+<ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	phpinfo();</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200424111859291.png" alt="在这里插入图片描述"></li>
+</ol>
+<h2 id="count"><a href="#count" class="headerlink" title="count()"></a>count()</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cars</span>=<span class="keyword">array</span>(<span class="string">&quot;porsche&quot;</span>,<span class="string">&quot;BMW&quot;</span>,<span class="string">&quot;Volvo&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> count(<span class="variable">$cars</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=3</p>
+</blockquote>
+<h2 id="end-函数"><a href="#end-函数" class="headerlink" title="end()函数"></a>end()函数</h2><blockquote>
+<p> 输出数组中的当前元素和最后一个元素的值</p>
+</blockquote>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cars</span>=<span class="keyword">array</span>(<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span>  end(<span class="variable">$cars</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=c</p>
+</blockquote>
+<h2 id="explode"><a href="#explode" class="headerlink" title="explode()"></a>explode()</h2><p>格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explode(separator,string,limit)</span><br></pre></td></tr></table></figure>
+
+<p>separator    必需。规定在哪里分割字符串<br>string    必需。要分割的字符串<br>limit    可选。规定所返回的数组元素的数目</p>
+<p>演示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">## trim()</span><br><span class="line"></span><br><span class="line">trim()：函数移除字符串两侧的空白字符或其他预定义字符(**是两边不是中间**)</span><br><span class="line"></span><br><span class="line">格式	</span><br><span class="line"></span><br><span class="line">```php</span><br><span class="line">trim(string,charlist)</span><br></pre></td></tr></table></figure>
+
+<p>string：必需。规定要检查的字符串</p>
+<p>charlist：可选。规定从字符串中删除哪些字符，如果不添加这个参数默认会删除下面的</p>
+<ul>
+<li>“\0” - NULL</li>
+<li>“\t” - 制表符</li>
+<li>“\n” - 换行</li>
+<li>“\x0B” - 垂直制表符</li>
+<li>“\r” - 回车</li>
+<li>“ “ - 空格</li>
+</ul>
+<blockquote>
+<p>演示1</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$str</span> = <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> trim(<span class="variable">$str</span>,<span class="string">&quot;ad&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=bc</p>
+</blockquote>
+<blockquote>
+<p>演示2</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$str</span> = <span class="string">&quot; a.png &quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> trim(<span class="variable">$str</span>,<span class="string">&quot;ad&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果可以看见前面后面空格就没有了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.png</span><br></pre></td></tr></table></figure>
+
+<h2 id="str-ireplace"><a href="#str-ireplace" class="headerlink" title="str_ireplace()"></a>str_ireplace()</h2><p>str_ireplace()函数替换字符串中的一些字符（不区分大小写）</p>
+<p>格式</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_ireplace(find,replace,<span class="keyword">string</span>,count)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><em>find</em></td>
+<td align="left">必需。规定要查找的值。</td>
+</tr>
+<tr>
+<td align="left"><em>replace</em></td>
+<td align="left">必需。规定替换 <em>find</em> 中的值的值。</td>
+</tr>
+<tr>
+<td align="left"><em>string</em></td>
+<td align="left">必需。规定被搜索的字符串。</td>
+</tr>
+<tr>
+<td align="left"><em>count</em></td>
+<td align="left">可选。一个变量，对替换数进行计数。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>演示代码：叫a.php里面的php替换成abc</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">array</span>(<span class="string">&quot;php&quot;</span>,<span class="string">&quot;asp&quot;</span>,<span class="string">&quot;htaccess&quot;</span>,<span class="string">&quot;ini&quot;</span>);</span><br><span class="line"><span class="variable">$b</span>=<span class="string">&#x27;a.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> str_ireplace(<span class="variable">$a</span>,<span class="string">&#x27;abc&#x27;</span>,<span class="variable">$b</span>);<span class="comment">//叫a.php里面的php替换成abc</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=a.abc</p>
+</blockquote>
+<h2 id="strrchr"><a href="#strrchr" class="headerlink" title="strrchr()"></a>strrchr()</h2><p>strrchr()查询字符串最后的要找到内容，并获取后面的内容</p>
+<p>他有两个参数</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1参数</td>
+<td align="left">必需。规定要搜索的字符串。</td>
+</tr>
+<tr>
+<td align="left">2参数</td>
+<td align="left">必需。规定要查找的字符。如果该参数是数字，则搜索匹配此数字的 ASCII 值的字符</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>代码演示</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;abc.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> strrchr(<span class="variable">$a</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=.php</p>
+</blockquote>
+<h2 id="strrpos"><a href="#strrpos" class="headerlink" title="strrpos()"></a>strrpos()</h2><p>strrpos()字符串中最后一次出现的位置（函数对大小写敏感）</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">参数1</td>
+<td align="left">必需。规定被搜索的字符串。</td>
+</tr>
+<tr>
+<td align="left">参数2</td>
+<td align="left">必需。规定要查找的字符。</td>
+</tr>
+<tr>
+<td align="left">参数3</td>
+<td align="left">可选。规定在何处开始搜索。</td>
+</tr>
+</tbody></table>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="string">&quot;abc.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span>  strrpos(<span class="variable">$a</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=3</p>
+</blockquote>
+<h2 id="substr"><a href="#substr" class="headerlink" title="substr()"></a>substr()</h2><p>substr()函数返回字符串的一部分</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">参数1</td>
+<td align="left">必需。规定要返回其中一部分的字符串。</td>
+</tr>
+<tr>
+<td align="left">参数2</td>
+<td align="left">必需。规定在字符串的何处开始。正数 - 在字符串的指定位置开始负数 - 在从字符串结尾开始的指定位置开始0 - 在字符串中的第一个字符处开始</td>
+</tr>
+<tr>
+<td align="left">参数3</td>
+<td align="left">可选。规定被返回字符串的长度。默认是直到字符串的结尾。正数 - 从 <em>start</em> 参数所在的位置返回的长度负数 - 从字符串末端返回的长度</td>
+</tr>
+</tbody></table>
+<p>演示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> substr(<span class="string">&quot;ab.php&quot;</span>,<span class="number">3</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果=php</p>
+</blockquote>
+<h2 id="getimagesize"><a href="#getimagesize" class="headerlink" title="getimagesize()"></a>getimagesize()</h2><blockquote>
+<p>getimagesize()函数用于获取图像及相关信息返回是一个数组，成功返回一个数组，失败则返回 FALSE 并产生一条 E_WARNING 级的错误信息。</p>
+</blockquote>
+<p>演示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;submit&#x27;</span>]))&#123; <span class="comment">//提交表单执行下面的代码</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//$_FILES[&quot;wj&quot;][&quot;tmp_name&quot;]) 是临时文件的路径</span></span><br><span class="line">        print_r(getimagesize(<span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>]));<span class="comment">//getimagesize()函数用于获取图像及相关信息返回是一个数组</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;form action=<span class="string">&quot;a.php&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;wj&quot;</span> id=<span class="string">&quot;file&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;点击提交&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们提交一个phpinfo.jpg文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220205211422213.png" alt="image-20220205211422213"></p>
+<p>getimagesize()函数返回的内容详解</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Array</span></span><br><span class="line">(</span><br><span class="line">    [<span class="number">0</span>] =&gt; <span class="number">200</span>   <span class="comment">#索引 0 给出的是图像宽度的像素值</span></span><br><span class="line">    [<span class="number">1</span>] =&gt; <span class="number">200</span>	 <span class="comment">#索引 1 给出的是图像高度的像素值</span></span><br><span class="line">    [<span class="number">2</span>] =&gt; <span class="number">2</span>	<span class="comment">#索引 2 给出的是图像的类型，返回的是数字，其中1 = GIF，2 = JPG，3 = PNG，4 = SWF，5 = PSD，6 = BMP，7 = TIFF(intel byte order)，8 = TIFF(motorola byte order)，9 = JPC，10 = JP2，11 = JPX，12 = JB2，13 = SWC，14 = IFF，15 = WBMP，16 = XBM</span></span><br><span class="line">    </span><br><span class="line">    [<span class="number">3</span>] =&gt; width=<span class="string">&quot;200&quot;</span> height=<span class="string">&quot;200&quot;</span>  <span class="comment">#索引 3 给出的是一个宽度和高度的字符串，可以直接用于 HTML 的 &lt;image&gt; 标签</span></span><br><span class="line">    </span><br><span class="line">    [bits] =&gt; <span class="number">8</span>   <span class="comment"># 索引 bits 给出的是图像的每种颜色的位数，二进制格式</span></span><br><span class="line">    [channels] =&gt; <span class="number">3</span> <span class="comment">#索引 channels 给出的是图像的通道值，RGB 图像默认是 3</span></span><br><span class="line">    [mime] =&gt; image/jpeg <span class="comment"># 引 mime 给出的是图像的 MIME 信息，此信息可以用来在 HTTP Content-type 头信息中发送正确的信息，如： header(&quot;Content-type: image/jpeg&quot;);</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="image-type-to-extension"><a href="#image-type-to-extension" class="headerlink" title="image_type_to_extension()"></a>image_type_to_extension()</h2><blockquote>
+<p>image_type_to_extension()根据指定的数字图像类型返回对应的后缀名</p>
+</blockquote>
+<blockquote>
+<p>getimagesize()函数可以返还的数字图像类型，其中1 = GIF，2 = JPG，3 = PNG，4 = SWF，5 = PSD，6 = BMP，7 = TIFF(intel byte order)，8 = TIFF(motorola byte order)，9 = JPC，10 = JP2，11 = JPX，12 = JB2，13 = SWC，14 = IFF，15 = WBMP，16 = XBM</p>
+</blockquote>
+<p>演示</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;submit&#x27;</span>]))&#123; <span class="comment">//提交表单执行下面的代码</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//$_FILES[&quot;wj&quot;][&quot;tmp_name&quot;]) 是临时文件的路径</span></span><br><span class="line">        <span class="variable">$a</span>=getimagesize(<span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>]); <span class="comment">//getimagesize()函数用于获取图像及相关信息返回是一个数组</span></span><br><span class="line">        print_r(<span class="variable">$a</span>);</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;&lt;br/&gt;文件类型是：&#x27;</span>.image_type_to_extension(<span class="variable">$a</span>[<span class="number">2</span>]); <span class="comment">//image_type_to_extension()根据指定的数字图像类型返回对应的后缀名</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;form action=<span class="string">&quot;a.php&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;wj&quot;</span> id=<span class="string">&quot;file&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;点击提交&quot;</span>&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们提交一个phpinfo.jpg文件</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220205212145468.png" alt="image-20220205212145468"></p>
+<h1 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h1><h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
+<li><p>代码</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="variable">$a</span>=<span class="number">1</span>;</span><br><span class="line">	<span class="variable">$b</span>=<span class="number">5</span>;</span><br><span class="line">	<span class="variable">$c</span>=<span class="variable">$a</span>+<span class="variable">$b</span>;</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$c</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/2020042411300799.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>上面的介绍</p>
+</blockquote>
+<p> 变量前面要加上$<br> echo 和 print 之间的差异：</p>
+<ul>
+<li>echo - 能够输出一个以上的字符串</li>
+<li>print - 只能输出一个字符串，并始终返回 1</li>
+</ul>
+</li>
+</ol>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><ol>
+<li><p>设置 PHP 常量<br>请使用 define() 函数</p>
+<ol>
+<li><p>它使用三个参数：</p>
+<p>1.首个参数定义常量的名称</p>
+</li>
+</ol>
+<p>2.第二个参数定义常量的值<br>3.可选的第三个参数规定常量名是否对大小写不敏感。默认是 false。</p>
+<p>代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	define(<span class="string">&quot;GREETING&quot;</span>, <span class="string">&quot;你好&quot;</span>);</span><br><span class="line">	<span class="keyword">echo</span> GREETING;</span><br><span class="line"><span class="meta">?&gt;</span>	</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://img-blog.csdnimg.cn/20200424124812832.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$x</span> = <span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$x</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line"><span class="variable">$x</span> = <span class="string">&#x27;Hello world!&#x27;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$x</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200424114444375.png" alt="在这里插入图片描述"><h2 id="上面的介绍"><a href="#上面的介绍" class="headerlink" title="上面的介绍"></a>上面的介绍</h2> 那个<code>&lt;br&gt;</code>是换行的意思</li>
+</ol>
+<h2 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h2><ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="variable">$x</span> = <span class="number">5985</span>;</span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line">	</span><br><span class="line">	<span class="variable">$x</span> = -<span class="number">345</span>; <span class="comment">// 负数</span></span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line">	</span><br><span class="line">	<span class="variable">$x</span> = <span class="number">0x8C</span>; <span class="comment">// 十六进制数</span></span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="variable">$x</span> = <span class="number">047</span>; <span class="comment">// 八进制数</span></span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200424115405261.png" alt="在这里插入图片描述"><h2 id="上面的介绍-1"><a href="#上面的介绍-1" class="headerlink" title="上面的介绍"></a>上面的介绍</h2> <strong>var_dump() 会返回变量的数据类型和值</strong> 可以用三种格式规定整数：十进制、十六进制（前缀是 0x）或八进制（前缀是 0）<br> <strong>含有十六进制字符的字符串不再被视为数字，而是当作普通的字符串</strong></li>
+</ol>
+<h2 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h2><ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="variable">$x</span> = <span class="number">10.365</span>;</span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line"></span><br><span class="line">	<span class="variable">$x</span> = <span class="number">2.4e3</span>;</span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>; </span><br><span class="line">	</span><br><span class="line">	<span class="variable">$x</span> = <span class="number">8E-5</span>;</span><br><span class="line">	var_dump(<span class="variable">$x</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200424115739338.png" alt="在这里插入图片描述"><blockquote>
+<p>上面的介绍</p>
+</blockquote>
+  <strong>var_dump() 会返回变量的数据类型和值</strong></li>
+</ol>
+<h2 id="布尔型"><a href="#布尔型" class="headerlink" title="布尔型"></a>布尔型</h2><p>是 true<br>或 false</p>
+<h1 id="NULL-值"><a href="#NULL-值" class="headerlink" title="NULL 值"></a>NULL 值</h1><ol>
+<li>代码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$x=&quot;Hello world!&quot;;</span><br><span class="line">$x=null;</span><br><span class="line">var_dump($x);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+ NULL就是空的意思<br> <img src="https://img-blog.csdnimg.cn/20200424120707944.png" alt="在这里插入图片描述"></li>
+</ol>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424120849401.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$x</span>=<span class="number">17</span>; </span><br><span class="line"><span class="variable">$y</span>=<span class="number">8</span>;</span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span> + <span class="variable">$y</span>); <span class="comment">// 输出 25</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span> - <span class="variable">$y</span>); <span class="comment">// 输出 9</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span> * <span class="variable">$y</span>); <span class="comment">// 输出 136</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span> / <span class="variable">$y</span>); <span class="comment">// 输出 2.125</span></span><br><span class="line"><span class="keyword">echo</span> (<span class="variable">$x</span> % <span class="variable">$y</span>); <span class="comment">// 输出 1</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="递增递减运算符"><a href="#递增递减运算符" class="headerlink" title="递增递减运算符"></a>递增递减运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424121131186.png" alt="在这里插入图片描述"></p>
+<ol>
+<li>代码 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="variable">$X</span>=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">echo</span> ++<span class="variable">$X</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;&lt;br/&gt;&quot;</span>;</span><br><span class="line">	<span class="variable">$A</span>=<span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$A</span>++;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200424121654881.png" alt="在这里插入图片描述"></li>
+</ol>
+<h2 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424121732684.png" alt="在这里插入图片描述"></p>
+<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424121837213.png" alt="在这里插入图片描述"></p>
+<h2 id="字符串连接运算符"><a href="#字符串连接运算符" class="headerlink" title="字符串连接运算符"></a>字符串连接运算符</h2><p><strong>PHP中使用英文字符“.”将两个或多个字符串连接起来</strong></p>
+<ol>
+<li><p>代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">	$X=&quot;abc&quot;;</span><br><span class="line">	$A=&quot;def&quot;;</span><br><span class="line">	$V=$X.$A;</span><br><span class="line">	echo $V;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200424122242481.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h2 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424122338291.png" alt="在这里插入图片描述"> </p>
+<h2 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h2><p><img src="https://img-blog.csdnimg.cn/20200424122920140.png" alt="在这里插入图片描述"></p>
+<p>位运算符是指对二进制位从低位到高位对齐后进行运算<br><strong>就是按与，或，异或，取反，左移，右移</strong></p>
+<ol>
+<li><p>代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">	$a=1;</span><br><span class="line">	echo ($a &amp; 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">	echo ($a | 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">	echo ($a ^ 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">	echo (~ 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">	echo ($a &lt;&lt; 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">	echo ($a &gt;&gt; 2).&quot;&lt;br/&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200424123420672.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<p>​    </p>
+<h1 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h1><h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p><strong>简单理解就是对就执行</strong></p>
+<ol>
+<li><p>if<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	$t=1 ;</span><br><span class="line"></span><br><span class="line">	if ($t&lt;2) &#123;</span><br><span class="line">	  echo &quot;Have a good day!&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> <img src="https://img-blog.csdnimg.cn/20200424125104755.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>if…else<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">		$t=2;</span><br><span class="line">	</span><br><span class="line">		if ($t&lt;2) &#123;</span><br><span class="line">		  echo &quot;Have a good day!&quot;;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">		  echo &quot;Have a good night!&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200424125307131.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>if…elseif….else</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if (条件) &#123;</span><br><span class="line">	  条件为 true 时执行的代码;</span><br><span class="line">	&#125; elseif (condition) &#123;</span><br><span class="line">	  条件为 true 时执行的代码;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">	  条件为 false 时执行的代码;</span><br><span class="line">	&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Switch-语句"><a href="#Switch-语句" class="headerlink" title="Switch 语句"></a>Switch 语句</h2><p>如果您希望有选择地执行若干代码块之一，请使用 Switch 语句<br>使用 Switch 语句可以避免冗长的 if..elseif..else 代码块<br>和C语言的是一样的</p>
+<ol>
+<li><p>代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">	&lt;?php</span><br><span class="line">$a=&quot;orange&quot;;</span><br><span class="line"></span><br><span class="line">switch ($a) &#123;</span><br><span class="line">   case &quot;apple&quot;:</span><br><span class="line">     echo &quot;1&quot;;</span><br><span class="line">     break;</span><br><span class="line">   case &quot;banana&quot;:</span><br><span class="line">     echo &quot;2&quot;;</span><br><span class="line">     break;</span><br><span class="line">   case &quot;orange&quot;:</span><br><span class="line">     echo &quot;3&quot;;</span><br><span class="line">     break;</span><br><span class="line">   default:</span><br><span class="line">     echo &quot;4&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425104029815.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h1 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h1><h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><ol>
+<li><p>while 循环<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$x=1; </span><br><span class="line"></span><br><span class="line">while($x&lt;=5) &#123;</span><br><span class="line">  echo &quot;这个数字是：$x &lt;br&gt;&quot;;</span><br><span class="line">  $x++;</span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425104217893.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>do…while 循环<br>  <strong>循环首先会执行一次代码块，然后检查条件，如果指定条件为真，则重复循环</strong><br>  代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php </span><br><span class="line">$x=1; </span><br><span class="line"></span><br><span class="line">do &#123;</span><br><span class="line">  echo &quot;这个数字是：$x &lt;br&gt;&quot;;</span><br><span class="line">  $x++;</span><br><span class="line">&#125; while ($x&lt;=5);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425104442522.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><p>和c一样</p>
+<ol>
+<li><p>代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">for ($x=0; $x&lt;=10; $x++) &#123;</span><br><span class="line">  echo &quot;数字是：$x &lt;br&gt;&quot;;</span><br><span class="line">&#125; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425104802403.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h2 id="foreach"><a href="#foreach" class="headerlink" title="foreach"></a>foreach</h2><p>foreach 循环只适用于数组，并用于遍历数组中的每个键/值对</p>
+<ol>
+<li>代码 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$colors = array(&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;); </span><br><span class="line"></span><br><span class="line">foreach ($colors as $value) &#123;</span><br><span class="line">  echo &quot;$value &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+ 结果<br> <img src="https://img-blog.csdnimg.cn/20200425105002556.png" alt="在这里插入图片描述"></li>
+</ol>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>定义函数用function来定义</p>
+<ol>
+<li><p>定义函数<br> 代码</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;Hello world!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a(); <span class="comment">// 调用函数</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425105527364.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>函数参数<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function familyName($fname) &#123;</span><br><span class="line">  echo &quot;现在数字是：$fname &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">familyName(&quot;1&quot;);</span><br><span class="line">familyName(&quot;2&quot;);</span><br><span class="line">familyName(&quot;3&quot;);</span><br><span class="line">familyName(&quot;4&quot;);</span><br><span class="line">familyName(&quot;5&quot;);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425105500993.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>默认参数值<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function setHeight($minheight=50) &#123;</span><br><span class="line">  echo &quot;现在值是 : $minheight &lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setHeight(350);</span><br><span class="line">setHeight(); // 将使用默认值 50</span><br><span class="line">setHeight(135);</span><br><span class="line">setHeight(80);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425105714517.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>函数 - 返回值<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function sum($x,$y) &#123;</span><br><span class="line">  $z=$x+$y;</span><br><span class="line">  return $z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo &quot;5 + 10 = &quot; . sum(5,10) . &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;7 + 13 = &quot; . sum(7,13) . &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo &quot;2 + 4 = &quot; . sum(2,4);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/20200425105817155.png" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><p>array()函数中创建数组<br>count() 函数用于返回数组的长度（元素数）</p>
+<blockquote>
+<p>1·单数组<br>代码</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$cars</span>=<span class="keyword">array</span>(<span class="string">&quot;porsche&quot;</span>,<span class="string">&quot;BMW&quot;</span>,<span class="string">&quot;Volvo&quot;</span>);</span><br><span class="line"><span class="variable">$arrlength</span>=count(<span class="variable">$cars</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$x</span>=<span class="number">0</span>;<span class="variable">$x</span>&lt;<span class="variable">$arrlength</span>;<span class="variable">$x</span>++) &#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$cars</span>[<span class="variable">$x</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果<br><img src="https://img-blog.csdnimg.cn/20200425110732316.png" alt="在这里插入图片描述"></p>
+<blockquote>
+<p>2·关联数组</p>
+<p>代码</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$age</span>=<span class="keyword">array</span>(<span class="string">&quot;Bill&quot;</span>=&gt;<span class="string">&quot;63&quot;</span>,<span class="string">&quot;Steve&quot;</span>=&gt;<span class="string">&quot;56&quot;</span>,<span class="string">&quot;Elon&quot;</span>=&gt;<span class="string">&quot;47&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Elon is &quot;</span> . <span class="variable">$age</span>[<span class="string">&#x27;Elon&#x27;</span>] . <span class="string">&quot; years old.&quot;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>结果</p>
+<p><img src="https://img-blog.csdnimg.cn/20200425111232149.png" alt="在这里插入图片描述"></p>
+<h1 id="超全局变量"><a href="#超全局变量" class="headerlink" title="超全局变量"></a>超全局变量</h1><p>这些超全局变量是：</p>
+<ol>
+<li>$GLOBALS</li>
+<li>$_SERVER</li>
+<li>$_REQUEST</li>
+<li>$_POST</li>
+<li>$_GET</li>
+<li>$_FILES</li>
+<li>$_ENV</li>
+<li>$_COOKIE</li>
+<li>$_SESSION</li>
+</ol>
+<p>开始介绍</p>
+<ol>
+<li><p><strong>第一个$GLOBALS</strong><br> $GLOBALS 这种全局变量用于在 PHP 脚本中的任意位置访问全局变量（从函数或方法中均可）<br> PHP 在名为 $GLOBALS[index] 的数组中存储了所有全局变量。变量的名字就是数组的键。<br> 下面的例子展示了如何使用超级全局变量 $GLOBALS：</p>
+<p> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php </span><br><span class="line">$x = 75; </span><br><span class="line">$y = 25;</span><br><span class="line"> </span><br><span class="line">function addition() &#123; </span><br><span class="line">  $GLOBALS[&#x27;z&#x27;] = $GLOBALS[&#x27;x&#x27;] + $GLOBALS[&#x27;y&#x27;]; </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">addition(); </span><br><span class="line">echo $z; </span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/2020042612194531.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p><strong>第二个$_SERVER</strong><br> $_SERVER 这种超全局变量保存关于报头、路径和脚本位置的信息。<br> 代码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	&lt;?php </span><br><span class="line">echo $_SERVER[&#x27;PHP_SELF&#x27;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#x27;SERVER_NAME&#x27;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#x27;HTTP_HOST&#x27;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#x27;HTTP_REFERER&#x27;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#x27;HTTP_USER_AGENT&#x27;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">echo $_SERVER[&#x27;SCRIPT_NAME&#x27;];</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p> 结果<br> <img src="https://img-blog.csdnimg.cn/202004261222182.png" alt="在这里插入图片描述"><br> 中访问的最重要的元素</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$_SERVER[&#x27;PHP_SELF&#x27;]	返回当前执行脚本的文件名。</span><br><span class="line">$_SERVER[&#x27;GATEWAY_INTERFACE&#x27;]	返回服务器使用的 CGI 规范的版本。</span><br><span class="line">$_SERVER[&#x27;SERVER_ADDR&#x27;]	返回当前运行脚本所在的服务器的 IP 地址。</span><br><span class="line">$_SERVER[&#x27;SERVER_NAME&#x27;]	返回当前运行脚本所在的服务器的主机名（比如 www.w3school.com.cn）。</span><br><span class="line">$_SERVER[&#x27;SERVER_SOFTWARE&#x27;]	返回服务器标识字符串（比如 Apache/2.2.24）。</span><br><span class="line">$_SERVER[&#x27;SERVER_PROTOCOL&#x27;]	返回请求页面时通信协议的名称和版本（例如，“HTTP/1.0”）。</span><br><span class="line">$_SERVER[&#x27;REQUEST_METHOD&#x27;]	返回访问页面使用的请求方法（例如 POST）。</span><br><span class="line">$_SERVER[&#x27;REQUEST_TIME&#x27;]	返回请求开始时的时间戳（例如 1577687494）。</span><br><span class="line">$_SERVER[&#x27;QUERY_STRING&#x27;]	返回查询字符串，如果是通过查询字符串访问此页面。</span><br><span class="line">$_SERVER[&#x27;HTTP_ACCEPT&#x27;]	返回来自当前请求的请求头。</span><br><span class="line">$_SERVER[&#x27;HTTP_ACCEPT_CHARSET&#x27;]	返回来自当前请求的 Accept_Charset 头（ 例如 utf-8,ISO-8859-1）</span><br><span class="line">$_SERVER[&#x27;HTTP_HOST&#x27;]	返回来自当前请求的 Host 头。</span><br><span class="line">$_SERVER[&#x27;HTTP_REFERER&#x27;]	返回当前页面的完整 URL（不可靠，因为不是所有用户代理都支持）。</span><br><span class="line">$_SERVER[&#x27;HTTPS&#x27;]	是否通过安全 HTTP 协议查询脚本。</span><br><span class="line">$_SERVER[&#x27;REMOTE_ADDR&#x27;]	返回浏览当前页面的用户的 IP 地址。</span><br><span class="line">$_SERVER[&#x27;REMOTE_HOST&#x27;]	返回浏览当前页面的用户的主机名。</span><br><span class="line">$_SERVER[&#x27;REMOTE_PORT&#x27;]	返回用户机器上连接到 Web 服务器所使用的端口号。</span><br><span class="line">$_SERVER[&#x27;SCRIPT_FILENAME&#x27;]	返回当前执行脚本的绝对路径。</span><br><span class="line">$_SERVER[&#x27;SERVER_ADMIN&#x27;]	该值指明了 Apache 服务器配置文件中的 SERVER_ADMIN 参数。</span><br><span class="line">$_SERVER[&#x27;SERVER_PORT&#x27;]	Web 服务器使用的端口。默认值为 “80”。</span><br><span class="line">$_SERVER[&#x27;SERVER_SIGNATURE&#x27;]	返回服务器版本和虚拟主机名。</span><br><span class="line">$_SERVER[&#x27;PATH_TRANSLATED&#x27;]	当前脚本所在文件系统（非文档根目录）的基本路径。</span><br><span class="line">$_SERVER[&#x27;SCRIPT_NAME&#x27;]	返回当前脚本的路径。</span><br><span class="line">$_SERVER[&#x27;SCRIPT_URI&#x27;]	返回当前页面的 URI。</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>第三个$_REQUEST</strong></p>
+</li>
+</ol>
+<h1 id="include-和-require-语句"><a href="#include-和-require-语句" class="headerlink" title="include 和 require 语句"></a>include 和 require 语句</h1><ul>
+<li>require 会生成致命错误（E_COMPILE_ERROR）并停止脚本</li>
+<li>include 只生成警告（E_WARNING），并且脚本会继续</li>
+</ul>
+<h1 id="FILES上传参数"><a href="#FILES上传参数" class="headerlink" title="$_FILES上传参数"></a>$_FILES上传参数</h1><p>我们上发的文件都是用<code>$_FILES</code>来获得的里面有参数<br>用<code>print_r()</code>来查看一下<br>a.html代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>文件上发<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;a.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;file&quot;</span>&gt;</span>要上发的文件名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;wj&quot;</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;点击提交&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>a.php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    print_r(<span class="variable">$_FILES</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>$_FILES</code>是一个数组他保留这上传文件信息<br><img src="https://gitee.com/wZass/zp/raw/master/img/20200915104245.png"></p>
+<p>burp抓抓包</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220127151624598.png" alt="image-20220127151624598"></p>
+<p>可以看见数组<br><img src="https://gitee.com/wZass/zp/raw/master/img/20200915104345.png"><br>我们就可以单独的数组进行显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$_FILES[&quot;file&quot;][&quot;name&quot;] - 被上传文件的名称</span><br><span class="line">$_FILES[&quot;file&quot;][&quot;type&quot;] - 被上传文件的类型</span><br><span class="line">$_FILES[&quot;file&quot;][&quot;size&quot;] - 被上传文件的大小，以字节计</span><br><span class="line">$_FILES[&quot;file&quot;][&quot;error&quot;] - 由文件上传导致的错误代码0是就是没有报错</span><br><span class="line">$_FILES[&quot;file&quot;][&quot;tmp_name&quot;] - 存储在服务器的文件的临时副本的名称</span><br></pre></td></tr></table></figure>
+
+<p>我们就可以写个a.php代码为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;上传：&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;name&quot;</span>] . <span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;类型：&quot;</span>. <span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;type&quot;</span>] . <span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;大小: &quot;</span>. <span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;size&quot;</span>] . <span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;报错代码：&quot;</span>. <span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;error&quot;</span>].<span class="string">&quot;&lt;br /&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;存储在: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>];</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20200915105324.png"></p>
+<h2 id="文件移动"><a href="#文件移动" class="headerlink" title="文件移动"></a>文件移动</h2><p><code>move_uploaded_file()</code>函数<br>这个函数有两个参数</p>
+<p>第一个猜数 必需。规定要移动的文件。</p>
+<p>第二个参数 必需。规定文件的新位置。<br>a.html代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>文件上发<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;a.php&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;file&quot;</span>&gt;</span>要上发的文件名：<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;wj&quot;</span> <span class="attr">id</span>=<span class="string">&quot;file&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;点击提交&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>a.php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">    <span class="variable">$a</span>=<span class="string">&quot;C:\phpstudy_pro\WWW\sq\a.png&quot;</span>;</span><br><span class="line">    move_uploaded_file(<span class="variable">$_FILES</span>[<span class="string">&quot;wj&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>],<span class="variable">$a</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;文件在&quot;</span>.<span class="variable">$a</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20200915113836.png"></p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20200915113927.png"></p>
+<h1 id="php面相对象"><a href="#php面相对象" class="headerlink" title="php面相对象"></a>php面相对象</h1><h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><p>类使用 class 关键字后加上类名定义<br>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">	xxxx</span><br><span class="line">	xxxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化对象"><a href="#初始化对象" class="headerlink" title="初始化对象"></a>初始化对象</h2><p>用<code>new</code><br>然后用<code>var_dump()</code>打印出来属性<br>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="meta">&lt;?php</span>     </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> a();</span><br><span class="line">var_dump(<span class="variable">$b</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201017083037.png"></p>
+<h2 id="创建类成员"><a href="#创建类成员" class="headerlink" title="创建类成员"></a>创建类成员</h2><ul>
+<li>类成员分类<ul>
+<li>成员变量(属性) 给对象存储的数据变量<ul>
+<li>变量是可以改的</li>
+</ul>
+</li>
+<li>成员函数(方法) 给对象调用解决问题的函数 </li>
+<li>类常量 属性类内部的常量，使用<code>const</code>关键字定义<ul>
+<li>常量是不可以改的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>属性和方法需要用访问修饰符限制修饰符，使用<code>public</code>修饰</li>
+</ul>
+<p>咧：<br>函数用用修饰符应为他 默认就是<code>public</code>的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> 类名</span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> $属性名 =值;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> 变量名 =值;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> 方法名(<span class="params"><span class="string">&quot;行参&quot;</span></span>)</span>&#123;</span><br><span class="line">		xxxxx</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问类成员"><a href="#访问类成员" class="headerlink" title="访问类成员"></a>访问类成员</h2><p>我们可以使用 <code>new</code>运算符来实例化该类的对象<br>简单就是说用<code>new</code>可以调用类<br>使用方法用的是<code>-&gt;</code><br>咧</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$b</span>= <span class="keyword">new</span> 类名();</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问属性</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>-&gt;属性名;</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改属性</span></span><br><span class="line"><span class="variable">$b</span>-&gt;属性名=<span class="string">&quot;值&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加属性</span></span><br><span class="line"><span class="variable">$b</span>-&gt;要添加的属性名=<span class="string">&quot;值&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除属性</span></span><br><span class="line"><span class="keyword">unset</span>(<span class="variable">$b</span>-&gt;要删除的属性名)</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问方法</span></span><br><span class="line"><span class="variable">$b</span>-&gt;方法名(<span class="string">&quot;实参&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="增删改查事例"><a href="#增删改查事例" class="headerlink" title="增删改查事例"></a>增删改查事例</h2><h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><p>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> TITLE =<span class="string">&quot;不好&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"><span class="variable">$i</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//访问属性</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017092708.png"></p>
+<h3 id="改"><a href="#改" class="headerlink" title="改"></a>改</h3><p>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> TITLE =<span class="string">&quot;不好&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"><span class="variable">$i</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//修改属性</span></span><br><span class="line"><span class="variable">$a</span>-&gt;url=<span class="string">&quot;bbb&quot;</span>;</span><br><span class="line"><span class="comment">//访问属性</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017092949.png"></p>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><p>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> TITLE =<span class="string">&quot;不好&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"><span class="variable">$i</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//增加属性</span></span><br><span class="line"><span class="variable">$a</span>-&gt;twourl=<span class="string">&quot;ccc&quot;</span>;</span><br><span class="line"><span class="comment">//访问属性</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;twourl;</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017093201.png"></p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除用到unset</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> TITLE =<span class="string">&quot;不好&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"><span class="variable">$i</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//删除属性</span></span><br><span class="line"><span class="keyword">unset</span> (<span class="variable">$a</span>-&gt;url);</span><br><span class="line"><span class="comment">//访问属性</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201017093530.png"></p>
+<h3 id="访问方法"><a href="#访问方法" class="headerlink" title="访问方法"></a>访问方法</h3><p>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//常量</span></span><br><span class="line">	<span class="keyword">const</span> TITLE =<span class="string">&quot;不好&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//访问方法</span></span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017094352.png"></p>
+<h2 id="访问修饰限制符"><a href="#访问修饰限制符" class="headerlink" title="访问修饰限制符"></a>访问修饰限制符</h2><p>public (默认是他)   公共的类内外都访问<br>protected（受保护的）只允许在相关的类内部访问<br>private（私有的）  只允许在定义类内部访问</p>
+<h3 id="public-公共的"><a href="#public-公共的" class="headerlink" title="public(公共的)"></a>public(公共的)</h3><p>函数默认就是<code>public</code><br>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017101829.png"></p>
+<h3 id="protected（受保护的）"><a href="#protected（受保护的）" class="headerlink" title="protected（受保护的）"></a>protected（受保护的）</h3><p>咧：<br>受保护的是不能被访问的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//受保护的属性</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>他会报错<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017160026.png"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>private（私有的）</p>
+<p>咧：<br>受保护的是不能被访问的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//私有的属性</span></span><br><span class="line">	<span class="keyword">private</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">	<span class="comment">//方法</span></span><br><span class="line">	<span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;他好&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>-&gt;url;</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果报错<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017155902.png">)</p>
+<h2 id="内类部对象"><a href="#内类部对象" class="headerlink" title="内类部对象"></a>内类部对象</h2><h3 id="进行测访问内部对象"><a href="#进行测访问内部对象" class="headerlink" title="进行测访问内部对象"></a>进行测访问内部对象</h3><p>通过内部的函数访问类里面的变量<br>咧：<br>什么都没有显示<br>应为在类里面<code>setUrl</code>仍然是个函数<code>url</code>在函数外部是读取不了的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//受保护的属性</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$twourl</span>=<span class="string">&quot;bbb&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有的属性</span></span><br><span class="line">	<span class="keyword">private</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//公用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$url</span>;</span><br><span class="line">		<span class="keyword">echo</span> <span class="variable">$twourl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<p><img src="https://gitee.com/wZass/zp/raw/master/img/20201017155042.png"></p>
+<h3 id="this的介绍"><a href="#this的介绍" class="headerlink" title="$this的介绍"></a>$this的介绍</h3><p><code>$this</code>方法内部的内置的一个对象仅限内部使用<br>他可以访问任何访问限制符的成员</p>
+<p>类内部函数对函数以为类内的变量也是通过<code>$this</code>来访问的</p>
+<p>通过<code>$this</code>可以访问全部的内容</p>
+<p>咧：<br>先通过<code>var_dump()</code>来看一下<code>$this</code>的内容<br>下面结果可以看见通过<code>$this</code>可以访问全部的内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//受保护的属性</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$twourl</span>=<span class="string">&quot;bbb&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有的属性</span></span><br><span class="line">	<span class="keyword">private</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//公用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">		var_dump(<span class="keyword">$this</span>);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017162154.png"></p>
+<h3 id="使用”-this”来访问私有和受保护的"><a href="#使用”-this”来访问私有和受保护的" class="headerlink" title="使用”$this”来访问私有和受保护的"></a>使用”$this”来访问私有和受保护的</h3><p>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//受保护的属性</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="variable">$twourl</span>=<span class="string">&quot;bbb&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有的属性</span></span><br><span class="line">	<span class="keyword">private</span> <span class="variable">$url</span> = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//公用的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setUrl</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;twourl,<span class="keyword">$this</span>-&gt;url;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="variable">$a</span>-&gt;setUrl();</span><br></pre></td></tr></table></figure>
+
+<p>结果<br>可以访问<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201017162538.png"></p>
+<h2 id="范围解析操作符”-”"><a href="#范围解析操作符”-”" class="headerlink" title="范围解析操作符”::”"></a>范围解析操作符”::”</h2><p>什么是范围解析操作符，可以用于访问静态成员，类常量，还可以用于覆盖类中的属性和方法<br>他可以实现类直接访问类成员，是专门实现类成员操作的，可以实现类直接访问类成员的<br><strong>语法</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类名::类成员</span><br></pre></td></tr></table></figure>
+
+<p>下面用一个普通的一个方法访问常量</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//定义一个常量</span></span><br><span class="line">	<span class="keyword">const</span> PI =<span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实例化该类的对象</span></span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> Site();</span><br><span class="line"><span class="comment">//访问里面的常量</span></span><br><span class="line"><span class="variable">$a</span>-&gt;PI;</span><br></pre></td></tr></table></figure>
+
+<p>结果就报错了<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201020094449.png"></p>
+<p>我们就可以用范围解析操作符”::”了<br>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//定义一个常量</span></span><br><span class="line">	<span class="keyword">const</span> PI =<span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//范围解析操作符访问里面的常量</span></span><br><span class="line"><span class="keyword">echo</span> Site::PI;</span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201020095913.png"></p>
+<p>他其实也可以直接访问操作类内的方法和属性但是不建议怎么做</p>
+<h2 id="静态成员"><a href="#静态成员" class="headerlink" title="静态成员"></a>静态成员</h2><p>什么用静态成员：就是用<code>static</code>关键字来修饰的类成员，表示该成员属于类访问的<br>php有两个静态成员</p>
+<ul>
+<li>静态属性</li>
+<li>静态方法</li>
+</ul>
+<p><strong>访问静态成员要用到范围解析操作符”::”</strong></p>
+<h3 id="简单实例访问静态属性"><a href="#简单实例访问静态属性" class="headerlink" title="简单实例访问静态属性"></a>简单实例访问静态属性</h3><p>下面这个访问静态属性要叫上<code>$</code>符号</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//普通属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span>=<span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态属性用static来修饰</span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">static</span>  <span class="variable">$PI</span>=<span class="string">&quot;ccccc&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用范围解析操作符&quot;::&quot;来访问</span></span><br><span class="line"><span class="keyword">echo</span> Site::<span class="variable">$PI</span>; <span class="comment">//访问静态属性要叫上`$`符号</span></span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201020101940.png"></p>
+<h3 id="访问方法静态方法"><a href="#访问方法静态方法" class="headerlink" title="访问方法静态方法"></a>访问方法静态方法</h3><p>实咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//普通属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span>=<span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态方法用static来修饰 </span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span>  <span class="title">PI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;cccc&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用范围解析操作符&quot;::&quot;来访问</span></span><br><span class="line"><span class="keyword">echo</span> Site::PI(); </span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201020102436.png"></p>
+<h3 id="在类的内部访问类内的静态属性"><a href="#在类的内部访问类内的静态属性" class="headerlink" title="在类的内部访问类内的静态属性"></a>在类的内部访问类内的静态属性</h3><p><strong>不建议这样使用</strong><br>咧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> </span>&#123;</span><br><span class="line">	<span class="comment">//普通属性</span></span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$url</span>=<span class="string">&quot;aaaaa&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态属性用static来修饰</span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">static</span>  <span class="variable">$Siteurl</span>=<span class="string">&quot;ccccc&quot;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态方法用static来修饰 </span></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span>  <span class="title">PI</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">echo</span> Site::<span class="variable">$Siteurl</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用范围解析操作符&quot;::&quot;来访问</span></span><br><span class="line"><span class="keyword">echo</span> Site::PI(); </span><br></pre></td></tr></table></figure>
+
+<p>结果<br><img src="https://gitee.com/wZass/zp/raw/master/img/20201020102822.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/23/php%E6%80%BB%E7%BB%93/">http://example.com/2022/01/23/php%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/php/">php</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wZass/zp/raw/master/img/php.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/02/14/BtleJuicey%E8%93%9D%E7%89%99%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/"><img class="prev-cover" src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">BtleJuicey蓝牙中间人攻击</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220122170631991.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">前端总结</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/08/10/gjphp/" title="php高级"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-10</div><div class="title">php高级</div></div></a></div><div><a href="/2020/10/28/phpmysql/" title="php操控数据库基本操作"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-10-28</div><div class="title">php操控数据库基本操作</div></div></a></div><div><a href="/2021/12/25/phpzz/" title="PHP学习之正则表达式"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/php.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-25</div><div class="title">PHP学习之正则表达式</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">常见的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#phpinfo"><span class="toc-number">1.1.</span> <span class="toc-text">phpinfo()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#count"><span class="toc-number">1.2.</span> <span class="toc-text">count()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#end-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text">end()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#explode"><span class="toc-number">1.4.</span> <span class="toc-text">explode()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#str-ireplace"><span class="toc-number">1.5.</span> <span class="toc-text">str_ireplace()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strrchr"><span class="toc-number">1.6.</span> <span class="toc-text">strrchr()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#strrpos"><span class="toc-number">1.7.</span> <span class="toc-text">strrpos()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#substr"><span class="toc-number">1.8.</span> <span class="toc-text">substr()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getimagesize"><span class="toc-number">1.9.</span> <span class="toc-text">getimagesize()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#image-type-to-extension"><span class="toc-number">1.10.</span> <span class="toc-text">image_type_to_extension()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%92%8C%E5%B8%B8%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">变量和常量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-number">2.2.</span> <span class="toc-text">常量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.1.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">3.2.</span> <span class="toc-text">上面的介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text">整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E9%9D%A2%E7%9A%84%E4%BB%8B%E7%BB%8D-1"><span class="toc-number">3.4.</span> <span class="toc-text">上面的介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%9E%8B"><span class="toc-number">3.6.</span> <span class="toc-text">布尔型</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NULL-%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">NULL 值</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.1.</span> <span class="toc-text">基本运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%A2%9E%E9%80%92%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.2.</span> <span class="toc-text">递增递减运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.3.</span> <span class="toc-text">比较运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.4.</span> <span class="toc-text">逻辑运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.5.</span> <span class="toc-text">字符串连接运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.6.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">5.7.</span> <span class="toc-text">位运算符</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-number">6.</span> <span class="toc-text">判断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">6.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Switch-%E8%AF%AD%E5%8F%A5"><span class="toc-number">6.2.</span> <span class="toc-text">Switch 语句</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF"><span class="toc-number">7.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#while"><span class="toc-number">7.1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for"><span class="toc-number">7.2.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foreach"><span class="toc-number">7.3.</span> <span class="toc-text">foreach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">9.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B6%85%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">10.</span> <span class="toc-text">超全局变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#include-%E5%92%8C-require-%E8%AF%AD%E5%8F%A5"><span class="toc-number">11.</span> <span class="toc-text">include 和 require 语句</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FILES%E4%B8%8A%E4%BC%A0%E5%8F%82%E6%95%B0"><span class="toc-number">12.</span> <span class="toc-text">$_FILES上传参数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8"><span class="toc-number">12.1.</span> <span class="toc-text">文件移动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#php%E9%9D%A2%E7%9B%B8%E5%AF%B9%E8%B1%A1"><span class="toc-number">13.</span> <span class="toc-text">php面相对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">13.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AF%B9%E8%B1%A1"><span class="toc-number">13.2.</span> <span class="toc-text">初始化对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B1%BB%E6%88%90%E5%91%98"><span class="toc-number">13.3.</span> <span class="toc-text">创建类成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E7%B1%BB%E6%88%90%E5%91%98"><span class="toc-number">13.4.</span> <span class="toc-text">访问类成员</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E4%BA%8B%E4%BE%8B"><span class="toc-number">13.5.</span> <span class="toc-text">增删改查事例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5"><span class="toc-number">13.5.1.</span> <span class="toc-text">查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%B9"><span class="toc-number">13.5.2.</span> <span class="toc-text">改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E"><span class="toc-number">13.5.3.</span> <span class="toc-text">增</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">13.5.4.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95"><span class="toc-number">13.5.5.</span> <span class="toc-text">访问方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E9%99%90%E5%88%B6%E7%AC%A6"><span class="toc-number">13.6.</span> <span class="toc-text">访问修饰限制符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#public-%E5%85%AC%E5%85%B1%E7%9A%84"><span class="toc-number">13.6.1.</span> <span class="toc-text">public(公共的)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protected%EF%BC%88%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%EF%BC%89"><span class="toc-number">13.6.2.</span> <span class="toc-text">protected（受保护的）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">13.6.3.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%B1%BB%E9%83%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">13.7.</span> <span class="toc-text">内类部对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AE%BF%E9%97%AE%E5%86%85%E9%83%A8%E5%AF%B9%E8%B1%A1"><span class="toc-number">13.7.1.</span> <span class="toc-text">进行测访问内部对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">13.7.2.</span> <span class="toc-text">$this的介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E2%80%9D-this%E2%80%9D%E6%9D%A5%E8%AE%BF%E9%97%AE%E7%A7%81%E6%9C%89%E5%92%8C%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84"><span class="toc-number">13.7.3.</span> <span class="toc-text">使用”$this”来访问私有和受保护的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E8%A7%A3%E6%9E%90%E6%93%8D%E4%BD%9C%E7%AC%A6%E2%80%9D-%E2%80%9D"><span class="toc-number">13.8.</span> <span class="toc-text">范围解析操作符”::”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-number">13.9.</span> <span class="toc-text">静态成员</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B%E8%AE%BF%E9%97%AE%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7"><span class="toc-number">13.9.1.</span> <span class="toc-text">简单实例访问静态属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">13.9.2.</span> <span class="toc-text">访问方法静态方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E7%B1%BB%E7%9A%84%E5%86%85%E9%83%A8%E8%AE%BF%E9%97%AE%E7%B1%BB%E5%86%85%E7%9A%84%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7"><span class="toc-number">13.9.3.</span> <span class="toc-text">在类的内部访问类内的静态属性</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/19/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/19/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-03-10 14:18:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/05/01/xray/" title="xray">     <img class="post_bg" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xray"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/05/01/xray/" title="xray">xray</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-01T10:19:30.000Z" title="发表于 2020-05-01 18:19:30">2020-05-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/xray/">xray</a></span></div><div class="content">他的地址项目地址：https://github.com/chaitin/xray官方主页：https://github.com/chaitin/xray
+</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/05/01/python%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" title="python基础总结">     <img class="post_bg" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="python基础总结"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/05/01/python%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/" title="python基础总结">python基础总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-01T10:19:30.000Z" title="发表于 2020-05-01 18:19:30">2020-05-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E7%BC%96%E7%A8%8B/python/">python</a></span></div><div class="content">为什么我要总结
+应为就是编程语言学习的多了容易搞混，比如c语言的数组和python的列字典等搞混
+还有我英语真的是小学等级的很多函数方法属性记不住我就写到这个了
+总结方法/函数修改字符串
+
+
+方法/函数
+作用
+
+
+
+title()方法
+这个方法可以叫字符串首字母修改成大写
+
+
+rstrip()方法
+方法会移出尾的空格
+
+
+strip()方法
+方法会移出头和尾的空格
+
+
+upper()方法
+把所有字符中的小写字母转换成大写字母
+
+
+lower()方法
+把所有字符中的大写字母转换成小写字母
+
+
+capitalize()方法
+把第一个字母转化为大写字母，其余小写
+
+
+title()方法
+把每个单词的第一个字母转化为大写，其余小写
+
+
+增加元素
+
+
+方法/函数
+作用
+
+
+
+append()方法
+这个方法会在列表最后增加元素
+
+
+insert()方法
+这个方法可以在选择在那个地址增加元素
+
+
+删除元素
+
+
+方法/函数
+作用
+
+
+
+del语句
+指定删除如何变量或元素字典
+
+
+pop()方法
+删除指定的元素,如果不指定默认删除最后一个,他返回被删除的值
+
+
+remove()方法
+指定元素内容删除
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/21/%E6%8A%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%95%B0%E6%8D%AE/" title="抓微信小程序数据">     <img class="post_bg" src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="抓微信小程序数据"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/21/%E6%8A%93%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%95%B0%E6%8D%AE/" title="抓微信小程序数据">抓微信小程序数据</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-21T02:38:30.000Z" title="发表于 2020-04-21 10:38:30">2020-04-21</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></span></div><div class="content">我用了很多方法进行抓取微信小程序里面的数据网上也有很多文章抓取小程序，都是都不靠谱，可能是我操作有问题吧还是那是小程序安全？，我就不研究了通过抓包还是能抓取到内容的url都是可以获取到的，叫内容直接下载到本地
+我用burp进行抓包 官方下载地址https://portswigger.net/burp burp这个工具我之前学习过将近2个月差不多，学习还算容易写笔记难 安装ca证书 可是他进去小程序显示网络不能用，这样不知道是什么原因，可能是有什么安全机制吗
+
+访问https正常
+
+charles 官方下载地址https://www.charlesproxy.com/latest-release/download.do
+结果还是一样
+手机版的抓包软件AndroidHttpCapture
+进行抓包效果 还是一样 
+
+
+其他方法1.还用了叫https请求强制成http请求 这个方法还是不行2.抓包分析这个有个缺点就是都是加密的，但是有的是不加密的
+我就是难受理论应该我可以行得通的都是实现是很难吗我又用了很多方法，比如叫用Wireshark进行抓包是可以抓的到的分析了很长时间，在电脑上打开小程 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/11/linux%E7%89%88qv2ray%E5%AE%89%E8%A3%85/" title="linux版qv2ray安装">     <img class="post_bg" src="https://pic.3gbizhi.com/2020/0529/thumb_1680_0_20200529040047300.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="linux版qv2ray安装"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/11/linux%E7%89%88qv2ray%E5%AE%89%E8%A3%85/" title="linux版qv2ray安装">linux版qv2ray安装</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-11T04:38:30.000Z" title="发表于 2020-04-11 12:38:30">2020-04-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/">工具安装</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/qv2ray%E5%AE%89%E8%A3%85/">qv2ray安装</a></span></div><div class="content">在国内有的网络技术文档都已经很老了，在外国能查看到新的互联网技术进行学习废话不多说
+
+下载V2ray客户端 应为github下载的比较慢，我下载好的放到了蓝奏云里面，蓝奏云下载的快 https://wwa.lanzous.com/iIatmf0cmqf 更多其他系统版本 https://github.com/Qv2ray/Qv2ray/releases/tag/v1.99.6
+下载核心 应为github下载的比较慢，我下载好的放到了蓝奏云里面，蓝奏云下载的快 https://wwa.lanzous.com/ixPOUf0cpyb 更多其他系统版本 https://github.com/v2fly/v2ray-core/releases/
+
+配置我创建了一个v2ray文件夹里面是解压好的下载的核心和V2ray客户端
+
+然后在终端输入运行 给他执行权限
+ 1chmod +x ./Qv2ray.v2.6.2.linux-x64.AppImage	 
+ 运行
+ 1./Qv2ray.v2.6.2.linux-x64.AppImage	 
+设置 设置中文 他默认是英文的
+
+
+添加核心上面下载的核心 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/02/ms4/" title="4.木马病毒和免杀技术">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210411075341091.pn" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="4.木马病毒和免杀技术"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/02/ms4/" title="4.木马病毒和免杀技术">4.木马病毒和免杀技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-02T12:31:55.000Z" title="发表于 2020-04-02 20:31:55">2020-04-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF/">免杀技术</a></span></div><div class="content">
+传统的杀毒原理
+杀病毒的原理是根据里面的特征字符进行判断是否是病毒或者我木马，
+
+
+我们就可以使用笨办法进行免杀
+原理是：叫木马或者病毒程序进行分块，分块后，叫第一块生成文件叫杀毒软件进行查杀，如果没有查出第一块是病毒，在和第一块和第二块进行组合生成文件在进行查杀，以此类推，等到查杀到那块是病毒，查出来的那个在进行分很小的块，在进行查杀，以此类推找到特征字符
+
+
+
+程序分片应用分片工具Evade应为我这个工具没有找到，下面是照片是视频里的
+文件修改如果找到了被杀掉的软件就可以用16进制软件进行修改了下载16进制软件
+1apt install ghex
+下载好后使用
+1ghex  应用名
+
+Shellter下载用Shellter工具官方https://www.shellterproject.com/下载Shellter命令：apt install shellter通过多态的方式生成免杀的程序他的工作的方式是要指定一个模板，正常的模板程序不是病毒，然后他将他的病毒代码进行各种混淆加密封装打散在加入到模板里，增高免杀
+Shellter使用启动后就是这样的
+
+
+
+
+
+可以输入h进行查看参数
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/02/yq%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C/" title="1.业务逻辑漏洞：水平越权垂直越权">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210411075341091.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.业务逻辑漏洞：水平越权垂直越权"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/02/yq%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C/" title="1.业务逻辑漏洞：水平越权垂直越权">1.业务逻辑漏洞：水平越权垂直越权</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-02T12:31:55.000Z" title="发表于 2020-04-02 20:31:55">2020-04-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF/">免杀技术</a></span></div><div class="content">小迪的笔记
+水平越权垂直越权未授权访问
+垂直越权：就是从普通用户提权到管理员用户在提升到超级管理员等往上提权
+比如：更换某一个id之类的身份标识从而获得（修改，删除等）其他用户的数据
+
+水平越权：就是同级别的权限提升，比如普通用户a，提权到普通用户b这就是水平越权
+
+未授权访问：就是没有权限就可以访问
+
+
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/04/02/xsser/" title="xsser工具使用">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="xsser工具使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/02/xsser/" title="xsser工具使用">xsser工具使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-02T06:52:13.000Z" title="发表于 2020-04-02 14:52:13">2020-04-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/xsser/">xsser</a></span></div><div class="content">
+笔记
+
+xss跨站点“脚本编写器”是一个自动框架，用于检测、利用和报告基于web的应用程序中的XSS漏洞
+
+选项：
+ 1234567显示程序的版本号和退出--version             显示程序的版本号和退出 -h, --help            显示此帮助消息并退出 -s, --statistics      显示高级统计输出结果 -v, --verbose         活动详细模式输出结果 --gtk                 启动XSSer GTK接口  --wizard              启动向导助手！
+
+
+*特殊功能 *：您可以设置Vector和Bypasser来为XSS构建复杂的脚本 嵌入代码。XST允许您发现目标是否易受 “跨站点跟踪”[CAPEC-107]：
+  1234--imx=IMX          IMX-使用XSS创建图像（--IMX image.png） --fla=FLASH        FLA-使用XSS创建flash电影（--FLA movie.swf）  --xst=XST           XST-跨站点 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/04/02/BEEF/" title="BEEF浏览器框架攻击">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210420094812943.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BEEF浏览器框架攻击"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/04/02/BEEF/" title="BEEF浏览器框架攻击">BEEF浏览器框架攻击</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-02T06:52:13.000Z" title="发表于 2020-04-02 14:52:13">2020-04-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/BEEF/">BEEF</a></span></div><div class="content">
+笔记
+
+任务100：存储型XSS和BEEF浏览器攻击框架BEEF是有ruby语言开发BEEF专门进行浏览器框架攻击的
+BEEF不是专门给XSS漏洞所设计的，但是可以叫XSS漏洞后期利用得到一个非常简化的过程
+
+应用普遍转移到B/S架构，浏览器成为统一客户端程序
+  分层浏览器是最接近用户的，现在所有都是围绕这web架构来设计的管理一个交换机，防火墙都使用浏览器进行管理， 现在b/s架构给已经成为统一的选择，c/s机构和b/s架构，c/s要开发服务器端 数据库和客户端要比b/s架构复杂，b/s只需要开发一个客户端就可以了，所以现在黑客都去浏览器进行攻击
+
+
+结合社会工程学方法对浏览器进行攻击     -  攻击浏览器用户             - 通过注入的JS脚本，利用浏览器攻击其他网站 
+
+攻击手段
+
+利用有XSS漏洞，来实现攻击
+利用诱惑客户端访问有hook伪造站点进行攻击
+结合中间攻击注入book来进行攻击
+
+常见用途
+
+键盘记录     
+网络扫描     
+浏览器信息收集     
+绑定shell     
+与metasplit集成
+
+
+使用 1.1.启动    
+ 1b ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2020/03/31/ms/" title="1.木马病毒和免杀技术">     <img class="post_bg" src="https://cdn.jsdelivr.net/gh/wzass/zp/image-20210411075341091.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="1.木马病毒和免杀技术"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/31/ms/" title="1.木马病毒和免杀技术">1.木马病毒和免杀技术</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-31T04:51:54.000Z" title="发表于 2020-03-31 12:51:54">2020-03-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%85%8D%E6%9D%80%E6%8A%80%E6%9C%AF/">免杀技术</a></span></div><div class="content"> 第17章  免杀
+杀毒软件叫杀毒软件变成了防病毒软件
+为什么叫防病毒软件
+应为做的黑客做出来木马病毒运行在很底层
+在开机运行之前木马病毒就在引导的时候已经启动了所以杀毒软件杀不了他
+
+
+企业的防病毒软件
+企业的防病毒软件都有一个单独的控制台
+控制台就可以控制企业下面的所以设备的安全
+
+
+
+
+
+杀毒软件的原理
+杀毒软件的有一个病毒库，里面存放着特征码
+基于对二进制的文件或者对数据包进行还原后的里面的特征字符进行比较
+还有行为分析比如修改你的注册表，插入进程里面，修改你的文件等等等方法就叫&lt;启发式&gt;
+
+免杀技术免杀技术有两大种现在还有的黑客进行逆向分析杀毒软件，看你的杀毒软件是怎么进行分析的 
+
+修改
+如果一个黑客知道那个杀毒软件的厂商，定义病毒的特点就可以进行用二进行修改，替换等等等达到免杀技术
+
+
+2.加密技术（crypter）
+通过加密使得特征字符不可读，来逃避查杀
+还有叫木马程序注入到MP3里面，还照片里面
+
+
+
+FUD是全免杀技术查杀网站
+下面是明查杀网站，他们会共享给杀毒软件，进行分享然后在加入特征库 https://www.virustotal.com/ htt ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="SSL中间人攻击">     <img class="post_bg" src="http://pic.netbian.com/uploads/allimg/200313/235000-1584114600db79.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SSL中间人攻击"></a></div><div class="recent-post-info"><a class="article-title" href="/2020/03/10/SSL%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="SSL中间人攻击">SSL中间人攻击</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-03-10T02:38:30.000Z" title="发表于 2020-03-10 10:38:30">2020-03-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%97%85%E6%8E%A2/">数据嗅探</a></span></div><div class="content">任务104：SSL、TLS中间人攻击
+下面是攻击原理
+开 始 实 验下面开始演示
+1.先利用openssl先生成伪造证书
+生成证书 需要两步
+
+先利用openssl生成一个证书的私钥
+1openssl genrsa -out ca.key 2048   		
+后面2048位是长度还有4096位        生成出来的文件
+1.2. 在用上面私钥生成证书
+1openssl req -new -x509 -days 200 -key ca.key -out ca.crt	
+-x509是证书格式        200是天这个证书有效时间  ca.key是要用到的私钥这个密钥就是上面生成出来的       ca.crt生成的证书需要叫你填写
+2.启动路由功能
+启动后他会将客户端发来的数据包的地址进行转发，可以当作一个路由器使用不然ARP欺骗后客户端就不能利用我的电脑访问服务器了1sysctl -w net.ipv4.ip_forward=1
+
+上面意思是叫这个net.ipv4.ip_forward参数设置成1
+3. 用Iptables端口转发规则和sslscan工具进行中间人攻击
+
+
+为什么 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/18/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/#content-inner">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/#content-inner">20</a><a class="page-number" href="/page/21/#content-inner">21</a><a class="extend next" rel="next" href="/page/20/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/02/14/BtleJuicey%E8%93%9D%E7%89%99%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="BtleJuicey蓝牙中间人攻击"><img src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="BtleJuicey蓝牙中间人攻击"/></a><div class="content"><a class="title" href="/2022/02/14/BtleJuicey%E8%93%9D%E7%89%99%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB/" title="BtleJuicey蓝牙中间人攻击">BtleJuicey蓝牙中间人攻击</a><time datetime="2022-02-14T02:38:30.000Z" title="发表于 2022-02-14 10:38:30">2022-02-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/php%E6%80%BB%E7%BB%93/" title="php基础总结"><img src="https://gitee.com/wZass/zp/raw/master/img/php.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="php基础总结"/></a><div class="content"><a class="title" href="/2022/01/23/php%E6%80%BB%E7%BB%93/" title="php基础总结">php基础总结</a><time datetime="2022-01-23T03:11:25.000Z" title="发表于 2022-01-23 11:11:25">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/" title="前端总结"><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220122170631991.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="前端总结"/></a><div class="content"><a class="title" href="/2022/01/22/%E5%89%8D%E7%AB%AF%E6%80%BB%E7%BB%93/" title="前端总结">前端总结</a><time datetime="2022-01-22T12:38:30.000Z" title="发表于 2022-01-22 20:38:30">2022-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/22/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="文件上传漏洞总结"><img src="https://pic.3gbizhi.com/2019/1124/thumb_1680_0_20191124050326445.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="文件上传漏洞总结"/></a><div class="content"><a class="title" href="/2022/01/22/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="文件上传漏洞总结">文件上传漏洞总结</a><time datetime="2022-01-22T02:38:30.000Z" title="发表于 2022-01-22 10:38:30">2022-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/20/phpcms_v9.6.0_sql%E6%B3%A8%E5%85%A5/" title="phpcms_v9.6.0_sql注入漏洞复现"><img src="https://gitee.com/wZass/zp/raw/master/img/20201216131324.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="phpcms_v9.6.0_sql注入漏洞复现"/></a><div class="content"><a class="title" href="/2022/01/20/phpcms_v9.6.0_sql%E6%B3%A8%E5%85%A5/" title="phpcms_v9.6.0_sql注入漏洞复现">phpcms_v9.6.0_sql注入漏洞复现</a><time datetime="2022-01-20T06:51:06.000Z" title="发表于 2022-01-20 14:51:06">2022-01-20</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

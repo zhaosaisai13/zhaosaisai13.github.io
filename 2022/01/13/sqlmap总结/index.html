@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>sqlmap总结 | Hexo</title><meta name="keywords" content="渗透工具使用"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="参数总结   参数 作用    -d 直接连接数据库   -u 指定url扫描   -l    &lt;文件名&gt; 导入一个文件可以来自Burp和WebScarab代理记录的文件   -x 叫批量的目标保存到xml格式的文件进行扫描   -m   要指定的文件 多个目标URL保持到文件里，用-m进行多个扫描   -r Post提交方式，比如我们叫pros请求方到文件里面我们就可以用这个了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sqlmap总结">
+<meta property="og:url" content="http://example.com/2022/01/13/sqlmap%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="参数总结   参数 作用    -d 直接连接数据库   -u 指定url扫描   -l    &lt;文件名&gt; 导入一个文件可以来自Burp和WebScarab代理记录的文件   -x 叫批量的目标保存到xml格式的文件进行扫描   -m   要指定的文件 多个目标URL保持到文件里，用-m进行多个扫描   -r Post提交方式，比如我们叫pros请求方到文件里面我们就可以用这个了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png">
+<meta property="article:published_time" content="2022-01-13T02:34:25.000Z">
+<meta property="article:modified_time" content="2022-01-13T14:41:59.419Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="渗透工具使用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/13/sqlmap%E6%80%BB%E7%BB%93/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'sqlmap总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-13 22:41:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">208</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">56</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">77</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">sqlmap总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-13T02:34:25.000Z" title="发表于 2022-01-13 10:34:25">2022-01-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-13T14:41:59.419Z" title="更新于 2022-01-13 22:41:59">2022-01-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">黑客工具使用</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%BB%91%E5%AE%A2%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/sqlmap/">sqlmap</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="sqlmap总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="参数总结"><a href="#参数总结" class="headerlink" title="参数总结"></a>参数总结</h1><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-d</td>
+<td align="right">直接连接数据库</td>
+</tr>
+<tr>
+<td align="center">-u</td>
+<td align="right">指定url扫描</td>
+</tr>
+<tr>
+<td align="center">-l    &lt;文件名&gt;</td>
+<td align="right">导入一个文件可以来自Burp和WebScarab代理记录的文件</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="right">叫批量的目标保存到xml格式的文件进行扫描</td>
+</tr>
+<tr>
+<td align="center">-m   要指定的文件</td>
+<td align="right">多个目标URL保持到文件里，用-m进行多个扫描</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="right">Post提交方式，比如我们叫pros请求方到文件里面我们就可以用这个了</td>
+</tr>
+<tr>
+<td align="center">-g</td>
+<td align="right">用谷歌搜索引擎访问然后在进行扫描</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="right">用配置文件进行扫描</td>
+</tr>
+<tr>
+<td align="center">-v 0-6</td>
+<td align="right">查看返回结果信息有0-6级</td>
+</tr>
+</tbody></table>
+<h1 id="指定目标"><a href="#指定目标" class="headerlink" title="指定目标"></a>指定目标</h1><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="right">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-d</td>
+<td align="right">直接连接数据库</td>
+</tr>
+<tr>
+<td align="center">-u</td>
+<td align="right">指定url扫描</td>
+</tr>
+<tr>
+<td align="center">-l    &lt;文件名&gt;</td>
+<td align="right">导入一个文件可以来自Burp和WebScarab代理记录的文件</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td align="right">叫批量的目标保存到xml格式的文件进行扫描</td>
+</tr>
+<tr>
+<td align="center">-m   要指定的文件</td>
+<td align="right">多个目标URL保持到文件里，用-m进行多个扫描</td>
+</tr>
+<tr>
+<td align="center">-r</td>
+<td align="right">Post提交方式，比如我们叫pros请求方到文件里面我们就可以用这个了</td>
+</tr>
+<tr>
+<td align="center">-g</td>
+<td align="right">用谷歌搜索引擎访问然后在进行扫描</td>
+</tr>
+<tr>
+<td align="center">-c</td>
+<td align="right">用配置文件进行扫描</td>
+</tr>
+<tr>
+<td align="center">-v 0-6</td>
+<td align="right">查看返回结果信息有0-6级</td>
+</tr>
+</tbody></table>
+<h2 id="实际操作"><a href="#实际操作" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="d参数"><a href="#d参数" class="headerlink" title="-d参数"></a><code>-d</code>参数</h3><p>这个不是什么扫描而是连接查询数据库的信息</p>
+<p>mysql表示数据库类型</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap -d <span class="string">&quot;mysql://root:123456@192.168.0.103:3386/&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="u参数"><a href="#u参数" class="headerlink" title="-u参数"></a><code>-u</code>参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.0.103/sqli-labs/Less-1/?id=1&quot; -p id -f    </span><br></pre></td></tr></table></figure>
+
+<p>-p是要指定的变量名之对这个变量进行检查探测<br>-f是检查检查指纹信息<br>总体来说就是检查这个URL里的username进行指纹检查看见查</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; sqlmap -u <span class="string">&quot;http://192.168.0.103/sqli-labs/Less-1/?id=1&quot;</span> -p id -f      </span><br><span class="line">.........</span><br><span class="line">[*] starting @ 18:43:31 /2022-01-13/</span><br><span class="line"></span><br><span class="line">[18:43:31] [INFO] resuming back-end DBMS <span class="string">&#x27;mysql&#x27;</span> </span><br><span class="line">[18:43:31] [INFO] testing connection to the target URL</span><br><span class="line">sqlmap resumed the following injection point(s) from stored session:</span><br><span class="line">---</span><br><span class="line">Parameter: id (GET)</span><br><span class="line">    Type: boolean-based blind</span><br><span class="line">    Title: AND boolean-based blind - WHERE or HAVING clause</span><br><span class="line">    Payload: id=1<span class="string">&#x27; AND 1121=1121 AND &#x27;</span>VnrB<span class="string">&#x27;=&#x27;</span>VnrB</span><br></pre></td></tr></table></figure>
+
+<h3 id="l参数"><a href="#l参数" class="headerlink" title="-l参数"></a><code>-l</code>参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqkmap -r 请求保存的文件 -a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用burpsuite log文件</p>
+</blockquote>
+<p>用burp工具的请求的过程保存成一个log文件然后在用sqlmao读取log文件然后在漏洞的注入</p>
+<p>　保存log文件<br>　<img src="https://img-blog.csdnimg.cn/20191108103126992.png" alt="在这里插入图片描述"><br>　<img src="https://img-blog.csdnimg.cn/2019110810311672.png" alt="在这里插入图片描述">命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -l a　</span><br></pre></td></tr></table></figure>
+
+<p>扫描会非常长后面可以加参数 </p>
+<h3 id="r参数"><a href="#r参数" class="headerlink" title="-r参数"></a><code>-r</code>参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqkmap -r 请求保存的文件</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>演示</p>
+</blockquote>
+<p>a.txt文件内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">POST /sqli-labs/Less-11/ HTTP/1.1</span><br><span class="line">Host: 192.168.0.103</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 30</span><br><span class="line">Origin: http://192.168.0.103</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http://192.168.0.103/sqli-labs/Less-11/</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">uname=a&amp;passwd=a&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+
+<p>扫描</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">zss@zss  ~  sqlmap -r a.txt</span><br><span class="line">..............</span><br><span class="line">[19:29:01] [INFO] parsing HTTP request from <span class="string">&#x27;a.txt&#x27;</span></span><br><span class="line">[19:29:01] [INFO] testing connection to the target URL</span><br><span class="line">[19:29:01] [INFO] checking <span class="keyword">if</span> the target is protected by some kind of WAF/IPS</span><br><span class="line">[19:29:01] [INFO] testing <span class="keyword">if</span> the target URL content is stable</span><br><span class="line">[19:29:02] [INFO] target URL content is stable</span><br><span class="line">[19:29:02] [INFO] testing <span class="keyword">if</span> POST parameter <span class="string">&#x27;uname&#x27;</span> is dynamic</span><br></pre></td></tr></table></figure>
+
+<h3 id="m参数"><a href="#m参数" class="headerlink" title="-m参数"></a><code>-m</code>参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -m 文件名</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>演示</p>
+</blockquote>
+<p>a.txt文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.0.103/sqli-labs/Less-1/?id=1</span><br><span class="line">http://192.168.0.103/sqli-labs/Less-2/?id=1</span><br><span class="line">http://192.168.0.103/sqli-labs/Less-3/?id=1</span><br></pre></td></tr></table></figure>
+
+<p>扫描</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; sqlmap -m a.txt</span><br><span class="line">.........</span><br><span class="line">st from <span class="string">&#x27;a.txt&#x27;</span></span><br><span class="line">[19:20:54] [INFO] found a total of 3 targets</span><br><span class="line">URL 1:</span><br><span class="line">GET http://192.168.0.103/sqli-labs/Less-1/?id=1</span><br><span class="line"><span class="keyword">do</span> you want to <span class="built_in">test</span> this URL? [Y/n/q]</span><br><span class="line">&gt; y</span><br><span class="line">[19:20:56] [INFO] testing URL <span class="string">&#x27;http://192.168.0.103/sqli-labs/Less-1/?id=1&#x27;</span></span><br><span class="line">[19:20:56] [INFO] resuming back-end DBMS <span class="string">&#x27;mysql&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="c参数"><a href="#c参数" class="headerlink" title="-c参数"></a><code>-c</code>参数</h3><p>这个我们可以指定他的配置文件进行扫描</p>
+<p>他的配置文件在<code>/etc/sqlmap/sqlmap.conf</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -c /etc/sqlmap/sqlmap.conf</span><br></pre></td></tr></table></figure>
+
+<h1 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h1><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-A</td>
+<td align="center">修改User-Agent头的就是我们的识别浏览器的</td>
+</tr>
+<tr>
+<td align="center">-H</td>
+<td align="center">修改X-Forwarded-For头的他是客户端最原始的IP地址</td>
+</tr>
+<tr>
+<td align="center">–method</td>
+<td align="center">用于强制修改请求的方式，比如get或者post</td>
+</tr>
+<tr>
+<td align="center">–data</td>
+<td align="center">通过POST发送的数据字符串（例如“id=1”）</td>
+</tr>
+<tr>
+<td align="center">–param-del</td>
+<td align="center">变量分隔符</td>
+</tr>
+<tr>
+<td align="center">–cookie</td>
+<td align="center">修改Cookie 标头值<br />检查注入点(–level&gt;=至少是2)</td>
+</tr>
+<tr>
+<td align="center">–cookie-del</td>
+<td align="center">用于分割 cookie 值的字符（例如 ;）</td>
+</tr>
+<tr>
+<td align="center">–drop-set-cookie</td>
+<td align="center">sqlmap扫描他会用上一个我们设置的cookie，可以用这个去掉</td>
+</tr>
+<tr>
+<td align="center">–random-agent</td>
+<td align="center">随机一个User-Agent 标头值<br />检查注入点(–level &gt;= 3 )</td>
+</tr>
+<tr>
+<td align="center">–host</td>
+<td align="center">修改Host的值<br />检查注入点(–level &gt;= 5 )</td>
+</tr>
+<tr>
+<td align="center">–referer</td>
+<td align="center">修改Referer的值<br />检查注入点(–level&gt;=3 )</td>
+</tr>
+<tr>
+<td align="center">–headers</td>
+<td align="center">他可以单个请求头或者是多个请求头</td>
+</tr>
+<tr>
+<td align="center">–auth-type/–auth-cred</td>
+<td align="center">基于HTTP协议的身份验证，登录</td>
+</tr>
+<tr>
+<td align="center">–ignore-code</td>
+<td align="center">忽略（有问题的）HTTP 错误代码（例如 401）</td>
+</tr>
+<tr>
+<td align="center">–ignore-proxy</td>
+<td align="center">忽略系统默认代理设置</td>
+</tr>
+<tr>
+<td align="center">–ignore-redirects</td>
+<td align="center">忽略重定向尝试</td>
+</tr>
+<tr>
+<td align="center">–ignore-timeouts</td>
+<td align="center">忽略连接超时</td>
+</tr>
+<tr>
+<td align="center">–proxy</td>
+<td align="center">使用代理</td>
+</tr>
+<tr>
+<td align="center">–proxy-cred</td>
+<td align="center">如果代理有帐号密码用这个</td>
+</tr>
+<tr>
+<td align="center"><a href="#%E2%80%93proxy-file%E5%8F%82%E6%95%B0">–proxy-file</a></td>
+<td align="center">多个代理，使用的是文件</td>
+</tr>
+<tr>
+<td align="center">–proxy-freq</td>
+<td align="center">从给定列表更改代理之间的请求</td>
+</tr>
+<tr>
+<td align="center"><a href="#--tor%E5%8F%82%E6%95%B0">–tor</a></td>
+<td align="center">使用 Tor 匿名网络</td>
+</tr>
+<tr>
+<td align="center"><a href="#--delay%E5%8F%82%E6%95%B0">–delay</a></td>
+<td align="center">设置扫描时间</td>
+</tr>
+<tr>
+<td align="center"><a href="#--timeout%E5%8F%82%E6%95%B0">–timeout</a></td>
+<td align="center">设置超时时间</td>
+</tr>
+<tr>
+<td align="center"><a href="#--retries%E5%8F%82%E6%95%B0">–retries</a></td>
+<td align="center">尝试连接</td>
+</tr>
+<tr>
+<td align="center"><a href="#--randomize%E5%8F%82%E6%95%B0">–randomize</a></td>
+<td align="center">随机化参数</td>
+</tr>
+<tr>
+<td align="center">–safe-url</td>
+<td align="center">测试时经常访问的URL地址[视频教程][<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bJ41177mD?p=7%5D">https://www.bilibili.com/video/BV1bJ41177mD?p=7]</a></td>
+</tr>
+<tr>
+<td align="center">–safe-post</td>
+<td align="center">POST 数据以发送到安全的 URL[视频教程][<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bJ41177mD?p=7%5D">https://www.bilibili.com/video/BV1bJ41177mD?p=7]</a></td>
+</tr>
+<tr>
+<td align="center">–safe-req</td>
+<td align="center">从文件加载安全的 HTTP 请求[视频教程][<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bJ41177mD?p=7%5D">https://www.bilibili.com/video/BV1bJ41177mD?p=7]</a></td>
+</tr>
+<tr>
+<td align="center">–safe-freq</td>
+<td align="center">访问安全 URL 之间的定期请求[视频教程][<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bJ41177mD?p=7%5D">https://www.bilibili.com/video/BV1bJ41177mD?p=7]</a></td>
+</tr>
+<tr>
+<td align="center">–csrf-token</td>
+<td align="center">用于保存anti-CSRF令牌的参数</td>
+</tr>
+<tr>
+<td align="center">–csrf-url</td>
+<td align="center">提取反 CSRF 令牌要访问的 URL 地址</td>
+</tr>
+<tr>
+<td align="center">–csrf-method</td>
+<td align="center">在反 CSRF 令牌页面访问期间使用的 HTTP 方法</td>
+</tr>
+<tr>
+<td align="center">–csrf-retries</td>
+<td align="center">重试反 CSRF 令牌检索（默认 0）</td>
+</tr>
+<tr>
+<td align="center">–force-ssl</td>
+<td align="center">强制使用 SSL/HTTPS</td>
+</tr>
+<tr>
+<td align="center">–chunked</td>
+<td align="center">使用 HTTP 分块传输编码 (POST) 请求</td>
+</tr>
+<tr>
+<td align="center">–hpp</td>
+<td align="center">使用HTTP参数污染方式</td>
+</tr>
+<tr>
+<td align="center">–eval</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="实际操作-1"><a href="#实际操作-1" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="A参数"><a href="#A参数" class="headerlink" title="-A参数"></a><code>-A</code>参数</h3><blockquote>
+<p>默认发的探测包不是其他想IE浏览器或者是其他浏览器发的包默认撒sqlmap发的<br>这样的话网站管理员就会发现有人用sqlmap在扫那<br><img src="https://img-blog.csdnimg.cn/20191111183440840.png" alt="在这里插入图片描述"></p>
+</blockquote>
+<blockquote>
+<p>自己指定user-agent</p>
+</blockquote>
+<p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.0.103/sqli-labs/Less-1/\?id\=1&quot;  -A aaaaa</span><br></pre></td></tr></table></figure>
+
+<p>可以看见是aaa<br><img src="https://img-blog.csdnimg.cn/20191111190002178.png" alt="在这里插入图片描述"></p>
+<h3 id="H参数"><a href="#H参数" class="headerlink" title="-H参数"></a><code>-H</code>参数</h3><blockquote>
+<p>修改X-Forwarded-For头的他是客户端最原始的IP地址</p>
+</blockquote>
+<p>sqlmap没有添加-H</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /sqli-labs/Less-1/\?id%5C=1 HTTP/1.1</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">User-Agent: sqlmap/1.5.2#stable (http://sqlmap.org)</span><br><span class="line">Host: 192.168.0.103</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip,deflate</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
+
+<p>添加后的<code>sqlmap  -u &quot;http://192.168.0.103/sqli-labs/Less-1/\?id\=1&quot;  -H X-Forwarded-For:127.0.0.1</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /sqli-labs/Less-1/\?id%5C=5818 HTTP/1.1</span><br><span class="line">X-Forwarded-For: 127.0.0.1</span><br><span class="line">User-Agent: sqlmap/1.5.2#stable (http://sqlmap.org)</span><br><span class="line">Host: 192.168.0.103</span><br><span class="line">Accept: */*</span><br><span class="line">Accept-Encoding: gzip,deflate</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="method参数"><a href="#method参数" class="headerlink" title="--method参数"></a><code>--method</code>参数</h3><blockquote>
+<p>扫描指定发的包GET和POST</p>
+<p>用于强制修改请求的方式，比如get或者post</p>
+</blockquote>
+<p>参数<code>--method=GET或POST</code><br>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.0.103/sqli-labs/Less-1/\?id\=1&quot;  --method=POST  </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191113095205153.png" alt="在这里插入图片描述"></p>
+<h3 id="data参数"><a href="#data参数" class="headerlink" title="--data参数"></a><code>--data</code>参数</h3><blockquote>
+<p>他就是可以吧我们的post请求不用放到文件里面进行扫描我们就可以用这个<code>--data</code>参数</p>
+</blockquote>
+<p>代码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u <span class="string">&quot;http://192.168.0.103/sqli-labs/Less-11/&quot;</span> --data=<span class="string">&quot;uname=a&amp;passwd=a&amp;submit=Submit&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>是post请求的参数uname=a&amp;passwd=a&amp;submit=Submit</p>
+<p>源请求</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">POST /sqli-labs/Less-11/ HTTP/1.1</span><br><span class="line">Host: 192.168.0.103</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 30</span><br><span class="line">Origin: http://192.168.0.103</span><br><span class="line">Connection: close</span><br><span class="line">Referer: http://192.168.0.103/sqli-labs/Less-11/</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">uname=a&amp;passwd=a&amp;submit=Submit</span><br></pre></td></tr></table></figure>
+
+<h3 id="param-del参数"><a href="#param-del参数" class="headerlink" title="--param-del参数"></a><code>--param-del</code>参数</h3><p>大部分都是用&amp;进行分割的，有小部分可能用其他的分隔符比如;，我们就可以用–param-del指定分隔符</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://1.1.1.1/a.php&quot;</span> --data=<span class="string">&quot;q=foo;id=1&quot;</span> --param-del=<span class="string">&quot;;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="–cookie参数"><a href="#–cookie参数" class="headerlink" title="–cookie参数"></a>–cookie参数</h3><p>sqlmap 会自动检查cookie中的注入点(level&gt;=至少是2)</p>
+<blockquote>
+<p>可以用–cookie进行添加cookie</p>
+</blockquote>
+<p>在浏览器里也可以找到cookie的<br><img src="https://img-blog.csdnimg.cn/20191110153611683.png" alt="在这里插入图片描述"><br>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.43.245/dvwa/vulnerabilities/sqli_blind/?id=1&amp;Submit=Submit#&quot; --cookie=&quot;security=low; PHPSESSID=6c9388ff1b30ee4c444e21b5a2aff95e&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191110153916852.png" alt="在这里插入图片描述"></p>
+<h4 id="注入检查"><a href="#注入检查" class="headerlink" title="注入检查"></a>注入检查</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.43.245/dvwa/vulnerabilities/sqli_blind/?id=1&quot; --level 2</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191110164244790.png" alt="在这里插入图片描述"></p>
+<h3 id="–random-agent参数"><a href="#–random-agent参数" class="headerlink" title="–random-agent参数"></a>–random-agent参数</h3><blockquote>
+<p>–random-agent参数使用随机选择的 HTTP User-Agent 标头值</p>
+</blockquote>
+<p>配置的user-agent在这个文件里<code>/usr/share/sqlmap/data/txt/user-agents.txt</code><br>–random-agent会随机用上面这个文件里的user-agent<br>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.54.56/mutillidae/index.php?page=1&quot;  --random-agent</span><br></pre></td></tr></table></figure>
+
+<p>看一下就不是sqlmap了<br><img src="https://img-blog.csdnimg.cn/20191111185640486.png" alt="在这里插入图片描述"></p>
+<h4 id="注入"><a href="#注入" class="headerlink" title="注入"></a>注入</h4><p>检查 user-agent 中的注入点：level &gt;= 3</p>
+<p>检查 user-agent 中的注入点：level &gt;= 3<br>user-agent也是存在sql注入的<br>sqlmap扫描 user-agent 是否存在sql注入不须level&gt;= 3 才会看看user-agent 是否存在漏洞<br>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.51.36/mutillidae/index.php?page=user-info.php&amp;username=1&amp;password=1&amp;user-info-php-submit-button=View+Account+Details&quot;  --random-agent  --level 3</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191112182750938.png" alt="在这里插入图片描述"></p>
+<h3 id="–host参数"><a href="#–host参数" class="headerlink" title="–host参数"></a>–host参数</h3><blockquote>
+<p>修改Host的值</p>
+</blockquote>
+<p>修改host头需要加上<code>--host=&quot;xxxx&quot;</code><br>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.51.36/mutillidae/index.php?page=1&quot;  –-host=&quot;aaaaaaaa&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2019111218422979.png" alt="在这里插入图片描述"></p>
+<h4 id="检查注入"><a href="#检查注入" class="headerlink" title="检查注入"></a>检查注入</h4><p>扫描host头是否存在sql漏洞level &gt;= 5 才可以</p>
+<p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.51.36/mutillidae/index.php?page=user-info.php&amp;username=1&amp;password=1&amp;user-info-php-submit-button=View+Account+Details&quot;  –-host=&quot;aaaaaaaa&quot;  --level 5  --dbs</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/20191112184516175.png" alt="在这里插入图片描述"></p>
+<h3 id="–referer参数"><a href="#–referer参数" class="headerlink" title="–referer参数"></a>–referer参数</h3><blockquote>
+<p>referer头是比如我们访问一个网页要跳转到另外一个网页原来的URL会在referer里</p>
+</blockquote>
+<p><code>修改referer后面加上参数 --referer=&quot;要指定的referer&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.51.36/mutillidae/index.php?page=1&quot;  --referer==&quot;aaaaaaaa&quot;</span><br></pre></td></tr></table></figure>
+
+<h4 id="检查注入-1"><a href="#检查注入-1" class="headerlink" title="检查注入"></a>检查注入</h4><p>referer是否存在sql注入漏洞–level&gt;=3才可以</p>
+<p>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u &quot;http://192.168.51.36/mutillidae/index.php?page=user-info.php&amp;username=1&amp;password=1&amp;user-info-php-submit-button=View+Account+Details&quot;  --referer==&quot;aaaaaaaa&quot;  --level 3  --dbs</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20191112185823396.png" alt="在这里插入图片描述"></p>
+<h3 id="–headers参数"><a href="#–headers参数" class="headerlink" title="–headers参数"></a>–headers参数</h3><p>他可以单个请求头或者是多个请求头</p>
+<blockquote>
+<p>单个要修改的头参数<code>--headers=&quot;头名:&quot;要修改的东西&quot;&quot;</code>这个就不演示了</p>
+</blockquote>
+<blockquote>
+<p>要是多个必须换行\n参数<code>--headers=&quot;头名:&quot;要修改的东西\n&quot;头名:&quot;要修改的东西&quot;</code></p>
+</blockquote>
+<p>这个我就用Host头和User-Agent头</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  -u <span class="string">&quot;http://192.168.51.36/mutillidae/index.php?page=1&quot;</span>  --headers=<span class="string">&quot;Host:www.aaa.com\nUser-Agent:AAAAAAAAAA&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/2019111219175895.png" alt="在这里插入图片描述"><br>可以看见被修改了<br><img src="https://img-blog.csdnimg.cn/20191112192002748.png" alt="在这里插入图片描述"></p>
+<h3 id="–auth-type参数"><a href="#–auth-type参数" class="headerlink" title="–auth-type参数"></a>–auth-type参数</h3><p>他支持的类型Basic，Digest，NTLM</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://1.1.1.1/a.php?id=1&quot;</span> --auth-type=身份认证类型 --auth-cred=<span class="string">&quot;帐号:密码&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220113205954309.png" alt="image-20220113205954309"></p>
+<h3 id="–proxy参数"><a href="#–proxy参数" class="headerlink" title="–proxy参数"></a>–proxy参数</h3><p>参数<code>--proxy=&quot;http://代理的ip:代理的端口&quot;</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.51.26/mutillidae/index.php?page=1&quot;</span> --proxy=<span class="string">&quot;http://127.0.0.1:8080&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="–proxy-file参数"><a href="#–proxy-file参数" class="headerlink" title="–proxy-file参数"></a>–proxy-file参数</h3><p>a.txt文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://127.0.0.1:8080</span><br><span class="line">http://127.0.0.2:8080</span><br><span class="line">http://127.0.0.3:8080</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.51.26/mutillidae/index.php?page=1&quot;  --proxy-file a.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="–tor参数"><a href="#–tor参数" class="headerlink" title="–tor参数"></a>–tor参数</h3><blockquote>
+<p>–tor是开启tor连接</p>
+</blockquote>
+<blockquote>
+<p> 他还有–tor-type指定代理的类型</p>
+</blockquote>
+<p><code>HTTP、SOCKS4 或 SOCKS5（默认）</code></p>
+<blockquote>
+<p>–tor-port指定tor端口</p>
+</blockquote>
+<blockquote>
+<p>–check-tor检查 Tor 是否正确使用</p>
+</blockquote>
+<p>我们需要安装tor</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tor</span><br></pre></td></tr></table></figure>
+
+<p>启动tor</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service tor start </span><br></pre></td></tr></table></figure>
+
+<h3 id="–delay参数"><a href="#–delay参数" class="headerlink" title="–delay参数"></a>–delay参数</h3><p>用sqlmap去扫描别人的网站会发送大量的请求可能目标服务器会发现你给你屏蔽掉，我们可以设置发送包的时间</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--delay 要指定的时间			时间是秒</span><br><span class="line">例如</span><br><span class="line">--delay 0.5		就是每发送探测包的时间隔0.5秒发送一个</span><br></pre></td></tr></table></figure>
+
+<h3 id="–timeout参数"><a href="#–timeout参数" class="headerlink" title="–timeout参数"></a>–timeout参数</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--timeout  要设置的时间          默认为30秒，30要没有响就超时了</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="–retries参数"><a href="#–retries参数" class="headerlink" title="–retries参数"></a>–retries参数</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--retries  要设置的次数	比如超时时间设置30妙那么就是90妙</span><br></pre></td></tr></table></figure>
+
+<h3 id="–randomize参数"><a href="#–randomize参数" class="headerlink" title="–randomize参数"></a>–randomize参数</h3><p>我们在扫描一个点的时候都是用到一个id号，我们就可以用这个修改这个id号</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.0.103/sqli-labs/Less-1/?id=1&quot;</span> --randomize id </span><br></pre></td></tr></table></figure>
+
+<p>他这个id指定的就是我们的参数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Zhao-sai-sai/Picture/image-20220113221056973.png" alt="image-20220113221056973"></p>
+<h1 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h1><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-o</td>
+<td align="center">打开所有优化开关</td>
+</tr>
+<tr>
+<td align="center">–predict-output</td>
+<td align="center">预测常见查询输出</td>
+</tr>
+<tr>
+<td align="center">–keep-alive</td>
+<td align="center">使用持久的 HTTP(s) 连接</td>
+</tr>
+<tr>
+<td align="center">–null-connection</td>
+<td align="center">在没有实际 HTTP 响应正文的情况下检索页面长度</td>
+</tr>
+<tr>
+<td align="center">–threads=</td>
+<td align="center">最大并发 HTTP(s) 请求数（默认 1）</td>
+</tr>
+</tbody></table>
+<h2 id="实际操作-2"><a href="#实际操作-2" class="headerlink" title="实际操作"></a>实际操作</h2><h3 id="O参数"><a href="#O参数" class="headerlink" title="-O参数"></a>-O参数</h3><blockquote>
+<p>-O就是用一个-O就是用代替下面的所有参数</p>
+</blockquote>
+<p>–predict-output    预测公共查询输出<br>–keep-alive         使用永久HTTP（s）连接<br>–null-connection     没有实际HTTP响应正文的页长度</p>
+<h3 id="–predict-output参数"><a href="#–predict-output参数" class="headerlink" title="–predict-output参数"></a>–predict-output参数</h3><ul>
+<li>通常sqlmap扫描时间不叫长可以用优化参数 </li>
+<li>根据检测方法，比对返回值和统计表内容，不断缩小检测范围，提高检测效率</li>
+</ul>
+<ul>
+<li><p>版本名、用户名、密码、Privileges、role、数据库名称、表名、列名</p>
+</li>
+<li><p>与 –threads 参数不兼容就是你用了–threads那就不能用了–predict-output    </p>
+</li>
+<li><p>统计表默认位置:/usr/share/sqlmap/data/txtcommon-outputs.txt</p>
+</li>
+</ul>
+<h3 id="–keep-alive参数"><a href="#–keep-alive参数" class="headerlink" title="–keep-alive参数"></a>–keep-alive参数</h3><ul>
+<li><p>使用 http(s) 长连接，性能好</p>
+</li>
+<li><p>与 –proxy 参数不兼容就是你用了–proxy 那就不能用了 –keep-alive</p>
+</li>
+<li><p>长连接避免重复建立连接的网络开销，但大量长连接会严重占用服务器资源（节省网络开销，但是会占用服务器资源，防止重复建立连接时被服务器端检测发现）</p>
+</li>
+</ul>
+<h3 id="–null-connection参数"><a href="#–null-connection参数" class="headerlink" title="–null-connection参数"></a>–null-connection参数</h3><ul>
+<li><p>只获取相应页面的大小值，而非页面具体内容</p>
+</li>
+<li><p>通常用于盲注判断 真/假，降低网络带宽消耗</p>
+</li>
+<li><p>与–text-only参数不兼容（基于页面内容的比较判断 真/假</p>
+</li>
+</ul>
+<h3 id="–threads参数"><a href="#–threads参数" class="headerlink" title="–threads参数"></a>–threads参数</h3><ul>
+<li><p>最大并发线程</p>
+</li>
+<li><p>盲注时每个线程获取一个字符（7次请求）。获取完成后线程结果</p>
+</li>
+<li><p>默认值为1，建议不要超过10,否则可能影响站点可用性</p>
+</li>
+<li><p>与 –predict-output参数不兼容</p>
+</li>
+</ul>
+<h1 id="注射"><a href="#注射" class="headerlink" title="注射"></a>注射</h1></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/13/sqlmap%E6%80%BB%E7%BB%93/">http://example.com/2022/01/13/sqlmap%E6%80%BB%E7%BB%93/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Hexo</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">渗透工具使用</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/20/phpcms_v9.6.0_sql%E6%B3%A8%E5%85%A5/"><img class="prev-cover" src="https://gitee.com/wZass/zp/raw/master/img/20201216131324.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">phpcms_v9.6.0_sql注入漏洞复现</div></div></a></div><div class="next-post pull-right"><a href="/2021/12/28/python%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><img class="next-cover" src="https://gitee.com/wzass/zp/raw/master/img/image-20210201183557871.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">python多线程编程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2019/11/08/1 sqlmapSQLMAP-自动注入/" title="1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-08</div><div class="title">1 sqlmap工具详细使用 任务093：SQLMAP- 自动注入</div></div></a></div><div><a href="/2020/08/09/1.Metasploit介绍和模块/" title="1.Metasploit介绍和模块"><img class="cover" src="https://pic.3gbizhi.com/2019/0927/thumb_1680_0_20190927040015427.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">1.Metasploit介绍和模块</div></div></a></div><div><a href="/2020/08/29/1,nmap/" title="1 nmap扫描 扫描格式，活主机，端口扫描"><img class="cover" src="http://www.devapp.it/wordpress/wp-content/uploads/2015/11/nmap-logo.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-29</div><div class="title">1 nmap扫描 扫描格式，活主机，端口扫描</div></div></a></div><div><a href="/2019/11/08/2  sqlmap工具详细使用 SQLMAP自动注入头部的修改/" title="2  sqlmap工具详细使用 SQLMAP自动注入头部的修改"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-08</div><div class="title">2  sqlmap工具详细使用 SQLMAP自动注入头部的修改</div></div></a></div><div><a href="/2020/08/09/2. 再学Mestasploit基本使用/" title="2. Mestasploit 基本使用"><img class="cover" src="https://pic.3gbizhi.com/2020/0821/thumb_1680_0_20200821113456781.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-09</div><div class="title">2. Mestasploit 基本使用</div></div></a></div><div><a href="/2019/11/19/3 sqlma工具详细使用   任务095pSQLMAP自动注入扫描时间和优化/" title="3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化"><img class="cover" src="https://gitee.com/wZass/zp/raw/master/img/20200913080330.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2019-11-19</div><div class="title">3 sqlmap工具详细使用   任务095：SQLMAP自动注入扫描时间和优化</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">参数总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E7%9B%AE%E6%A0%87"><span class="toc-number">2.</span> <span class="toc-text">指定目标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">实际操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#d%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.1.</span> <span class="toc-text">-d参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.2.</span> <span class="toc-text">-u参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#l%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.3.</span> <span class="toc-text">-l参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.4.</span> <span class="toc-text">-r参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#m%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.5.</span> <span class="toc-text">-m参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.6.</span> <span class="toc-text">-c参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82"><span class="toc-number">3.</span> <span class="toc-text">请求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.1.</span> <span class="toc-text">实际操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.1.</span> <span class="toc-text">-A参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#H%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.2.</span> <span class="toc-text">-H参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#method%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.3.</span> <span class="toc-text">--method参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.4.</span> <span class="toc-text">--data参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#param-del%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.5.</span> <span class="toc-text">--param-del参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93cookie%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.6.</span> <span class="toc-text">–cookie参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E6%A3%80%E6%9F%A5"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">注入检查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93random-agent%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.7.</span> <span class="toc-text">–random-agent参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5"><span class="toc-number">3.1.7.1.</span> <span class="toc-text">注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93host%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.8.</span> <span class="toc-text">–host参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%B3%A8%E5%85%A5"><span class="toc-number">3.1.8.1.</span> <span class="toc-text">检查注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93referer%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.9.</span> <span class="toc-text">–referer参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E6%B3%A8%E5%85%A5-1"><span class="toc-number">3.1.9.1.</span> <span class="toc-text">检查注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93headers%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.10.</span> <span class="toc-text">–headers参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93auth-type%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.11.</span> <span class="toc-text">–auth-type参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93proxy%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.12.</span> <span class="toc-text">–proxy参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93proxy-file%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.13.</span> <span class="toc-text">–proxy-file参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93tor%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.14.</span> <span class="toc-text">–tor参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93delay%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.15.</span> <span class="toc-text">–delay参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93timeout%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.16.</span> <span class="toc-text">–timeout参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93retries%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.17.</span> <span class="toc-text">–retries参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93randomize%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.18.</span> <span class="toc-text">–randomize参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">性能优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%99%85%E6%93%8D%E4%BD%9C-2"><span class="toc-number">4.1.</span> <span class="toc-text">实际操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#O%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.1.</span> <span class="toc-text">-O参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93predict-output%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.2.</span> <span class="toc-text">–predict-output参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93keep-alive%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.3.</span> <span class="toc-text">–keep-alive参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93null-connection%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.4.</span> <span class="toc-text">–null-connection参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93threads%E5%8F%82%E6%95%B0"><span class="toc-number">4.1.5.</span> <span class="toc-text">–threads参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%B0%84"><span class="toc-number">5.</span> <span class="toc-text">注射</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By John Doe</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
